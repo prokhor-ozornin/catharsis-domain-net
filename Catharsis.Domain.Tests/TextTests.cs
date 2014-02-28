@@ -10,6 +10,15 @@ namespace Catharsis.Domain
   public sealed class TextTests : EntityUnitTests<Text>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Category", "Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text", "Person", "Translations");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Text()"/>
     ///   <seealso cref="Text(string, string, Person, TextsCategory)"/>
@@ -86,7 +95,7 @@ namespace Catharsis.Domain
       Assert.Equal(1, text.Translations.Count);
       Assert.True(ReferenceEquals(text.Translations.Single(), translation));
       text.Translations.Add(translation);
-      Assert.Equal(1, text.Translations.Count);
+      Assert.Equal(2, text.Translations.Count);
     }
 
     /// <summary>
@@ -102,7 +111,7 @@ namespace Catharsis.Domain
       Assert.Equal(1, text.TranslationsList.Count());
       Assert.True(ReferenceEquals(text.TranslationsList.Single(), translation));
       text.Translations.Add(translation);
-      Assert.Equal(1, text.TranslationsList.Count());
+      Assert.Equal(2, text.TranslationsList.Count());
     }
 
     /// <summary>

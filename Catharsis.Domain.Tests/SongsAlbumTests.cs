@@ -10,6 +10,15 @@ namespace Catharsis.Domain
   public sealed class SongsAlbumTests : EntityUnitTests<SongsAlbum>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Comments", "DateCreated", "Image", "LastUpdated", "Name", "PublishedOn", "Tags", "Text");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="SongsAlbum()"/>
     ///   <seealso cref="SongsAlbum(string, string, string, DateTime?)"/>

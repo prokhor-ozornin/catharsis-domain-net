@@ -9,6 +9,15 @@ namespace Catharsis.Domain
   public sealed class AudioTests : EntityUnitTests<Audio>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Bitrate", "Category", "Duration", "File");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Audio()"/>
     ///   <seealso cref="Audio(string, short, short, AudiosCategory)"/>
@@ -17,19 +26,19 @@ namespace Catharsis.Domain
     public void Constructors()
     {
       var audio = new Audio();
-      Assert.Equal(0, audio.Id);
       Assert.Equal(0, audio.Bitrate);
       Assert.Null(audio.Category);
       Assert.Equal(0, audio.Duration);
+      Assert.Equal(0, audio.Id);
       Assert.Null(audio.File);
       Assert.Equal(0, audio.Version);
 
       Assert.Throws<ArgumentNullException>(() => new Audio(null, 1, 2));
       audio = new Audio("file", 1, 2, new AudiosCategory());
-      Assert.Equal(0, audio.Id);
       Assert.Equal(1, audio.Bitrate);
       Assert.NotNull(audio.Category);
       Assert.Equal(2, audio.Duration);
+      Assert.Equal(0, audio.Id);
       Assert.Equal("file", audio.File);
       Assert.Equal(0, audio.Version);
     }

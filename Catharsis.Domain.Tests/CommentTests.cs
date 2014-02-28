@@ -9,6 +9,15 @@ namespace Catharsis.Domain
   public sealed class CommentTests : EntityUnitTests<Comment>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("DateCreated", "LastUpdated", "Name", "Text");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Comment()"/>
     ///   <seealso cref="Comment(string, string)"/>

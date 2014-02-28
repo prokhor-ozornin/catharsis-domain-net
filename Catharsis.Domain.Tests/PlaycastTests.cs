@@ -10,6 +10,15 @@ namespace Catharsis.Domain
   public sealed class PlaycastTests : EntityUnitTests<Playcast>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Audio", "Category", "Comments", "DateCreated", "Image", "Language", "LastUpdated", "Name", "Tags", "Text");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Playcast()"/>
     ///   <seealso cref="Playcast(string, string, PlaycastsCategory, string, string)"/>

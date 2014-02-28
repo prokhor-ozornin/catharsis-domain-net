@@ -10,6 +10,15 @@ namespace Catharsis.Domain
   public sealed class FaqTests : EntityUnitTests<Faq>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Faq()"/>
     ///   <seealso cref="Faq(string, string)"/>

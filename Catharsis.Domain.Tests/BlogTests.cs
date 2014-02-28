@@ -10,6 +10,15 @@ namespace Catharsis.Domain
   public sealed class BlogTests : EntityUnitTests<Blog>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Blog()"/>
     ///   <seealso cref="Blog(string)"/>

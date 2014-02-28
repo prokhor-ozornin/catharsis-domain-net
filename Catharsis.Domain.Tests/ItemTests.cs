@@ -10,6 +10,15 @@ namespace Catharsis.Domain
   public sealed class ItemTests : EntityUnitTests<Item>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Item()"/>
     ///   <seealso cref="Item(string, string)"/>
@@ -129,7 +138,7 @@ namespace Catharsis.Domain
       Assert.Equal(1, item.Tags.Count);
       Assert.Equal("tag", item.Tags.Single());
       item.Tags.Add("tag");
-      Assert.Equal(1, item.Tags.Count);
+      Assert.Equal(2, item.Tags.Count);
     }
 
     /// <summary>
@@ -144,7 +153,7 @@ namespace Catharsis.Domain
       Assert.Equal(1, item.TagsList.Count());
       Assert.Equal("tag", item.TagsList.Single());
       item.Tags.Add("tag");
-      Assert.Equal(1, item.TagsList.Count());
+      Assert.Equal(2, item.TagsList.Count());
     }
 
     /// <summary>

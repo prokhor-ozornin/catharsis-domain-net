@@ -9,6 +9,15 @@ namespace Catharsis.Domain
   public sealed class CountryTests : EntityUnitTests<Country>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Image", "IsoCode", "Name");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Country()"/>
     ///   <seealso cref="Country(string, string, string)"/>

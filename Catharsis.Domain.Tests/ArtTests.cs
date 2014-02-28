@@ -10,6 +10,15 @@ namespace Catharsis.Domain
   public sealed class ArtTests : EntityUnitTests<Art>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Album", "Comments", "Image", "Language", "LastUpdated", "Material", "Name", "Person", "Place", "Tags", "Text");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Art()"/>
     ///   <seealso cref="Art(string, string, ArtsAlbum, string, Person, string, string)"/>
@@ -18,10 +27,10 @@ namespace Catharsis.Domain
     public void Constructors()
     {
       var art = new Art();
-      Assert.Equal(0, art.Id);
       Assert.Null(art.Album);
       Assert.False(art.Comments.Any());
       Assert.True(art.DateCreated >= DateTime.MinValue && art.DateCreated <= DateTime.UtcNow);
+      Assert.Equal(0, art.Id);
       Assert.Null(art.Image);
       Assert.Null(art.Language);
       Assert.True(art.LastUpdated >= DateTime.MinValue && art.LastUpdated <= DateTime.UtcNow);
@@ -38,10 +47,10 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentException>(() => new Art(string.Empty, "image"));
       Assert.Throws<ArgumentException>(() => new Art("name", string.Empty));
       art = new Art("name", "image", new ArtsAlbum(), "text", new Person(), "place", "material");
-      Assert.Equal(0, art.Id);
       Assert.NotNull(art.Album);
       Assert.False(art.Comments.Any());
       Assert.True(art.DateCreated >= DateTime.MinValue && art.DateCreated <= DateTime.UtcNow);
+      Assert.Equal(0, art.Id);
       Assert.NotNull(art.Image);
       Assert.Null(art.Language);
       Assert.True(art.LastUpdated >= DateTime.MinValue && art.LastUpdated <= DateTime.UtcNow);

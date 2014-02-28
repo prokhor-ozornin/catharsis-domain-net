@@ -13,7 +13,7 @@ namespace Catharsis.Domain
   public partial class Item : IComparable<Item>, IEquatable<Item>, IEntity, ICommentable, ILocalizable, INameable, ITaggable, ITimeable
   {
     private ICollection<Comment> comments = new List<Comment>();
-    private ICollection<string> tags = new HashSet<string>();
+    private ICollection<string> tags = new List<string>();
     private string name;
 
     /// <summary>

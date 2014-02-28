@@ -11,7 +11,18 @@ namespace Catharsis.Domain
   public abstract class CategoryUnitTests<T> : EntityUnitTests<T> where T : Category
   {
     /// <summary>
-    ///   <para></para>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Description", "Language", "Name");
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of class constructor(s).</para>
+    ///   <seealso cref="Category()"/>
+    ///   <seealso cref="Category(string, string)"/>
     /// </summary>
     [Fact]
     public void Constructors()

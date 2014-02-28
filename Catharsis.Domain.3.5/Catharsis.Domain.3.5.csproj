@@ -33,8 +33,9 @@
     <DocumentationFile>bin\Release\Catharsis.Domain.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Catharsis.Commons">
-      <HintPath>..\packages\Catharsis.Commons.1.7\lib\net35\Catharsis.Commons.dll</HintPath>
+    <Reference Include="Catharsis.Commons, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Catharsis.Commons.1.8\lib\net35\Catharsis.Commons.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -165,11 +166,20 @@
     <Compile Include="..\Catharsis.Domain.4.0\ITimeableExtensions.cs">
       <Link>ITimeableExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\ITypeable.cs">
+      <Link>ITypeable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\ITypeableExtensions.cs">
+      <Link>ITypeableExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\Location.cs">
       <Link>Location.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\LocationExtensions.cs">
       <Link>LocationExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Notification.cs">
+      <Link>Notification.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\Person.cs">
       <Link>Person.cs</Link>

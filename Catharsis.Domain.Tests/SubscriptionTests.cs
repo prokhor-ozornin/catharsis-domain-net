@@ -9,6 +9,15 @@ namespace Catharsis.Domain
   public sealed class SubscriptionTests : EntityUnitTests<Subscription>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Active", "DateCreated", "Email", "ExpiredOn", "LastUpdated", "Token");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Subscription()"/>
     ///   <seealso cref="Subscription(string, DateTime?)"/>

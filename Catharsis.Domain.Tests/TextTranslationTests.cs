@@ -9,6 +9,15 @@ namespace Catharsis.Domain
   public sealed class TextTranslationTests : EntityUnitTests<TextTranslation>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Language", "Name", "Text", "Translator");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="TextTranslation()"/>
     ///   <seealso cref="TextTranslation(string, string, string, string)"/>
@@ -17,11 +26,11 @@ namespace Catharsis.Domain
     public void Constructors()
     {
       var translation = new TextTranslation();
-      Assert.True(translation.Id == 0);
-      Assert.True(translation.Language == null);
-      Assert.True(translation.Name == null);
-      Assert.True(translation.Text == null);
-      Assert.True(translation.Translator == null);
+      Assert.Equal(0, translation.Id);
+      Assert.Null(translation.Language);
+      Assert.Null(translation.Name);
+      Assert.Null(translation.Text);
+      Assert.Null(translation.Translator);
 
       Assert.Throws<ArgumentNullException>(() => new TextTranslation(null, "name", "text"));
       Assert.Throws<ArgumentNullException>(() => new TextTranslation("language", null, "text"));
@@ -30,11 +39,11 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentException>(() => new TextTranslation("language", string.Empty, "text"));
       Assert.Throws<ArgumentException>(() => new TextTranslation("language", "name", string.Empty));
       translation = new TextTranslation("language", "name", "text", "translator");
-      Assert.True(translation.Id == 0);
-      Assert.True(translation.Language == "language");
-      Assert.True(translation.Name == "name");
-      Assert.True(translation.Text == "text");
-      Assert.True(translation.Translator == "translator");
+      Assert.Equal(0, translation.Id);
+      Assert.Equal("language", translation.Language);
+      Assert.Equal("name", translation.Name);
+      Assert.Equal("text", translation.Text);
+      Assert.Equal("translator", translation.Translator);
     }
 
     /// <summary>
@@ -45,7 +54,8 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => new TextTranslation { Language = null });
       Assert.Throws<ArgumentException>(() => new TextTranslation { Language = string.Empty });
-      Assert.True(new TextTranslation { Language = "language" }.Language == "language");
+      
+      Assert.Equal("language", new TextTranslation { Language = "language" }.Language);
     }
 
     /// <summary>
@@ -56,7 +66,8 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => new TextTranslation { Name = null });
       Assert.Throws<ArgumentException>(() => new TextTranslation { Name = string.Empty });
-      Assert.True(new TextTranslation { Name = "name" }.Name == "name");
+      
+      Assert.Equal("name", new TextTranslation { Name = "name" }.Name);
     }
 
     /// <summary>
@@ -67,7 +78,8 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => new TextTranslation { Text = null });
       Assert.Throws<ArgumentException>(() => new TextTranslation { Text = string.Empty });
-      Assert.True(new TextTranslation { Text = "text" }.Text == "text");
+      
+      Assert.Equal("text", new TextTranslation { Text = "text" }.Text);
     }
 
     /// <summary>
@@ -76,7 +88,7 @@ namespace Catharsis.Domain
     [Fact]
     public void Translator_Property()
     {
-      Assert.True(new TextTranslation { Translator = "translator" }.Translator == "translator");
+      Assert.Equal("translator", new TextTranslation { Translator = "translator" }.Translator);
     }
 
     /// <summary>

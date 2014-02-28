@@ -9,6 +9,15 @@ namespace Catharsis.Domain
   public sealed class LocationTests : EntityUnitTests<Location>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Address", "City", "Latitude", "Longitude", "PostalCode");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Location()"/>
     ///   <seealso cref="Location(City, string, decimal?, decimal?, string)"/>

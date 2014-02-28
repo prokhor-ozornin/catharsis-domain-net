@@ -13,7 +13,7 @@ namespace Catharsis.Domain
   public partial class Text : Item, IEquatable<Text>
   {
     private Person person;
-    private ICollection<TextTranslation> translations = new HashSet<TextTranslation>();
+    private ICollection<TextTranslation> translations = new List<TextTranslation>();
 
     /// <summary>
     ///   <para>Category of text.</para>

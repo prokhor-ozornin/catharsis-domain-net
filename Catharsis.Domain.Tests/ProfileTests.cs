@@ -9,6 +9,15 @@ namespace Catharsis.Domain
   public sealed class ProfileTests : EntityUnitTests<Profile>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Email", "Name", "Photo", "Type", "Url", "Username");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Profile()"/>
     ///   <seealso cref="Profile(string, string, string, string, string, string)"/>

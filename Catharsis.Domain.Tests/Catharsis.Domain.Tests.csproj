@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Catharsis.Commons, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Catharsis.Commons, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Catharsis.Commons.1.7\lib\net40\Catharsis.Commons.dll</HintPath>
+      <HintPath>..\packages\Catharsis.Commons.1.8\lib\net40\Catharsis.Commons.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -81,8 +81,10 @@
     <Compile Include="ITaggableExtensionsTests.cs" />
     <Compile Include="ItemTests.cs" />
     <Compile Include="ITimeableExtensionsTests.cs" />
+    <Compile Include="ITypeableExtensionsTests.cs" />
     <Compile Include="LocationExtensionsTests.cs" />
     <Compile Include="LocationTests.cs" />
+    <Compile Include="NotificationTests.cs" />
     <Compile Include="PersonTests.cs" />
     <Compile Include="PlaycastExtensionsTests.cs" />
     <Compile Include="PlaycastsCategoryTests.cs" />

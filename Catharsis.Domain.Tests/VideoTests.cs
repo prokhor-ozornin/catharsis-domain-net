@@ -9,6 +9,15 @@ namespace Catharsis.Domain
   public sealed class VideoTests : EntityUnitTests<Video>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Bitrate", "Category", "Duration", "File", "Height", "Version", "Width");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Video()"/>
     ///   <seealso cref="Video(string, short, long, short, short, VideosCategory)"/>

@@ -10,6 +10,15 @@ namespace Catharsis.Domain
   public sealed class AnnouncementTests : EntityUnitTests<Announcement>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Category", "Comments", "Currency", "DateCreated", "Image", "Language", "Name", "Price", "Tags", "Text");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Announcement()"/>
     ///   <seealso cref="Announcement(string, string, AnnouncementsCategory, string, string, decimal?)"/>

@@ -10,12 +10,29 @@ namespace Catharsis.Domain
   /// <typeparam name="ENTITY"></typeparam>
   public abstract class EntityUnitTests<ENTITY> where ENTITY : IEntity
   {
+    /// <summary>
+    ///   <para></para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      var type = typeof(ENTITY);
+      Assert.False(type.AnyProperty("Id").Description().IsEmpty());
+      Assert.False(type.AnyProperty("Version").Description().IsEmpty());
+    }
+
+    /// <summary>
+    ///   <para></para>
+    /// </summary>
     [Fact]
     public void TestIdProperty()
     {
       Assert.Equal(1, typeof(ENTITY).NewInstance().To<ENTITY>().Id = 1);
     }
 
+    /// <summary>
+    ///   <para></para>
+    /// </summary>
     [Fact]
     public void TestVersionProperty()
     {
@@ -65,6 +82,15 @@ namespace Catharsis.Domain
 
       Assert.Equal(typeof(ENTITY).NewInstance().SetProperty(property, oldValue).GetHashCode(), typeof(ENTITY).NewInstance().SetProperty(property, oldValue).GetHashCode());
       Assert.NotEqual(typeof(ENTITY).NewInstance().SetProperty(property, oldValue).GetHashCode(), typeof(ENTITY).NewInstance().SetProperty(property, newValue).GetHashCode());
+    }
+
+    /// <summary>
+    ///   <para></para>
+    /// </summary>
+    /// <param name="properties"></param>
+    protected void TestDescription(params string[] properties)
+    {
+      properties.Each(property => Assert.False(typeof(ENTITY).AnyProperty(property).Description().IsEmpty()));
     }
   }
 }

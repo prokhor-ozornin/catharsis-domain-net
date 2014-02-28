@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Xml.Linq;
-using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -11,6 +9,15 @@ namespace Catharsis.Domain
   /// </summary>
   public sealed class BlogEntryTests : EntityUnitTests<BlogEntry>
   {
+    /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Blog", "Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
+    }
+
     /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="BlogEntry()"/>

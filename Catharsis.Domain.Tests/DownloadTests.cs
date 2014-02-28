@@ -10,6 +10,15 @@ namespace Catharsis.Domain
   public sealed class DownloadTests : EntityUnitTests<Download>
   {
     /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Category", "Comments", "DateCreated", "Downloads", "Language", "LastUpdated", "Name", "Tags", "Text", "Url");
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     ///   <seealso cref="Download()"/>
     ///   <seealso cref="Download(string, string, DownloadsCategory, string)"/>
