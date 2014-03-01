@@ -70,6 +70,8 @@
     <Compile Include="DownloadsCategory.cs" />
     <Compile Include="Faq.cs" />
     <Compile Include="ICommentable.cs" />
+    <Compile Include="IDateable.cs" />
+    <Compile Include="IDateableExtensions.cs" />
     <Compile Include="IDimensionable.cs" />
     <Compile Include="IDimensionableExtensions.cs" />
     <Compile Include="IEntity.cs" />
@@ -82,10 +84,11 @@
     <Compile Include="ITaggable.cs" />
     <Compile Include="ITaggableExtensions.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="ITimeable.cs" />
-    <Compile Include="ITimeableExtensions.cs" />
+    <Compile Include="ITimestampable.cs" />
+    <Compile Include="ITimestampableExtensions.cs" />
     <Compile Include="ITypeable.cs" />
     <Compile Include="ITypeableExtensions.cs" />
+    <Compile Include="IVersionable.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationExtensions.cs" />
     <Compile Include="Notification.cs" />

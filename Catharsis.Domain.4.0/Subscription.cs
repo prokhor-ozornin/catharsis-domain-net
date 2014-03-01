@@ -8,7 +8,7 @@ namespace Catharsis.Domain
   ///   <para>Represents user's subscription.</para>
   /// </summary>
   [Description("Represents user's subscription")]
-  public partial class Subscription : IComparable<Subscription>, IEquatable<Subscription>, IEntity, ITimeable
+  public partial class Subscription : IComparable<Subscription>, IEquatable<Subscription>, IEntity, ITimestampable
   {
     private string email;
     private string token;

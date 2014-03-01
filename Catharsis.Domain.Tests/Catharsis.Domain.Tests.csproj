@@ -74,13 +74,14 @@
     <Compile Include="DownloadTests.cs" />
     <Compile Include="EntityUnitTests.cs" />
     <Compile Include="FaqTests.cs" />
+    <Compile Include="IDateableExtensionsTests.cs" />
     <Compile Include="IDimensionableExtensionsTests.cs" />
     <Compile Include="IEntityExtensionsTests.cs" />
     <Compile Include="ILocalizableExtensionsTests.cs" />
     <Compile Include="INameableExtensionsTests.cs" />
     <Compile Include="ITaggableExtensionsTests.cs" />
     <Compile Include="ItemTests.cs" />
-    <Compile Include="ITimeableExtensionsTests.cs" />
+    <Compile Include="ITimestampableExtensionsTests.cs" />
     <Compile Include="ITypeableExtensionsTests.cs" />
     <Compile Include="LocationExtensionsTests.cs" />
     <Compile Include="LocationTests.cs" />

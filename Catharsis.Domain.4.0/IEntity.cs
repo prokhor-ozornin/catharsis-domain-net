@@ -3,11 +3,7 @@
   /// <summary>
   ///   <para>Representation of a custom business entity.</para>
   /// </summary>
-  public interface IEntity : IIdentifyable<long>
+  public interface IEntity : IIdentifyable<long>, IVersionable
   {
-    /// <summary>
-    ///   <para>Version of entity instance.</para>
-    /// </summary>
-    long Version { get; set; }
   }
 }

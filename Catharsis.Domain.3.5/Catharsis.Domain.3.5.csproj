@@ -124,6 +124,12 @@
     <Compile Include="..\Catharsis.Domain.4.0\ICommentable.cs">
       <Link>ICommentable.cs</Link>
     </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\IDateable.cs">
+      <Link>IDateable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\IDateableExtensions.cs">
+      <Link>IDateableExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\IDimensionable.cs">
       <Link>IDimensionable.cs</Link>
     </Compile>
@@ -160,17 +166,20 @@
     <Compile Include="..\Catharsis.Domain.4.0\Item.cs">
       <Link>Item.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ITimeable.cs">
-      <Link>ITimeable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\ITimestampable.cs">
+      <Link>ITimestampable.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ITimeableExtensions.cs">
-      <Link>ITimeableExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\ITimestampableExtensions.cs">
+      <Link>ITimestampableExtensions.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\ITypeable.cs">
       <Link>ITypeable.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\ITypeableExtensions.cs">
       <Link>ITypeableExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\IVersionable.cs">
+      <Link>IVersionable.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\Location.cs">
       <Link>Location.cs</Link>
