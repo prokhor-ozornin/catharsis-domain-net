@@ -50,16 +50,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      var first = typeof(T).NewInstance().To<T>();
-      var second = typeof(T).NewInstance().To<T>();
-
-      first.Name = "first";
-      second.Name = "second";
-      Assert.True(first.CompareTo(second) < 0);
-
-      first.Name = "name";
-      second.Name = "name";
-      Assert.Equal(0, first.CompareTo(second));
+      this.TestCompareTo<T, string>("Name", "first", "second");
     }
 
     /// <summary>
@@ -92,9 +83,7 @@ namespace Catharsis.Domain
     [Fact]
     public void ToString_Method()
     {
-      var category = typeof(T).NewInstance().To<T>();
-      category.Name = "name";
-      Assert.Equal("name", category.ToString());
+      Assert.Equal("name", typeof(T).NewInstance().To<T>().SetProperty("Name", "name").ToString());
     }
   }
 }

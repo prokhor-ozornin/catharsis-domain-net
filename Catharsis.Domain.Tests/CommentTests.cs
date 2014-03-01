@@ -94,8 +94,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      Assert.True(new Comment { DateCreated = DateTime.MinValue }.CompareTo(new Comment { DateCreated = DateTime.MaxValue }) < 0);
-      Assert.Equal(0, new Comment { DateCreated = DateTime.MinValue }.CompareTo(new Comment { DateCreated = DateTime.MinValue }));
+      this.TestCompareTo<Comment, DateTime>("DateCreated", DateTime.MinValue, DateTime.MaxValue);
     }
 
     /// <summary>

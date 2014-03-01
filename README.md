@@ -17,14 +17,15 @@ The following types of domain entities are provided:
 7. Comment
 8. Download/Downloads Category
 9. FAQ
-10. Person
-11. Playcast/Playcasts Category
-12. Profile
-13. Setting
-14. Song/Songs Album
-15. Subscription
-16. Text/Texts Category
-17. Video/Videos Category
-18. Web Link/Web Links Category
+10. Notification
+11. Person
+12. Playcast/Playcasts Category
+13. Profile
+14. Setting
+15. Song/Songs Album
+16. Subscription
+17. Text/Texts Category
+18. Video/Videos Category
+19. Web Link/Web Links Category
 
 NuGet package is also available at : [https://www.nuget.org/packages/Catharsis.Domain](https://www.nuget.org/packages/Catharsis.Domain)

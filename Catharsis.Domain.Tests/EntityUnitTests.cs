@@ -14,11 +14,9 @@ namespace Catharsis.Domain
     ///   <para></para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public void BaseAttributes()
     {
-      var type = typeof(ENTITY);
-      Assert.False(type.AnyProperty("Id").Description().IsEmpty());
-      Assert.False(type.AnyProperty("Version").Description().IsEmpty());
+      this.TestDescription("Id", "Version");
     }
 
     /// <summary>
@@ -37,6 +35,31 @@ namespace Catharsis.Domain
     public void TestVersionProperty()
     {
       Assert.Equal(1, typeof(ENTITY).NewInstance().To<ENTITY>().Version = 1);
+    }
+
+    /// <summary>
+    ///   <para></para>
+    /// </summary>
+    /// <typeparam name="COMPARABLE"></typeparam>
+    /// <typeparam name="PROPERTY"></typeparam>
+    /// <param name="property"></param>
+    /// <param name="lower"></param>
+    /// <param name="greater"></param>
+    /// <exception cref="ArgumentNullException">If <paramref name="property"/> is a <c>null</c> reference.</exception>
+    /// <exception cref="ArgumentException">If <paramref name="property"/> is <see cref="string.Empty"/> string.</exception>
+    protected void TestCompareTo<COMPARABLE, PROPERTY>(string property, PROPERTY lower, PROPERTY greater) where COMPARABLE : ENTITY, IComparable<COMPARABLE>
+    {
+      Assertion.NotEmpty(property);
+
+      var first = typeof(COMPARABLE).NewInstance().To<COMPARABLE>();
+      var second = typeof(COMPARABLE).NewInstance().To<COMPARABLE>();
+
+      first.SetProperty(property, lower);
+      second.SetProperty(property, lower);
+
+      Assert.Equal(0, first.CompareTo(second));
+      second.SetProperty(property, greater);
+      Assert.True(first.CompareTo(second) < 0);
     }
 
     /// <summary>

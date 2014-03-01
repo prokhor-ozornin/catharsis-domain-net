@@ -97,8 +97,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Methods()
     {
-      Assert.True(new TextTranslation { Name = "first" }.CompareTo(new TextTranslation { Name = "second" }) < 0);
-      Assert.Equal(0, new TextTranslation { Name = "name" }.CompareTo(new TextTranslation { Name = "name" }));
+      this.TestCompareTo<TextTranslation, string>("Name", "first", "second");
     }
 
     /// <summary>

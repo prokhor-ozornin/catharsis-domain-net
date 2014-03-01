@@ -126,8 +126,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      Assert.True(new Profile { Username = "first" }.CompareTo(new Profile { Username = "second" }) < 0);
-      Assert.Equal(0, new Profile { Username = "username" }.CompareTo(new Profile { Username = "username" }));
+      this.TestCompareTo<Profile, string>("Username", "first", "second");
     }
 
     /// <summary>

@@ -111,8 +111,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      Assert.True(new Video { File = "first" }.CompareTo(new Video { File = "second" }) < 0);
-      Assert.Equal(0, new Video { File = "file" }.CompareTo(new Video { File = "file" }));
+      this.TestCompareTo<Video, string>("File", "first", "second");
     }
 
     /// <summary>

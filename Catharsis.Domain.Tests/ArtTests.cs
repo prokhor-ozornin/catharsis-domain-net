@@ -119,8 +119,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      Assert.True(new Art { Name = "first" }.CompareTo(new Art { Name = "second" }) < 0);
-      Assert.Equal(0, new Art { Name = "name" }.CompareTo(new Art { Name = "name" }));
+      this.TestCompareTo<Art, string>("Name", "first", "second");
     }
 
     /// <summary>

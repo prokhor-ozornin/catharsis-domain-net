@@ -111,8 +111,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      Assert.True(new Subscription { DateCreated = DateTime.MinValue }.CompareTo(new Subscription { DateCreated = DateTime.MaxValue }) < 0);
-      Assert.Equal(0, new Subscription { DateCreated = DateTime.MinValue }.CompareTo(new Subscription { DateCreated = DateTime.MinValue }));
+      this.TestCompareTo<Subscription, DateTime>("DateCreated", DateTime.MinValue, DateTime.MaxValue);
     }
 
     /// <summary>

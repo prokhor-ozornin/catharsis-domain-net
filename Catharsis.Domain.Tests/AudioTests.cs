@@ -86,8 +86,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      Assert.True(new Audio { File = "first" }.CompareTo(new Audio { File = "second" }) < 0);
-      Assert.Equal(0, new Audio { File = "file" }.CompareTo(new Audio { File = "file" }));
+      this.TestCompareTo<Audio, string>("File", "first", "second");
     }
 
     /// <summary>
