@@ -126,7 +126,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo<Profile, string>("Username", "first", "second");
+      this.TestCompareTo("Username", "first", "second");
     }
 
     /// <summary>

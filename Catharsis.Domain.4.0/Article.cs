@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a long informational text.</para>
   /// </summary>
+  [Description("Represents a long informational text")]
   public partial class Article : Item, IEquatable<Article>
   {
     /// <summary>

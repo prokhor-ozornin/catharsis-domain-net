@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a video/movie.</para>
   /// </summary>
+  [Description("Represents a video/movie")]
   public partial class Video : IComparable<Video>, IEquatable<Video>, IEntity, IDimensionable
   {
     private string file;

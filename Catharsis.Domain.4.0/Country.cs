@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents geographical country.</para>
   /// </summary>
+  [Description("Represents geographical country")]
   public partial class Country : IComparable<Country>, IEquatable<Country>, IEntity, INameable
   {
     private string isoCode;

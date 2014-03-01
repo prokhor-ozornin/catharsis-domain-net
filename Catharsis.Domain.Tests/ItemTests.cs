@@ -171,7 +171,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo<Item, DateTime>("DateCreated", DateTime.MinValue, DateTime.MaxValue);
+      this.TestCompareTo("DateCreated", DateTime.MinValue, DateTime.MaxValue);
     }
 
     /// <summary>

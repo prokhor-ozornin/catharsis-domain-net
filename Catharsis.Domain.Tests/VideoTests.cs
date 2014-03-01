@@ -111,7 +111,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo<Video, string>("File", "first", "second");
+      this.TestCompareTo("File", "first", "second");
     }
 
     /// <summary>

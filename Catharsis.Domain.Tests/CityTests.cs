@@ -82,7 +82,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo<City, string>("Name", "first", "second");
+      this.TestCompareTo("Name", "first", "second");
     }
 
     /// <summary>

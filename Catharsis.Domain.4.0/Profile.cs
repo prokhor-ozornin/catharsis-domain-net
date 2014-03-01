@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a profile of user, which is a combination of credentials in external system like social network.</para>
   /// </summary>
+  [Description("Represents a profile of user, which is a combination of credentials in external system like social network")]
   public partial class Profile : IComparable<Profile>, IEquatable<Profile>, IEntity, INameable
   {
     private string name;

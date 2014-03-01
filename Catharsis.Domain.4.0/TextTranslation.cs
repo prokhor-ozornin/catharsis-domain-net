@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a translation of literary text to target language.</para>
   /// </summary>
+  [Description("Represents a translation of literary text to target language")]
   public partial class TextTranslation : IComparable<TextTranslation>, IEquatable<TextTranslation>, IEntity, ILocalizable, INameable
   {
     private string language;

@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a geographical location point.</para>
   /// </summary>
+  [Description("Represents a geographical location point")]
   public partial class Location : IEquatable<Location>, IEntity
   {
     private string address;

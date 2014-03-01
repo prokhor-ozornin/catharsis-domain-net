@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents custom category of content.</para>
   /// </summary>
+  [Description("Represents user blog/journal")]
   public partial class Category : IComparable<Category>, IEquatable<Category>, IEntity, INameable
   {
     private string name;

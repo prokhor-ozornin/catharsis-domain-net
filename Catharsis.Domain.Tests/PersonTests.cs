@@ -171,7 +171,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo<Person, string>("NameLast", "first", "second");
+      this.TestCompareTo("NameLast", "first", "second");
     }
 
     /// <summary>

@@ -5,8 +5,9 @@ using Catharsis.Commons;
 namespace Catharsis.Domain
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Represents user's subscription.</para>
   /// </summary>
+  [Description("Represents user's subscription")]
   public partial class Subscription : IComparable<Subscription>, IEquatable<Subscription>, IEntity, ITimeable
   {
     private string email;

@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a playcast, which is a combination/mix of text/audio/image content.</para>
   /// </summary>
+  [Description("Represents a playcast, which is a combination/mix of text/audio/image content")]
   public partial class Playcast : Item, IEquatable<Playcast>
   {
     /// <summary>

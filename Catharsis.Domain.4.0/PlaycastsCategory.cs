@@ -6,6 +6,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Category of playcasts.</para>
   /// </summary>
+  [Description("Category of playcasts")]
   public partial class PlaycastsCategory : Category
   {
     /// <summary>

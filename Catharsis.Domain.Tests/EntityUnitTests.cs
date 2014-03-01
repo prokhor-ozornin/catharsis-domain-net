@@ -14,8 +14,9 @@ namespace Catharsis.Domain
     ///   <para></para>
     /// </summary>
     [Fact]
-    public void BaseAttributes()
+    public void Attributes_Base()
     {
+      Assert.False(typeof(ENTITY).Description().IsEmpty());
       this.TestDescription("Id", "Version");
     }
 
@@ -23,7 +24,7 @@ namespace Catharsis.Domain
     ///   <para></para>
     /// </summary>
     [Fact]
-    public void TestIdProperty()
+    public void Id_Property()
     {
       Assert.Equal(1, typeof(ENTITY).NewInstance().To<ENTITY>().Id = 1);
     }
@@ -32,7 +33,7 @@ namespace Catharsis.Domain
     ///   <para></para>
     /// </summary>
     [Fact]
-    public void TestVersionProperty()
+    public void Version_Property()
     {
       Assert.Equal(1, typeof(ENTITY).NewInstance().To<ENTITY>().Version = 1);
     }
@@ -40,19 +41,18 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para></para>
     /// </summary>
-    /// <typeparam name="COMPARABLE"></typeparam>
     /// <typeparam name="PROPERTY"></typeparam>
     /// <param name="property"></param>
     /// <param name="lower"></param>
     /// <param name="greater"></param>
     /// <exception cref="ArgumentNullException">If <paramref name="property"/> is a <c>null</c> reference.</exception>
     /// <exception cref="ArgumentException">If <paramref name="property"/> is <see cref="string.Empty"/> string.</exception>
-    protected void TestCompareTo<COMPARABLE, PROPERTY>(string property, PROPERTY lower, PROPERTY greater) where COMPARABLE : ENTITY, IComparable<COMPARABLE>
+    protected void TestCompareTo<PROPERTY>(string property, PROPERTY lower, PROPERTY greater)
     {
       Assertion.NotEmpty(property);
 
-      var first = typeof(COMPARABLE).NewInstance().To<COMPARABLE>();
-      var second = typeof(COMPARABLE).NewInstance().To<COMPARABLE>();
+      var first = typeof(ENTITY).NewInstance().To<IComparable<ENTITY>>();
+      var second = typeof(ENTITY).NewInstance().To<ENTITY>();
 
       first.SetProperty(property, lower);
       second.SetProperty(property, lower);

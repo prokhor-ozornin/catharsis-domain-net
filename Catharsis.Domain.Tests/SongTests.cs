@@ -86,7 +86,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo<Song, string>("Name", "first", "second");
+      this.TestCompareTo("Name", "first", "second");
     }
 
     /// <summary>

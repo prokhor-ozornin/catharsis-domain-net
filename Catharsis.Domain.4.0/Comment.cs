@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents custom text comment.</para>
   /// </summary>
+  [Description("Represents custom text comment")]
   public partial class Comment : IComparable<Comment>, IEquatable<Comment>, IEntity, INameable, ITimeable
   {
     private string name;

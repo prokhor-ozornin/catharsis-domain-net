@@ -68,7 +68,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo<ArtsAlbum, string>("Name", "first", "second");
+      this.TestCompareTo("Name", "first", "second");
     }
   }
 }

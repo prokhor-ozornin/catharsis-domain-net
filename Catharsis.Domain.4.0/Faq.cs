@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Catharsis.Commons;
 
 namespace Catharsis.Domain
@@ -6,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents Frequently Asked Question.</para>
   /// </summary>
+  [Description("Represents Frequently Asked Question")]
   public partial class Faq : Item
   {
     /// <summary>

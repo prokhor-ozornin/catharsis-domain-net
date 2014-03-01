@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a song on a musician or band.</para>
   /// </summary>
+  [Description("Represents a song on a musician or band")]
   public partial class Song : Item, IComparable<Song>, IEquatable<Song>
   {
     private string audio;

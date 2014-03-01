@@ -50,7 +50,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo<T, string>("Name", "first", "second");
+      this.TestCompareTo("Name", "first", "second");
     }
 
     /// <summary>

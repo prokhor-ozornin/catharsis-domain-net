@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents named hyperlink to external website.</para>
   /// </summary>
+  [Description("Represents named hyperlink to external website")]
   public partial class WebLink : Item, IEquatable<WebLink>
   {
     private string url;

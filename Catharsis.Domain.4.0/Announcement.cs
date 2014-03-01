@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a free or paid informational message.</para>
   /// </summary>
+  [Description("Represents a free or paid informational message")]
   public partial class Announcement : Item, IEquatable<Announcement>
   {
     /// <summary>

@@ -6,6 +6,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Category of web links.</para>
   /// </summary>
+  [Description("Category of web links")]
   public partial class WebLinksCategory : Category
   {
     /// <summary>

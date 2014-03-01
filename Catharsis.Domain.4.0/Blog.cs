@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Catharsis.Domain
 {
   /// <summary>
   ///   <para>Represents user blog/journal.</para>
   /// </summary>
+  [Description("Represents user blog/journal")]
   public partial class Blog : Item
   {
     /// <summary>

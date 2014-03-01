@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents text record in user's blog/journal.</para>
   /// </summary>
+  [Description("Represents user blog/journal")]
   public partial class BlogEntry : Item, IEquatable<BlogEntry>
   {
     private Blog blog;

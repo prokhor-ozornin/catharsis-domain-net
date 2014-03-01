@@ -97,7 +97,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Methods()
     {
-      this.TestCompareTo<TextTranslation, string>("Name", "first", "second");
+      this.TestCompareTo("Name", "first", "second");
     }
 
     /// <summary>

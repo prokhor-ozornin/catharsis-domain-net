@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents short text information.</para>
   /// </summary>
+  [Description("Represents short text information")]
   public partial class Notification : IEquatable<Notification>, IEntity, ILocalizable, ITypeable
   {
     /// <summary>

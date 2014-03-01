@@ -6,6 +6,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Category of videos.</para>
   /// </summary>
+  [Description("Category of videos")]
   public partial class VideosCategory : Category
   {
     /// <summary>

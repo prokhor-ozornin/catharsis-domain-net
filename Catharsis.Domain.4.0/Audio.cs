@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents audio file/track with metainformation.</para>
   /// </summary>
+  [Description("Represents audio file/track with metainformation")]
   public partial class Audio : IComparable<Audio>, IEquatable<Audio>, IEntity
   {
     private string file;

@@ -6,6 +6,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Category of texts.</para>
   /// </summary>
+  [Description("Category of texts")]
   public partial class TextsCategory : Category
   {
     /// <summary>

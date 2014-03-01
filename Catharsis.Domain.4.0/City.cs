@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents geographical city.</para>
   /// </summary>
+  [Description("Represents geographical city")]
   public partial class City : IComparable<City>, IEquatable<City>, IEntity, INameable
   {
     private Country country;

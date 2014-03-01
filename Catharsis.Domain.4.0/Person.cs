@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a human person/user.</para>
   /// </summary>
+  [Description("Represents a human person/user")]
   public partial class Person : IComparable<Person>, IEquatable<Person>, IEntity
   {
     private string nameFirst;

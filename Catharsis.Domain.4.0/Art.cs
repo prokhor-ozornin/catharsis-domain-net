@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a creative image which is usually displayed publically.</para>
   /// </summary>
+  [Description("Represents a creative image which is usually displayed publically")]
   public partial class Art : Item, IComparable<Art>, IEquatable<Art>
   {
     private string image;

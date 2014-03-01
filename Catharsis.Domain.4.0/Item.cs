@@ -8,8 +8,9 @@ using Catharsis.Commons;
 namespace Catharsis.Domain
 {
   /// <summary>
-  ///   <para></para>
+  ///   <para>Represents base content element.</para>
   /// </summary>
+  [Description("Represents base content element")]
   public partial class Item : IComparable<Item>, IEquatable<Item>, IEntity, ICommentable, ILocalizable, INameable, ITaggable, ITimeable
   {
     private ICollection<Comment> comments = new List<Comment>();

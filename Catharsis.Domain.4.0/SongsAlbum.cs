@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents an album of a musician or band.</para>
   /// </summary>
+  [Description("Represents an album of a musician or band")]
   public partial class SongsAlbum : Item, IComparable<SongsAlbum>
   {
     /// <summary>

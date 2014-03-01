@@ -10,6 +10,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a literary text.</para>
   /// </summary>
+  [Description("Represents a literary text")]
   public partial class Text : Item, IEquatable<Text>
   {
     private Person person;

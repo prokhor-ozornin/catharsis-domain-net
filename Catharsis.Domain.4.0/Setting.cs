@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents a named setting/option.</para>
   /// </summary>
+  [Description("Represents a named setting/option")]
   public partial class Setting : IComparable<Setting>, IEquatable<Setting>, IEntity, INameable
   {
     private string name;

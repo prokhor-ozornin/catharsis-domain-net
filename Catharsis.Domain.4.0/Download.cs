@@ -7,6 +7,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Represents downloadable content with metainformation.</para>
   /// </summary>
+  [Description("Represents downloadable content with metainformation")]
   public partial class Download : Item, IComparable<Download>, IEquatable<Download>
   {
     private string url;
