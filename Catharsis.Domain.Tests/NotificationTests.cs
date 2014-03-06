@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace Catharsis.Domain
 {
@@ -18,9 +19,9 @@ namespace Catharsis.Domain
 
     /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
-    ///   <seealso cref="Notification()"/>
-    ///   <seealso cref="Notification(string, int)"/>
     /// </summary>
+    /// <seealso cref="Notification()"/>
+    /// <seealso cref="Notification(string, int)"/>
     [Fact]
     public void Constructors()
     {
@@ -31,6 +32,8 @@ namespace Catharsis.Domain
       Assert.Equal(0, notification.Type);
       Assert.Equal(0, notification.Version);
 
+      Assert.Throws<ArgumentNullException>(() => new Notification { Text = null });
+      Assert.Throws<ArgumentException>(() => new Notification { Text = string.Empty });
       notification = new Notification("text", 1);
       Assert.Equal(0, notification.Id);
       Assert.Null(notification.Language);
@@ -72,6 +75,9 @@ namespace Catharsis.Domain
     [Fact]
     public void Text_Property()
     {
+      Assert.Throws<ArgumentNullException>(() => new Notification { Text = null });
+      Assert.Throws<ArgumentException>(() => new Notification { Text = string.Empty });
+
       Assert.Equal("text", new Notification { Text = "text" }.Text);
     }
 

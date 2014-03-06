@@ -7,8 +7,8 @@ namespace Catharsis.Domain
 {
   /// <summary>
   ///   <para>Set of extension methods for class <see cref="WebLink"/>.</para>
-  ///   <seealso cref="WebLink"/>
   /// </summary>
+  /// <seealso cref="WebLink"/>
   public static class WebLinkExtensions
   {
     /// <summary>

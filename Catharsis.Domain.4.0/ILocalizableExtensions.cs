@@ -8,8 +8,8 @@ namespace Catharsis.Domain
 {
   /// <summary>
   ///   <para>Set of extension methods for interface <see cref="ILocalizable"/>.</para>
-  ///   <seealso cref="ILocalizable"/>
   /// </summary>
+  /// <seealso cref="ILocalizable"/>
   public static class ILocalizableExtensions
   {
     /// <summary>

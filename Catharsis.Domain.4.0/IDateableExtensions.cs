@@ -7,20 +7,20 @@ namespace Catharsis.Domain
 {
   /// <summary>
   ///   <para>Set of extension methods for interface <see cref="IDateable"/>.</para>
-  ///   <seealso cref="IDateable"/>
   /// </summary>
+  /// <seealso cref="IDateable"/>
   public static class IDateableExtensions
   {
     /// <summary>
-    ///   <para></para>
+    ///   <para>Filters sequence of entities, leaving those with a date and time in specified range.</para>
     /// </summary>
-    /// <typeparam name="ENTITY"></typeparam>
-    /// <param name="entities"></param>
-    /// <param name="from"></param>
-    /// <param name="to"></param>
-    /// <returns></returns>
+    /// <typeparam name="T">Type of entities.</typeparam>
+    /// <param name="entities">Source sequence of entities to filter.</param>
+    /// <param name="from">Lower bound of date and time range.</param>
+    /// <param name="to">Upper bound of date and time range.</param>
+    /// <returns>Filtered sequence of entities with creation date and time ranging inclusively from <paramref name="from"/> to <paramref name="to"/>.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is a <c>null</c> reference.</exception>
-    public static IQueryable<ENTITY> Date<ENTITY>(this IQueryable<ENTITY> entities, DateTime? from = null, DateTime? to = null) where ENTITY : IDateable
+    public static IQueryable<T> Date<T>(this IQueryable<T> entities, DateTime? from = null, DateTime? to = null) where T : IDateable
     {
       Assertion.NotNull(entities);
 
@@ -38,15 +38,15 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para></para>
+    ///   <para>Filters sequence of entities, leaving those with a date and time in specified range.</para>
     /// </summary>
-    /// <typeparam name="ENTITY"></typeparam>
-    /// <param name="entities"></param>
-    /// <param name="from"></param>
-    /// <param name="to"></param>
-    /// <returns></returns>
+    /// <typeparam name="T">Type of entities.</typeparam>
+    /// <param name="entities">Source sequence of entities to filter.</param>
+    /// <param name="from">Lower bound of date and time range.</param>
+    /// <param name="to">Upper bound of date and time range.</param>
+    /// <returns>Filtered sequence of entities with creation date and time ranging inclusively from <paramref name="from"/> to <paramref name="to"/>.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is a <c>null</c> reference.</exception>
-    public static IEnumerable<ENTITY> Date<ENTITY>(this IEnumerable<ENTITY> entities, DateTime? from = null, DateTime? to = null) where ENTITY : IDateable
+    public static IEnumerable<T> Date<T>(this IEnumerable<T> entities, DateTime? from = null, DateTime? to = null) where T : IDateable
     {
       Assertion.NotNull(entities);
 

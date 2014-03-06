@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Xml.Serialization;
 using Catharsis.Commons;
 
 namespace Catharsis.Domain
@@ -22,6 +23,7 @@ namespace Catharsis.Domain
     ///   <para>Version number of current setting instance.</para>
     /// </summary>
     [Description("Version number of current setting instance")]
+    [XmlIgnore]
     public virtual long Version { get; set; }
 
     /// <summary>

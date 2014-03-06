@@ -19,9 +19,9 @@ namespace Catharsis.Domain
 
     /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
-    ///   <seealso cref="Video()"/>
-    ///   <seealso cref="Video(string, short, long, short, short, VideosCategory)"/>
     /// </summary>
+    /// <seealso cref="Video()"/>
+    /// <seealso cref="Video(string, short, long, short, short, VideosCategory)"/>
     [Fact]
     public void Constructors()
     {

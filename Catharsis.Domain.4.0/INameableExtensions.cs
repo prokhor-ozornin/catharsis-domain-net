@@ -7,8 +7,8 @@ namespace Catharsis.Domain
 {
   /// <summary>
   ///   <para>Set of extension methods for interface <see cref="INameable"/>.</para>
-  ///   <seealso cref="INameable"/>
   /// </summary>
+  /// <seealso cref="INameable"/>
   public static class INameableExtensions
   {
     /// <summary>

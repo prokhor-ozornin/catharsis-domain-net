@@ -19,9 +19,9 @@ namespace Catharsis.Domain
 
     /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
-    ///   <seealso cref="Subscription()"/>
-    ///   <seealso cref="Subscription(string, DateTime?)"/>
     /// </summary>
+    /// <seealso cref="Subscription()"/>
+    /// <seealso cref="Subscription(string, DateTime?)"/>
     [Fact]
     public void Constructors()
     {

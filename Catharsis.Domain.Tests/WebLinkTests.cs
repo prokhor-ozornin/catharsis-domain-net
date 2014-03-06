@@ -20,9 +20,9 @@ namespace Catharsis.Domain
 
     /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
-    ///   <seealso cref="WebLink()"/>
-    ///   <seealso cref="WebLink(string, string, string, WebLinksCategory)"/>
     /// </summary>
+    /// <seealso cref="WebLink()"/>
+    /// <seealso cref="WebLink(string, string, string, WebLinksCategory)"/>
     [Fact]
     public void Constructors()
     {

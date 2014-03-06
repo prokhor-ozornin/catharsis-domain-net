@@ -20,9 +20,9 @@ namespace Catharsis.Domain
 
     /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
-    ///   <seealso cref="Download()"/>
-    ///   <seealso cref="Download(string, string, DownloadsCategory, string)"/>
     /// </summary>
+    /// <seealso cref="Download()"/>
+    /// <seealso cref="Download(string, string, DownloadsCategory, string)"/>
     [Fact]
     public void Constructors()
     {

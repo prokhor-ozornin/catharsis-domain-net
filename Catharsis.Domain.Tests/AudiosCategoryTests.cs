@@ -9,9 +9,9 @@ namespace Catharsis.Domain
   {
     /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
-    ///   <seealso cref="AudiosCategory()"/>
-    ///   <seealso cref="AudiosCategory(string, AudiosCategory, string)"/>
     /// </summary>
+    /// <seealso cref="AudiosCategory()"/>
+    /// <seealso cref="AudiosCategory(string, AudiosCategory, string)"/>
     [Fact]
     public void Constructors()
     {

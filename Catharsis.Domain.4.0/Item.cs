@@ -13,8 +13,6 @@ namespace Catharsis.Domain
   [Description("Represents base content element")]
   public partial class Item : IComparable<Item>, IEquatable<Item>, IEntity, ICommentable, ILocalizable, INameable, ITaggable, ITimestampable
   {
-    private ICollection<Comment> comments = new List<Comment>();
-    private ICollection<string> tags = new List<string>();
     private string name;
 
     /// <summary>
@@ -27,22 +25,14 @@ namespace Catharsis.Domain
     ///   <para>Version number of current item instance.</para>
     /// </summary>
     [Description("Version number of current item instance")]
+    [XmlIgnore]
     public virtual long Version { get; set; }
 
     /// <summary>
     ///   <para>Collection of associated comments.</para>
     /// </summary>
     [Description("Collection of associated comments")]
-    public virtual ICollection<Comment> Comments
-    {
-      get { return this.comments; }
-      set
-      {
-        Assertion.NotNull(value);
-
-        this.comments = value;
-      }
-    }
+    public virtual ICollection<Comment> Comments { get; set; }
 
     /// <summary>
     ///   <para>List of associated comments.</para>
@@ -101,16 +91,7 @@ namespace Catharsis.Domain
     ///   <para>Collection of associated tags/keywords.</para>
     /// </summary>
     [Description("Collection of associated tags/keywords")]
-    public virtual ICollection<string> Tags
-    {
-      get { return  this.tags; }
-      set
-      {
-        Assertion.NotNull(value);
-
-        this.tags = value;
-      }
-    }
+    public virtual ICollection<string> Tags { get; set; }
 
     /// <summary>
     ///   <para>List of associated tags/keywords.</para>
@@ -142,8 +123,10 @@ namespace Catharsis.Domain
     /// </summary>
     public Item()
     {
+      this.Comments = new List<Comment>();
       this.DateCreated = DateTime.UtcNow;
       this.LastUpdated = DateTime.UtcNow;
+      this.Tags = new List<string>();
     }
 
     /// <summary>

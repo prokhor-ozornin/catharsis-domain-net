@@ -7,8 +7,8 @@ namespace Catharsis.Domain
 {
   /// <summary>
   ///   <para>Set of extension methods for class <see cref="Playcast"/>.</para>
-  ///   <seealso cref="Playcast"/>
   /// </summary>
+  /// <seealso cref="Playcast"/>
   public static class PlaycastExtensions
   {
     /// <summary>

@@ -7,8 +7,8 @@ namespace Catharsis.Domain
 {
   /// <summary>
   ///   <para>Set of extension methods for class <see cref="Audio"/>.</para>
-  ///   <seealso cref="Audio"/>
   /// </summary>
+  /// <seealso cref="Audio"/>
   public static class AudioExtensions
   {
     /// <summary>

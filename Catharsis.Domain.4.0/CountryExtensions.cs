@@ -7,8 +7,8 @@ namespace Catharsis.Domain
 {
   /// <summary>
   ///   <para>Set of extension methods for class <see cref="Country"/>.</para>
-  ///   <seealso cref="Country"/>
   /// </summary>
+  /// <seealso cref="Country"/>
   public static class CountryExtensions
   {
     /// <summary>

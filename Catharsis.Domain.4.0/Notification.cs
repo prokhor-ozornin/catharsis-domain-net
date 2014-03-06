@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Xml.Serialization;
 using Catharsis.Commons;
 
 namespace Catharsis.Domain
@@ -10,6 +11,8 @@ namespace Catharsis.Domain
   [Description("Represents short text information")]
   public partial class Notification : IEquatable<Notification>, IEntity, ILocalizable, ITypeable
   {
+    private string text;
+
     /// <summary>
     ///   <para>Unique identifier of notification.</para>
     /// </summary>
@@ -20,6 +23,7 @@ namespace Catharsis.Domain
     ///   <para>Version number of current notification instance.</para>
     /// </summary>
     [Description("Version number of current notification instance")]
+    [XmlIgnore]
     public virtual long Version { get; set; }
 
     /// <summary>
@@ -31,8 +35,19 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Text of notification.</para>
     /// </summary>
+    /// <exception cref="ArgumentNullException">If <paramref name="value"/> is a <c>null</c> reference.</exception>
+    /// <exception cref="ArgumentException">If <paramref name="value"/> is <see cref="string.Empty"/> string.</exception>
     [Description("Text of notification")]
-    public virtual string Text { get; set; }
+    public virtual string Text
+    {
+      get { return this.text; }
+      set
+      {
+        Assertion.NotEmpty(value);
+
+        this.text = value;
+      }
+    }
 
     /// <summary>
     ///   <para>Type of notification.</para>
@@ -52,6 +67,8 @@ namespace Catharsis.Domain
     /// </summary>
     /// <param name="text">Text of notification.</param>
     /// <param name="type">Type of notification.</param>
+    /// <exception cref="ArgumentNullException">If <paramref name="text"/> is a <c>null</c> reference.</exception>
+    /// <exception cref="ArgumentException">If <paramref name="text"/> is <see cref="string.Empty"/> string.</exception>
     public Notification(string text, int type = 0)
     {
       this.Text = text;

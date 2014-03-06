@@ -1,4 +1,4 @@
-**Catharsis.NET.Domain** is a .NET library which provides commonly used types of domain entities (like Article, Blog, Comment, Download, Faq, etc.) to speed up development of domain layer in many typical business applications.
+**Catharsis.NET.Domain** is a .NET library which provides commonly used types of domain entities (like _Article_, _Blog_, _Comment_, _Download_, _Faq_, etc.) to speed up development of domain layer in many typical business applications.
 
 This library includes the following:
 
