@@ -83,7 +83,7 @@ namespace Catharsis.Domain
     [Fact]
     public void ToString_Method()
     {
-      Assert.Equal("name", typeof(T).NewInstance().To<T>().SetProperty("Name", "name").ToString());
+      Assert.Equal("name", typeof(T).NewInstance().To<T>().Property("Name", "name").ToString());
     }
   }
 }

@@ -139,7 +139,7 @@ namespace Catharsis.Domain
     /// <returns>A string that represents the current location.</returns>
     public override string ToString()
     {
-      return "{0},{1},{2}".FormatValue(this.City.Country, this.City, this.Address);
+      return "{0},{1},{2}".FormatSelf(this.City.Country, this.City, this.Address);
     }
   }
 }

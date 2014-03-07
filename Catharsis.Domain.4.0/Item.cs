@@ -48,7 +48,7 @@ namespace Catharsis.Domain
         Assertion.NotNull(value);
 
         this.Comments.Clear();
-        this.Comments.AddAll(value);
+        this.Comments.Add(value);
       }
     }
 
@@ -108,7 +108,7 @@ namespace Catharsis.Domain
         Assertion.NotNull(value);
 
         this.Tags.Clear();
-        this.Tags.AddAll(value);
+        this.Tags.Add(value);
       }
     }
     

@@ -144,7 +144,7 @@ namespace Catharsis.Domain
     /// <param name="other">The <see cref="Profile"/> to compare with this instance.</param>
     public virtual int CompareTo(Profile other)
     {
-      return this.Username.Compare(other.Username, StringComparison.InvariantCultureIgnoreCase);
+      return this.Username.CompareTo(other.Username, StringComparison.InvariantCultureIgnoreCase);
     }
 
     /// <summary>

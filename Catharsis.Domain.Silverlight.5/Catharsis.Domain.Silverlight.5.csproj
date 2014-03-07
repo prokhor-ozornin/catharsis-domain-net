@@ -47,9 +47,9 @@
     <DocumentationFile>Bin\Release\Catharsis.Domain.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Catharsis.Commons, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Catharsis.Commons, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Catharsis.Commons.1.8\lib\sl50\Catharsis.Commons.dll</HintPath>
+      <HintPath>..\packages\Catharsis.Commons.1.9\lib\sl50\Catharsis.Commons.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />

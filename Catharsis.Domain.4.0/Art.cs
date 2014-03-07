@@ -88,7 +88,7 @@ namespace Catharsis.Domain
     /// <param name="other">The <see cref="Art"/> to compare with this instance.</param>
     public virtual int CompareTo(Art other)
     {
-      return this.Name.Compare(other.Name, StringComparison.InvariantCultureIgnoreCase);
+      return this.Name.CompareTo(other.Name, StringComparison.InvariantCultureIgnoreCase);
     }
 
     /// <summary>

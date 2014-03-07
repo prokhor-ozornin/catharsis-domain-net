@@ -54,11 +54,11 @@ namespace Catharsis.Domain
       var first = typeof(ENTITY).NewInstance().To<IComparable<ENTITY>>();
       var second = typeof(ENTITY).NewInstance().To<ENTITY>();
 
-      first.SetProperty(property, lower);
-      second.SetProperty(property, lower);
+      first.Property(property, lower);
+      second.Property(property, lower);
 
       Assert.Equal(0, first.CompareTo(second));
-      second.SetProperty(property, greater);
+      second.Property(property, greater);
       Assert.True(first.CompareTo(second) < 0);
     }
 
@@ -81,8 +81,8 @@ namespace Catharsis.Domain
       Assert.True(entity.Equals(entity));
       Assert.True(entity.Equals(typeof(ENTITY).NewInstance()));
       
-      Assert.True(typeof(ENTITY).NewInstance().SetProperty(property, oldValue).Equals(typeof(ENTITY).NewInstance().SetProperty(property, oldValue)));
-      Assert.False(typeof(ENTITY).NewInstance().SetProperty(property, oldValue).Equals(typeof(ENTITY).NewInstance().SetProperty(property, newValue)));
+      Assert.True(typeof(ENTITY).NewInstance().Property(property, oldValue).Equals(typeof(ENTITY).NewInstance().Property(property, oldValue)));
+      Assert.False(typeof(ENTITY).NewInstance().Property(property, oldValue).Equals(typeof(ENTITY).NewInstance().Property(property, newValue)));
     }
 
     /// <summary>
@@ -103,8 +103,8 @@ namespace Catharsis.Domain
       Assert.Equal(entity.GetHashCode(), entity.GetHashCode());
       Assert.Equal(typeof(ENTITY).NewInstance().GetHashCode(), entity.GetHashCode());
 
-      Assert.Equal(typeof(ENTITY).NewInstance().SetProperty(property, oldValue).GetHashCode(), typeof(ENTITY).NewInstance().SetProperty(property, oldValue).GetHashCode());
-      Assert.NotEqual(typeof(ENTITY).NewInstance().SetProperty(property, oldValue).GetHashCode(), typeof(ENTITY).NewInstance().SetProperty(property, newValue).GetHashCode());
+      Assert.Equal(typeof(ENTITY).NewInstance().Property(property, oldValue).GetHashCode(), typeof(ENTITY).NewInstance().Property(property, oldValue).GetHashCode());
+      Assert.NotEqual(typeof(ENTITY).NewInstance().Property(property, oldValue).GetHashCode(), typeof(ENTITY).NewInstance().Property(property, newValue).GetHashCode());
     }
 
     /// <summary>

@@ -67,7 +67,7 @@ namespace Catharsis.Domain
         Assertion.NotNull(value);
 
         this.Translations.Clear();
-        this.Translations.AddAll(value);
+        this.Translations.Add(value);
       }
     }
 

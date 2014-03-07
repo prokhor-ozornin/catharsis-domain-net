@@ -116,7 +116,7 @@ namespace Catharsis.Domain
     /// <param name="other">The <see cref="TextTranslation"/> to compare with this instance.</param>
     public virtual int CompareTo(TextTranslation other)
     {
-      return this.Name.Compare(other.Name, StringComparison.InvariantCulture);
+      return this.Name.CompareTo(other.Name, StringComparison.InvariantCulture);
     }
 
     /// <summary>

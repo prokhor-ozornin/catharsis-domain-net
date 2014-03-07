@@ -158,9 +158,9 @@ namespace Catharsis.Domain
     /// </summary>
     /// <returns>A value that indicates the relative order of the objects being compared.</returns>
     /// <param name="other">The <see cref="Person"/> to compare with this instance.</param>
-    public virtual int CompareTo(Person person)
+    public virtual int CompareTo(Person other)
     {
-      return this.NameLast.Compare(person.NameLast, StringComparison.InvariantCultureIgnoreCase);
+      return this.NameLast.CompareTo(other.NameLast, StringComparison.InvariantCultureIgnoreCase);
     }
 
     /// <summary>
@@ -198,7 +198,7 @@ namespace Catharsis.Domain
     /// <returns>A string that represents the current person.</returns>
     public override string ToString()
     {
-      return this.NameMiddle.IsEmpty() ? "{0} {1}".FormatValue(this.NameLast, this.NameFirst) : "{0} {1} {2}".FormatValue(this.NameLast, this.NameFirst, this.NameMiddle);
+      return this.NameMiddle.IsEmpty() ? "{0} {1}".FormatSelf(this.NameLast, this.NameFirst) : "{0} {1} {2}".FormatSelf(this.NameLast, this.NameFirst, this.NameMiddle);
     }
   }
 }

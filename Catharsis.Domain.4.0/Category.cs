@@ -82,7 +82,7 @@ namespace Catharsis.Domain
     /// <param name="other">The <see cref="Category"/> to compare with this instance.</param>
     public virtual int CompareTo(Category other)
     {
-      return this.Name.Compare(other.Name, StringComparison.InvariantCultureIgnoreCase);
+      return this.Name.CompareTo(other.Name, StringComparison.InvariantCultureIgnoreCase);
     }
 
     /// <summary>

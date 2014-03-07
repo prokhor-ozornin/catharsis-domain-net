@@ -92,7 +92,7 @@ namespace Catharsis.Domain
     /// <param name="other">The <see cref="Audio"/> to compare with this instance.</param>
     public virtual int CompareTo(Audio other)
     {
-      return this.File.Compare(other.File, StringComparison.InvariantCulture);
+      return this.File.CompareTo(other.File, StringComparison.InvariantCulture);
     }
 
     /// <summary>
