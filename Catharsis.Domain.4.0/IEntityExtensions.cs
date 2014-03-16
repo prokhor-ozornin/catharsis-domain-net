@@ -23,7 +23,7 @@ namespace Catharsis.Domain
     {
       Assertion.NotNull(entities);
 
-      return entities.Single(entity => entity.Id == id);
+      return entities.FirstOrDefault(entity => entity.Id == id);
     }
 
     /// <summary>
@@ -38,7 +38,7 @@ namespace Catharsis.Domain
     {
       Assertion.NotNull(entities);
 
-      return entities.Single(entity => entity != null && entity.Id == id);
+      return entities.FirstOrDefault(entity => entity != null && entity.Id == id);
     }
 
     /// <summary>

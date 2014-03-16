@@ -23,8 +23,8 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => ((IQueryable<IEntity>) null).WithId(1));
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<IEntity>)null).WithId(1));
 
-      Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<Entity>().AsQueryable().WithId(1));
-      Assert.Throws<InvalidOperationException>(() => Enumerable.Empty<Entity>().WithId(1));
+      Assert.Null(Enumerable.Empty<Entity>().AsQueryable().WithId(1));
+      Assert.Null(Enumerable.Empty<Entity>().WithId(1));
 
       Assert.Equal(1, new[] { new Entity { Id = 1 }, new Entity { Id = 2 } }.AsQueryable().WithId(1).Id);
       Assert.Equal(1, new[] { null, new Entity { Id = 1 }, null, new Entity { Id = 2 } }.WithId(1).Id);
