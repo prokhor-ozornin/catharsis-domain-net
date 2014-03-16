@@ -50,6 +50,33 @@ namespace Catharsis.Domain
       Assert.True(new[] { null, new Entity { Id = 1 } }.Exists(1));
     }
 
+    /// <summary>
+    ///   <para>Performs testing of following methods :</para>
+    ///   <list type="bullet">
+    ///     <item><description><see cref="IEntityExtensions.RandomEntity{ENTITY}(IEnumerable{ENTITY})"/></description></item>
+    ///     <item><description><see cref="IEntityExtensions.RandomEntity{ENTITY}(IQueryable{ENTITY})"/></description></item>
+    ///   </list>
+    /// </summary>
+    [Fact]
+    public void RandomEntity_Methods()
+    {
+      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<IEntity>) null).RandomEntity());
+      Assert.Throws<ArgumentNullException>(() => ((IQueryable<IEntity>)null).RandomEntity());
+
+      Assert.Null(Enumerable.Empty<IEntity>().RandomEntity());
+      var element = new Entity();
+      Assert.True(ReferenceEquals(new[] { element }.RandomEntity(), element));
+      var elements = new[] { new Entity(), new Entity() };
+      Assert.True(elements.Contains(elements.RandomEntity()));
+
+      Assert.Null(Enumerable.Empty<IEntity>().AsQueryable().RandomEntity());
+      element = new Entity();
+      Assert.True(ReferenceEquals(new[] { element }.AsQueryable().RandomEntity(), element));
+      elements = new[] { new Entity(), new Entity() };
+      Assert.True(elements.AsQueryable().Contains(elements.RandomEntity()));
+
+    }
+
     private sealed class Entity : IEntity
     {
       public long Id { get; set; }

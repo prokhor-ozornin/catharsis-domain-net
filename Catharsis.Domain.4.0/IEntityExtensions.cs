@@ -70,5 +70,45 @@ namespace Catharsis.Domain
 
       return entities.Any(entity => entity != null && entity.Id == id);
     }
+
+    /// <summary>
+    ///   <para>Picks up random entity from a specified sequence and returns it.</para>
+    /// </summary>
+    /// <typeparam name="ENTITY">Type of entities in a sequence.</typeparam>
+    /// <param name="entities">Source sequence of entities.</param>
+    /// <returns>Random entity from <paramref name="entities"/> sequence. If <paramref name="entities"/> contains no elements, returns <c>null</c>.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is a <c>null</c> reference.</exception>
+    public static ENTITY RandomEntity<ENTITY>(this IEnumerable<ENTITY> entities) where ENTITY : IEntity
+    {
+      Assertion.NotNull(entities);
+
+      if (!entities.Any())
+      {
+        return (ENTITY) (object) null;
+      }
+
+      var identifiers = entities.Select(entity => entity.Id).ToArray();
+      return entities.WithId(identifiers[new Random().Next(identifiers.Length)]);
+    }
+
+    /// <summary>
+    ///   <para>Picks up random entity from <see cref="IQueryable{ENTITY}"/> source and returns it.</para>
+    /// </summary>
+    /// <typeparam name="ENTITY">Type of entities in <see cref="IQueryable{ENTITY}"/> source.</typeparam>
+    /// <param name="entities">Source from which random entity is to be taken.</param>
+    /// <returns>Random entity from <paramref name="entities"/> source. If <paramref name="entities"/> contains no elements, returns <c>null</c>.</returns>
+    /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is a <c>null</c> reference.</exception>
+    public static ENTITY RandomEntity<ENTITY>(this IQueryable<ENTITY> entities) where ENTITY : IEntity
+    {
+      Assertion.NotNull(entities);
+
+      if (!entities.Any())
+      {
+        return (ENTITY) (object) null;
+      }
+
+      var identifiers = entities.Select(entity => entity.Id).ToArray();
+      return entities.WithId(identifiers[new Random().Next(identifiers.Length)]);
+    }
   }
 }
