@@ -18,6 +18,24 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var video = new Video();
+      Assert.Equal(@"{""Id"":0,""Bitrate"":0,""Duration"":0,""Height"":0,""Width"":0}", video.Json());
+
+      video = new Video("file", 1, 2, 3, 4);
+      Assert.Equal(@"{""Id"":0,""Bitrate"":1,""Duration"":2,""File"":""file"",""Height"":3,""Width"":4}", video.Json());
+      Assert.Equal(video, video.Json().Json<Video>());
+
+      video = new Video("file", 1, 2, 3, 4, new VideosCategory("category.name")) { Id = 1 };
+      Assert.Equal(@"{""Id"":1,""Bitrate"":1,""Category"":{""Id"":0,""Name"":""category.name""},""Duration"":2,""File"":""file"",""Height"":3,""Width"":4}", video.Json());
+      Assert.Equal(video, video.Json().Json<Video>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Video()"/>

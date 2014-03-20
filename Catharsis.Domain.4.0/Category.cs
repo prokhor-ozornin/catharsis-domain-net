@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Xml.Serialization;
 using Catharsis.Commons;
+using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -24,6 +25,7 @@ namespace Catharsis.Domain
     /// </summary>
     [Description("Version number of current category instance")]
     [XmlIgnore]
+    [JsonIgnore]
     public virtual long Version { get; set; }
 
     /// <summary>

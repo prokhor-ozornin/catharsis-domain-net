@@ -18,6 +18,26 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var location = new Location();
+      Assert.Equal(@"{""Id"":0}", location.Json());
+
+      var city = new City("city.name", new Country("country.name", "country.isoCode"));
+
+      location = new Location(city, "address");
+      Assert.Equal(@"{""Id"":0,""Address"":""address"",""City"":{""Id"":0,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""city.name""}}", location.Json());
+      Assert.Equal(location, location.Json().Json<Location>());
+
+      location = new Location(city, "address", 1, 2, "postalCode") { Id = 1 };
+      Assert.Equal(@"{""Id"":1,""Address"":""address"",""City"":{""Id"":0,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""city.name""},""Latitude"":1.0,""Longitude"":2.0,""PostalCode"":""postalCode""}", location.Json());
+      Assert.Equal(location, location.Json().Json<Location>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Location()"/>

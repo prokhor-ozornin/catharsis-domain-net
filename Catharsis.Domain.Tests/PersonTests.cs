@@ -18,6 +18,24 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var person = new Person();
+      Assert.Equal(@"{""Id"":0}", person.Json());
+
+      person = new Person("nameFirst", "nameLast");
+      Assert.Equal(@"{""Id"":0,""NameFirst"":""nameFirst"",""NameLast"":""nameLast""}", person.Json());
+      Assert.Equal(person, person.Json().Json<Person>());
+
+      person = new Person("nameFirst", "nameLast", "nameMiddle", "description", "image", 1, 2, 3, 4, 5, 6) { Id = 1 };
+      Assert.Equal(@"{""Id"":1,""BirthDay"":1,""BirthMonth"":2,""BirthYear"":3,""DeathDay"":4,""DeathMonth"":5,""DeathYear"":6,""Description"":""description"",""Image"":""image"",""NameFirst"":""nameFirst"",""NameLast"":""nameLast"",""NameMiddle"":""nameMiddle""}", person.Json());
+      Assert.Equal(person, person.Json().Json<Person>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Person()"/>

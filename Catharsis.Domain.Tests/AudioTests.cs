@@ -18,6 +18,24 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var audio = new Audio();
+      Assert.Equal(@"{""Id"":0,""Bitrate"":0,""Duration"":0}", audio.Json());
+
+      audio = new Audio("file", 1, 2);
+      Assert.Equal(@"{""Id"":0,""Bitrate"":1,""Duration"":2,""File"":""file""}", audio.Json());
+      Assert.Equal(audio, audio.Json().Json<Audio>());
+
+      audio = new Audio("file", 1, 2, new AudiosCategory("category.name")) { Id = 1 };
+      Assert.Equal(@"{""Id"":1,""Bitrate"":1,""Category"":{""Id"":0,""Name"":""category.name""},""Duration"":2,""File"":""file""}", audio.Json());
+      Assert.Equal(audio, audio.Json().Json<Audio>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Audio()"/>

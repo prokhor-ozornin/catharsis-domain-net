@@ -18,6 +18,24 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var translation = new TextTranslation();
+      Assert.Equal(@"{""Id"":0}", translation.Json());
+
+      translation = new TextTranslation("language", "name", "text");
+      Assert.Equal(@"{""Id"":0,""Language"":""language"",""Name"":""name"",""Text"":""text""}", translation.Json());
+      Assert.Equal(translation, translation.Json().Json<TextTranslation>());
+
+      translation = new TextTranslation("language", "name", "text", "translator") { Id = 1 };
+      Assert.Equal(@"{""Id"":1,""Language"":""language"",""Name"":""name"",""Text"":""text"",""Translator"":""translator""}", translation.Json());
+      Assert.Equal(translation, translation.Json().Json<TextTranslation>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="TextTranslation()"/>

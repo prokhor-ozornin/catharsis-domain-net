@@ -18,6 +18,24 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var setting = new Setting();
+      Assert.Equal(@"{""Id"":0}", setting.Json());
+
+      setting = new Setting("name", "value");
+      Assert.Equal(@"{""Id"":0,""Name"":""name"",""Value"":""value""}", setting.Json());
+      Assert.Equal(setting, setting.Json().Json<Setting>());
+
+      setting = new Setting("name", "value") { Id = 1 };
+      Assert.Equal(@"{""Id"":1,""Name"":""name"",""Value"":""value""}", setting.Json());
+      Assert.Equal(setting, setting.Json().Json<Setting>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Setting()"/>

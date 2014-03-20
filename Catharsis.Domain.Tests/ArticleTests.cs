@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -16,6 +18,25 @@ namespace Catharsis.Domain
     public void Attributes()
     {
       this.TestDescription("Annotation", "Category", "Comments", "DateCreated", "Image", "Language", "LastUpdated", "Name", "Tags", "Text");
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var article = new Article();
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(article.DateCreated.ToString("o"), article.LastUpdated.ToString("o")), article.Json());
+
+      article = new Article("name");
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[]}}".FormatSelf(article.DateCreated.ToString("o"), article.LastUpdated.ToString("o")), article.Json());
+      Assert.Equal(article, article.Json().Json<Article>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      article = new Article("name", new ArticlesCategory("category.name"), "annotation", "text", "image") { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
+      Assert.Equal(@"{{""Id"":1,""Annotation"":""annotation"",""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), article.DateCreated.ToString("o"), article.LastUpdated.ToString("o")), article.Json());
+      Assert.Equal(article, article.Json().Json<Article>());
     }
 
     /// <summary>

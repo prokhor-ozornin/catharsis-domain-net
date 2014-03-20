@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 using Catharsis.Commons;
+using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -26,6 +27,7 @@ namespace Catharsis.Domain
     /// </summary>
     [Description("Version number of current item instance")]
     [XmlIgnore]
+    [JsonIgnore]
     public virtual long Version { get; set; }
 
     /// <summary>
@@ -38,8 +40,9 @@ namespace Catharsis.Domain
     ///   <para>List of associated comments.</para>
     /// </summary>
     /// <exception cref="ArgumentNullException">If <paramref name="value"/> is a <c>null</c> reference.</exception>
-    [XmlArray("Comments")]
     [Description("List of associated comments")]
+    [XmlArray("Comments")]
+    [JsonIgnore]
     public virtual Comment[] CommentsList
     {
       get { return this.Comments.ToArray(); }
@@ -97,9 +100,10 @@ namespace Catharsis.Domain
     ///   <para>List of associated tags/keywords.</para>
     /// </summary>
     /// <exception cref="ArgumentNullException">If <paramref name="value"/> is a <c>null</c> reference.</exception>
+    [Description("List of associated tags/keywords")]
     [XmlArray("Tags")]
     [XmlArrayItem("Tag")]
-    [Description("List of associated tags/keywords")]
+    [JsonIgnore]
     public virtual string[] TagsList
     {
       get { return this.Tags.ToArray(); }

@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Catharsis.Commons.2.0\lib\net40\Catharsis.Commons.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -64,6 +68,7 @@
     <Compile Include="BlogEntryTests.cs" />
     <Compile Include="BlogTests.cs" />
     <Compile Include="CategoryUnitTests.cs" />
+    <Compile Include="CategoryUnitTestsBase.cs" />
     <Compile Include="CityExtensionsTests.cs" />
     <Compile Include="CityTests.cs" />
     <Compile Include="CommentTests.cs" />
@@ -85,7 +90,9 @@
     <Compile Include="ITypeableExtensionsTests.cs" />
     <Compile Include="LocationExtensionsTests.cs" />
     <Compile Include="LocationTests.cs" />
+    <Compile Include="MockJsonObject.cs" />
     <Compile Include="NotificationTests.cs" />
+    <Compile Include="ObjectExtensionsTests.cs" />
     <Compile Include="PersonTests.cs" />
     <Compile Include="PlaycastExtensionsTests.cs" />
     <Compile Include="PlaycastsCategoryTests.cs" />
@@ -98,6 +105,7 @@
     <Compile Include="SongsAlbumExtensionsTests.cs" />
     <Compile Include="SongsAlbumTests.cs" />
     <Compile Include="SongTests.cs" />
+    <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="SubscriptionExtensionsTests.cs" />
     <Compile Include="SubscriptionTests.cs" />
     <Compile Include="TextExtensionsTests.cs" />

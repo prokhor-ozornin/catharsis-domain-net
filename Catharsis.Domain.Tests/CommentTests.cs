@@ -1,4 +1,5 @@
 ﻿using System;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -15,6 +16,24 @@ namespace Catharsis.Domain
     public void Attributes()
     {
       this.TestDescription("DateCreated", "LastUpdated", "Name", "Text");
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var comment = new Comment();
+      Assert.Equal(@"{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o")), comment.Json());
+
+      comment = new Comment("name", "text");
+      Assert.Equal(@"{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Text"":""text""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o")), comment.Json());
+      Assert.Equal(comment, comment.Json().Json<Comment>());
+
+      comment = new Comment("name", "text") { Id = 1 };
+      Assert.Equal(@"{{""Id"":1,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Text"":""text""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o")), comment.Json());
+      Assert.Equal(comment, comment.Json().Json<Comment>());
     }
 
     /// <summary>

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 using Catharsis.Commons;
+using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -57,8 +58,10 @@ namespace Catharsis.Domain
     ///   <para>List of text's translations to other languages.</para>
     /// </summary>
     /// <exception cref="ArgumentNullException">If <paramref name="value"/> is a <c>null</c> reference.</exception>
-    [XmlArray("Translations")]
     [Description("List of text's translations to other languages")]
+    [XmlArray("Translations")]
+    [XmlArrayItem("Translation")]
+    [JsonIgnore]
     public virtual TextTranslation[] TranslationsList
     {
       get { return this.Translations.ToArray(); }

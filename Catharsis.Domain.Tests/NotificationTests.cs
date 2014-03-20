@@ -18,6 +18,24 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var notification = new Notification();
+      Assert.Equal(@"{""Id"":0,""Type"":0}", notification.Json());
+
+      notification = new Notification("text");
+      Assert.Equal(@"{""Id"":0,""Text"":""text"",""Type"":0}", notification.Json());
+      Assert.Equal(notification, notification.Json().Json<Notification>());
+
+      notification = new Notification("text", 1) { Id = 1, Language = "language" };
+      Assert.Equal(@"{""Id"":1,""Language"":""language"",""Text"":""text"",""Type"":1}", notification.Json());
+      Assert.Equal(notification, notification.Json().Json<Notification>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Notification()"/>

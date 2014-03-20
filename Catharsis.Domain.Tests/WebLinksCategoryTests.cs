@@ -5,8 +5,33 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Tests set for class <see cref="WebLinksCategory"/>.</para>
   /// </summary>
-  public sealed class WebLinksCategoryTests : CategoryUnitTests<WebLinksCategory>
+  public sealed class WebLinksCategoryTests : CategoryUnitTestsBase<WebLinksCategory>
   {
+    /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Description", "Language", "Name", "Parent");
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var category = new WebLinksCategory();
+      Assert.Equal(@"{""Id"":0}", category.Json());
+
+      category = new WebLinksCategory("name");
+      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
+
+      category = new WebLinksCategory("name", new WebLinksCategory("parent.name"), "description") { Id = 1, Language = "language" };
+      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name"",""Parent"":{""Id"":0,""Name"":""parent.name""}}", category.Json());
+    }
+
     /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -16,6 +18,25 @@ namespace Catharsis.Domain
     public void Attributes()
     {
       this.TestDescription("Category", "Comments", "DateCreated", "Downloads", "Language", "LastUpdated", "Name", "Tags", "Text", "Url");
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var download = new Download();
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""Downloads"":0,""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(download.DateCreated.ToString("o"), download.LastUpdated.ToString("o")), download.Json());
+
+      download = new Download("name", "url");
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""Downloads"":0,""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Url"":""url""}}".FormatSelf(download.DateCreated.ToString("o"), download.LastUpdated.ToString("o")), download.Json());
+      Assert.Equal(download, download.Json().Json<Download>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      download = new Download("name", "url", new DownloadsCategory("category.name"), "text") { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Downloads = 1, Tags = new List<string> { "tag" } };
+      Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Downloads"":1,""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text"",""Url"":""url""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), download.DateCreated.ToString("o"), download.LastUpdated.ToString("o"), download.DateCreated.ToString("o"), download.LastUpdated.ToString("o")), download.Json());
+      Assert.Equal(download, download.Json().Json<Download>());
     }
 
     /// <summary>

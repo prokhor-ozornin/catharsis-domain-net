@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -16,6 +18,26 @@ namespace Catharsis.Domain
     public void Attributes()
     {
       this.TestDescription("Album", "Audio", "Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var song = new Song();
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(song.DateCreated.ToString("o"), song.LastUpdated.ToString("o")), song.Json());
+
+      song = new Song("name", "text", "audio");
+      Assert.Equal(@"{{""Id"":0,""Audio"":""audio"",""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(song.DateCreated.ToString("o"), song.LastUpdated.ToString("o")), song.Json());
+      Assert.Equal(song, song.Json().Json<Song>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      var album = new SongsAlbum("album.name");
+      song = new Song("name", "text", "audio", album) { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
+      Assert.Equal(@"{{""Id"":1,""Album"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""album.name"",""Tags"":[]}},""Audio"":""audio"",""Comments"":[{{""Id"":0,""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{4}"",""Language"":""language"",""LastUpdated"":""{5}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(album.DateCreated.ToString("o"), album.LastUpdated.ToString("o"), comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), song.DateCreated.ToString("o"), song.LastUpdated.ToString("o")), song.Json());
+      Assert.Equal(song, song.Json().Json<Song>());
     }
 
     /// <summary>

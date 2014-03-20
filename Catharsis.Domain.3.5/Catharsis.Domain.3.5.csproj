@@ -37,6 +37,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Catharsis.Commons.2.0\lib\net35\Catharsis.Commons.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
@@ -181,6 +185,9 @@
     <Compile Include="..\Catharsis.Domain.4.0\IVersionable.cs">
       <Link>IVersionable.cs</Link>
     </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\JsonEntityOrderedContractResolver.cs">
+      <Link>JsonEntityOrderedContractResolver.cs</Link>
+    </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\Location.cs">
       <Link>Location.cs</Link>
     </Compile>
@@ -189,6 +196,9 @@
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\Notification.cs">
       <Link>Notification.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\ObjectExtensions.cs">
+      <Link>ObjectExtensions.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\Person.cs">
       <Link>Person.cs</Link>
@@ -222,6 +232,9 @@
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\SongsAlbumExtensions.cs">
       <Link>SongsAlbumExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\StringExtensions.cs">
+      <Link>StringExtensions.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\Subscription.cs">
       <Link>Subscription.cs</Link>

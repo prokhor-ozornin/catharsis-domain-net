@@ -18,6 +18,26 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var city = new City();
+      Assert.Equal(@"{""Id"":0}", city.Json());
+
+      var country = new Country("country.name", "country.isoCode");
+
+      city = new City("name", country);
+      Assert.Equal(@"{""Id"":0,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""name""}", city.Json());
+      Assert.Equal(city, city.Json().Json<City>());
+
+      city = new City("name", country, "region") { Id = 1 };
+      Assert.Equal(@"{""Id"":1,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""name"",""Region"":""region""}", city.Json());
+      Assert.Equal(city, city.Json().Json<City>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="City()"/>

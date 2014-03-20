@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -16,6 +18,25 @@ namespace Catharsis.Domain
     public void Attributes()
     {
       this.TestDescription("Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var blog = new Blog();
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(blog.DateCreated.ToString("o"), blog.LastUpdated.ToString("o")), blog.Json());
+
+      blog = new Blog("name");
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[]}}".FormatSelf(blog.DateCreated.ToString("o"), blog.LastUpdated.ToString("o")), blog.Json());
+      Assert.Equal(blog, blog.Json().Json<Blog>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      blog = new Blog("name") { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
+      Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""]}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), blog.DateCreated.ToString("o"), blog.LastUpdated.ToString("o")), blog.Json());
+      Assert.Equal(blog, blog.Json().Json<Blog>());
     }
 
     /// <summary>

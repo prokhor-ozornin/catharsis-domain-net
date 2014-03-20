@@ -5,8 +5,35 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Tests set for class <see cref="AnnouncementsCategory"/>.</para>
   /// </summary>
-  public sealed class AnnouncementsCategoryTests : CategoryUnitTests<AnnouncementsCategory>
+  public sealed class AnnouncementsCategoryTests : CategoryUnitTestsBase<AnnouncementsCategory>
   {
+    /// <summary>
+    ///   <para>Performs testing of class attributes.</para>
+    /// </summary>
+    [Fact]
+    public void Attributes()
+    {
+      this.TestDescription("Description", "Language", "Name", "Parent");
+    }
+    
+    /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var category = new AnnouncementsCategory();
+      Assert.Equal(@"{""Id"":0}", category.Json());
+
+      category = new AnnouncementsCategory("name");
+      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
+      Assert.Equal(category, category.Json().Json<AnnouncementsCategory>());
+
+      category = new AnnouncementsCategory("name", new AnnouncementsCategory("parent.name"), "description") { Id = 1, Language = "language" };
+      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name"",""Parent"":{""Id"":0,""Name"":""parent.name""}}", category.Json());
+      Assert.Equal(category, category.Json().Json<AnnouncementsCategory>());
+    }
+
     /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -16,6 +18,25 @@ namespace Catharsis.Domain
     public void Attributes()
     {
       this.TestDescription("Category", "Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text", "Url");
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var weblink = new WebLink();
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(weblink.DateCreated.ToString("o"), weblink.LastUpdated.ToString("o")), weblink.Json());
+
+      weblink = new WebLink("name", "text", "url");
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text"",""Url"":""url""}}".FormatSelf(weblink.DateCreated.ToString("o"), weblink.LastUpdated.ToString("o")), weblink.Json());
+      Assert.Equal(weblink, weblink.Json().Json<WebLink>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      weblink = new WebLink("name", "text", "url", new WebLinksCategory("category.name")) { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
+      Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text"",""Url"":""url""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), weblink.DateCreated.ToString("o"), weblink.LastUpdated.ToString("o")), weblink.Json());
+      Assert.Equal(weblink, weblink.Json().Json<WebLink>());
     }
 
     /// <summary>
