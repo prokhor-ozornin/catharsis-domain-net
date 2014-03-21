@@ -27,15 +27,15 @@ namespace Catharsis.Domain
     public void Json()
     {
       var item = new Item();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(item.DateCreated.ToString("o"), item.LastUpdated.ToString("o")), item.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(item.DateCreated.ISO(), item.LastUpdated.ISO()), item.Json());
 
       item = new Item("name");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[]}}".FormatSelf(item.DateCreated.ToString("o"), item.LastUpdated.ToString("o")), item.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[]}}".FormatSelf(item.DateCreated.ISO(), item.LastUpdated.ISO()), item.Json());
       Assert.Equal(item, item.Json().Json<Item>());
 
       var comment = new Comment("comment.name", "comment.text");
       item = new Item("name", "text") { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
-      Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), item.DateCreated.ToString("o"), item.LastUpdated.ToString("o")), item.Json());
+      Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), item.DateCreated.ISO(), item.LastUpdated.ISO()), item.Json());
       Assert.Equal(item, item.Json().Json<Item>());
     }
 

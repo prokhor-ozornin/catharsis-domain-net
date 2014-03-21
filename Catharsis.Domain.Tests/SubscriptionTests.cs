@@ -25,14 +25,14 @@ namespace Catharsis.Domain
     public void Json()
     {
       var subscription = new Subscription();
-      Assert.Equal(@"{{""Id"":0,""Active"":true,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Token"":""{2}""}}".FormatSelf(subscription.DateCreated.ToString("o"), subscription.LastUpdated.ToString("o"), subscription.Token), subscription.Json());
+      Assert.Equal(@"{{""Id"":0,""Active"":true,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Token"":""{2}""}}".FormatSelf(subscription.DateCreated.ISO(), subscription.LastUpdated.ISO(), subscription.Token), subscription.Json());
 
       subscription = new Subscription("email");
-      Assert.Equal(@"{{""Id"":0,""Active"":true,""DateCreated"":""{0}"",""Email"":""email"",""LastUpdated"":""{1}"",""Token"":""{2}""}}".FormatSelf(subscription.DateCreated.ToString("o"), subscription.LastUpdated.ToString("o"), subscription.Token), subscription.Json());
+      Assert.Equal(@"{{""Id"":0,""Active"":true,""DateCreated"":""{0}"",""Email"":""email"",""LastUpdated"":""{1}"",""Token"":""{2}""}}".FormatSelf(subscription.DateCreated.ISO(), subscription.LastUpdated.ISO(), subscription.Token), subscription.Json());
       Assert.Equal(subscription, subscription.Json().Json<Subscription>());
 
       subscription = new Subscription("email", DateTime.MinValue) { Id = 1 };
-      Assert.Equal(@"{{""Id"":1,""Active"":true,""DateCreated"":""{0}"",""Email"":""email"",""ExpiredOn"":""{1}"",""LastUpdated"":""{2}"",""Token"":""{3}""}}".FormatSelf(subscription.DateCreated.ToString("o"), DateTime.MinValue.ToString("o"), subscription.LastUpdated.ToString("o"), subscription.Token), subscription.Json());
+      Assert.Equal(@"{{""Id"":1,""Active"":true,""DateCreated"":""{0}"",""Email"":""email"",""ExpiredOn"":""{1}"",""LastUpdated"":""{2}"",""Token"":""{3}""}}".FormatSelf(subscription.DateCreated.ISO(), DateTime.MinValue.ISO(), subscription.LastUpdated.ISO(), subscription.Token), subscription.Json());
       Assert.Equal(subscription, subscription.Json().Json<Subscription>());
     }
 

@@ -27,15 +27,15 @@ namespace Catharsis.Domain
     public void Json()
     {
       var album = new SongsAlbum();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(album.DateCreated.ToString("o"), album.LastUpdated.ToString("o")), album.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(album.DateCreated.ISO(), album.LastUpdated.ISO()), album.Json());
 
       album = new SongsAlbum("name");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[]}}".FormatSelf(album.DateCreated.ToString("o"), album.LastUpdated.ToString("o")), album.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[]}}".FormatSelf(album.DateCreated.ISO(), album.LastUpdated.ISO()), album.Json());
       Assert.Equal(album, album.Json().Json<SongsAlbum>());
 
       var comment = new Comment("comment.name", "comment.text");
       album = new SongsAlbum("name", "text", "image", DateTime.MinValue) { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
-      Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{1}"",""LastUpdated"":""{2}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{3}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{4}"",""Name"":""name"",""PublishedOn"":""{0}"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(DateTime.MinValue.ToString("o"), comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), album.DateCreated.ToString("o"), album.LastUpdated.ToString("o")), album.Json());
+      Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{1}"",""LastUpdated"":""{2}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{3}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{4}"",""Name"":""name"",""PublishedOn"":""{0}"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(DateTime.MinValue.ISO(), comment.DateCreated.ISO(), comment.LastUpdated.ISO(), album.DateCreated.ISO(), album.LastUpdated.ISO()), album.Json());
       Assert.Equal(album, album.Json().Json<SongsAlbum>());
     }
 

@@ -25,14 +25,14 @@ namespace Catharsis.Domain
     public void Json()
     {
       var comment = new Comment();
-      Assert.Equal(@"{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o")), comment.Json());
+      Assert.Equal(@"{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO()), comment.Json());
 
       comment = new Comment("name", "text");
-      Assert.Equal(@"{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Text"":""text""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o")), comment.Json());
+      Assert.Equal(@"{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO()), comment.Json());
       Assert.Equal(comment, comment.Json().Json<Comment>());
 
       comment = new Comment("name", "text") { Id = 1 };
-      Assert.Equal(@"{{""Id"":1,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Text"":""text""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o")), comment.Json());
+      Assert.Equal(@"{{""Id"":1,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO()), comment.Json());
       Assert.Equal(comment, comment.Json().Json<Comment>());
     }
 

@@ -29,12 +29,12 @@ namespace Catharsis.Domain
       var faq = new Faq();
 
       faq = new Faq("name", "text");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(faq.DateCreated.ToString("o"), faq.LastUpdated.ToString("o")), faq.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(faq.DateCreated.ISO(), faq.LastUpdated.ISO()), faq.Json());
       Assert.Equal(faq, faq.Json().Json<Faq>());
 
       var comment = new Comment("comment.name", "comment.text");
       faq = new Faq("name", "text") { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
-      Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), faq.DateCreated.ToString("o"), faq.LastUpdated.ToString("o"), faq.DateCreated.ToString("o"), faq.LastUpdated.ToString("o")), faq.Json());
+      Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), faq.DateCreated.ISO(), faq.LastUpdated.ISO(), faq.DateCreated.ISO(), faq.LastUpdated.ISO()), faq.Json());
       Assert.Equal(faq, faq.Json().Json<Faq>());
     }
 

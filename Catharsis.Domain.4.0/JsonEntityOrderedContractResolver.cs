@@ -6,7 +6,10 @@ using Newtonsoft.Json.Serialization;
 
 namespace Catharsis.Domain
 {
-  internal sealed class JsonEntityOrderedContractResolver : DefaultContractResolver
+  /// <summary>
+  ///   <para>Custom JSON <see cref="IContractResolver"/> that orders serialized properties alphabetically, as well as placing property named "id" (case-insensitive), if it exists, at the top.</para>
+  /// </summary>
+  public sealed class JsonEntityOrderedContractResolver : DefaultContractResolver
   {
     protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
     {

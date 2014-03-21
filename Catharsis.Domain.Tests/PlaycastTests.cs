@@ -27,15 +27,15 @@ namespace Catharsis.Domain
     public void Json()
     {
       var playcast = new Playcast();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(playcast.DateCreated.ToString("o"), playcast.LastUpdated.ToString("o")), playcast.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(playcast.DateCreated.ISO(), playcast.LastUpdated.ISO()), playcast.Json());
 
       playcast = new Playcast("name", "text");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(playcast.DateCreated.ToString("o"), playcast.LastUpdated.ToString("o")), playcast.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(playcast.DateCreated.ISO(), playcast.LastUpdated.ISO()), playcast.Json());
       Assert.Equal(playcast, playcast.Json().Json<Playcast>());
 
       var comment = new Comment("comment.name", "comment.text");
       playcast = new Playcast("name", "text", new PlaycastsCategory("category.name"), "audio", "image") { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
-      Assert.Equal(@"{{""Id"":1,""Audio"":""audio"",""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), playcast.DateCreated.ToString("o"), playcast.LastUpdated.ToString("o")), playcast.Json());
+      Assert.Equal(@"{{""Id"":1,""Audio"":""audio"",""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), playcast.DateCreated.ISO(), playcast.LastUpdated.ISO()), playcast.Json());
       Assert.Equal(playcast, playcast.Json().Json<Playcast>());
     }
 

@@ -27,18 +27,18 @@ namespace Catharsis.Domain
     public void Json()
     {
       var text = new Text();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[],""Translations"":[]}}".FormatSelf(text.DateCreated.ToString("o"), text.LastUpdated.ToString("o")), text.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[],""Translations"":[]}}".FormatSelf(text.DateCreated.ISO(), text.LastUpdated.ISO()), text.Json());
 
       var person = new Person("person.nameFirst", "person.nameLast");
       
       text = new Text("name", "text", person);
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Person"":{{""Id"":0,""NameFirst"":""person.nameFirst"",""NameLast"":""person.nameLast""}},""Tags"":[],""Text"":""text"",""Translations"":[]}}".FormatSelf(text.DateCreated.ToString("o"), text.LastUpdated.ToString("o")), text.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Person"":{{""Id"":0,""NameFirst"":""person.nameFirst"",""NameLast"":""person.nameLast""}},""Tags"":[],""Text"":""text"",""Translations"":[]}}".FormatSelf(text.DateCreated.ISO(), text.LastUpdated.ISO()), text.Json());
       Assert.Equal(text, text.Json().Json<Text>());
 
       var comment = new Comment("comment.name", "comment.text");
       var translation = new TextTranslation("translation.language", "translation.name", "translation.text");
       text = new Text("name", "text", person, new TextsCategory("category.name")) { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" }, Translations = new List<TextTranslation> { translation } };
-      Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Person"":{{""Id"":0,""NameFirst"":""person.nameFirst"",""NameLast"":""person.nameLast""}},""Tags"":[""tag""],""Text"":""text"",""Translations"":[{{""Id"":0,""Language"":""translation.language"",""Name"":""translation.name"",""Text"":""translation.text""}}]}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), text.DateCreated.ToString("o"), text.LastUpdated.ToString("o")), text.Json());
+      Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Person"":{{""Id"":0,""NameFirst"":""person.nameFirst"",""NameLast"":""person.nameLast""}},""Tags"":[""tag""],""Text"":""text"",""Translations"":[{{""Id"":0,""Language"":""translation.language"",""Name"":""translation.name"",""Text"":""translation.text""}}]}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), text.DateCreated.ISO(), text.LastUpdated.ISO()), text.Json());
       Assert.Equal(text, text.Json().Json<Text>());
     }
 

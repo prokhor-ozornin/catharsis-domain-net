@@ -12,19 +12,6 @@ namespace Catharsis.Domain
   public sealed class StringExtensionsTests
   {
     /// <summary>
-    ///   <para>Performs testing of <see cref="ObjectExtensions.JsonSerializerSettings"/> property.</para>
-    /// </summary>
-    [Fact]
-    public void JsonSerializerSettings_Property()
-    {
-      var settings = StringExtensions.JsonSerializerSettings;
-      Assert.Equal(ConstructorHandling.AllowNonPublicDefaultConstructor, settings.ConstructorHandling);
-      Assert.Equal(DateTimeZoneHandling.RoundtripKind, settings.DateTimeZoneHandling);
-      Assert.Equal(NullValueHandling.Ignore, settings.NullValueHandling);
-      Assert.Equal(ObjectCreationHandling.Auto, settings.ObjectCreationHandling);
-    }
-
-    /// <summary>
     ///   <para>Performs testing of <see cref="StringExtensions.Json{T}(string, JsonSerializerSettings)"/> method.</para>
     /// </summary>
     [Fact]

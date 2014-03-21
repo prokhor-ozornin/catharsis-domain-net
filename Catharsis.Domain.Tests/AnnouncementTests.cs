@@ -27,15 +27,15 @@ namespace Catharsis.Domain
     public void Json()
     {
       var announcement = new Announcement();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(announcement.DateCreated.ToString("o"), announcement.LastUpdated.ToString("o")), announcement.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(announcement.DateCreated.ISO(), announcement.LastUpdated.ISO()), announcement.Json());
 
       announcement = new Announcement("name", "text");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(announcement.DateCreated.ToString("o"), announcement.LastUpdated.ToString("o")), announcement.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(announcement.DateCreated.ISO(), announcement.LastUpdated.ISO()), announcement.Json());
       Assert.Equal(announcement, announcement.Json().Json<Announcement>());
 
       var comment = new Comment("comment.name", "comment.text");
       announcement = new Announcement("name", "text", new AnnouncementsCategory("category.name"), "image", "currency", (decimal)1.0) { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
-      Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""Currency"":""currency"",""DateCreated"":""{2}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Price"":1.0,""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), announcement.DateCreated.ToString("o"), announcement.LastUpdated.ToString("o")), announcement.Json());
+      Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""Currency"":""currency"",""DateCreated"":""{2}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Price"":1.0,""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), announcement.DateCreated.ISO(), announcement.LastUpdated.ISO()), announcement.Json());
       Assert.Equal(announcement, announcement.Json().Json<Announcement>());
     }
 

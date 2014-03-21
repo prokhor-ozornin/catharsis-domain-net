@@ -84,6 +84,7 @@
     <Compile Include="ItemTests.cs" />
     <Compile Include="ITimestampableExtensionsTests.cs" />
     <Compile Include="ITypeableExtensionsTests.cs" />
+    <Compile Include="JsonDefaultSettingsTests.cs" />
     <Compile Include="LocationExtensionsTests.cs" />
     <Compile Include="LocationTests.cs" />
     <Compile Include="MockJsonObject.cs" />

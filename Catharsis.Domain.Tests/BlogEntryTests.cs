@@ -27,17 +27,17 @@ namespace Catharsis.Domain
     public void Json()
     {
       var entry = new BlogEntry();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(entry.DateCreated.ToString("o"), entry.LastUpdated.ToString("o")), entry.Json());
+      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(entry.DateCreated.ISO(), entry.LastUpdated.ISO()), entry.Json());
 
       var blog = new Blog("blog.name");
 
       entry = new BlogEntry(blog, "name", "text");
-      Assert.Equal(@"{{""Id"":0,""Blog"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""blog.name"",""Tags"":[]}},""Comments"":[],""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(blog.DateCreated.ToString("o"), blog.LastUpdated.ToString("o"), entry.DateCreated.ToString("o"), entry.LastUpdated.ToString("o")), entry.Json());
+      Assert.Equal(@"{{""Id"":0,""Blog"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""blog.name"",""Tags"":[]}},""Comments"":[],""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(blog.DateCreated.ISO(), blog.LastUpdated.ISO(), entry.DateCreated.ISO(), entry.LastUpdated.ISO()), entry.Json());
       Assert.Equal(entry, entry.Json().Json<BlogEntry>());
 
       var comment = new Comment("comment.name", "comment.text");
       entry = new BlogEntry(blog, "name", "text") { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
-      Assert.Equal(@"{{""Id"":1,""Blog"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""blog.name"",""Tags"":[]}},""Comments"":[{{""Id"":0,""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{4}"",""Language"":""language"",""LastUpdated"":""{5}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(blog.DateCreated.ToString("o"), blog.LastUpdated.ToString("o"), comment.DateCreated.ToString("o"), comment.LastUpdated.ToString("o"), entry.DateCreated.ToString("o"), entry.LastUpdated.ToString("o")), entry.Json());
+      Assert.Equal(@"{{""Id"":1,""Blog"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""blog.name"",""Tags"":[]}},""Comments"":[{{""Id"":0,""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{4}"",""Language"":""language"",""LastUpdated"":""{5}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(blog.DateCreated.ISO(), blog.LastUpdated.ISO(), comment.DateCreated.ISO(), comment.LastUpdated.ISO(), entry.DateCreated.ISO(), entry.LastUpdated.ISO()), entry.Json());
       Assert.Equal(entry, entry.Json().Json<BlogEntry>());
     }
 

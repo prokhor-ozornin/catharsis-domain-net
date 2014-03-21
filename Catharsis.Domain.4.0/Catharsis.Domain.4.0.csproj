@@ -92,6 +92,8 @@
     <Compile Include="ITypeableExtensions.cs" />
     <Compile Include="IVersionable.cs" />
     <Compile Include="JsonEntityOrderedContractResolver.cs" />
+    <Compile Include="JsonNameableEntityConverter.cs" />
+    <Compile Include="JsonDefaultSettings.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationExtensions.cs" />
     <Compile Include="Notification.cs" />
