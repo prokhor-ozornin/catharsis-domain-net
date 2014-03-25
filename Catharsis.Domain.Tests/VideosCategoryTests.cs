@@ -11,8 +11,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Description", "Language", "Name", "Parent");
     }
 
@@ -28,7 +29,11 @@ namespace Catharsis.Domain
       category = new VideosCategory("name");
       Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
 
-      category = new VideosCategory("name", new VideosCategory("parent.name"), "description") { Id = 1, Language = "language" };
+      category = new VideosCategory("name", new VideosCategory("parent.name"), "description")
+      {
+        Id = 1,
+        Language = "language"
+      };
       Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name"",""Parent"":{""Id"":0,""Name"":""parent.name""}}", category.Json());
     }
 

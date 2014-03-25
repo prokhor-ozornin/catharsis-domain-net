@@ -11,8 +11,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Description", "Language", "Name", "Parent");
     }
     
@@ -29,7 +30,11 @@ namespace Catharsis.Domain
       Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
       Assert.Equal(category, category.Json().Json<AnnouncementsCategory>());
 
-      category = new AnnouncementsCategory("name", new AnnouncementsCategory("parent.name"), "description") { Id = 1, Language = "language" };
+      category = new AnnouncementsCategory("name", new AnnouncementsCategory("parent.name"), "description")
+      {
+        Id = 1,
+        Language = "language"
+      };
       Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name"",""Parent"":{""Id"":0,""Name"":""parent.name""}}", category.Json());
       Assert.Equal(category, category.Json().Json<AnnouncementsCategory>());
     }

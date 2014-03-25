@@ -15,8 +15,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Category", "Comments", "Currency", "DateCreated", "Image", "Language", "Name", "Price", "Tags", "Text");
     }
 
@@ -34,7 +35,13 @@ namespace Catharsis.Domain
       Assert.Equal(announcement, announcement.Json().Json<Announcement>());
 
       var comment = new Comment("comment.name", "comment.text");
-      announcement = new Announcement("name", "text", new AnnouncementsCategory("category.name"), "image", "currency", (decimal)1.0) { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
+      announcement = new Announcement("name", "text", new AnnouncementsCategory("category.name"), "image", "currency", (decimal)1.0)
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
       Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""Currency"":""currency"",""DateCreated"":""{2}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Price"":1.0,""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), announcement.DateCreated.ISO(), announcement.LastUpdated.ISO()), announcement.Json());
       Assert.Equal(announcement, announcement.Json().Json<Announcement>());
     }

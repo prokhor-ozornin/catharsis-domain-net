@@ -13,8 +13,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Active", "DateCreated", "Email", "ExpiredOn", "LastUpdated", "Token");
     }
 
@@ -31,7 +32,10 @@ namespace Catharsis.Domain
       Assert.Equal(@"{{""Id"":0,""Active"":true,""DateCreated"":""{0}"",""Email"":""email"",""LastUpdated"":""{1}"",""Token"":""{2}""}}".FormatSelf(subscription.DateCreated.ISO(), subscription.LastUpdated.ISO(), subscription.Token), subscription.Json());
       Assert.Equal(subscription, subscription.Json().Json<Subscription>());
 
-      subscription = new Subscription("email", DateTime.MinValue) { Id = 1 };
+      subscription = new Subscription("email", DateTime.MinValue)
+      {
+        Id = 1
+      };
       Assert.Equal(@"{{""Id"":1,""Active"":true,""DateCreated"":""{0}"",""Email"":""email"",""ExpiredOn"":""{1}"",""LastUpdated"":""{2}"",""Token"":""{3}""}}".FormatSelf(subscription.DateCreated.ISO(), DateTime.MinValue.ISO(), subscription.LastUpdated.ISO(), subscription.Token), subscription.Json());
       Assert.Equal(subscription, subscription.Json().Json<Subscription>());
     }

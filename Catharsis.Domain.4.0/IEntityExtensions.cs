@@ -19,7 +19,7 @@ namespace Catharsis.Domain
     /// <param name="id">Identifier of entity.</param>
     /// <returns>Business entity with given identifier.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is a <c>null</c> reference.</exception>
-    public static ENTITY WithId<ENTITY>(this IQueryable<ENTITY> entities, long id) where ENTITY : IEntity
+    public static ENTITY Id<ENTITY>(this IQueryable<ENTITY> entities, long id) where ENTITY : IEntity
     {
       Assertion.NotNull(entities);
 
@@ -34,7 +34,7 @@ namespace Catharsis.Domain
     /// <param name="id">Identifier of entity.</param>
     /// <returns>Business entity with given identifier.</returns>
     /// <exception cref="ArgumentNullException">If <paramref name="entities"/> is a <c>null</c> reference.</exception>
-    public static ENTITY WithId<ENTITY>(this IEnumerable<ENTITY> entities, long id) where ENTITY : IEntity
+    public static ENTITY Id<ENTITY>(this IEnumerable<ENTITY> entities, long id) where ENTITY : IEntity
     {
       Assertion.NotNull(entities);
 
@@ -88,7 +88,7 @@ namespace Catharsis.Domain
       }
 
       var identifiers = entities.Select(entity => entity.Id).ToArray();
-      return entities.WithId(identifiers[new Random().Next(identifiers.Length)]);
+      return entities.Id(identifiers[new Random().Next(identifiers.Length)]);
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ namespace Catharsis.Domain
       }
 
       var identifiers = entities.Select(entity => entity.Id).ToArray();
-      return entities.WithId(identifiers[new Random().Next(identifiers.Length)]);
+      return entities.Id(identifiers[new Random().Next(identifiers.Length)]);
     }
   }
 }

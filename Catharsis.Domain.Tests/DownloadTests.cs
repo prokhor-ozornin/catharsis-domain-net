@@ -15,8 +15,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Category", "Comments", "DateCreated", "Downloads", "Language", "LastUpdated", "Name", "Tags", "Text", "Url");
     }
 
@@ -34,7 +35,14 @@ namespace Catharsis.Domain
       Assert.Equal(download, download.Json().Json<Download>());
 
       var comment = new Comment("comment.name", "comment.text");
-      download = new Download("name", "url", new DownloadsCategory("category.name"), "text") { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Downloads = 1, Tags = new List<string> { "tag" } };
+      download = new Download("name", "url", new DownloadsCategory("category.name"), "text")
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Downloads = 1,
+        Tags = new List<string> { "tag" }
+      };
       Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Downloads"":1,""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text"",""Url"":""url""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), download.DateCreated.ISO(), download.LastUpdated.ISO(), download.DateCreated.ISO(), download.LastUpdated.ISO()), download.Json());
       Assert.Equal(download, download.Json().Json<Download>());
     }

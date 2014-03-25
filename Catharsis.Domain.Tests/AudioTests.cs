@@ -12,8 +12,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Bitrate", "Category", "Duration", "File");
     }
 
@@ -30,7 +31,10 @@ namespace Catharsis.Domain
       Assert.Equal(@"{""Id"":0,""Bitrate"":1,""Duration"":2,""File"":""file""}", audio.Json());
       Assert.Equal(audio, audio.Json().Json<Audio>());
 
-      audio = new Audio("file", 1, 2, new AudiosCategory("category.name")) { Id = 1 };
+      audio = new Audio("file", 1, 2, new AudiosCategory("category.name"))
+      {
+        Id = 1 
+      };
       Assert.Equal(@"{""Id"":1,""Bitrate"":1,""Category"":{""Id"":0,""Name"":""category.name""},""Duration"":2,""File"":""file""}", audio.Json());
       Assert.Equal(audio, audio.Json().Json<Audio>());
     }

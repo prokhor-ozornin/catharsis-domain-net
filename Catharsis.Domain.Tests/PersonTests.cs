@@ -12,8 +12,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("BirthDay", "BirthMonth", "BirthYear", "DeathDay", "DeathMonth", "DeathYear", "Description", "Image", "NameFirst", "NameLast", "NameMiddle");
     }
 
@@ -30,7 +31,10 @@ namespace Catharsis.Domain
       Assert.Equal(@"{""Id"":0,""NameFirst"":""nameFirst"",""NameLast"":""nameLast""}", person.Json());
       Assert.Equal(person, person.Json().Json<Person>());
 
-      person = new Person("nameFirst", "nameLast", "nameMiddle", "description", "image", 1, 2, 3, 4, 5, 6) { Id = 1 };
+      person = new Person("nameFirst", "nameLast", "nameMiddle", "description", "image", 1, 2, 3, 4, 5, 6)
+      {
+        Id = 1
+      };
       Assert.Equal(@"{""Id"":1,""BirthDay"":1,""BirthMonth"":2,""BirthYear"":3,""DeathDay"":4,""DeathMonth"":5,""DeathYear"":6,""Description"":""description"",""Image"":""image"",""NameFirst"":""nameFirst"",""NameLast"":""nameLast"",""NameMiddle"":""nameMiddle""}", person.Json());
       Assert.Equal(person, person.Json().Json<Person>());
     }

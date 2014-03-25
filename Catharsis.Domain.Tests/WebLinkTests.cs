@@ -15,8 +15,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Category", "Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text", "Url");
     }
 
@@ -34,7 +35,13 @@ namespace Catharsis.Domain
       Assert.Equal(weblink, weblink.Json().Json<WebLink>());
 
       var comment = new Comment("comment.name", "comment.text");
-      weblink = new WebLink("name", "text", "url", new WebLinksCategory("category.name")) { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
+      weblink = new WebLink("name", "text", "url", new WebLinksCategory("category.name"))
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
       Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text"",""Url"":""url""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), weblink.DateCreated.ISO(), weblink.LastUpdated.ISO()), weblink.Json());
       Assert.Equal(weblink, weblink.Json().Json<WebLink>());
     }

@@ -12,8 +12,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Bitrate", "Category", "Duration", "File", "Height", "Version", "Width");
     }
 
@@ -30,7 +31,10 @@ namespace Catharsis.Domain
       Assert.Equal(@"{""Id"":0,""Bitrate"":1,""Duration"":2,""File"":""file"",""Height"":3,""Width"":4}", video.Json());
       Assert.Equal(video, video.Json().Json<Video>());
 
-      video = new Video("file", 1, 2, 3, 4, new VideosCategory("category.name")) { Id = 1 };
+      video = new Video("file", 1, 2, 3, 4, new VideosCategory("category.name"))
+      {
+        Id = 1 
+      };
       Assert.Equal(@"{""Id"":1,""Bitrate"":1,""Category"":{""Id"":0,""Name"":""category.name""},""Duration"":2,""File"":""file"",""Height"":3,""Width"":4}", video.Json());
       Assert.Equal(video, video.Json().Json<Video>());
     }

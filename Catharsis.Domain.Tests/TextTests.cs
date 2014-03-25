@@ -15,8 +15,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Category", "Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text", "Person", "Translations");
     }
 
@@ -37,7 +38,14 @@ namespace Catharsis.Domain
 
       var comment = new Comment("comment.name", "comment.text");
       var translation = new TextTranslation("translation.language", "translation.name", "translation.text");
-      text = new Text("name", "text", person, new TextsCategory("category.name")) { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" }, Translations = new List<TextTranslation> { translation } };
+      text = new Text("name", "text", person, new TextsCategory("category.name"))
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" },
+        Translations = new List<TextTranslation> { translation }
+      };
       Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Person"":{{""Id"":0,""NameFirst"":""person.nameFirst"",""NameLast"":""person.nameLast""}},""Tags"":[""tag""],""Text"":""text"",""Translations"":[{{""Id"":0,""Language"":""translation.language"",""Name"":""translation.name"",""Text"":""translation.text""}}]}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), text.DateCreated.ISO(), text.LastUpdated.ISO()), text.Json());
       Assert.Equal(text, text.Json().Json<Text>());
     }

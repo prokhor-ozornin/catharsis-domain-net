@@ -15,8 +15,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Comments", "DateCreated", "Language", "LastUpdated", "Name", "PublishedOn", "Tags", "Text");
     }
 
@@ -34,7 +35,13 @@ namespace Catharsis.Domain
       Assert.Equal(album, album.Json().Json<ArtsAlbum>());
 
       var comment = new Comment("comment.name", "comment.text");
-      album = new ArtsAlbum("name", "text", DateTime.MinValue) { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
+      album = new ArtsAlbum("name", "text", DateTime.MinValue)
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
       Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{1}"",""LastUpdated"":""{2}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{3}"",""Language"":""language"",""LastUpdated"":""{4}"",""Name"":""name"",""PublishedOn"":""{0}"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(DateTime.MinValue.ISO(), comment.DateCreated.ISO(), comment.LastUpdated.ISO(), album.DateCreated.ISO(), album.LastUpdated.ISO()), album.Json());
       Assert.Equal(album, album.Json().Json<ArtsAlbum>());
     }

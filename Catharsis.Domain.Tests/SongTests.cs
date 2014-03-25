@@ -15,8 +15,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Album", "Audio", "Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
     }
 
@@ -35,7 +36,13 @@ namespace Catharsis.Domain
 
       var comment = new Comment("comment.name", "comment.text");
       var album = new SongsAlbum("album.name");
-      song = new Song("name", "text", "audio", album) { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
+      song = new Song("name", "text", "audio", album)
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
       Assert.Equal(@"{{""Id"":1,""Album"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""album.name"",""Tags"":[]}},""Audio"":""audio"",""Comments"":[{{""Id"":0,""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{4}"",""Language"":""language"",""LastUpdated"":""{5}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(album.DateCreated.ISO(), album.LastUpdated.ISO(), comment.DateCreated.ISO(), comment.LastUpdated.ISO(), song.DateCreated.ISO(), song.LastUpdated.ISO()), song.Json());
       Assert.Equal(song, song.Json().Json<Song>());
     }

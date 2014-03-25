@@ -15,8 +15,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
     }
 
@@ -34,7 +35,13 @@ namespace Catharsis.Domain
       Assert.Equal(blog, blog.Json().Json<Blog>());
 
       var comment = new Comment("comment.name", "comment.text");
-      blog = new Blog("name") { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
+      blog = new Blog("name")
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
       Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""]}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), blog.DateCreated.ISO(), blog.LastUpdated.ISO()), blog.Json());
       Assert.Equal(blog, blog.Json().Json<Blog>());
     }

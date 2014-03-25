@@ -15,8 +15,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Album", "Comments", "Image", "Language", "LastUpdated", "Material", "Name", "Person", "Place", "Tags", "Text");
     }
 
@@ -35,7 +36,13 @@ namespace Catharsis.Domain
 
       var comment = new Comment("comment.name", "comment.text");
       var album = new ArtsAlbum("album.name");
-      art = new Art("name", "image", album, "text", new Person("person.nameFirst", "person.nameLast"), "place", "material") { Id = 1, Language = "language", Comments = new List<Comment> { comment }, Tags = new List<string> { "tag" } };
+      art = new Art("name", "image", album, "text", new Person("person.nameFirst", "person.nameLast"), "place", "material")
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
       Assert.Equal(@"{{""Id"":1,""Album"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""album.name"",""Tags"":[]}},""Comments"":[{{""Id"":0,""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{4}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{5}"",""Material"":""material"",""Name"":""name"",""Person"":{{""Id"":0,""NameFirst"":""person.nameFirst"",""NameLast"":""person.nameLast""}},""Place"":""place"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(album.DateCreated.ISO(), album.LastUpdated.ISO(), comment.DateCreated.ISO(), comment.LastUpdated.ISO(), art.DateCreated.ISO(), art.LastUpdated.ISO()), art.Json());
       Assert.Equal(art, art.Json().Json<Art>());
     }

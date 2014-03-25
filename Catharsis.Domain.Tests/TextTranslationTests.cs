@@ -12,8 +12,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Language", "Name", "Text", "Translator");
     }
 
@@ -30,7 +31,10 @@ namespace Catharsis.Domain
       Assert.Equal(@"{""Id"":0,""Language"":""language"",""Name"":""name"",""Text"":""text""}", translation.Json());
       Assert.Equal(translation, translation.Json().Json<TextTranslation>());
 
-      translation = new TextTranslation("language", "name", "text", "translator") { Id = 1 };
+      translation = new TextTranslation("language", "name", "text", "translator")
+      {
+        Id = 1
+      };
       Assert.Equal(@"{""Id"":1,""Language"":""language"",""Name"":""name"",""Text"":""text"",""Translator"":""translator""}", translation.Json());
       Assert.Equal(translation, translation.Json().Json<TextTranslation>());
     }

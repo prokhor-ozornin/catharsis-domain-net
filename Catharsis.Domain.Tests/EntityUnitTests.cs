@@ -14,7 +14,7 @@ namespace Catharsis.Domain
     ///   <para></para>
     /// </summary>
     [Fact]
-    public void Attributes_Base()
+    public virtual void Attributes()
     {
       Assert.False(typeof(ENTITY).Description().IsEmpty());
       this.TestDescription("Id", "Version");

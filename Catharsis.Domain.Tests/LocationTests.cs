@@ -12,8 +12,9 @@ namespace Catharsis.Domain
     ///   <para>Performs testing of class attributes.</para>
     /// </summary>
     [Fact]
-    public void Attributes()
+    public override void Attributes()
     {
+      base.Attributes();
       this.TestDescription("Address", "City", "Latitude", "Longitude", "PostalCode");
     }
 
@@ -32,7 +33,10 @@ namespace Catharsis.Domain
       Assert.Equal(@"{""Id"":0,""Address"":""address"",""City"":{""Id"":0,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""city.name""}}", location.Json());
       Assert.Equal(location, location.Json().Json<Location>());
 
-      location = new Location(city, "address", 1, 2, "postalCode") { Id = 1 };
+      location = new Location(city, "address", 1, 2, "postalCode")
+      {
+        Id = 1
+      };
       Assert.Equal(@"{""Id"":1,""Address"":""address"",""City"":{""Id"":0,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""city.name""},""Latitude"":1.0,""Longitude"":2.0,""PostalCode"":""postalCode""}", location.Json());
       Assert.Equal(location, location.Json().Json<Location>());
     }
