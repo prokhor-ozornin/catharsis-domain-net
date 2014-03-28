@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -37,6 +39,27 @@ namespace Catharsis.Domain
       };
       Assert.Equal(@"{""Id"":1,""Email"":""email"",""Name"":""name"",""Photo"":""photo"",""Type"":""type"",""Url"":""url"",""Username"":""username""}", profile.Json());
       Assert.Equal(profile, profile.Json().Json<Profile>());
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var profile = new Profile();
+      this.TestXml(profile, "<Id>0</Id>");
+
+      profile = new Profile("name", "username", "type", "url");
+      this.TestXml(profile, "<Id>0</Id><Name>name</Name><Type>type</Type><Url>url</Url><Username>username</Username>");
+      Assert.Equal(profile, profile.Xml().Xml<Profile>());
+
+      profile = new Profile("name", "username", "type", "url", "email", "photo")
+      {
+        Id = 1
+      };
+      this.TestXml(profile, "<Id>1</Id><Email>email</Email><Name>name</Name><Photo>photo</Photo><Type>type</Type><Url>url</Url><Username>username</Username>");
+      Assert.Equal(profile, profile.Xml().Xml<Profile>());
     }
 
     /// <summary>

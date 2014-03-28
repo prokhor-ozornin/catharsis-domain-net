@@ -41,6 +41,27 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var comment = new Comment();
+      this.TestXml(comment, "<Id>0</Id><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated>".FormatSelf(comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
+
+      comment = new Comment("name", "text");
+      this.TestXml(comment, "<Id>0</Id><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Text>text</Text>".FormatSelf(comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
+      Assert.Equal(comment, comment.Xml().Xml<Comment>());
+
+      comment = new Comment("name", "text")
+      {
+        Id = 1
+      };
+      this.TestXml(comment, "<Id>1</Id><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Text>text</Text>".FormatSelf(comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
+      Assert.Equal(comment, comment.Xml().Xml<Comment>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Comment()"/>

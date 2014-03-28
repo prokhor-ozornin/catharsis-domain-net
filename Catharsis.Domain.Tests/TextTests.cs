@@ -51,6 +51,35 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var text = new Text();
+      this.TestXml(text, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags /><Translations />".FormatSelf(text.DateCreated.ToXmlString(), text.LastUpdated.ToXmlString()));
+
+      var person = new Person("person.nameFirst", "person.nameLast");
+
+      text = new Text("name", "text", person);
+      this.TestXml(text, @"<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Text>text</Text><Person><Id>0</Id><BirthDay xsi:nil=""true"" /><BirthMonth xsi:nil=""true"" /><BirthYear xsi:nil=""true"" /><DeathDay xsi:nil=""true"" /><DeathMonth xsi:nil=""true"" /><DeathYear xsi:nil=""true"" /><NameFirst>person.nameFirst</NameFirst><NameLast>person.nameLast</NameLast></Person><Translations />".FormatSelf(text.DateCreated.ToXmlString(), text.LastUpdated.ToXmlString()));
+      Assert.Equal(text, text.Xml().Xml<Text>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      var translation = new TextTranslation("translation.language", "translation.name", "translation.text");
+      text = new Text("name", "text", person, new TextsCategory("category.name"))
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" },
+        Translations = new List<TextTranslation> { translation }
+      };
+      this.TestXml(text, @"<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Category><Id>0</Id><Name>category.name</Name></Category><Person><Id>0</Id><BirthDay xsi:nil=""true"" /><BirthMonth xsi:nil=""true"" /><BirthYear xsi:nil=""true"" /><DeathDay xsi:nil=""true"" /><DeathMonth xsi:nil=""true"" /><DeathYear xsi:nil=""true"" /><NameFirst>person.nameFirst</NameFirst><NameLast>person.nameLast</NameLast></Person><Translations><Translation><Id>0</Id><Language>translation.language</Language><Name>translation.name</Name><Text>translation.text</Text></Translation></Translations>".FormatSelf(text.DateCreated.ToXmlString(), text.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
+      Assert.Equal(text, text.Xml().Xml<Text>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Text()"/>

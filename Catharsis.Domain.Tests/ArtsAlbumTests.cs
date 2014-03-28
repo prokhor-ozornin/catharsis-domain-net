@@ -47,6 +47,31 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var album = new ArtsAlbum();
+      this.TestXml(album, @"<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags /><PublishedOn xsi:nil=""true"" />".FormatSelf(album.DateCreated.ToXmlString(), album.LastUpdated.ToXmlString()));
+
+      album = new ArtsAlbum("name");
+      this.TestXml(album, @"<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><PublishedOn xsi:nil=""true"" />".FormatSelf(album.DateCreated.ToXmlString(), album.LastUpdated.ToXmlString()));
+      Assert.Equal(album, album.Xml().Xml<ArtsAlbum>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      album = new ArtsAlbum("name", "text", DateTime.MinValue)
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
+      this.TestXml(album, @"<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><PublishedOn>{4}</PublishedOn>".FormatSelf(album.DateCreated.ToXmlString(), album.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString(), DateTime.MinValue.ToString("s")));
+      Assert.Equal(album, album.Xml().Xml<ArtsAlbum>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="ArtsAlbum()"/>

@@ -1,4 +1,5 @@
 ﻿using System;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -39,6 +40,29 @@ namespace Catharsis.Domain
       };
       Assert.Equal(@"{""Id"":1,""Address"":""address"",""City"":{""Id"":0,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""city.name""},""Latitude"":1.0,""Longitude"":2.0,""PostalCode"":""postalCode""}", location.Json());
       Assert.Equal(location, location.Json().Json<Location>());
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var location = new Location();
+      this.TestXml(location, @"<Id>0</Id><Latitude xsi:nil=""true"" /><Longitude xsi:nil=""true"" />");
+
+      var city = new City("city.name", new Country("country.name", "country.isoCode"));
+
+      location = new Location(city, "address");
+      this.TestXml(location, @"<Id>0</Id><Address>address</Address><City><Id>0</Id><Country><Id>0</Id><IsoCode>country.isoCode</IsoCode><Name>country.name</Name></Country><Name>city.name</Name></City><Latitude xsi:nil=""true"" /><Longitude xsi:nil=""true"" />");
+      Assert.Equal(location, location.Xml().Xml<Location>());
+
+      location = new Location(city, "address", 1, 2, "postalCode")
+      {
+        Id = 1
+      };
+      this.TestXml(location, @"<Id>1</Id><Address>address</Address><City><Id>0</Id><Country><Id>0</Id><IsoCode>country.isoCode</IsoCode><Name>country.name</Name></Country><Name>city.name</Name></City><Latitude>1</Latitude><Longitude>2</Longitude><PostalCode>postalCode</PostalCode>");
+      Assert.Equal(location, location.Xml().Xml<Location>());
     }
 
     /// <summary>

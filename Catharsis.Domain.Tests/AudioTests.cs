@@ -1,4 +1,5 @@
 ﻿using System;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -37,6 +38,27 @@ namespace Catharsis.Domain
       };
       Assert.Equal(@"{""Id"":1,""Bitrate"":1,""Category"":{""Id"":0,""Name"":""category.name""},""Duration"":2,""File"":""file""}", audio.Json());
       Assert.Equal(audio, audio.Json().Json<Audio>());
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var audio = new Audio();
+      this.TestXml(audio, "<Id>0</Id><Bitrate>0</Bitrate><Duration>0</Duration>");
+
+      audio = new Audio("file", 1, 2);
+      this.TestXml(audio, "<Id>0</Id><Bitrate>1</Bitrate><Duration>2</Duration><File>file</File>");
+      Assert.Equal(audio, audio.Xml().Xml<Audio>());
+
+      audio = new Audio("file", 1, 2, new AudiosCategory("category.name"))
+      {
+        Id = 1
+      };
+      this.TestXml(audio, "<Id>1</Id><Bitrate>1</Bitrate><Category><Id>0</Id><Name>category.name</Name></Category><Duration>2</Duration><File>file</File>");
+      Assert.Equal(audio, audio.Xml().Xml<Audio>());
     }
 
     /// <summary>

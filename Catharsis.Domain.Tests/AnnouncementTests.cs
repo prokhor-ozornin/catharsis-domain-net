@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 using Catharsis.Commons;
 using Xunit;
 
@@ -44,6 +45,31 @@ namespace Catharsis.Domain
       };
       Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""Currency"":""currency"",""DateCreated"":""{2}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Price"":1.0,""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), announcement.DateCreated.ISO(), announcement.LastUpdated.ISO()), announcement.Json());
       Assert.Equal(announcement, announcement.Json().Json<Announcement>());
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var announcement = new Announcement();
+      this.TestXml(announcement, @"<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags /><Price xsi:nil=""true"" />".FormatSelf(announcement.DateCreated.ToXmlString(), announcement.LastUpdated.ToXmlString()));
+
+      announcement = new Announcement("name", "text");
+      this.TestXml(announcement, @"<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Text>text</Text><Price xsi:nil=""true"" />".FormatSelf(announcement.DateCreated.ToXmlString(), announcement.LastUpdated.ToXmlString()));
+      Assert.Equal(announcement, announcement.Xml().Xml<Announcement>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      announcement = new Announcement("name", "text", new AnnouncementsCategory("category.name"), "image", "currency", (decimal)1.0)
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
+      this.TestXml(announcement, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Category><Id>0</Id><Name>category.name</Name></Category><Currency>currency</Currency><Image>image</Image><Price>1</Price>".FormatSelf(announcement.DateCreated.ToXmlString(), announcement.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
+      Assert.Equal(announcement, announcement.Xml().Xml<Announcement>());
     }
 
     /// <summary>

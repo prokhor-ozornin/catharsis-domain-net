@@ -48,6 +48,33 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var art = new Art();
+      this.TestXml(art, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags />".FormatSelf(art.DateCreated.ToXmlString(), art.LastUpdated.ToXmlString()));
+
+      art = new Art("name", "image");
+      this.TestXml(art, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Image>image</Image>".FormatSelf(art.DateCreated.ToXmlString(), art.LastUpdated.ToXmlString()));
+      Assert.Equal(art, art.Xml().Xml<Art>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      var album = new ArtsAlbum("album.name");
+      art = new Art("name", "image", album, "text", new Person("person.nameFirst", "person.nameLast"), "place", "material")
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
+
+      this.TestXml(art, @"<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Album><Id>0</Id><Comments /><DateCreated>{4}</DateCreated><LastUpdated>{5}</LastUpdated><Name>album.name</Name><Tags /><PublishedOn xsi:nil=""true"" /></Album><Image>image</Image><Material>material</Material><Person><Id>0</Id><BirthDay xsi:nil=""true"" /><BirthMonth xsi:nil=""true"" /><BirthYear xsi:nil=""true"" /><DeathDay xsi:nil=""true"" /><DeathMonth xsi:nil=""true"" /><DeathYear xsi:nil=""true"" /><NameFirst>person.nameFirst</NameFirst><NameLast>person.nameLast</NameLast></Person><Place>place</Place>".FormatSelf(art.DateCreated.ToXmlString(), art.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString(), album.DateCreated.ToXmlString(), album.LastUpdated.ToXmlString()));
+      Assert.Equal(art, art.Xml().Xml<Art>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Art()"/>

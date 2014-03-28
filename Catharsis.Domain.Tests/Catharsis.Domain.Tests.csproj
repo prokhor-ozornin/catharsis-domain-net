@@ -70,6 +70,7 @@
     <Compile Include="CommentTests.cs" />
     <Compile Include="CountryExtensionsTests.cs" />
     <Compile Include="CountryTests.cs" />
+    <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="DownloadExtensionsTests.cs" />
     <Compile Include="DownloadsCategoryTests.cs" />
     <Compile Include="DownloadTests.cs" />

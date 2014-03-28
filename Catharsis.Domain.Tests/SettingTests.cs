@@ -1,4 +1,5 @@
 ﻿using System;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -37,6 +38,27 @@ namespace Catharsis.Domain
       };
       Assert.Equal(@"{""Id"":1,""Name"":""name"",""Value"":""value""}", setting.Json());
       Assert.Equal(setting, setting.Json().Json<Setting>());
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var setting = new Setting();
+      this.TestXml(setting, "<Id>0</Id>");
+
+      setting = new Setting("name", "value");
+      this.TestXml(setting, "<Id>0</Id><Name>name</Name><Value>value</Value>");
+      Assert.Equal(setting, setting.Xml().Xml<Setting>());
+
+      setting = new Setting("name", "value")
+      {
+        Id = 1
+      };
+      this.TestXml(setting, "<Id>1</Id><Name>name</Name><Value>value</Value>");
+      Assert.Equal(setting, setting.Xml().Xml<Setting>());
     }
 
     /// <summary>

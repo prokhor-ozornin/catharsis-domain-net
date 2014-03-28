@@ -46,6 +46,31 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var faq = new Faq();
+      this.TestXml(faq, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags />".FormatSelf(faq.DateCreated.ToXmlString(), faq.LastUpdated.ToXmlString()));
+
+      faq = new Faq("name", "text");
+      this.TestXml(faq, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Text>text</Text>".FormatSelf(faq.DateCreated.ToXmlString(), faq.LastUpdated.ToXmlString()));
+      Assert.Equal(faq, faq.Xml().Xml<Faq>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      faq = new Faq("name", "text")
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
+      this.TestXml(faq, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text>".FormatSelf(faq.DateCreated.ToXmlString(), faq.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
+      Assert.Equal(faq, faq.Xml().Xml<Faq>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Faq()"/>

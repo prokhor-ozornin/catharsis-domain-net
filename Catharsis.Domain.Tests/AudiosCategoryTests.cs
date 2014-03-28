@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Catharsis.Commons;
+using Xunit;
 
 namespace Catharsis.Domain
 {
@@ -15,6 +16,50 @@ namespace Catharsis.Domain
     {
       base.Attributes();
       this.TestDescription("Description", "Language", "Name", "Parent");
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var category = new AudiosCategory();
+      Assert.Equal(@"{""Id"":0}", category.Json());
+
+      category = new AudiosCategory("name");
+      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
+      Assert.Equal(category, category.Json().Json<AudiosCategory>());
+
+      category = new AudiosCategory("name", new AudiosCategory("parent.name"), "description")
+      {
+        Id = 1,
+        Language = "language"
+      };
+      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name"",""Parent"":{""Id"":0,""Name"":""parent.name""}}", category.Json());
+      Assert.Equal(category, category.Json().Json<AudiosCategory>());
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var category = new AudiosCategory();
+      this.TestXml(category, "<Id>0</Id>");
+
+      category = new AudiosCategory("name");
+      this.TestXml(category, "<Id>0</Id><Name>name</Name>");
+      Assert.Equal(category, category.Xml().Xml<AudiosCategory>());
+
+      category = new AudiosCategory("name", new AudiosCategory("parent.name"), "description")
+      {
+        Id = 1,
+        Language = "language"
+      };
+      this.TestXml(category, "<Id>1</Id><Description>description</Description><Language>language</Language><Name>name</Name><Parent><Id>0</Id><Name>parent.name</Name></Parent>");
+      Assert.Equal(category, category.Xml().Xml<AudiosCategory>());
     }
 
     /// <summary>
@@ -41,28 +86,6 @@ namespace Catharsis.Domain
       Assert.Equal("name", category.Name);
       Assert.True(ReferenceEquals(category.Parent, parent));
       Assert.Equal(0, category.Version);
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
-    /// </summary>
-    [Fact]
-    public void Json()
-    {
-      var category = new AudiosCategory();
-      Assert.Equal(@"{""Id"":0}", category.Json());
-
-      category = new AudiosCategory("name");
-      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
-      Assert.Equal(category, category.Json().Json<AudiosCategory>());
-
-      category = new AudiosCategory("name", new AudiosCategory("parent.name"), "description")
-      {
-        Id = 1,
-        Language = "language"
-      };
-      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name"",""Parent"":{""Id"":0,""Name"":""parent.name""}}", category.Json());
-      Assert.Equal(category, category.Json().Json<AudiosCategory>());
     }
 
     /// <summary>

@@ -48,6 +48,32 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var download = new Download();
+      this.TestXml(download, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags /><Downloads>0</Downloads>".FormatSelf(download.DateCreated.ToXmlString(), download.LastUpdated.ToXmlString()));
+
+      download = new Download("name", "url");
+      this.TestXml(download, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Downloads>0</Downloads><Url>url</Url>".FormatSelf(download.DateCreated.ToXmlString(), download.LastUpdated.ToXmlString()));
+      Assert.Equal(download, download.Xml().Xml<Download>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      download = new Download("name", "url", new DownloadsCategory("category.name"), "text")
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Downloads = 1,
+        Tags = new List<string> { "tag" }
+      };
+      this.TestXml(download, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Category><Id>0</Id><Name>category.name</Name></Category><Downloads>1</Downloads><Url>url</Url>".FormatSelf(download.DateCreated.ToXmlString(), download.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
+      Assert.Equal(download, download.Xml().Xml<Download>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Download()"/>

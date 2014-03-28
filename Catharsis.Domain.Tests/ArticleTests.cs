@@ -47,6 +47,31 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var article = new Article();
+      this.TestXml(article, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags />".FormatSelf(article.DateCreated.ToXmlString(), article.LastUpdated.ToXmlString()));
+
+      article = new Article("name");
+      this.TestXml(article, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags />".FormatSelf(article.DateCreated.ToXmlString(), article.LastUpdated.ToXmlString()));
+      Assert.Equal(article, article.Xml().Xml<Article>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      article = new Article("name", new ArticlesCategory("category.name"), "annotation", "text", "image")
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
+      this.TestXml(article, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Annotation>annotation</Annotation><Category><Id>0</Id><Name>category.name</Name></Category><Image>image</Image>".FormatSelf(article.DateCreated.ToXmlString(), article.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
+      Assert.Equal(article, article.Xml().Xml<Article>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Article()"/>

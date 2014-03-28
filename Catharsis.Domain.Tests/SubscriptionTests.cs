@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Catharsis.Commons;
 using Xunit;
 
@@ -38,6 +39,27 @@ namespace Catharsis.Domain
       };
       Assert.Equal(@"{{""Id"":1,""Active"":true,""DateCreated"":""{0}"",""Email"":""email"",""ExpiredOn"":""{1}"",""LastUpdated"":""{2}"",""Token"":""{3}""}}".FormatSelf(subscription.DateCreated.ISO(), DateTime.MinValue.ISO(), subscription.LastUpdated.ISO(), subscription.Token), subscription.Json());
       Assert.Equal(subscription, subscription.Json().Json<Subscription>());
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var subscription = new Subscription();
+      this.TestXml(subscription, @"<Id>0</Id><Active>true</Active><DateCreated>{0}</DateCreated><ExpiredOn xsi:nil=""true"" /><LastUpdated>{1}</LastUpdated><Token>{2}</Token>".FormatSelf(subscription.DateCreated.ToXmlString(), subscription.LastUpdated.ToXmlString(), subscription.Token));
+
+      subscription = new Subscription("email");
+      this.TestXml(subscription, @"<Id>0</Id><Active>true</Active><DateCreated>{0}</DateCreated><Email>email</Email><ExpiredOn xsi:nil=""true"" /><LastUpdated>{1}</LastUpdated><Token>{2}</Token>".FormatSelf(subscription.DateCreated.ToXmlString(), subscription.LastUpdated.ToXmlString(), subscription.Token));
+      Assert.Equal(subscription, subscription.Xml().Xml<Subscription>());
+
+      subscription = new Subscription("email", DateTime.MinValue)
+      {
+        Id = 1
+      };
+      this.TestXml(subscription, @"<Id>1</Id><Active>true</Active><DateCreated>{0}</DateCreated><Email>email</Email><ExpiredOn>{3}</ExpiredOn><LastUpdated>{1}</LastUpdated><Token>{2}</Token>".FormatSelf(subscription.DateCreated.ToXmlString(), subscription.LastUpdated.ToXmlString(), subscription.Token, DateTime.MinValue.ToString("s")));
+      Assert.Equal(subscription, subscription.Xml().Xml<Subscription>());
     }
 
     /// <summary>

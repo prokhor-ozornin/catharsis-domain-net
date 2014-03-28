@@ -1,4 +1,5 @@
 ﻿using System;
+using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -37,6 +38,27 @@ namespace Catharsis.Domain
       };
       Assert.Equal(@"{""Id"":1,""Language"":""language"",""Name"":""name"",""Text"":""text"",""Translator"":""translator""}", translation.Json());
       Assert.Equal(translation, translation.Json().Json<TextTranslation>());
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var translation = new TextTranslation();
+      this.TestXml(translation, "<Id>0</Id>");
+
+      translation = new TextTranslation("language", "name", "text");
+      this.TestXml(translation, "<Id>0</Id><Language>language</Language><Name>name</Name><Text>text</Text>");
+      Assert.Equal(translation, translation.Xml().Xml<TextTranslation>());
+
+      translation = new TextTranslation("language", "name", "text", "translator")
+      {
+        Id = 1
+      };
+      this.TestXml(translation, "<Id>1</Id><Language>language</Language><Name>name</Name><Text>text</Text><Translator>translator</Translator>");
+      Assert.Equal(translation, translation.Xml().Xml<TextTranslation>());
     }
 
     /// <summary>

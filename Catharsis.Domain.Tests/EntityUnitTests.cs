@@ -4,15 +4,8 @@ using Xunit;
 
 namespace Catharsis.Domain
 {
-  /// <summary>
-  ///   <para></para>
-  /// </summary>
-  /// <typeparam name="ENTITY"></typeparam>
   public abstract class EntityUnitTests<ENTITY> where ENTITY : IEntity
   {
-    /// <summary>
-    ///   <para></para>
-    /// </summary>
     [Fact]
     public virtual void Attributes()
     {
@@ -20,33 +13,18 @@ namespace Catharsis.Domain
       this.TestDescription("Id", "Version");
     }
 
-    /// <summary>
-    ///   <para></para>
-    /// </summary>
     [Fact]
     public void Id_Property()
     {
       Assert.Equal(1, typeof(ENTITY).NewInstance().To<ENTITY>().Id = 1);
     }
 
-    /// <summary>
-    ///   <para></para>
-    /// </summary>
     [Fact]
     public void Version_Property()
     {
       Assert.Equal(1, typeof(ENTITY).NewInstance().To<ENTITY>().Version = 1);
     }
 
-    /// <summary>
-    ///   <para></para>
-    /// </summary>
-    /// <typeparam name="PROPERTY"></typeparam>
-    /// <param name="property"></param>
-    /// <param name="lower"></param>
-    /// <param name="greater"></param>
-    /// <exception cref="ArgumentNullException">If <paramref name="property"/> is a <c>null</c> reference.</exception>
-    /// <exception cref="ArgumentException">If <paramref name="property"/> is <see cref="string.Empty"/> string.</exception>
     protected void TestCompareTo<PROPERTY>(string property, PROPERTY lower, PROPERTY greater)
     {
       Assertion.NotEmpty(property);
@@ -62,15 +40,6 @@ namespace Catharsis.Domain
       Assert.True(first.CompareTo(second) < 0);
     }
 
-    /// <summary>
-    ///   <para></para>
-    /// </summary>
-    /// <typeparam name="PROPERTY"></typeparam>
-    /// <param name="property"></param>
-    /// <param name="oldValue"></param>
-    /// <param name="newValue"></param>
-    /// <exception cref="ArgumentNullException">If <paramref name="property"/> is a <c>null</c> reference.</exception>
-    /// <exception cref="ArgumentException">If <paramref name="property"/> is <see cref="string.Empty"/> string.</exception>
     protected void TestEquality<PROPERTY>(string property, PROPERTY oldValue, PROPERTY newValue)
     {
       Assertion.NotEmpty(property);
@@ -85,15 +54,6 @@ namespace Catharsis.Domain
       Assert.False(typeof(ENTITY).NewInstance().Property(property, oldValue).Equals(typeof(ENTITY).NewInstance().Property(property, newValue)));
     }
 
-    /// <summary>
-    ///   <para></para>
-    /// </summary>
-    /// <typeparam name="PROPERTY"></typeparam>
-    /// <param name="property"></param>
-    /// <param name="oldValue"></param>
-    /// <param name="newValue"></param>
-    /// <exception cref="ArgumentNullException">If <paramref name="property"/> is a <c>null</c> reference.</exception>
-    /// <exception cref="ArgumentException">If <paramref name="property"/> is <see cref="string.Empty"/> string.</exception>
     protected void TestHashCode<PROPERTY>(string property, PROPERTY oldValue, PROPERTY newValue)
     {
       Assertion.NotEmpty(property);
@@ -107,13 +67,17 @@ namespace Catharsis.Domain
       Assert.NotEqual(typeof(ENTITY).NewInstance().Property(property, oldValue).GetHashCode(), typeof(ENTITY).NewInstance().Property(property, newValue).GetHashCode());
     }
 
-    /// <summary>
-    ///   <para></para>
-    /// </summary>
-    /// <param name="properties"></param>
     protected void TestDescription(params string[] properties)
     {
       properties.Each(property => Assert.False(typeof(ENTITY).AnyProperty(property).Description().IsEmpty()));
+    }
+
+    protected void TestXml(ENTITY entity, string xml, params Type[] types)
+    {
+      Assertion.NotNull(entity);
+      Assertion.NotEmpty(xml);
+
+      Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-16""?><{0} xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">{1}</{0}>".FormatSelf(typeof(ENTITY).Name, xml), entity.Xml(types));
     }
   }
 }

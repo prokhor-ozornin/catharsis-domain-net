@@ -47,6 +47,31 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var playcast = new Playcast();
+      this.TestXml(playcast, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags />".FormatSelf(playcast.DateCreated.ToXmlString(), playcast.LastUpdated.ToXmlString()));
+
+      playcast = new Playcast("name", "text");
+      this.TestXml(playcast, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Text>text</Text>".FormatSelf(playcast.DateCreated.ToXmlString(), playcast.LastUpdated.ToXmlString()));
+      Assert.Equal(playcast, playcast.Xml().Xml<Playcast>());
+
+      var comment = new Comment("comment.name", "comment.text");
+      playcast = new Playcast("name", "text", new PlaycastsCategory("category.name"), "audio", "image")
+      {
+        Id = 1,
+        Language = "language",
+        Comments = new List<Comment> { comment },
+        Tags = new List<string> { "tag" }
+      };
+      this.TestXml(playcast, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Audio>audio</Audio><Category><Id>0</Id><Name>category.name</Name></Category><Image>image</Image>".FormatSelf(playcast.DateCreated.ToXmlString(), playcast.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
+      Assert.Equal(playcast, playcast.Xml().Xml<Playcast>());
+    }
+
+    /// <summary>
     ///   <para>Performs testing of class constructor(s).</para>
     /// </summary>
     /// <seealso cref="Playcast()"/>

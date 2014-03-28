@@ -34,6 +34,7 @@ namespace Catharsis.Domain
     ///   <para>Collection of associated comments.</para>
     /// </summary>
     [Description("Collection of associated comments")]
+    [XmlIgnore]
     public virtual ICollection<Comment> Comments { get; set; }
 
     /// <summary>
@@ -94,6 +95,7 @@ namespace Catharsis.Domain
     ///   <para>Collection of associated tags/keywords.</para>
     /// </summary>
     [Description("Collection of associated tags/keywords")]
+    [XmlIgnore]
     public virtual ICollection<string> Tags { get; set; }
 
     /// <summary>

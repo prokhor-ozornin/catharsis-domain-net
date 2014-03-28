@@ -43,6 +43,7 @@ namespace Catharsis.Domain
     ///   <para>Collection of text's translations to other languages.</para>
     /// </summary>
     [Description("Collection of text's translations to other languages")]
+    [XmlIgnore]
     public virtual ICollection<TextTranslation> Translations
     {
       get { return this.translations; }

@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using Catharsis.Commons;
+using Xunit;
 
 namespace Catharsis.Domain
 {
@@ -15,6 +16,46 @@ namespace Catharsis.Domain
     {
       base.Attributes();
       this.TestDescription("Description", "Language", "Name");
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Json()
+    {
+      var category = new Category();
+      Assert.Equal(@"{""Id"":0}", category.Json());
+
+      category = new Category("name");
+      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
+      Assert.Equal(category, category.Json().Json<Category>());
+
+      category = new Category("name", "description") { Id = 1, Language = "language" };
+      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name""}", category.Json());
+      Assert.Equal(category, category.Json().Json<Category>());
+    }
+
+    /// <summary>
+    ///   <para>Performs testing of XML serialization/deserialization process.</para>
+    /// </summary>
+    [Fact]
+    public void Xml()
+    {
+      var category = new Category();
+      this.TestXml(category, "<Id>0</Id>");
+
+      category = new Category("name");
+      this.TestXml(category, "<Id>0</Id><Name>name</Name>");
+      Assert.Equal(category, category.Xml().Xml<Category>());
+
+      category = new Category("name", "description")
+      {
+        Id = 1,
+        Language = "language"
+      };
+      this.TestXml(category, "<Id>1</Id><Description>description</Description><Language>language</Language><Name>name</Name>");
+      Assert.Equal(category, category.Xml().Xml<Category>());
     }
 
     /// <summary>
@@ -38,24 +79,6 @@ namespace Catharsis.Domain
       Assert.Null(category.Language);
       Assert.Equal("name", category.Name);
       Assert.Equal(0, category.Version);
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of JSON serialization/deserialization process.</para>
-    /// </summary>
-    [Fact]
-    public void Json()
-    {
-      var category = new Category();
-      Assert.Equal(@"{""Id"":0}", category.Json());
-
-      category = new Category("name");
-      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
-      Assert.Equal(category, category.Json().Json<Category>());
-
-      category = new Category("name", "description") { Id = 1, Language = "language" };
-      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name""}", category.Json());
-      Assert.Equal(category, category.Json().Json<Category>());
     }
 
     /// <summary>
