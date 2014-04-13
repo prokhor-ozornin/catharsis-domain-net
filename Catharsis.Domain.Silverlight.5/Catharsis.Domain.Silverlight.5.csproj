@@ -201,6 +201,9 @@
     <Compile Include="..\Catharsis.Domain.4.0\JsonDefaultSettings.cs">
       <Link>JsonDefaultSettings.cs</Link>
     </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\JsonEntityConverter.cs">
+      <Link>JsonEntityConverter.cs</Link>
+    </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\JsonEntityOrderedContractResolver.cs">
       <Link>JsonEntityOrderedContractResolver.cs</Link>
     </Compile>

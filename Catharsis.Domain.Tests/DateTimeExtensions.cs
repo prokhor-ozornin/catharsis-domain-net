@@ -7,7 +7,7 @@ namespace Catharsis.Domain
     public static string ToXmlString(this DateTime dateTime)
     {
       var result = dateTime.ToString("o");
-      if (result[result.Length - 2] == '0')
+      while (result[result.Length - 2] == '0')
       {
         result = result.Remove(result.Length - 2, 1);
       }
