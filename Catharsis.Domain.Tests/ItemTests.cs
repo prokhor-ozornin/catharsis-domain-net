@@ -123,24 +123,6 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of <see cref="Item.CommentsList"/> property.</para>
-    /// </summary>
-    [Fact]
-    public void CommentsList_Property()
-    {
-      var comment = new Comment();
-      var item = new Item();
-      Assert.False(item.CommentsList.Any());
-      item.Comments.Add(comment);
-      Assert.Equal(1, item.CommentsList.Count());
-      Assert.True(ReferenceEquals(item.CommentsList.Single(), comment));
-      item.Comments.Add(comment);
-      Assert.Equal(2, item.CommentsList.Count());
-      item.Comments.Add(new Comment());
-      Assert.Equal(3, item.CommentsList.Count());
-    }
-
-    /// <summary>
     ///   <para>Performs testing of <see cref="Item.DateCreated"/> property.</para>
     /// </summary>
     [Fact]
@@ -192,21 +174,6 @@ namespace Catharsis.Domain
       Assert.Equal("tag", item.Tags.Single());
       item.Tags.Add("tag");
       Assert.Equal(2, item.Tags.Count);
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Item.TagsList"/> property.</para>
-    /// </summary>
-    [Fact]
-    public void TagsList_Propery()
-    {
-      var item = new Item();
-      Assert.False(item.TagsList.Any());
-      item.Tags.Add("tag");
-      Assert.Equal(1, item.TagsList.Count());
-      Assert.Equal("tag", item.TagsList.Single());
-      item.Tags.Add("tag");
-      Assert.Equal(2, item.TagsList.Count());
     }
 
     /// <summary>

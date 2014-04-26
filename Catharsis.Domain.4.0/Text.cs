@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Xml.Serialization;
 using Catharsis.Commons;
-using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -15,7 +13,6 @@ namespace Catharsis.Domain
   public partial class Text : Item, IEquatable<Text>
   {
     private Person person;
-    private ICollection<TextTranslation> translations = new List<TextTranslation>();
 
     /// <summary>
     ///   <para>Category of text.</para>
@@ -43,43 +40,16 @@ namespace Catharsis.Domain
     ///   <para>Collection of text's translations to other languages.</para>
     /// </summary>
     [Description("Collection of text's translations to other languages")]
-    [XmlIgnore]
-    public virtual ICollection<TextTranslation> Translations
-    {
-      get { return this.translations; }
-      set
-      {
-        Assertion.NotNull(value);
-
-        this.translations = value;
-      }
-    }
-
-    /// <summary>
-    ///   <para>List of text's translations to other languages.</para>
-    /// </summary>
-    /// <exception cref="ArgumentNullException">If <paramref name="value"/> is a <c>null</c> reference.</exception>
-    [Description("List of text's translations to other languages")]
     [XmlArray("Translations")]
     [XmlArrayItem("Translation")]
-    [JsonIgnore]
-    public virtual TextTranslation[] TranslationsList
-    {
-      get { return this.Translations.ToArray(); }
-      set
-      {
-        Assertion.NotNull(value);
-
-        this.Translations.Clear();
-        this.Translations.Add(value);
-      }
-    }
+    public virtual List<TextTranslation> Translations { get; set; }
 
     /// <summary>
     ///   <para>Creates new text.</para>
     /// </summary>
     public Text()
     {
+      this.Translations = new List<TextTranslation>();
     }
 
     /// <summary>
@@ -95,6 +65,7 @@ namespace Catharsis.Domain
     {
       Assertion.NotEmpty(text);
 
+      this.Translations = new List<TextTranslation>();
       this.Category = category;
       this.Person = person;
     }

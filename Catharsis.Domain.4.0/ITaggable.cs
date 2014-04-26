@@ -10,6 +10,6 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Collection of tags (keywords) that are associated with the entity.</para>
     /// </summary>
-    ICollection<string> Tags { get; }
+    List<string> Tags { get; }
   }
 }

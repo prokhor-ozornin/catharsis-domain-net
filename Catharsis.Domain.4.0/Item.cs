@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Xml.Serialization;
 using Catharsis.Commons;
 using Newtonsoft.Json;
@@ -34,27 +33,8 @@ namespace Catharsis.Domain
     ///   <para>Collection of associated comments.</para>
     /// </summary>
     [Description("Collection of associated comments")]
-    [XmlIgnore]
-    public virtual ICollection<Comment> Comments { get; set; }
-
-    /// <summary>
-    ///   <para>List of associated comments.</para>
-    /// </summary>
-    /// <exception cref="ArgumentNullException">If <paramref name="value"/> is a <c>null</c> reference.</exception>
-    [Description("List of associated comments")]
     [XmlArray("Comments")]
-    [JsonIgnore]
-    public virtual Comment[] CommentsList
-    {
-      get { return this.Comments.ToArray(); }
-      set
-      {
-        Assertion.NotNull(value);
-
-        this.Comments.Clear();
-        this.Comments.Add(value);
-      }
-    }
+    public virtual List<Comment> Comments { get; set; }
 
     /// <summary>
     ///   <para>Date/ time when item was first created.</para>
@@ -95,29 +75,10 @@ namespace Catharsis.Domain
     ///   <para>Collection of associated tags/keywords.</para>
     /// </summary>
     [Description("Collection of associated tags/keywords")]
-    [XmlIgnore]
-    public virtual ICollection<string> Tags { get; set; }
-
-    /// <summary>
-    ///   <para>List of associated tags/keywords.</para>
-    /// </summary>
-    /// <exception cref="ArgumentNullException">If <paramref name="value"/> is a <c>null</c> reference.</exception>
-    [Description("List of associated tags/keywords")]
     [XmlArray("Tags")]
     [XmlArrayItem("Tag")]
-    [JsonIgnore]
-    public virtual string[] TagsList
-    {
-      get { return this.Tags.ToArray(); }
-      set
-      {
-        Assertion.NotNull(value);
+    public virtual List<string> Tags { get; set; }
 
-        this.Tags.Clear();
-        this.Tags.Add(value);
-      }
-    }
-    
     /// <summary>
     ///   <para>Text content of item.</para>
     /// </summary>

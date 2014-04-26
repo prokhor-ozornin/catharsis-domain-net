@@ -160,22 +160,6 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of <see cref="Text.TranslationsList"/> property.</para>
-    /// </summary>
-    [Fact]
-    public void TranslationsList_Property()
-    {
-      var translation = new TextTranslation();
-      var text = new Text();
-      Assert.False(text.TranslationsList.Any());
-      text.Translations.Add(translation);
-      Assert.Equal(1, text.TranslationsList.Count());
-      Assert.True(ReferenceEquals(text.TranslationsList.Single(), translation));
-      text.Translations.Add(translation);
-      Assert.Equal(2, text.TranslationsList.Count());
-    }
-
-    /// <summary>
     ///   <para>Performs testing of following methods :</para>
     ///   <list type="bullet">
     ///     <item><description><see cref="Text.Equals(Text)"/></description></item>
