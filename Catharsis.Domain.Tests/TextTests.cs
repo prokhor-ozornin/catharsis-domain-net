@@ -28,13 +28,12 @@ namespace Catharsis.Domain
     public void Json()
     {
       var text = new Text();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[],""Translations"":[]}}".FormatSelf(text.DateCreated.ISO(), text.LastUpdated.ISO()), text.Json());
+      this.TestJson(text, new { Id = 0, Comments = new object[] { }, DateCreated = text.DateCreated.ISO8601(), LastUpdated = text.LastUpdated.ISO8601(), Tags = new object[] { }, Translations = new object[] { } });
 
       var person = new Person("person.nameFirst", "person.nameLast");
       
       text = new Text("name", "text", person);
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Person"":{{""Id"":0,""NameFirst"":""person.nameFirst"",""NameLast"":""person.nameLast""}},""Tags"":[],""Text"":""text"",""Translations"":[]}}".FormatSelf(text.DateCreated.ISO(), text.LastUpdated.ISO()), text.Json());
-      Assert.Equal(text, text.Json().Json<Text>());
+      this.TestJson(text, new { Id = 0, Comments = new object[] {}, DateCreated = text.DateCreated.ISO8601(), LastUpdated = text.LastUpdated.ISO8601(), Name = "name", Person = new { Id = 0, NameFirst = "person.nameFirst", NameLast = "person.nameLast" }, Tags = new object[] {}, Text = "text", Translations = new object[] {} });
 
       var comment = new Comment("comment.name", "comment.text");
       var translation = new TextTranslation("translation.language", "translation.name", "translation.text");
@@ -46,8 +45,7 @@ namespace Catharsis.Domain
         Tags = new List<string> { "tag" },
         Translations = new List<TextTranslation> { translation }
       };
-      Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Person"":{{""Id"":0,""NameFirst"":""person.nameFirst"",""NameLast"":""person.nameLast""}},""Tags"":[""tag""],""Text"":""text"",""Translations"":[{{""Id"":0,""Language"":""translation.language"",""Name"":""translation.name"",""Text"":""translation.text""}}]}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), text.DateCreated.ISO(), text.LastUpdated.ISO()), text.Json());
-      Assert.Equal(text, text.Json().Json<Text>());
+      this.TestJson(text, new { Id = 1, Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = text.DateCreated.ISO8601(), Language = "language", LastUpdated = text.LastUpdated.ISO8601(), Name = "name", Person = new { Id = 0, NameFirst = "person.nameFirst", NameLast = "person.nameLast" }, Tags = new object[] { "tag" }, Text = "text", Translations = new object[] { new { Id = 0, Language = "translation.language", Name = "translation.name", Text = "translation.text" } } });
     }
 
     /// <summary>
@@ -57,13 +55,12 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var text = new Text();
-      this.TestXml(text, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags /><Translations />".FormatSelf(text.DateCreated.ToXmlString(), text.LastUpdated.ToXmlString()));
+      this.TestXml(text, new { Id = 0, DateCreated = text.DateCreated, LastUpdated = text.LastUpdated });
 
       var person = new Person("person.nameFirst", "person.nameLast");
 
       text = new Text("name", "text", person);
-      this.TestXml(text, @"<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Text>text</Text><Person><Id>0</Id><BirthDay xsi:nil=""true"" /><BirthMonth xsi:nil=""true"" /><BirthYear xsi:nil=""true"" /><DeathDay xsi:nil=""true"" /><DeathMonth xsi:nil=""true"" /><DeathYear xsi:nil=""true"" /><NameFirst>person.nameFirst</NameFirst><NameLast>person.nameLast</NameLast></Person><Translations />".FormatSelf(text.DateCreated.ToXmlString(), text.LastUpdated.ToXmlString()));
-      Assert.Equal(text, text.Xml().Xml<Text>());
+      this.TestXml(text, new { Id = 0, DateCreated = text.DateCreated, LastUpdated = text.LastUpdated, Name = "name", Text = "text" });
 
       var comment = new Comment("comment.name", "comment.text");
       var translation = new TextTranslation("translation.language", "translation.name", "translation.text");
@@ -75,8 +72,7 @@ namespace Catharsis.Domain
         Tags = new List<string> { "tag" },
         Translations = new List<TextTranslation> { translation }
       };
-      this.TestXml(text, @"<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Category><Id>0</Id><Name>category.name</Name></Category><Person><Id>0</Id><BirthDay xsi:nil=""true"" /><BirthMonth xsi:nil=""true"" /><BirthYear xsi:nil=""true"" /><DeathDay xsi:nil=""true"" /><DeathMonth xsi:nil=""true"" /><DeathYear xsi:nil=""true"" /><NameFirst>person.nameFirst</NameFirst><NameLast>person.nameLast</NameLast></Person><Translations><Translation><Id>0</Id><Language>translation.language</Language><Name>translation.name</Name><Text>translation.text</Text></Translation></Translations>".FormatSelf(text.DateCreated.ToXmlString(), text.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
-      Assert.Equal(text, text.Xml().Xml<Text>());
+      this.TestXml(text, new { Id = 1, DateCreated = text.DateCreated, Language = "language", LastUpdated = text.LastUpdated, Name = "name", Text = "text" });
     }
 
     /// <summary>

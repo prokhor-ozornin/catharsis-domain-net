@@ -28,11 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var song = new Song();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(song.DateCreated.ISO(), song.LastUpdated.ISO()), song.Json());
+      this.TestJson(song, new { Id = 0, Comments = new object[] { }, DateCreated = song.DateCreated.ISO8601(), LastUpdated = song.LastUpdated.ISO8601(), Tags = new object[] { } });
 
       song = new Song("name", "text", "audio");
-      Assert.Equal(@"{{""Id"":0,""Audio"":""audio"",""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(song.DateCreated.ISO(), song.LastUpdated.ISO()), song.Json());
-      Assert.Equal(song, song.Json().Json<Song>());
+      this.TestJson(song, new { Id = 0, Audio = "audio", Comments = new object[] { }, DateCreated = song.DateCreated.ISO8601(), LastUpdated = song.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { }, Text = "text" });
 
       var comment = new Comment("comment.name", "comment.text");
       var album = new SongsAlbum("album.name");
@@ -43,8 +42,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      Assert.Equal(@"{{""Id"":1,""Album"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""album.name"",""Tags"":[]}},""Audio"":""audio"",""Comments"":[{{""Id"":0,""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{4}"",""Language"":""language"",""LastUpdated"":""{5}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(album.DateCreated.ISO(), album.LastUpdated.ISO(), comment.DateCreated.ISO(), comment.LastUpdated.ISO(), song.DateCreated.ISO(), song.LastUpdated.ISO()), song.Json());
-      Assert.Equal(song, song.Json().Json<Song>());
+      this.TestJson(song, new { Id = 1, Album = new { Id = 0, Comments = new object[] {}, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "album.name", Tags = new object[] {}}, Audio = "audio", Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = song.DateCreated.ISO8601(), Language = "language", LastUpdated = song.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
     }
 
     /// <summary>
@@ -54,11 +52,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var song = new Song();
-      this.TestXml(song, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags />".FormatSelf(song.DateCreated.ToXmlString(), song.LastUpdated.ToXmlString()));
+      this.TestXml(song, new { Id = 0, DateCreated = song.DateCreated, LastUpdated = song.LastUpdated });
 
       song = new Song("name", "text", "audio");
-      this.TestXml(song, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Text>text</Text><Audio>audio</Audio>".FormatSelf(song.DateCreated.ToXmlString(), song.LastUpdated.ToXmlString()));
-      Assert.Equal(song, song.Xml().Xml<Song>());
+      this.TestXml(song, new { Id = 0, Audio = "audio", DateCreated = song.DateCreated, LastUpdated = song.LastUpdated, Name = "name", Text = "text" });
 
       var comment = new Comment("comment.name", "comment.text");
       var album = new SongsAlbum("album.name");
@@ -69,8 +66,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(song, @"<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Album><Id>0</Id><Comments /><DateCreated>{4}</DateCreated><LastUpdated>{5}</LastUpdated><Name>album.name</Name><Tags /><PublishedOn xsi:nil=""true"" /></Album><Audio>audio</Audio>".FormatSelf(song.DateCreated.ToXmlString(), song.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString(), album.DateCreated.ToXmlString(), album.LastUpdated.ToXmlString()));
-      Assert.Equal(song, song.Xml().Xml<Song>());
+      this.TestXml(song, new { Id = 1, Audio = "audio", DateCreated = song.DateCreated, Language = "language", LastUpdated = song.LastUpdated, Name = "name", Text = "text" });
     }
 
     /// <summary>

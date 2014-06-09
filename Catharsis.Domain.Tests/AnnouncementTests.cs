@@ -28,22 +28,20 @@ namespace Catharsis.Domain
     public void Json()
     {
       var announcement = new Announcement();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(announcement.DateCreated.ISO(), announcement.LastUpdated.ISO()), announcement.Json());
+      this.TestJson(announcement, new { Id = 0, Comments = new object[] { }, DateCreated = announcement.DateCreated.ISO8601(), LastUpdated = announcement.LastUpdated.ISO8601(), Tags = new object[] { } });
 
       announcement = new Announcement("name", "text");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(announcement.DateCreated.ISO(), announcement.LastUpdated.ISO()), announcement.Json());
-      Assert.Equal(announcement, announcement.Json().Json<Announcement>());
-
+      this.TestJson(announcement, new { Id = 0, Comments = new object[] { }, DateCreated = announcement.DateCreated.ISO8601(), LastUpdated = announcement.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { }, Text = "text" });
+      
       var comment = new Comment("comment.name", "comment.text");
-      announcement = new Announcement("name", "text", new AnnouncementsCategory("category.name"), "image", "currency", (decimal)1.0)
+      announcement = new Announcement("name", "text", new AnnouncementsCategory("category.name"), "image", "currency", (decimal)1.5)
       {
         Id = 1,
         Language = "language",
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""Currency"":""currency"",""DateCreated"":""{2}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Price"":1.0,""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), announcement.DateCreated.ISO(), announcement.LastUpdated.ISO()), announcement.Json());
-      Assert.Equal(announcement, announcement.Json().Json<Announcement>());
+      this.TestJson(announcement, new { Id = 1, Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, Currency = "currency", DateCreated = announcement.DateCreated.ISO8601(), Image = "image", Language = "language", LastUpdated = announcement.LastUpdated.ISO8601(), Name = "name", Price = 1.5, Tags = new object[] { "tag" }, Text = "text" });
     }
 
     /// <summary>
@@ -53,11 +51,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var announcement = new Announcement();
-      this.TestXml(announcement, @"<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags /><Price xsi:nil=""true"" />".FormatSelf(announcement.DateCreated.ToXmlString(), announcement.LastUpdated.ToXmlString()));
+      this.TestXml(announcement, new { Id = 0, DateCreated = announcement.DateCreated, LastUpdated = announcement.LastUpdated });
 
       announcement = new Announcement("name", "text");
-      this.TestXml(announcement, @"<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Text>text</Text><Price xsi:nil=""true"" />".FormatSelf(announcement.DateCreated.ToXmlString(), announcement.LastUpdated.ToXmlString()));
-      Assert.Equal(announcement, announcement.Xml().Xml<Announcement>());
+      this.TestXml(announcement, new { Id = 0, DateCreated = announcement.DateCreated, LastUpdated = announcement.LastUpdated, Name = "name", Text = "text" });
 
       var comment = new Comment("comment.name", "comment.text");
       announcement = new Announcement("name", "text", new AnnouncementsCategory("category.name"), "image", "currency", (decimal)1.0)
@@ -67,8 +64,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(announcement, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Category><Id>0</Id><Name>category.name</Name></Category><Currency>currency</Currency><Image>image</Image><Price>1</Price>".FormatSelf(announcement.DateCreated.ToXmlString(), announcement.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
-      Assert.Equal(announcement, announcement.Xml().Xml<Announcement>());
+      this.TestXml(announcement, new { Id = 1, Currency = "currency", DateCreated = announcement.DateCreated, Image = "image", Language = "language", LastUpdated = announcement.LastUpdated, Name = "name", Price = 1.0, Text = "text" });
     }
 
     /// <summary>

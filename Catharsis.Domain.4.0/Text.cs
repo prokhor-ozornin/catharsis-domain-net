@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Xml.Serialization;
 using Catharsis.Commons;
+using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -40,9 +42,25 @@ namespace Catharsis.Domain
     ///   <para>Collection of text's translations to other languages.</para>
     /// </summary>
     [Description("Collection of text's translations to other languages")]
-    [XmlArray("Translations")]
-    [XmlArrayItem("Translation")]
-    public virtual List<TextTranslation> Translations { get; set; }
+    [JsonIgnore]
+    [XmlIgnore]
+    public virtual ICollection<TextTranslation> Translations { get; set; }
+
+    /// <summary>
+    ///   <para>Collection of text's translations to other languages.</para>
+    /// </summary>
+    [Description("Collection of text's translations to other languages")]
+    [JsonProperty("Translations")]
+    [XmlElement("Translation")]
+    public virtual TextTranslation[] TranslationsArray
+    {
+      get { return this.Translations.ToArray(); }
+      set
+      {
+        this.Translations.Clear();
+        this.Translations.Add(value);
+      }
+    }
 
     /// <summary>
     ///   <para>Creates new text.</para>
@@ -65,9 +83,9 @@ namespace Catharsis.Domain
     {
       Assertion.NotEmpty(text);
 
-      this.Translations = new List<TextTranslation>();
       this.Category = category;
       this.Person = person;
+      this.Translations = new List<TextTranslation>();
     }
 
     /// <summary>

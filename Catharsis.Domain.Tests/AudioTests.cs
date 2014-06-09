@@ -1,5 +1,4 @@
 ﻿using System;
-using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -26,18 +25,16 @@ namespace Catharsis.Domain
     public void Json()
     {
       var audio = new Audio();
-      Assert.Equal(@"{""Id"":0,""Bitrate"":0,""Duration"":0}", audio.Json());
+      this.TestJson(audio, new { Id = 0, Bitrate = 0, Duration = 0 });
 
       audio = new Audio("file", 1, 2);
-      Assert.Equal(@"{""Id"":0,""Bitrate"":1,""Duration"":2,""File"":""file""}", audio.Json());
-      Assert.Equal(audio, audio.Json().Json<Audio>());
+      this.TestJson(audio, new { Id = 0, Bitrate = 1, Duration = 2, File = "file" });
 
       audio = new Audio("file", 1, 2, new AudiosCategory("category.name"))
       {
         Id = 1 
       };
-      Assert.Equal(@"{""Id"":1,""Bitrate"":1,""Category"":{""Id"":0,""Name"":""category.name""},""Duration"":2,""File"":""file""}", audio.Json());
-      Assert.Equal(audio, audio.Json().Json<Audio>());
+      this.TestJson(audio, new { Id = 1, Bitrate = 1, Category = new { Id = 0, Name = "category.name" }, Duration = 2, File = "file" });
     }
 
     /// <summary>
@@ -47,18 +44,16 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var audio = new Audio();
-      this.TestXml(audio, "<Id>0</Id><Bitrate>0</Bitrate><Duration>0</Duration>");
+      this.TestXml(audio, new { Id = 0, Bitrate = 0, Duration = 0 });
 
       audio = new Audio("file", 1, 2);
-      this.TestXml(audio, "<Id>0</Id><Bitrate>1</Bitrate><Duration>2</Duration><File>file</File>");
-      Assert.Equal(audio, audio.Xml().Xml<Audio>());
+      this.TestXml(audio, new { Id = 0, Bitrate = 1, Duration = 2, File = "file" });
 
       audio = new Audio("file", 1, 2, new AudiosCategory("category.name"))
       {
         Id = 1
       };
-      this.TestXml(audio, "<Id>1</Id><Bitrate>1</Bitrate><Category><Id>0</Id><Name>category.name</Name></Category><Duration>2</Duration><File>file</File>");
-      Assert.Equal(audio, audio.Xml().Xml<Audio>());
+      this.TestXml(audio, new { Id = 1, Bitrate = 1, Duration = 2, File = "file" });
     }
 
     /// <summary>

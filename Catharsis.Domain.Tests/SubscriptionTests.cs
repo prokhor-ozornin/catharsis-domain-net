@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Catharsis.Commons;
 using Xunit;
 
@@ -27,18 +26,16 @@ namespace Catharsis.Domain
     public void Json()
     {
       var subscription = new Subscription();
-      Assert.Equal(@"{{""Id"":0,""Active"":true,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Token"":""{2}""}}".FormatSelf(subscription.DateCreated.ISO(), subscription.LastUpdated.ISO(), subscription.Token), subscription.Json());
+      this.TestJson(subscription, new { Id = 0, Active = true, DateCreated = subscription.DateCreated.ISO8601(), LastUpdated = subscription.LastUpdated.ISO8601(), Token = subscription.Token });
 
       subscription = new Subscription("email");
-      Assert.Equal(@"{{""Id"":0,""Active"":true,""DateCreated"":""{0}"",""Email"":""email"",""LastUpdated"":""{1}"",""Token"":""{2}""}}".FormatSelf(subscription.DateCreated.ISO(), subscription.LastUpdated.ISO(), subscription.Token), subscription.Json());
-      Assert.Equal(subscription, subscription.Json().Json<Subscription>());
+      this.TestJson(subscription, new { Id = 0, Active = true, DateCreated = subscription.DateCreated.ISO8601(), Email = "email", LastUpdated = subscription.LastUpdated.ISO8601(), Token = subscription.Token });
 
       subscription = new Subscription("email", DateTime.MinValue)
       {
         Id = 1
       };
-      Assert.Equal(@"{{""Id"":1,""Active"":true,""DateCreated"":""{0}"",""Email"":""email"",""ExpiredOn"":""{1}"",""LastUpdated"":""{2}"",""Token"":""{3}""}}".FormatSelf(subscription.DateCreated.ISO(), DateTime.MinValue.ISO(), subscription.LastUpdated.ISO(), subscription.Token), subscription.Json());
-      Assert.Equal(subscription, subscription.Json().Json<Subscription>());
+      this.TestJson(subscription, new { Id = 1, Active = true, DateCreated = subscription.DateCreated.ISO8601(), Email = "email", ExpiredOn = DateTime.MinValue.ISO8601(), LastUpdated = subscription.LastUpdated.ISO8601(), Token = subscription.Token });
     }
 
     /// <summary>
@@ -48,18 +45,16 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var subscription = new Subscription();
-      this.TestXml(subscription, @"<Id>0</Id><Active>true</Active><DateCreated>{0}</DateCreated><ExpiredOn xsi:nil=""true"" /><LastUpdated>{1}</LastUpdated><Token>{2}</Token>".FormatSelf(subscription.DateCreated.ToXmlString(), subscription.LastUpdated.ToXmlString(), subscription.Token));
+      this.TestXml(subscription, new { Id = 0, Active = true, DateCreated = subscription.DateCreated, LastUpdated = subscription.LastUpdated, Token = subscription.Token });
 
       subscription = new Subscription("email");
-      this.TestXml(subscription, @"<Id>0</Id><Active>true</Active><DateCreated>{0}</DateCreated><Email>email</Email><ExpiredOn xsi:nil=""true"" /><LastUpdated>{1}</LastUpdated><Token>{2}</Token>".FormatSelf(subscription.DateCreated.ToXmlString(), subscription.LastUpdated.ToXmlString(), subscription.Token));
-      Assert.Equal(subscription, subscription.Xml().Xml<Subscription>());
+      this.TestXml(subscription, new { Id = 0, Active = true, DateCreated = subscription.DateCreated, Email = "email", LastUpdated = subscription.LastUpdated, Token = subscription.Token });
 
       subscription = new Subscription("email", DateTime.MinValue)
       {
         Id = 1
       };
-      this.TestXml(subscription, @"<Id>1</Id><Active>true</Active><DateCreated>{0}</DateCreated><Email>email</Email><ExpiredOn>{3}</ExpiredOn><LastUpdated>{1}</LastUpdated><Token>{2}</Token>".FormatSelf(subscription.DateCreated.ToXmlString(), subscription.LastUpdated.ToXmlString(), subscription.Token, DateTime.MinValue.ToString("s")));
-      Assert.Equal(subscription, subscription.Xml().Xml<Subscription>());
+      this.TestXml(subscription, new { Id = 1, Active = true, DateCreated = subscription.DateCreated, Email = "email", ExpiredOn = DateTime.MinValue, LastUpdated = subscription.LastUpdated, Token = subscription.Token });
     }
 
     /// <summary>

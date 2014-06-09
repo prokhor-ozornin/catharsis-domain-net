@@ -1,5 +1,4 @@
 ﻿using System;
-using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -26,18 +25,16 @@ namespace Catharsis.Domain
     public void Json()
     {
       var country = new Country();
-      Assert.Equal(@"{""Id"":0}", country.Json());
+      this.TestJson(country, new { Id = 0 });
 
       country = new Country("name", "isoCode");
-      Assert.Equal(@"{""Id"":0,""IsoCode"":""isoCode"",""Name"":""name""}", country.Json());
-      Assert.Equal(country, country.Json().Json<Country>());
+      this.TestJson(country, new { Id = 0, IsoCode = "isoCode", Name = "name" });
 
       country = new Country("name", "isoCode", "image")
       {
         Id = 1 
       };
-      Assert.Equal(@"{""Id"":1,""Image"":""image"",""IsoCode"":""isoCode"",""Name"":""name""}", country.Json());
-      Assert.Equal(country, country.Json().Json<Country>());
+      this.TestJson(country, new { Id = 1, Image = "image", IsoCode = "isoCode", Name = "name" });
     }
 
     /// <summary>
@@ -47,18 +44,16 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var country = new Country();
-      this.TestXml(country, "<Id>0</Id>");
+      this.TestXml(country, new { Id = 0 });
 
       country = new Country("name", "isoCode");
-      this.TestXml(country, "<Id>0</Id><IsoCode>isoCode</IsoCode><Name>name</Name>");
-      Assert.Equal(country, country.Xml().Xml<Country>());
+      this.TestXml(country, new { Id = 0, IsoCode = "isoCode", Name = "name" });
 
       country = new Country("name", "isoCode", "image")
       {
         Id = 1
       };
-      this.TestXml(country, "<Id>1</Id><Image>image</Image><IsoCode>isoCode</IsoCode><Name>name</Name>");
-      Assert.Equal(country, country.Xml().Xml<Country>());
+      this.TestXml(country, new { Id = 1, Image = "image", IsoCode = "isoCode", Name = "name" });
     }
 
     /// <summary>

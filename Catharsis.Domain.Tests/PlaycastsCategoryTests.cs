@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Xunit;
+﻿using Xunit;
 
 namespace Catharsis.Domain
 {
@@ -24,18 +23,16 @@ namespace Catharsis.Domain
     [Fact]
     public void Json()
     {
-      var category = new PlaycastsCategory();
-      Assert.Equal(@"{""Id"":0}", category.Json());
-
-      category = new PlaycastsCategory("name");
-      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
-
-      category = new PlaycastsCategory("name", new PlaycastsCategory("parent.name"), "description")
-      { 
-        Id = 1,
-        Language = "language"
-      };
-      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name"",""Parent"":{""Id"":0,""Name"":""parent.name""}}", category.Json());
+      this.TestJson(new PlaycastsCategory(), new { Id = 0 });
+      this.TestJson(new PlaycastsCategory("name"), new { Id = 0, Name = "name" });
+      this.TestJson(
+        new PlaycastsCategory("name", new PlaycastsCategory("parent.name"), "description")
+        {
+          Id = 1,
+          Language = "language"
+        },
+        new { Id = 1, Description = "description", Language = "language", Name = "name", Parent = new { Id = 0, Name = "parent.name" } }
+      );
     }
 
     /// <summary>
@@ -44,20 +41,16 @@ namespace Catharsis.Domain
     [Fact]
     public void Xml()
     {
-      var category = new PlaycastsCategory();
-      this.TestXml(category, "<Id>0</Id>");
-
-      category = new PlaycastsCategory("name");
-      this.TestXml(category, "<Id>0</Id><Name>name</Name>");
-      Assert.Equal(category, category.Xml().Xml<PlaycastsCategory>());
-
-      category = new PlaycastsCategory("name", new PlaycastsCategory("parent.name"), "description")
-      {
-        Id = 1,
-        Language = "language"
-      };
-      this.TestXml(category, "<Id>1</Id><Description>description</Description><Language>language</Language><Name>name</Name><Parent><Id>0</Id><Name>parent.name</Name></Parent>");
-      Assert.Equal(category, category.Xml().Xml<PlaycastsCategory>());
+      this.TestXml(new PlaycastsCategory(), new { Id = 0 });
+      this.TestXml(new PlaycastsCategory("name"), new { Id = 0, Name = "name" });
+      this.TestXml(
+        new PlaycastsCategory("name", new PlaycastsCategory("parent.name"), "description")
+        {
+          Id = 1,
+          Language = "language"
+        },
+        new { Id = 1, Description = "description", Language = "language", Name = "name" }
+      );
     }
 
     /// <summary>

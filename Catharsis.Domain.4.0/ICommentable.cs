@@ -10,6 +10,6 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Collection of comments, associated with the entity.</para>
     /// </summary>
-    List<Comment> Comments { get; }
+    ICollection<Comment> Comments { get; }
   }
 }

@@ -25,8 +25,8 @@ namespace Catharsis.Domain
       Assert.Equal(@"{""Id"":0}", new MockJsonObject().Json());
 
       var subject = new MockJsonObject { Id = 1, PublicProperty = "property", PublicField = "field", Date = DateTime.MinValue };
-      Assert.Equal(@"{{""Id"":1,""Date"":""{0}"",""PublicField"":""field"",""PublicProperty"":""property""}}".FormatSelf(DateTime.MinValue.ISO()), subject.Json());
-      Assert.NotEqual(@"{{""Id"":1,""Date"":""{0}"",""PublicField"":""field"",""PublicProperty"":""property""}}".FormatSelf(DateTime.MinValue.ISO()), subject.Json(new JsonSerializerSettings { Formatting = Formatting.Indented }));
+      Assert.Equal(@"{{""Id"":1,""Date"":""{0}"",""PublicField"":""field"",""PublicProperty"":""property""}}".FormatSelf(DateTime.MinValue.ISO8601()), subject.Json());
+      Assert.NotEqual(@"{{""Id"":1,""Date"":""{0}"",""PublicField"":""field"",""PublicProperty"":""property""}}".FormatSelf(DateTime.MinValue.ISO8601()), subject.Json(new JsonSerializerSettings { Formatting = Formatting.Indented }));
     }
   }
 }

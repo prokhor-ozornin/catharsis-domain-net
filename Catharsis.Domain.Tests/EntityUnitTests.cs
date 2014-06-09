@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Linq;
 using Catharsis.Commons;
 using Xunit;
 
@@ -72,12 +74,75 @@ namespace Catharsis.Domain
       properties.Each(property => Assert.False(typeof(ENTITY).AnyProperty(property).Description().IsEmpty()));
     }
 
-    protected void TestXml(ENTITY entity, string xml, params Type[] types)
+    protected void TestJson(ENTITY entity, object attributes)
     {
       Assertion.NotNull(entity);
-      Assertion.NotEmpty(xml);
 
-      Assert.Equal(@"<?xml version=""1.0"" encoding=""utf-16""?><{0} xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">{1}</{0}>".FormatSelf(typeof(ENTITY).Name, xml), entity.Xml(types));
+      var json = attributes.GetType().GetProperties().Select(property =>
+      {
+        var value = property.GetValue(attributes, null);
+        if (value is bool)
+        {
+          value = value.ToString().ToLowerInvariant();
+        }
+        else if (value is DateTime)
+        {
+          value = @"""{0}""".FormatSelf(value.To<DateTime>().ISO8601());
+        }
+        else if (value.GetType().IsPrimitive)
+        {
+          value = string.Format(CultureInfo.InvariantCulture, "{0}", value);
+        }
+        else if (value is string)
+        {
+          value = @"""{0}""".FormatSelf(value);
+        }
+        else
+        {
+          var jsonValue = value.Json();
+          value = jsonValue.Substring(0, jsonValue.Length);
+        }
+        return @"""{0}"":{1}".FormatSelf(property.Name, value);
+      }).Join(",");
+
+      Assert.Equal(attributes == null ? "{}" : @"{{{0}}}".FormatSelf(json), entity.Json());
+    }
+
+    protected void TestXml(ENTITY entity, object attributes)
+    {
+      Assertion.NotNull(entity);
+
+      var tags = attributes.GetType().GetProperties().Select(property =>
+      {
+        var value = property.GetValue(attributes, null);
+
+        if (value is bool)
+        {
+          value = value.ToString().ToLowerInvariant();
+        }
+        else if (value is DateTime)
+        {
+          value = value.To<DateTime>().AsXml();
+        }
+
+        return string.Format(CultureInfo.InvariantCulture, "<{0}>{1}</{0}>", property.Name, value);
+      });
+
+      var xml = entity.Xml();
+      Assert.True(xml.Contains(@"<?xml version=""1.0"" encoding=""utf-16""?>"));
+      if (attributes == null)
+      {
+        Assert.True(xml.Contains(@"<{0} xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" />".FormatSelf(typeof(ENTITY).Name)));
+      }
+      else
+      {
+        Assert.True(xml.Contains(@"<{0} xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">".FormatSelf(typeof(ENTITY).Name)));
+        Assert.True(xml.Contains("</{0}>".FormatSelf(typeof(ENTITY).Name)));
+        foreach (var tag in tags)
+        {
+          Assert.True(xml.Contains(tag));
+        }
+      }
     }
   }
 }

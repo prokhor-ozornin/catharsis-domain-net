@@ -24,18 +24,16 @@ namespace Catharsis.Domain
     [Fact]
     public void Json()
     {
-      var category = new VideosCategory();
-      Assert.Equal(@"{""Id"":0}", category.Json());
-
-      category = new VideosCategory("name");
-      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
-
-      category = new VideosCategory("name", new VideosCategory("parent.name"), "description")
-      {
-        Id = 1,
-        Language = "language"
-      };
-      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name"",""Parent"":{""Id"":0,""Name"":""parent.name""}}", category.Json());
+      this.TestJson(new VideosCategory(), new { Id = 0 });
+      this.TestJson(new VideosCategory("name"), new { Id = 0, Name = "name" });
+      this.TestJson(
+        new VideosCategory("name", new VideosCategory("parent.name"), "description")
+        {
+          Id = 1,
+          Language = "language"
+        },
+        new { Id = 1, Description = "description", Language = "language", Name = "name", Parent = new { Id = 0, Name = "parent.name" } }
+      );
     }
 
     /// <summary>
@@ -44,20 +42,16 @@ namespace Catharsis.Domain
     [Fact]
     public void Xml()
     {
-      var category = new VideosCategory();
-      this.TestXml(category, "<Id>0</Id>");
-
-      category = new VideosCategory("name");
-      this.TestXml(category, "<Id>0</Id><Name>name</Name>");
-      Assert.Equal(category, category.Xml().Xml<VideosCategory>());
-
-      category = new VideosCategory("name", new VideosCategory("parent.name"), "description")
-      {
-        Id = 1,
-        Language = "language"
-      };
-      this.TestXml(category, "<Id>1</Id><Description>description</Description><Language>language</Language><Name>name</Name><Parent><Id>0</Id><Name>parent.name</Name></Parent>");
-      Assert.Equal(category, category.Xml().Xml<VideosCategory>());
+      this.TestXml(new VideosCategory(), new { Id = 0 });
+      this.TestXml(new VideosCategory("name"), new { Id = 0, Name = "name" });
+      this.TestXml(
+        new VideosCategory("name", new VideosCategory("parent.name"), "description")
+        {
+          Id = 1,
+          Language = "language"
+        },
+        new { Id = 1, Description = "description", Language = "language", Name = "name" }
+      );
     }
 
     /// <summary>

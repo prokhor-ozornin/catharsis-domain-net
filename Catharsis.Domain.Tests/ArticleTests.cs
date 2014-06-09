@@ -28,11 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var article = new Article();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(article.DateCreated.ISO(), article.LastUpdated.ISO()), article.Json());
+      this.TestJson(article, new { Id = 0, Comments = new object[] { }, DateCreated = article.DateCreated.ISO8601(), LastUpdated = article.LastUpdated.ISO8601(), Tags = new object[] { } });
 
       article = new Article("name");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[]}}".FormatSelf(article.DateCreated.ISO(), article.LastUpdated.ISO()), article.Json());
-      Assert.Equal(article, article.Json().Json<Article>());
+      this.TestJson(article, new { Id = 0, Comments = new object[] { }, DateCreated = article.DateCreated, LastUpdated = article.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { } });
 
       var comment = new Comment("comment.name", "comment.text");
       article = new Article("name", new ArticlesCategory("category.name"), "annotation", "text", "image")
@@ -42,8 +41,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      Assert.Equal(@"{{""Id"":1,""Annotation"":""annotation"",""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), article.DateCreated.ISO(), article.LastUpdated.ISO()), article.Json());
-      Assert.Equal(article, article.Json().Json<Article>());
+      this.TestJson(article, new { Id = 1, Annotation = "annotation", Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = article.DateCreated.ISO8601(), Image = "image", Language = "language", LastUpdated = article.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
     }
 
     /// <summary>
@@ -53,11 +51,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var article = new Article();
-      this.TestXml(article, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags />".FormatSelf(article.DateCreated.ToXmlString(), article.LastUpdated.ToXmlString()));
+      this.TestXml(article, new { Id = 0, DateCreated = article.DateCreated, LastUpdated = article.LastUpdated });
 
       article = new Article("name");
-      this.TestXml(article, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags />".FormatSelf(article.DateCreated.ToXmlString(), article.LastUpdated.ToXmlString()));
-      Assert.Equal(article, article.Xml().Xml<Article>());
+      this.TestXml(article, new { Id = 0, DateCreated = article.DateCreated, LastUpdated = article.LastUpdated, Name = "name" });
 
       var comment = new Comment("comment.name", "comment.text");
       article = new Article("name", new ArticlesCategory("category.name"), "annotation", "text", "image")
@@ -67,8 +64,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(article, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Annotation>annotation</Annotation><Category><Id>0</Id><Name>category.name</Name></Category><Image>image</Image>".FormatSelf(article.DateCreated.ToXmlString(), article.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
-      Assert.Equal(article, article.Xml().Xml<Article>());
+      this.TestXml(article, new { Id = 1, Annotation = "annotation", DateCreated = article.DateCreated, Image = "image", Language = "language", LastUpdated = article.LastUpdated, Name = "name", Text = "text" });
     }
 
     /// <summary>

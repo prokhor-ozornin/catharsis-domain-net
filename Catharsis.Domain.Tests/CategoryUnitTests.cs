@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Xunit;
+﻿using Xunit;
 
 namespace Catharsis.Domain
 {
@@ -25,15 +24,17 @@ namespace Catharsis.Domain
     public void Json()
     {
       var category = new Category();
-      Assert.Equal(@"{""Id"":0}", category.Json());
+      this.TestJson(category, new { Id = 0 });
 
       category = new Category("name");
-      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
-      Assert.Equal(category, category.Json().Json<Category>());
+      this.TestJson(category, new { Id = 0, Name = "name" });
 
-      category = new Category("name", "description") { Id = 1, Language = "language" };
-      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name""}", category.Json());
-      Assert.Equal(category, category.Json().Json<Category>());
+      category = new Category("name", "description")
+      {
+        Id = 1,
+        Language = "language"
+      };
+      this.TestJson(category, new { Id = 1, Description = "description", Language = "language", Name = "name" });
     }
 
     /// <summary>
@@ -43,19 +44,17 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var category = new Category();
-      this.TestXml(category, "<Id>0</Id>");
+      this.TestXml(category, new { Id = 0 });
 
       category = new Category("name");
-      this.TestXml(category, "<Id>0</Id><Name>name</Name>");
-      Assert.Equal(category, category.Xml().Xml<Category>());
+      this.TestXml(category, new { Id = 0, Name = "name" });
 
       category = new Category("name", "description")
       {
         Id = 1,
         Language = "language"
       };
-      this.TestXml(category, "<Id>1</Id><Description>description</Description><Language>language</Language><Name>name</Name>");
-      Assert.Equal(category, category.Xml().Xml<Category>());
+      this.TestXml(category, new { Id = 1, Description = "description", Language = "language", Name = "name" });
     }
 
     /// <summary>

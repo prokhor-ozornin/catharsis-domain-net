@@ -28,11 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var art = new Art();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(art.DateCreated.ISO(), art.LastUpdated.ISO()), art.Json());
+      this.TestJson(art, new { Id = 0, Comments = new object[] {}, DateCreated = art.DateCreated.ISO8601(), LastUpdated = art.LastUpdated.ISO8601(), Tags = new object[] {} });
 
       art = new Art("name", "image");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""Image"":""image"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[]}}".FormatSelf(art.DateCreated.ISO(), art.LastUpdated.ISO()), art.Json());
-      Assert.Equal(art, art.Json().Json<Art>());
+      this.TestJson(art, new { Id = 0, Comments = new object[] {}, DateCreated = art.DateCreated.ISO8601(), Image = "image", LastUpdated = art.LastUpdated.ISO8601(), Name = "name", Tags = new object[] {} });
 
       var comment = new Comment("comment.name", "comment.text");
       var album = new ArtsAlbum("album.name");
@@ -43,8 +42,22 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      Assert.Equal(@"{{""Id"":1,""Album"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""album.name"",""Tags"":[]}},""Comments"":[{{""Id"":0,""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{4}"",""Image"":""image"",""Language"":""language"",""LastUpdated"":""{5}"",""Material"":""material"",""Name"":""name"",""Person"":{{""Id"":0,""NameFirst"":""person.nameFirst"",""NameLast"":""person.nameLast""}},""Place"":""place"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(album.DateCreated.ISO(), album.LastUpdated.ISO(), comment.DateCreated.ISO(), comment.LastUpdated.ISO(), art.DateCreated.ISO(), art.LastUpdated.ISO()), art.Json());
-      Assert.Equal(art, art.Json().Json<Art>());
+      this.TestJson(art, new
+      {
+        Id = 1,
+        Album = new { Id = 0, Comments = new object[] { }, DateCreated = album.DateCreated.ISO8601(), LastUpdated = album.LastUpdated.ISO8601(), Name = "album.name", Tags = new object[] { } },
+        Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } },
+        DateCreated = art.DateCreated.ISO8601(),
+        Image = "image",
+        Language = "language",
+        LastUpdated = art.LastUpdated.ISO8601(),
+        Material = "material",
+        Name = "name",
+        Person = new { Id = 0, NameFirst = "person.nameFirst", NameLast = "person.nameLast" },
+        Place = "place",
+        Tags = new object[] { "tag" },
+        Text = "text"
+      });
     }
 
     /// <summary>
@@ -54,11 +67,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var art = new Art();
-      this.TestXml(art, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags />".FormatSelf(art.DateCreated.ToXmlString(), art.LastUpdated.ToXmlString()));
+      this.TestXml(art, new { Id = 0, DateCreated = art.DateCreated, LastUpdated = art.LastUpdated });
 
       art = new Art("name", "image");
-      this.TestXml(art, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Image>image</Image>".FormatSelf(art.DateCreated.ToXmlString(), art.LastUpdated.ToXmlString()));
-      Assert.Equal(art, art.Xml().Xml<Art>());
+      this.TestXml(art, new { Id = 0, DateCreated = art.DateCreated, Image = "image", LastUpdated = art.LastUpdated, Name = "name" });
 
       var comment = new Comment("comment.name", "comment.text");
       var album = new ArtsAlbum("album.name");
@@ -69,9 +81,18 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-
-      this.TestXml(art, @"<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Album><Id>0</Id><Comments /><DateCreated>{4}</DateCreated><LastUpdated>{5}</LastUpdated><Name>album.name</Name><Tags /><PublishedOn xsi:nil=""true"" /></Album><Image>image</Image><Material>material</Material><Person><Id>0</Id><BirthDay xsi:nil=""true"" /><BirthMonth xsi:nil=""true"" /><BirthYear xsi:nil=""true"" /><DeathDay xsi:nil=""true"" /><DeathMonth xsi:nil=""true"" /><DeathYear xsi:nil=""true"" /><NameFirst>person.nameFirst</NameFirst><NameLast>person.nameLast</NameLast></Person><Place>place</Place>".FormatSelf(art.DateCreated.ToXmlString(), art.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString(), album.DateCreated.ToXmlString(), album.LastUpdated.ToXmlString()));
-      Assert.Equal(art, art.Xml().Xml<Art>());
+      this.TestXml(art, new
+      {
+        Id = 1,
+        DateCreated = art.DateCreated,
+        Image = "image",
+        Language = "language",
+        LastUpdated = art.LastUpdated,
+        Material = "material",
+        Name = "name",
+        Place = "place",
+        Text = "text"
+      });
     }
 
     /// <summary>

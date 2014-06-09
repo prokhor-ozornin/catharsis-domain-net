@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Catharsis.Commons;
 using Xunit;
 
@@ -27,18 +26,16 @@ namespace Catharsis.Domain
     public void Json()
     {
       var profile = new Profile();
-      Assert.Equal(@"{""Id"":0}", profile.Json());
+      this.TestJson(profile, new { Id = 0 });
 
       profile = new Profile("name", "username", "type", "url");
-      Assert.Equal(@"{""Id"":0,""Name"":""name"",""Type"":""type"",""Url"":""url"",""Username"":""username""}", profile.Json());
-      Assert.Equal(profile, profile.Json().Json<Profile>());
+      this.TestJson(profile, new { Id = 0, Name = "name", Type = "type", Url = "url", Username = "username"} );
 
       profile = new Profile("name", "username", "type", "url", "email", "photo")
       {
         Id = 1 
       };
-      Assert.Equal(@"{""Id"":1,""Email"":""email"",""Name"":""name"",""Photo"":""photo"",""Type"":""type"",""Url"":""url"",""Username"":""username""}", profile.Json());
-      Assert.Equal(profile, profile.Json().Json<Profile>());
+      this.TestJson(profile, new { Id = 1, Email = "email", Name = "name", Photo = "photo", Type = "type", Url = "url", Username = "username" });
     }
 
     /// <summary>
@@ -48,18 +45,16 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var profile = new Profile();
-      this.TestXml(profile, "<Id>0</Id>");
+      this.TestXml(profile, new { Id = 0 });
 
       profile = new Profile("name", "username", "type", "url");
-      this.TestXml(profile, "<Id>0</Id><Name>name</Name><Type>type</Type><Url>url</Url><Username>username</Username>");
-      Assert.Equal(profile, profile.Xml().Xml<Profile>());
+      this.TestXml(profile, new { Id = 0, Name = "name", Type = "type", Url = "url", Username = "username" });
 
       profile = new Profile("name", "username", "type", "url", "email", "photo")
       {
         Id = 1
       };
-      this.TestXml(profile, "<Id>1</Id><Email>email</Email><Name>name</Name><Photo>photo</Photo><Type>type</Type><Url>url</Url><Username>username</Username>");
-      Assert.Equal(profile, profile.Xml().Xml<Profile>());
+      this.TestXml(profile, new { Id = 1, Email = "email", Name = "name", Photo = "photo", Type = "type", Url = "url", Username = "username" });
     }
 
     /// <summary>

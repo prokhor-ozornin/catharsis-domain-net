@@ -1,5 +1,4 @@
 ﻿using System;
-using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -26,20 +25,18 @@ namespace Catharsis.Domain
     public void Json()
     {
       var city = new City();
-      Assert.Equal(@"{""Id"":0}", city.Json());
+      this.TestJson(city, new { Id = 0 });
 
       var country = new Country("country.name", "country.isoCode");
 
       city = new City("name", country);
-      Assert.Equal(@"{""Id"":0,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""name""}", city.Json());
-      Assert.Equal(city, city.Json().Json<City>());
+      this.TestJson(city, new { Id = 0, Country = new { Id = 0, IsoCode = "country.isoCode", Name = "country.name" }, Name = "name" });
 
       city = new City("name", country, "region")
       {
         Id = 1 
       };
-      Assert.Equal(@"{""Id"":1,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""name"",""Region"":""region""}", city.Json());
-      Assert.Equal(city, city.Json().Json<City>());
+      this.TestJson(city, new { Id = 1, Country = new { Id = 0, IsoCode = "country.isoCode", Name = "country.name" }, Name = "name", Region = "region" });
     }
 
     /// <summary>
@@ -49,20 +46,18 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var city = new City();
-      this.TestXml(city, "<Id>0</Id>");
+      this.TestXml(city, new { Id = 0 });
 
       var country = new Country("country.name", "country.isoCode");
 
       city = new City("name", country);
-      this.TestXml(city, "<Id>0</Id><Country><Id>0</Id><IsoCode>country.isoCode</IsoCode><Name>country.name</Name></Country><Name>name</Name>");
-      Assert.Equal(city, city.Xml().Xml<City>());
+      this.TestXml(city, new { Id = 0, Name = "name" });
 
       city = new City("name", country, "region")
       {
         Id = 1
       };
-      this.TestXml(city, "<Id>1</Id><Country><Id>0</Id><IsoCode>country.isoCode</IsoCode><Name>country.name</Name></Country><Name>name</Name><Region>region</Region>");
-      Assert.Equal(city, city.Xml().Xml<City>());
+      this.TestXml(city, new { Id = 1, Name = "name", Region = "region" });
     }
 
     /// <summary>

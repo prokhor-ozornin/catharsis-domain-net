@@ -1,5 +1,4 @@
 ﻿using System;
-using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -26,18 +25,16 @@ namespace Catharsis.Domain
     public void Json()
     {
       var person = new Person();
-      Assert.Equal(@"{""Id"":0}", person.Json());
+      this.TestJson(person, new { Id = 0 });
 
       person = new Person("nameFirst", "nameLast");
-      Assert.Equal(@"{""Id"":0,""NameFirst"":""nameFirst"",""NameLast"":""nameLast""}", person.Json());
-      Assert.Equal(person, person.Json().Json<Person>());
+      this.TestJson(person, new { Id = 0, NameFirst = "nameFirst", NameLast = "nameLast" });
 
       person = new Person("nameFirst", "nameLast", "nameMiddle", "description", "image", 1, 2, 3, 4, 5, 6)
       {
         Id = 1
       };
-      Assert.Equal(@"{""Id"":1,""BirthDay"":1,""BirthMonth"":2,""BirthYear"":3,""DeathDay"":4,""DeathMonth"":5,""DeathYear"":6,""Description"":""description"",""Image"":""image"",""NameFirst"":""nameFirst"",""NameLast"":""nameLast"",""NameMiddle"":""nameMiddle""}", person.Json());
-      Assert.Equal(person, person.Json().Json<Person>());
+      this.TestJson(person, new { Id = 1, BirthDay = 1, BirthMonth = 2, BirthYear = 3, DeathDay = 4, DeathMonth = 5, DeathYear = 6, Description = "description", Image = "image", NameFirst = "nameFirst", NameLast = "nameLast", NameMiddle = "nameMiddle" });
     }
 
     /// <summary>
@@ -47,18 +44,16 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var person = new Person();
-      this.TestXml(person, @"<Id>0</Id><BirthDay xsi:nil=""true"" /><BirthMonth xsi:nil=""true"" /><BirthYear xsi:nil=""true"" /><DeathDay xsi:nil=""true"" /><DeathMonth xsi:nil=""true"" /><DeathYear xsi:nil=""true"" />");
+      this.TestXml(person, new { Id = 0 });
 
       person = new Person("nameFirst", "nameLast");
-      this.TestXml(person, @"<Id>0</Id><BirthDay xsi:nil=""true"" /><BirthMonth xsi:nil=""true"" /><BirthYear xsi:nil=""true"" /><DeathDay xsi:nil=""true"" /><DeathMonth xsi:nil=""true"" /><DeathYear xsi:nil=""true"" /><NameFirst>nameFirst</NameFirst><NameLast>nameLast</NameLast>");
-      Assert.Equal(person, person.Xml().Xml<Person>());
+      this.TestXml(person, new { Id = 0, NameFirst = "nameFirst", NameLast = "nameLast" });
 
       person = new Person("nameFirst", "nameLast", "nameMiddle", "description", "image", 1, 2, 3, 4, 5, 6)
       {
         Id = 1
       };
-      this.TestXml(person, @"<Id>1</Id><BirthDay>1</BirthDay><BirthMonth>2</BirthMonth><BirthYear>3</BirthYear><DeathDay>4</DeathDay><DeathMonth>5</DeathMonth><DeathYear>6</DeathYear><Description>description</Description><Image>image</Image><NameFirst>nameFirst</NameFirst><NameLast>nameLast</NameLast><NameMiddle>nameMiddle</NameMiddle>");
-      Assert.Equal(person, person.Xml().Xml<Person>());
+      this.TestXml(person, new { Id = 1, BirthDay = 1, BirthMonth = 2, BirthYear = 3, DeathDay = 4, DeathMonth = 5, DeathYear = 6, Description = "description", Image = "image", NameFirst = "nameFirst", NameLast = "nameLast", NameMiddle = "nameMiddle" });
     }
 
     /// <summary>

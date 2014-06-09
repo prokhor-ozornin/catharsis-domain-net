@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Catharsis.Commons;
 using Xunit;
 
@@ -27,18 +26,16 @@ namespace Catharsis.Domain
     public void Json()
     {
       var video = new Video();
-      Assert.Equal(@"{""Id"":0,""Bitrate"":0,""Duration"":0,""Height"":0,""Width"":0}", video.Json());
+      this.TestJson(video, new { Id = 0, Bitrate = 0, Duration = 0, Height = 0, Width = 0 });
 
       video = new Video("file", 1, 2, 3, 4);
-      Assert.Equal(@"{""Id"":0,""Bitrate"":1,""Duration"":2,""File"":""file"",""Height"":3,""Width"":4}", video.Json());
-      Assert.Equal(video, video.Json().Json<Video>());
+      this.TestJson(video, new { Id = 0, Bitrate = 1, Duration = 2, File = "file", Height = 3, Width = 4 });
 
       video = new Video("file", 1, 2, 3, 4, new VideosCategory("category.name"))
       {
         Id = 1 
       };
-      Assert.Equal(@"{""Id"":1,""Bitrate"":1,""Category"":{""Id"":0,""Name"":""category.name""},""Duration"":2,""File"":""file"",""Height"":3,""Width"":4}", video.Json());
-      Assert.Equal(video, video.Json().Json<Video>());
+      this.TestJson(video, new { Id = 1, Bitrate = 1, Category = new { Id = 0, Name = "category.name" }, Duration = 2, File = "file", Height = 3, Width = 4 });
     }
 
     /// <summary>
@@ -48,18 +45,16 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var video = new Video();
-      this.TestXml(video, "<Id>0</Id><Bitrate>0</Bitrate><Duration>0</Duration><Height>0</Height><Width>0</Width>");
+      this.TestXml(video, new { Id = 0, Bitrate = 0, Duration = 0, Height = 0, Width = 0 });
 
       video = new Video("file", 1, 2, 3, 4);
-      this.TestXml(video, "<Id>0</Id><Bitrate>1</Bitrate><Duration>2</Duration><File>file</File><Height>3</Height><Width>4</Width>");
-      Assert.Equal(video, video.Xml().Xml<Video>());
+      this.TestXml(video, new { Id = 0, Bitrate = 1, Duration = 2, File = "file", Height = 3, Width = 4 });
 
       video = new Video("file", 1, 2, 3, 4, new VideosCategory("category.name"))
       {
         Id = 1
       };
-      this.TestXml(video, "<Id>1</Id><Bitrate>1</Bitrate><Category><Id>0</Id><Name>category.name</Name></Category><Duration>2</Duration><File>file</File><Height>3</Height><Width>4</Width>");
-      Assert.Equal(video, video.Xml().Xml<Video>());
+      this.TestXml(video, new { Id = 1, Bitrate = 1, Duration = 2, File = "file", Height = 3, Width = 4 });
     }
 
     /// <summary>

@@ -28,23 +28,21 @@ namespace Catharsis.Domain
     public void Json()
     {
       var download = new Download();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""Downloads"":0,""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(download.DateCreated.ISO(), download.LastUpdated.ISO()), download.Json());
+      this.TestJson(download, new { Id = 0, Comments = new object[] {}, DateCreated = download.DateCreated.ISO8601(), Downloads = 0, LastUpdated = download.LastUpdated.ISO8601(), Tags = new object[] {} });
 
       download = new Download("name", "url");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""Downloads"":0,""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Url"":""url""}}".FormatSelf(download.DateCreated.ISO(), download.LastUpdated.ISO()), download.Json());
-      Assert.Equal(download, download.Json().Json<Download>());
+      this.TestJson(download, new { Id = 0, Comments = new object[] {}, DateCreated = download.DateCreated.ISO8601(), Downloads = 0, LastUpdated = download.LastUpdated.ISO8601(), Name = "name", Tags = new object[] {}, Url = "url" });
 
       var comment = new Comment("comment.name", "comment.text");
       download = new Download("name", "url", new DownloadsCategory("category.name"), "text")
       {
         Id = 1,
         Language = "language",
-        Comments = new List<Comment> { comment },
         Downloads = 1,
+        Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Downloads"":1,""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text"",""Url"":""url""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), download.DateCreated.ISO(), download.LastUpdated.ISO(), download.DateCreated.ISO(), download.LastUpdated.ISO()), download.Json());
-      Assert.Equal(download, download.Json().Json<Download>());
+      this.TestJson(download, new { Id = 1, Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = download.DateCreated.ISO8601(), Downloads = 1, Language = "language", LastUpdated = download.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text", Url = "url" });
     }
 
     /// <summary>
@@ -54,23 +52,21 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var download = new Download();
-      this.TestXml(download, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags /><Downloads>0</Downloads>".FormatSelf(download.DateCreated.ToXmlString(), download.LastUpdated.ToXmlString()));
+      this.TestXml(download, new { Id = 0, DateCreated = download.DateCreated, Downloads = 0, LastUpdated = download.LastUpdated });
 
       download = new Download("name", "url");
-      this.TestXml(download, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Downloads>0</Downloads><Url>url</Url>".FormatSelf(download.DateCreated.ToXmlString(), download.LastUpdated.ToXmlString()));
-      Assert.Equal(download, download.Xml().Xml<Download>());
+      this.TestXml(download, new { Id = 0, DateCreated = download.DateCreated, Downloads = 0, LastUpdated = download.LastUpdated, Name = "name", Url = "url" });
 
       var comment = new Comment("comment.name", "comment.text");
       download = new Download("name", "url", new DownloadsCategory("category.name"), "text")
       {
         Id = 1,
         Language = "language",
-        Comments = new List<Comment> { comment },
         Downloads = 1,
+        Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(download, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Category><Id>0</Id><Name>category.name</Name></Category><Downloads>1</Downloads><Url>url</Url>".FormatSelf(download.DateCreated.ToXmlString(), download.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
-      Assert.Equal(download, download.Xml().Xml<Download>());
+      this.TestXml(download, new { Id = 1, DateCreated = download.DateCreated, Downloads = 1, Language = "language", LastUpdated = download.LastUpdated, Name = "name", Text = "text", Url = "url" });
     }
 
     /// <summary>

@@ -1,5 +1,4 @@
-﻿using Catharsis.Commons;
-using Xunit;
+﻿using Xunit;
 
 namespace Catharsis.Domain
 {
@@ -24,20 +23,16 @@ namespace Catharsis.Domain
     [Fact]
     public void Json()
     {
-      var category = new AnnouncementsCategory();
-      Assert.Equal(@"{""Id"":0}", category.Json());
-
-      category = new AnnouncementsCategory("name");
-      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
-      Assert.Equal(category, category.Json().Json<AnnouncementsCategory>());
-
-      category = new AnnouncementsCategory("name", new AnnouncementsCategory("parent.name"), "description")
-      {
-        Id = 1,
-        Language = "language"
-      };
-      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name"",""Parent"":{""Id"":0,""Name"":""parent.name""}}", category.Json());
-      Assert.Equal(category, category.Json().Json<AnnouncementsCategory>());
+      this.TestJson(new AnnouncementsCategory(), new { Id = 0 });
+      this.TestJson(new AnnouncementsCategory("name"), new { Id = 0, Name = "name" });
+      this.TestJson(
+        new AnnouncementsCategory("name", new AnnouncementsCategory("parent.name"), "description")
+        {
+          Id = 1,
+          Language = "language"
+        },
+        new { Id = 1, Description = "description", Language = "language", Name = "name", Parent = new { Id = 0, Name = "parent.name" } }
+      );
     }
 
     /// <summary>
@@ -46,20 +41,16 @@ namespace Catharsis.Domain
     [Fact]
     public void Xml()
     {
-      var category = new AnnouncementsCategory();
-      this.TestXml(category, "<Id>0</Id>");
-      
-      category = new AnnouncementsCategory("name");
-      this.TestXml(category, "<Id>0</Id><Name>name</Name>");
-      Assert.Equal(category, category.Xml().Xml<AnnouncementsCategory>());
-
-      category = new AnnouncementsCategory("name", new AnnouncementsCategory("parent.name"), "description")
-      {
-        Id = 1,
-        Language = "language"
-      };
-      this.TestXml(category, "<Id>1</Id><Description>description</Description><Language>language</Language><Name>name</Name><Parent><Id>0</Id><Name>parent.name</Name></Parent>");
-      Assert.Equal(category, category.Xml().Xml<AnnouncementsCategory>());
+      this.TestXml(new AnnouncementsCategory(), new { Id = 0 });
+      this.TestXml(new AnnouncementsCategory("name"), new { Id = 0, Name = "name" });
+      this.TestXml(
+        new AnnouncementsCategory("name", new AnnouncementsCategory("parent.name"), "description")
+        {
+          Id = 1,
+          Language = "language"
+        },
+        new { Id = 1, Description = "description", Language = "language", Name = "name" }
+      );
     }
 
     /// <summary>

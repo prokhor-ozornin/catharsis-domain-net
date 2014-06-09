@@ -28,11 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var item = new Item();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(item.DateCreated.ISO(), item.LastUpdated.ISO()), item.Json());
+      this.TestJson(item, new { Id = 0, Comments = new object[] { }, DateCreated = item.DateCreated.ISO8601(), LastUpdated = item.LastUpdated.ISO8601(), Tags = new object[] { } });
 
       item = new Item("name");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[]}}".FormatSelf(item.DateCreated.ISO(), item.LastUpdated.ISO()), item.Json());
-      Assert.Equal(item, item.Json().Json<Item>());
+      this.TestJson(item, new { Id = 0, Comments = new object[] { }, DateCreated = item.DateCreated.ISO8601(), LastUpdated = item.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { } });
 
       var comment = new Comment("comment.name", "comment.text");
       item = new Item("name", "text")
@@ -42,8 +41,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), item.DateCreated.ISO(), item.LastUpdated.ISO()), item.Json());
-      Assert.Equal(item, item.Json().Json<Item>());
+      this.TestJson(item, new { Id = 1, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = item.DateCreated.ISO8601(), Language = "language", LastUpdated = item.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
     }
 
     /// <summary>
@@ -53,11 +51,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var item = new Item();
-      this.TestXml(item, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags />".FormatSelf(item.DateCreated.ToXmlString(), item.LastUpdated.ToXmlString()));
+      this.TestXml(item, new { Id = 0, DateCreated = item.DateCreated, LastUpdated = item.LastUpdated });
 
       item = new Item("name");
-      this.TestXml(item, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags />".FormatSelf(item.DateCreated.ToXmlString(), item.LastUpdated.ToXmlString()));
-      Assert.Equal(item, item.Xml().Xml<Item>());
+      this.TestXml(item, new { Id = 0, DateCreated = item.DateCreated, LastUpdated = item.LastUpdated, Name = "name" });
 
       var comment = new Comment("comment.name", "comment.text");
       item = new Item("name", "text")
@@ -67,8 +64,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(item, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text>".FormatSelf(item.DateCreated.ToXmlString(), item.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
-      Assert.Equal(item, item.Xml().Xml<Item>());
+      this.TestXml(item, new { Id = 1, DateCreated = item.DateCreated, Language = "language", LastUpdated = item.LastUpdated, Name = "name", Text = "text" });
     }
 
     /// <summary>

@@ -28,11 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var weblink = new WebLink();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(weblink.DateCreated.ISO(), weblink.LastUpdated.ISO()), weblink.Json());
+      this.TestJson(weblink, new { Id = 0, Comments = new object[] { }, DateCreated = weblink.DateCreated.ISO8601(), LastUpdated = weblink.LastUpdated.ISO8601(), Tags = new object[] { } });
 
       weblink = new WebLink("name", "text", "url");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[],""Text"":""text"",""Url"":""url""}}".FormatSelf(weblink.DateCreated.ISO(), weblink.LastUpdated.ISO()), weblink.Json());
-      Assert.Equal(weblink, weblink.Json().Json<WebLink>());
+      this.TestJson(weblink, new { Id = 0, Comments = new object[] { }, DateCreated = weblink.DateCreated.ISO8601(), LastUpdated = weblink.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { }, Text = "text", Url = "url" });
 
       var comment = new Comment("comment.name", "comment.text");
       weblink = new WebLink("name", "text", "url", new WebLinksCategory("category.name"))
@@ -42,8 +41,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      Assert.Equal(@"{{""Id"":1,""Category"":{{""Id"":0,""Name"":""category.name""}},""Comments"":[{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{2}"",""Language"":""language"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text"",""Url"":""url""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO(), weblink.DateCreated.ISO(), weblink.LastUpdated.ISO()), weblink.Json());
-      Assert.Equal(weblink, weblink.Json().Json<WebLink>());
+      this.TestJson(weblink, new { Id = 1, Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = weblink.DateCreated.ISO8601(), Language = "language", LastUpdated = weblink.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text", Url = "url" });
     }
 
     /// <summary>
@@ -53,12 +51,11 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var weblink = new WebLink();
-      this.TestXml(weblink, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags />".FormatSelf(weblink.DateCreated.ToXmlString(), weblink.LastUpdated.ToXmlString()));
+      this.TestXml(weblink, new { Id = 0, DateCreated = weblink.DateCreated, LastUpdated = weblink.LastUpdated });
 
       weblink = new WebLink("name", "text", "url");
-      this.TestXml(weblink, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Text>text</Text><Url>url</Url>".FormatSelf(weblink.DateCreated.ToXmlString(), weblink.LastUpdated.ToXmlString()));
-      Assert.Equal(weblink, weblink.Xml().Xml<WebLink>());
-
+      this.TestXml(weblink, new { Id = 0, DateCreated = weblink.DateCreated, LastUpdated = weblink.LastUpdated, Name = "name", Text = "text", Url = "url" });
+      
       var comment = new Comment("comment.name", "comment.text");
       weblink = new WebLink("name", "text", "url", new WebLinksCategory("category.name"))
       {
@@ -67,8 +64,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(weblink, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Category><Id>0</Id><Name>category.name</Name></Category><Url>url</Url>".FormatSelf(weblink.DateCreated.ToXmlString(), weblink.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
-      Assert.Equal(weblink, weblink.Xml().Xml<WebLink>());
+      this.TestXml(weblink, new { Id = 1, DateCreated = weblink.DateCreated, Language = "language", LastUpdated = weblink.LastUpdated, Name = "name", Text = "text", Url = "url" });
     }
 
     /// <summary>

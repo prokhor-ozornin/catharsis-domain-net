@@ -1,5 +1,4 @@
 ﻿using System;
-using Catharsis.Commons;
 using Xunit;
 
 namespace Catharsis.Domain
@@ -26,20 +25,18 @@ namespace Catharsis.Domain
     public void Json()
     {
       var location = new Location();
-      Assert.Equal(@"{""Id"":0}", location.Json());
+      this.TestJson(location, new { Id = 0 });
 
       var city = new City("city.name", new Country("country.name", "country.isoCode"));
 
       location = new Location(city, "address");
-      Assert.Equal(@"{""Id"":0,""Address"":""address"",""City"":{""Id"":0,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""city.name""}}", location.Json());
-      Assert.Equal(location, location.Json().Json<Location>());
+      this.TestJson(location, new { Id = 0, Address = "address", City = new { Id = 0, Country = new { Id = 0, IsoCode = "country.isoCode", Name = "country.name" }, Name = "city.name" } });
 
-      location = new Location(city, "address", 1, 2, "postalCode")
+      location = new Location(city, "address", (decimal) 1.5, (decimal) 2.5, "postalCode")
       {
         Id = 1
       };
-      Assert.Equal(@"{""Id"":1,""Address"":""address"",""City"":{""Id"":0,""Country"":{""Id"":0,""IsoCode"":""country.isoCode"",""Name"":""country.name""},""Name"":""city.name""},""Latitude"":1.0,""Longitude"":2.0,""PostalCode"":""postalCode""}", location.Json());
-      Assert.Equal(location, location.Json().Json<Location>());
+      this.TestJson(location, new { Id = 1, Address = "address", City = new { Id = 0, Country = new { Id = 0, IsoCode = "country.isoCode", Name = "country.name"}, Name = "city.name" }, Latitude = 1.5, Longitude = 2.5, PostalCode = "postalCode" });
     }
 
     /// <summary>
@@ -49,20 +46,18 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var location = new Location();
-      this.TestXml(location, @"<Id>0</Id><Latitude xsi:nil=""true"" /><Longitude xsi:nil=""true"" />");
+      this.TestXml(location, new { Id = 0 });
 
       var city = new City("city.name", new Country("country.name", "country.isoCode"));
 
       location = new Location(city, "address");
-      this.TestXml(location, @"<Id>0</Id><Address>address</Address><City><Id>0</Id><Country><Id>0</Id><IsoCode>country.isoCode</IsoCode><Name>country.name</Name></Country><Name>city.name</Name></City><Latitude xsi:nil=""true"" /><Longitude xsi:nil=""true"" />");
-      Assert.Equal(location, location.Xml().Xml<Location>());
+      this.TestXml(location, new { Id = 0, Address = "address" });
 
-      location = new Location(city, "address", 1, 2, "postalCode")
+      location = new Location(city, "address", (decimal)1.5, (decimal)2.5, "postalCode")
       {
         Id = 1
       };
-      this.TestXml(location, @"<Id>1</Id><Address>address</Address><City><Id>0</Id><Country><Id>0</Id><IsoCode>country.isoCode</IsoCode><Name>country.name</Name></Country><Name>city.name</Name></City><Latitude>1</Latitude><Longitude>2</Longitude><PostalCode>postalCode</PostalCode>");
-      Assert.Equal(location, location.Xml().Xml<Location>());
+      this.TestXml(location, new { Id = 1, Address = "address", Latitude = 1.5, Longitude = 2.5, PostalCode = "postalCode" });
     }
 
     /// <summary>

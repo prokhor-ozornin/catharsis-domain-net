@@ -26,18 +26,16 @@ namespace Catharsis.Domain
     public void Json()
     {
       var translation = new TextTranslation();
-      Assert.Equal(@"{""Id"":0}", translation.Json());
+      this.TestJson(translation, new { Id = 0 });
 
       translation = new TextTranslation("language", "name", "text");
-      Assert.Equal(@"{""Id"":0,""Language"":""language"",""Name"":""name"",""Text"":""text""}", translation.Json());
-      Assert.Equal(translation, translation.Json().Json<TextTranslation>());
+      this.TestJson(translation, new { Id = 0, Language = "language", Name = "name", Text = "text" });
 
       translation = new TextTranslation("language", "name", "text", "translator")
       {
         Id = 1
       };
-      Assert.Equal(@"{""Id"":1,""Language"":""language"",""Name"":""name"",""Text"":""text"",""Translator"":""translator""}", translation.Json());
-      Assert.Equal(translation, translation.Json().Json<TextTranslation>());
+      this.TestJson(translation, new { Id = 1, Language = "language", Name = "name", Text = "text", Translator = "translator" });
     }
 
     /// <summary>
@@ -47,18 +45,16 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var translation = new TextTranslation();
-      this.TestXml(translation, "<Id>0</Id>");
+      this.TestXml(translation, new { Id = 0 });
 
       translation = new TextTranslation("language", "name", "text");
-      this.TestXml(translation, "<Id>0</Id><Language>language</Language><Name>name</Name><Text>text</Text>");
-      Assert.Equal(translation, translation.Xml().Xml<TextTranslation>());
+      this.TestXml(translation, new { Id = 0, Language = "language", Name = "name", Text = "text" });
 
       translation = new TextTranslation("language", "name", "text", "translator")
       {
         Id = 1
       };
-      this.TestXml(translation, "<Id>1</Id><Language>language</Language><Name>name</Name><Text>text</Text><Translator>translator</Translator>");
-      Assert.Equal(translation, translation.Xml().Xml<TextTranslation>());
+      this.TestXml(translation, new { Id = 1, Language = "language", Name = "name", Text = "text", Translator = "translator" });
     }
 
     /// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Xml.Serialization;
 using Catharsis.Commons;
 using Newtonsoft.Json;
@@ -33,8 +34,24 @@ namespace Catharsis.Domain
     ///   <para>Collection of associated comments.</para>
     /// </summary>
     [Description("Collection of associated comments")]
-    [XmlArray("Comments")]
-    public virtual List<Comment> Comments { get; set; }
+    [JsonIgnore]
+    [XmlIgnore]
+    public virtual ICollection<Comment> Comments  { get; set; }
+
+    /// <summary>
+    ///   <para>Collection of associated comments.</para>
+    /// </summary>
+    [Description("Collection of associated comments")]
+    [JsonProperty("Comments")]
+    public virtual Comment[] CommentsArray
+    {
+      get { return this.Comments.ToArray(); }
+      set
+      {
+        this.Comments.Clear();
+        this.Comments.Add(value);
+      }
+    }
 
     /// <summary>
     ///   <para>Date/ time when item was first created.</para>
@@ -75,9 +92,25 @@ namespace Catharsis.Domain
     ///   <para>Collection of associated tags/keywords.</para>
     /// </summary>
     [Description("Collection of associated tags/keywords")]
-    [XmlArray("Tags")]
-    [XmlArrayItem("Tag")]
-    public virtual List<string> Tags { get; set; }
+    [JsonIgnore]
+    [XmlIgnore]
+    public virtual ICollection<string> Tags { get; set; }
+
+    /// <summary>
+    ///   <para>Collection of associated tags/keywords.</para>
+    /// </summary>
+    [Description("Collection of associated tags/keywords")]
+    [JsonProperty("Tags")]
+    [XmlElement("Tag")]
+    public virtual string[] TagsArray
+    {
+      get { return this.Tags.ToArray(); }
+      set
+      {
+        this.Tags.Clear();
+        this.Tags.Add(value);
+      }
+    }
 
     /// <summary>
     ///   <para>Text content of item.</para>
@@ -90,9 +123,11 @@ namespace Catharsis.Domain
     /// </summary>
     public Item()
     {
+      var now = DateTime.UtcNow;
+      this.DateCreated = now;
+      this.LastUpdated = now;
+
       this.Comments = new List<Comment>();
-      this.DateCreated = DateTime.UtcNow;
-      this.LastUpdated = DateTime.UtcNow;
       this.Tags = new List<string>();
     }
 

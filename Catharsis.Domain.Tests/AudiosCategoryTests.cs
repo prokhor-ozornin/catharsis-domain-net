@@ -24,20 +24,16 @@ namespace Catharsis.Domain
     [Fact]
     public void Json()
     {
-      var category = new AudiosCategory();
-      Assert.Equal(@"{""Id"":0}", category.Json());
-
-      category = new AudiosCategory("name");
-      Assert.Equal(@"{""Id"":0,""Name"":""name""}", category.Json());
-      Assert.Equal(category, category.Json().Json<AudiosCategory>());
-
-      category = new AudiosCategory("name", new AudiosCategory("parent.name"), "description")
-      {
-        Id = 1,
-        Language = "language"
-      };
-      Assert.Equal(@"{""Id"":1,""Description"":""description"",""Language"":""language"",""Name"":""name"",""Parent"":{""Id"":0,""Name"":""parent.name""}}", category.Json());
-      Assert.Equal(category, category.Json().Json<AudiosCategory>());
+      this.TestJson(new AudiosCategory(), new { Id = 0 });
+      this.TestJson(new AudiosCategory("name"), new { Id = 0, Name = "name" });
+      this.TestJson(
+        new AudiosCategory("name", new AudiosCategory("parent.name"), "description")
+        {
+          Id = 1,
+          Language = "language"
+        },
+        new { Id = 1, Description = "description", Language = "language", Name = "name", Parent = new { Id = 0, Name = "parent.name" } }
+      );
     }
 
     /// <summary>
@@ -46,20 +42,16 @@ namespace Catharsis.Domain
     [Fact]
     public void Xml()
     {
-      var category = new AudiosCategory();
-      this.TestXml(category, "<Id>0</Id>");
-
-      category = new AudiosCategory("name");
-      this.TestXml(category, "<Id>0</Id><Name>name</Name>");
-      Assert.Equal(category, category.Xml().Xml<AudiosCategory>());
-
-      category = new AudiosCategory("name", new AudiosCategory("parent.name"), "description")
-      {
-        Id = 1,
-        Language = "language"
-      };
-      this.TestXml(category, "<Id>1</Id><Description>description</Description><Language>language</Language><Name>name</Name><Parent><Id>0</Id><Name>parent.name</Name></Parent>");
-      Assert.Equal(category, category.Xml().Xml<AudiosCategory>());
+      this.TestXml(new AudiosCategory(), new { Id = 0 });
+      this.TestXml(new AudiosCategory("name"), new { Id = 0, Name = "name" });
+      this.TestXml(
+        new AudiosCategory("name", new AudiosCategory("parent.name"), "description")
+        {
+          Id = 1,
+          Language = "language"
+        },
+        new { Id = 1, Description = "description", Language = "language", Name = "name" }
+      );
     }
 
     /// <summary>

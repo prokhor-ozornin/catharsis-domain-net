@@ -26,18 +26,16 @@ namespace Catharsis.Domain
     public void Json()
     {
       var setting = new Setting();
-      Assert.Equal(@"{""Id"":0}", setting.Json());
+      this.TestJson(setting, new { Id = 0 });
 
       setting = new Setting("name", "value");
-      Assert.Equal(@"{""Id"":0,""Name"":""name"",""Value"":""value""}", setting.Json());
-      Assert.Equal(setting, setting.Json().Json<Setting>());
+      this.TestJson(setting, new { Id = 0, Name = "name", Value = "value" });
 
       setting = new Setting("name", "value")
       {
         Id = 1
       };
-      Assert.Equal(@"{""Id"":1,""Name"":""name"",""Value"":""value""}", setting.Json());
-      Assert.Equal(setting, setting.Json().Json<Setting>());
+      this.TestJson(setting, new { Id = 1, Name = "name", Value = "value" });
     }
 
     /// <summary>
@@ -47,18 +45,16 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var setting = new Setting();
-      this.TestXml(setting, "<Id>0</Id>");
+      this.TestXml(setting, new { Id = 0 });
 
       setting = new Setting("name", "value");
-      this.TestXml(setting, "<Id>0</Id><Name>name</Name><Value>value</Value>");
-      Assert.Equal(setting, setting.Xml().Xml<Setting>());
+      this.TestXml(setting, new { Id = 0, Name = "name", Value = "value" });
 
       setting = new Setting("name", "value")
       {
         Id = 1
       };
-      this.TestXml(setting, "<Id>1</Id><Name>name</Name><Value>value</Value>");
-      Assert.Equal(setting, setting.Xml().Xml<Setting>());
+      this.TestXml(setting, new { Id = 1, Name = "name", Value = "value" });
     }
 
     /// <summary>

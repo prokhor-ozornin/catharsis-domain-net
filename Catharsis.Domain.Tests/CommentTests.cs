@@ -26,18 +26,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var comment = new Comment();
-      Assert.Equal(@"{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO()), comment.Json());
+      this.TestJson(comment, new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601() });
 
       comment = new Comment("name", "text");
-      Assert.Equal(@"{{""Id"":0,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO()), comment.Json());
-      Assert.Equal(comment, comment.Json().Json<Comment>());
-
-      comment = new Comment("name", "text")
-      {
-        Id = 1 
-      };
-      Assert.Equal(@"{{""Id"":1,""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Text"":""text""}}".FormatSelf(comment.DateCreated.ISO(), comment.LastUpdated.ISO()), comment.Json());
-      Assert.Equal(comment, comment.Json().Json<Comment>());
+      this.TestJson(comment, new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "name", Text = "text" });
     }
 
     /// <summary>
@@ -47,18 +39,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var comment = new Comment();
-      this.TestXml(comment, "<Id>0</Id><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated>".FormatSelf(comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
+      this.TestXml(comment, new { Id = 0, DateCreated = comment.DateCreated, LastUpdated = comment.LastUpdated });
 
       comment = new Comment("name", "text");
-      this.TestXml(comment, "<Id>0</Id><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Text>text</Text>".FormatSelf(comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
-      Assert.Equal(comment, comment.Xml().Xml<Comment>());
-
-      comment = new Comment("name", "text")
-      {
-        Id = 1
-      };
-      this.TestXml(comment, "<Id>1</Id><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Text>text</Text>".FormatSelf(comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString()));
-      Assert.Equal(comment, comment.Xml().Xml<Comment>());
+      this.TestXml(comment, new { Id = 0, DateCreated = comment.DateCreated, LastUpdated = comment.LastUpdated, Name = "name", Text = "text" });
     }
 
     /// <summary>

@@ -28,21 +28,21 @@ namespace Catharsis.Domain
     public void Json()
     {
       var album = new ArtsAlbum();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(album.DateCreated.ISO(), album.LastUpdated.ISO()), album.Json());
+      this.TestJson(album, new { Id = 0, Comments = new object[] { }, DateCreated = album.DateCreated.ISO8601(), LastUpdated = album.LastUpdated.ISO8601(), Tags = new object[] { } });
 
       album = new ArtsAlbum("name");
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""name"",""Tags"":[]}}".FormatSelf(album.DateCreated.ISO(), album.LastUpdated.ISO()), album.Json());
-      Assert.Equal(album, album.Json().Json<ArtsAlbum>());
+      this.TestJson(album, new { Id = 0, Comments = new object[] { }, DateCreated = album.DateCreated.ISO8601(), LastUpdated = album.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { } });
 
       var comment = new Comment("comment.name", "comment.text");
       album = new ArtsAlbum("name", "text", DateTime.MinValue)
       {
         Id = 1,
         Language = "language",
+        PublishedOn = DateTime.MaxValue,
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      Assert.Equal(@"{{""Id"":1,""Comments"":[{{""Id"":0,""DateCreated"":""{1}"",""LastUpdated"":""{2}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{3}"",""Language"":""language"",""LastUpdated"":""{4}"",""Name"":""name"",""PublishedOn"":""{0}"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(DateTime.MinValue.ISO(), comment.DateCreated.ISO(), comment.LastUpdated.ISO(), album.DateCreated.ISO(), album.LastUpdated.ISO()), album.Json());
+      this.TestJson(album, new { Id = 1, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = album.DateCreated.ISO8601(), Language = "language", LastUpdated = album.LastUpdated.ISO8601(), Name = "name", PublishedOn = DateTime.MaxValue.ISO8601(), Tags = new object[] { "tag" }, Text = "text" });
       Assert.Equal(album, album.Json().Json<ArtsAlbum>());
     }
 
@@ -53,22 +53,21 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var album = new ArtsAlbum();
-      this.TestXml(album, @"<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags /><PublishedOn xsi:nil=""true"" />".FormatSelf(album.DateCreated.ToXmlString(), album.LastUpdated.ToXmlString()));
+      this.TestXml(album, new { Id = 0, DateCreated = album.DateCreated, LastUpdated = album.LastUpdated });
 
       album = new ArtsAlbum("name");
-      this.TestXml(album, @"<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><PublishedOn xsi:nil=""true"" />".FormatSelf(album.DateCreated.ToXmlString(), album.LastUpdated.ToXmlString()));
-      Assert.Equal(album, album.Xml().Xml<ArtsAlbum>());
+      this.TestXml(album, new { Id = 0, DateCreated = album.DateCreated, LastUpdated = album.LastUpdated, Name = "name" });
 
       var comment = new Comment("comment.name", "comment.text");
       album = new ArtsAlbum("name", "text", DateTime.MinValue)
       {
         Id = 1,
         Language = "language",
+        PublishedOn = DateTime.MaxValue,
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(album, @"<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><PublishedOn>{4}</PublishedOn>".FormatSelf(album.DateCreated.ToXmlString(), album.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString(), DateTime.MinValue.ToString("s")));
-      Assert.Equal(album, album.Xml().Xml<ArtsAlbum>());
+      this.TestXml(album, new { Id = 1, DateCreated = album.DateCreated, Language = "language", LastUpdated = album.LastUpdated, Name = "name", PublishedOn = DateTime.MaxValue, Text = "text" });
     }
 
     /// <summary>

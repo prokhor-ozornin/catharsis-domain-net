@@ -28,13 +28,12 @@ namespace Catharsis.Domain
     public void Json()
     {
       var entry = new BlogEntry();
-      Assert.Equal(@"{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Tags"":[]}}".FormatSelf(entry.DateCreated.ISO(), entry.LastUpdated.ISO()), entry.Json());
+      this.TestJson(entry, new { Id = 0, Comments = new object[] { }, DateCreated = entry.DateCreated.ISO8601(), LastUpdated = entry.LastUpdated.ISO8601(), Tags = new object[] { } });
 
       var blog = new Blog("blog.name");
 
       entry = new BlogEntry(blog, "name", "text");
-      Assert.Equal(@"{{""Id"":0,""Blog"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""blog.name"",""Tags"":[]}},""Comments"":[],""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""name"",""Tags"":[],""Text"":""text""}}".FormatSelf(blog.DateCreated.ISO(), blog.LastUpdated.ISO(), entry.DateCreated.ISO(), entry.LastUpdated.ISO()), entry.Json());
-      Assert.Equal(entry, entry.Json().Json<BlogEntry>());
+      this.TestJson(entry, new { Id = 0, Blog = new { Id = 0, Comments = new object[] {}, DateCreated = blog.DateCreated.ISO8601(), LastUpdated = blog.LastUpdated.ISO8601(), Name = "blog.name", Tags = new object[] {} }, Comments = new object[] {}, DateCreated = entry.DateCreated.ISO8601(), LastUpdated = entry.LastUpdated.ISO8601(), Name = "name", Tags = new object[] {}, Text = "text" });
 
       var comment = new Comment("comment.name", "comment.text");
       entry = new BlogEntry(blog, "name", "text")
@@ -44,8 +43,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      Assert.Equal(@"{{""Id"":1,""Blog"":{{""Id"":0,""Comments"":[],""DateCreated"":""{0}"",""LastUpdated"":""{1}"",""Name"":""blog.name"",""Tags"":[]}},""Comments"":[{{""Id"":0,""DateCreated"":""{2}"",""LastUpdated"":""{3}"",""Name"":""comment.name"",""Text"":""comment.text""}}],""DateCreated"":""{4}"",""Language"":""language"",""LastUpdated"":""{5}"",""Name"":""name"",""Tags"":[""tag""],""Text"":""text""}}".FormatSelf(blog.DateCreated.ISO(), blog.LastUpdated.ISO(), comment.DateCreated.ISO(), comment.LastUpdated.ISO(), entry.DateCreated.ISO(), entry.LastUpdated.ISO()), entry.Json());
-      Assert.Equal(entry, entry.Json().Json<BlogEntry>());
+      this.TestJson(entry, new { Id = 1, Blog = new { Id = 0, Comments = new object[] {}, DateCreated = blog.DateCreated.ISO8601(), LastUpdated = blog.LastUpdated.ISO8601(), Name = "blog.name", Tags = new object[] {} }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = entry.DateCreated.ISO8601(), Language = "language", LastUpdated = entry.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
     }
 
     /// <summary>
@@ -55,24 +53,12 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var entry = new BlogEntry();
-      this.TestXml(entry, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Tags />".FormatSelf(entry.DateCreated.ToXmlString(), entry.LastUpdated.ToXmlString()));
+      this.TestXml(entry, new { Id = 0, DateCreated = entry.DateCreated, LastUpdated = entry.LastUpdated });
 
       var blog = new Blog("blog.name");
 
       entry = new BlogEntry(blog, "name", "text");
-      this.TestXml(entry, "<Id>0</Id><Comments /><DateCreated>{0}</DateCreated><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags /><Text>text</Text><Blog><Id>0</Id><Comments /><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>blog.name</Name><Tags /></Blog>".FormatSelf(entry.DateCreated.ToXmlString(), entry.LastUpdated.ToXmlString(), blog.DateCreated.ToXmlString(), blog.LastUpdated.ToXmlString()));
-      Assert.Equal(entry, entry.Xml().Xml<BlogEntry>());
-
-      var comment = new Comment("comment.name", "comment.text");
-      entry = new BlogEntry(blog, "name", "text")
-      {
-        Id = 1,
-        Language = "language",
-        Comments = new List<Comment> { comment },
-        Tags = new List<string> { "tag" }
-      };
-      this.TestXml(entry, "<Id>1</Id><Comments><Comment><Id>0</Id><DateCreated>{2}</DateCreated><LastUpdated>{3}</LastUpdated><Name>comment.name</Name><Text>comment.text</Text></Comment></Comments><DateCreated>{0}</DateCreated><Language>language</Language><LastUpdated>{1}</LastUpdated><Name>name</Name><Tags><Tag>tag</Tag></Tags><Text>text</Text><Blog><Id>0</Id><Comments /><DateCreated>{4}</DateCreated><LastUpdated>{5}</LastUpdated><Name>blog.name</Name><Tags /></Blog>".FormatSelf(entry.DateCreated.ToXmlString(), entry.LastUpdated.ToXmlString(), comment.DateCreated.ToXmlString(), comment.LastUpdated.ToXmlString(), blog.DateCreated.ToXmlString(), blog.LastUpdated.ToXmlString()));
-      Assert.Equal(entry, entry.Xml().Xml<BlogEntry>());
+      this.TestXml(entry, new { Id = 0, DateCreated = entry.DateCreated, LastUpdated = entry.LastUpdated, Name = "name", Text = "text" });
     }
 
     /// <summary>

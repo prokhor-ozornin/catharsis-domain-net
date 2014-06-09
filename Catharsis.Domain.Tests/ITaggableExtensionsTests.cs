@@ -26,13 +26,13 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => Enumerable.Empty<TaggableEntity>().AsQueryable().Tag(null));
       Assert.Throws<ArgumentException>(() => Enumerable.Empty<TaggableEntity>().Tag(string.Empty));
 
-      Assert.Equal(1, new[] { new TaggableEntity { Tags = new List<string> { "first" } }, new TaggableEntity { Tags = new List<string> { "second" } } }.AsQueryable().Tag("first").Count());
-      Assert.Equal(1, new[] { null, new TaggableEntity { Tags = new List<string> { "first" } }, null, new TaggableEntity { Tags = new List<string> { "second" } } }.Tag("first").Count());
+      Assert.Equal(1, new[] { new TaggableEntity { Tags = new HashSet<string> { "first" } }, new TaggableEntity { Tags = new HashSet<string> { "second" } } }.AsQueryable().Tag("first").Count());
+      Assert.Equal(1, new[] { null, new TaggableEntity { Tags = new HashSet<string> { "first" } }, null, new TaggableEntity { Tags = new HashSet<string> { "second" } } }.Tag("first").Count());
     }
 
     private sealed class TaggableEntity : ITaggable
     {
-      public List<string> Tags { get; set; }
+      public ICollection<string> Tags { get; set; }
     }
   }
 }
