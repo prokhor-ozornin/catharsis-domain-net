@@ -156,9 +156,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current person with another.</para>
+    ///   <para>Compares the current <see cref="Person"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="Person"/> to compare with this instance.</param>
     public virtual int CompareTo(Person other)
     {
@@ -166,10 +166,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two items instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Person"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The item to compare with the current one.</param>
-    /// <returns><c>true</c> if specified item is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Person other)
     {
       return this.Equality(other, person => person.BirthDay, person => person.BirthMonth, person => person.BirthYear, person => person.DeathDay, person => person.DeathMonth, person => person.DeathYear, person => person.NameFirst, person => person.NameLast, person => person.NameMiddle);
@@ -195,9 +195,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Returns a <see cref="string"/> that represents the current person.</para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="Person"/> instance.</para>
     /// </summary>
-    /// <returns>A string that represents the current person.</returns>
+    /// <returns>A string that represents the current <see cref="Person"/>.</returns>
     public override string ToString()
     {
       return this.NameMiddle.IsEmpty() ? "{0} {1}".FormatSelf(this.NameLast, this.NameFirst) : "{0} {1} {2}".FormatSelf(this.NameLast, this.NameFirst, this.NameMiddle);

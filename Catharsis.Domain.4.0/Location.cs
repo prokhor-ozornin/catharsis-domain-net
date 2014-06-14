@@ -107,10 +107,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two locations instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Location"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The location to compare with the current one.</param>
-    /// <returns><c>true</c> if specified location is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Location other)
     {
       return this.Equality(other, location => location.Address, location => location.City);
@@ -136,9 +136,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Returns a <see cref="string"/> that represents the current location.</para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="Location"/> instance.</para>
     /// </summary>
-    /// <returns>A string that represents the current location.</returns>
+    /// <returns>A string that represents the current <see cref="Location"/>.</returns>
     public override string ToString()
     {
       return "{0},{1},{2}".FormatSelf(this.City.Country, this.City, this.Address);

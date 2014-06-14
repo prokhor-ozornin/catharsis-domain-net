@@ -145,9 +145,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current item with another.</para>
+    ///   <para>Compares the current <see cref="Item"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="Item"/> to compare with this instance.</param>
     public virtual int CompareTo(Item other)
     {
@@ -155,10 +155,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two items instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Item"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The item to compare with the current one.</param>
-    /// <returns><c>true</c> if specified item is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Item other)
     {
       return this.Equality(other, item => item.Language, item => item.Name);
@@ -184,9 +184,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Returns a <see cref="string"/> that represents the current item.</para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="Item"/> instance.</para>
     /// </summary>
-    /// <returns>A string that represents the current item.</returns>
+    /// <returns>A string that represents the current <see cref="Item"/>.</returns>
     public override string ToString()
     {
       return this.Name;

@@ -63,10 +63,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two announcements instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Announcement"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The announcement to compare with the current one.</param>
-    /// <returns><c>true</c> if specified announcement is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Announcement other)
     {
       return base.Equals(other) && this.Equality(other, announcement => announcement.Category);

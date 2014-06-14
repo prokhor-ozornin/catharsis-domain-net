@@ -45,9 +45,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current songs album with another.</para>
+    ///   <para>Compares the current <see cref="SongsAlbum"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="SongsAlbum"/> to compare with this instance.</param>
     public virtual int CompareTo(SongsAlbum other)
     {

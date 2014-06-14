@@ -64,9 +64,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current download with another.</para>
+    ///   <para>Compares the current <see cref="Download"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="Download"/> to compare with this instance.</param>
     public virtual int CompareTo(Download other)
     {
@@ -74,10 +74,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two downloads instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Download"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The download to compare with the current one.</param>
-    /// <returns><c>true</c> if specified download is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Download other)
     {
       return base.Equals(other) && this.Equality(other, download => download.Category);

@@ -112,9 +112,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current subscription with another.</para>
+    ///   <para>Compares the current <see cref="Subscription"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="Subscription"/> to compare with this instance.</param>
     public virtual int CompareTo(Subscription other)
     {
@@ -122,10 +122,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two subscriptions instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Subscription"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The subscription to compare with the current one.</param>
-    /// <returns><c>true</c> if specified subscription is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Subscription other)
     {
       return this.Equality(other, subscription => subscription.Email);
@@ -151,9 +151,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Returns a <see cref="string"/> that represents the current subscription.</para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="Subscription"/> instance.</para>
     /// </summary>
-    /// <returns>A string that represents the current subscription.</returns>
+    /// <returns>A string that represents the current <see cref="Subscription"/>.</returns>
     public override string ToString()
     {
       return this.Email;

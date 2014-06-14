@@ -88,9 +88,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current audio with another.</para>
+    ///   <para>Compares the current <see cref="Audio"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="Audio"/> to compare with this instance.</param>
     public virtual int CompareTo(Audio other)
     {
@@ -98,10 +98,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two audios instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Audio"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The audio to compare with the current one.</param>
-    /// <returns><c>true</c> if specified audio is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Audio other)
     {
       return this.Equality(other, audio => audio.Category, audio => audio.File);
@@ -127,9 +127,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Returns a <see cref="string"/> that represents the current audio.</para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="Audio"/> instance.</para>
     /// </summary>
-    /// <returns>A string that represents the current audio.</returns>
+    /// <returns>A string that represents the current <see cref="Audio"/>.</returns>
     public override string ToString()
     {
       return this.File;

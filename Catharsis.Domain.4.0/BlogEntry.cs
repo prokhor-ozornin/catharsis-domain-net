@@ -51,10 +51,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two blog entries instances are equal.</para>
+    ///   <para>Determines whether two <see cref="BlogEntry"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The blog entry to compare with the current one.</param>
-    /// <returns><c>true</c> if specified blog entry is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(BlogEntry other)
     {
       return base.Equals(other) && this.Equality(other, entry => entry.Blog);

@@ -78,10 +78,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two notifications instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Notification"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The notification to compare with the current one.</param>
-    /// <returns><c>true</c> if specified notification is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Notification other)
     {
       return this.Equality(other, notification => notification.Language, notification => notification.Text, notification => notification.Type);
@@ -107,9 +107,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Returns a <see cref="string"/> that represents the current notification.</para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="Notification"/> instance.</para>
     /// </summary>
-    /// <returns>A string that represents the current notification.</returns>
+    /// <returns>A string that represents the current <see cref="Notification"/>.</returns>
     public override string ToString()
     {
       return this.Text;

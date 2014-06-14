@@ -55,10 +55,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two playcasts instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Playcast"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The playcast to compare with the current one.</param>
-    /// <returns><c>true</c> if specified playcast is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Playcast other)
     {
       return base.Equals(other) && this.Equality(other, playcast => playcast.Category);

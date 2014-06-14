@@ -72,20 +72,20 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current setting with another.</para>
+    ///   <para>Compares the current <see cref="Setting"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="Setting"/> to compare with this instance.</param>
     public virtual int CompareTo(Setting other)
     {
-      return this.Name.CompareTo(other.Name);
+      return this.Name.CompareTo(other.Name, StringComparison.InvariantCultureIgnoreCase);
     }
 
     /// <summary>
-    ///   <para>Determines whether two settings instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Setting"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The setting to compare with the current one.</param>
-    /// <returns><c>true</c> if specified setting is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Setting other)
     {
       return this.Equality(other, setting => setting.Name);
@@ -111,9 +111,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para></para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="Setting"/> instance.</para>
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A string that represents the current <see cref="Setting"/>.</returns>
     public override string ToString()
     {
       return this.Value;

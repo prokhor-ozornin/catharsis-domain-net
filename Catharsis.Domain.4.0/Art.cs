@@ -82,9 +82,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current art with another.</para>
+    ///   <para>Compares the current <see cref="Art"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="Art"/> to compare with this instance.</param>
     public virtual int CompareTo(Art other)
     {
@@ -92,10 +92,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two arts instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Art"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The art to compare with the current one.</param>
-    /// <returns><c>true</c> if specified art is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Art other)
     {
       return base.Equals(other) && this.Equality(other, art => art.Album, art => art.Person);

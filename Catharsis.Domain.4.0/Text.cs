@@ -89,10 +89,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two texts instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Text"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The text to compare with the current one.</param>
-    /// <returns><c>true</c> if specified text is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Text other)
     {
       return base.Equals(other) && this.Equality(other, text => text.Category, text => text.Person);

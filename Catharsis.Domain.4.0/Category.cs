@@ -78,9 +78,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current category with another.</para>
+    ///   <para>Compares the current <see cref="Category"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="Category"/> to compare with this instance.</param>
     public virtual int CompareTo(Category other)
     {
@@ -88,10 +88,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two categories instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Category"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The category to compare with the current one.</param>
-    /// <returns><c>true</c> if specified category is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Category other)
     {
       return this.Equality(other, category => category.Language, category => category.Name);
@@ -117,9 +117,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Returns a <see cref="string"/> that represents the current category.</para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="Category"/> instance.</para>
     /// </summary>
-    /// <returns>A string that represents the current category.</returns>
+    /// <returns>A string that represents the current <see cref="Category"/>.</returns>
     public override string ToString()
     {
       return this.Name;

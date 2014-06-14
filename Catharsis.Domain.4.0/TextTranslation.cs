@@ -112,9 +112,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current translation with another.</para>
+    ///   <para>Compares the current <see cref="TextTranslation"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="TextTranslation"/> to compare with this instance.</param>
     public virtual int CompareTo(TextTranslation other)
     {
@@ -122,10 +122,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two translations instances are equal.</para>
+    ///   <para>Determines whether two <see cref="TextTranslation"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The translation to compare with the current one.</param>
-    /// <returns><c>true</c> if specified translation is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(TextTranslation other)
     {
       return this.Equality(other, translation => translation.Language, translation => translation.Name, translation => translation.Translator);
@@ -151,9 +151,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Returns a <see cref="string"/> that represents the current item.</para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="TextTranslation"/> instance.</para>
     /// </summary>
-    /// <returns>A string that represents the current item.</returns>
+    /// <returns>A string that represents the current <see cref="TextTranslation"/>.</returns>
     public override string ToString()
     {
       return this.Name;

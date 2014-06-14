@@ -60,10 +60,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two weblinks instances are equal.</para>
+    ///   <para>Determines whether two <see cref="WebLink"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The weblink to compare with the current one.</param>
-    /// <returns><c>true</c> if specified weblink is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(WebLink other)
     {
       return base.Equals(other) && this.Equality(other, weblink => weblink.Category, weblink => weblink.Url);
@@ -89,9 +89,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Returns a <see cref="string"/> that represents the current web link.</para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="WebLink"/> instance.</para>
     /// </summary>
-    /// <returns>A string that represents the current web link.</returns>
+    /// <returns>A string that represents the current <see cref="WebLink"/>.</returns>
     public override string ToString()
     {
       return this.Url;

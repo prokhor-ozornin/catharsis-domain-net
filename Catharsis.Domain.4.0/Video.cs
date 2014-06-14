@@ -104,9 +104,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current video with another.</para>
+    ///   <para>Compares the current <see cref="Video"/> instance with another.</para>
     /// </summary>
-    /// <returns>A value that indicates the relative order of the objects being compared.</returns>
+    /// <returns>A value that indicates the relative order of the instances being compared.</returns>
     /// <param name="other">The <see cref="Video"/> to compare with this instance.</param>
     public virtual int CompareTo(Video other)
     {
@@ -114,10 +114,10 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Determines whether two videos instances are equal.</para>
+    ///   <para>Determines whether two <see cref="Video"/> instances are equal.</para>
     /// </summary>
-    /// <param name="other">The video to compare with the current one.</param>
-    /// <returns><c>true</c> if specified video is equal to the current, <c>false</c> otherwise.</returns>
+    /// <param name="other">The instance to compare with the current one.</param>
+    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
     public virtual bool Equals(Video other)
     {
       return this.Equality(other, video => video.Category, video => video.File);
@@ -143,9 +143,9 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Returns a <see cref="string"/> that represents the current video.</para>
+    ///   <para>Returns a <see cref="string"/> that represents the current <see cref="Video"/> instance.</para>
     /// </summary>
-    /// <returns>A string that represents the current video.</returns>
+    /// <returns>A string that represents the current <see cref="Video"/>.</returns>
     public override string ToString()
     {
       return this.File;
