@@ -52,6 +52,7 @@ namespace Catharsis.Domain
     [Description("Collection of text's translations to other languages")]
     [JsonProperty("Translations")]
     [XmlElement("Translation")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public virtual TextTranslation[] TranslationsArray
     {
       get { return this.Translations.ToArray(); }

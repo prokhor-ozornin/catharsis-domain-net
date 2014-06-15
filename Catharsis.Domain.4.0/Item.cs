@@ -43,6 +43,7 @@ namespace Catharsis.Domain
     /// </summary>
     [Description("Collection of associated comments")]
     [JsonProperty("Comments")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public virtual Comment[] CommentsArray
     {
       get { return this.Comments.ToArray(); }
@@ -102,6 +103,7 @@ namespace Catharsis.Domain
     [Description("Collection of associated tags/keywords")]
     [JsonProperty("Tags")]
     [XmlElement("Tag")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public virtual string[] TagsArray
     {
       get { return this.Tags.ToArray(); }
