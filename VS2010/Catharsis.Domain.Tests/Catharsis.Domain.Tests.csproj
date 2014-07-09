@@ -31,9 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Catharsis.Commons, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Catharsis.Commons.2.5\lib\net40\Catharsis.Commons.dll</HintPath>
+    <Reference Include="Catharsis.Commons, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Catharsis.Commons.2.6.1\lib\net40\Catharsis.Commons.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -47,74 +46,74 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnnouncementExtensionsTests.cs" />
-    <Compile Include="AnnouncementsCategoryTests.cs" />
-    <Compile Include="AnnouncementTests.cs" />
-    <Compile Include="ArticleExtensionsTests.cs" />
-    <Compile Include="ArticlesCategoryTests.cs" />
-    <Compile Include="ArticleTests.cs" />
-    <Compile Include="ArtsAlbumExtensionsTests.cs" />
-    <Compile Include="ArtsAlbumTests.cs" />
-    <Compile Include="ArtsExtensionsTests.cs" />
-    <Compile Include="ArtTests.cs" />
-    <Compile Include="AudioExtensionsTests.cs" />
-    <Compile Include="AudiosCategoryTests.cs" />
-    <Compile Include="AudioTests.cs" />
-    <Compile Include="BlogEntryExtensionsTests.cs" />
-    <Compile Include="BlogEntryTests.cs" />
-    <Compile Include="BlogTests.cs" />
-    <Compile Include="CategoryUnitTests.cs" />
-    <Compile Include="CategoryUnitTestsBase.cs" />
-    <Compile Include="CityExtensionsTests.cs" />
-    <Compile Include="CityTests.cs" />
-    <Compile Include="CommentTests.cs" />
-    <Compile Include="CountryExtensionsTests.cs" />
-    <Compile Include="CountryTests.cs" />
-    <Compile Include="DownloadExtensionsTests.cs" />
-    <Compile Include="DownloadsCategoryTests.cs" />
-    <Compile Include="DownloadTests.cs" />
-    <Compile Include="EntityUnitTests.cs" />
-    <Compile Include="FaqTests.cs" />
-    <Compile Include="IDateableExtensionsTests.cs" />
-    <Compile Include="IDimensionableExtensionsTests.cs" />
-    <Compile Include="IEntityExtensionsTests.cs" />
-    <Compile Include="ILocalizableExtensionsTests.cs" />
-    <Compile Include="INameableExtensionsTests.cs" />
-    <Compile Include="ITaggableExtensionsTests.cs" />
-    <Compile Include="ItemTests.cs" />
-    <Compile Include="ITimestampableExtensionsTests.cs" />
-    <Compile Include="ITypeableExtensionsTests.cs" />
-    <Compile Include="JsonDefaultSettingsTests.cs" />
-    <Compile Include="LocationExtensionsTests.cs" />
-    <Compile Include="LocationTests.cs" />
-    <Compile Include="MockJsonObject.cs" />
-    <Compile Include="NotificationTests.cs" />
-    <Compile Include="ObjectExtensionsTests.cs" />
-    <Compile Include="PersonTests.cs" />
-    <Compile Include="PlaycastExtensionsTests.cs" />
-    <Compile Include="PlaycastsCategoryTests.cs" />
-    <Compile Include="PlaycastTests.cs" />
-    <Compile Include="ProfileExtensionsTests.cs" />
-    <Compile Include="ProfileTests.cs" />
+    <Compile Include="Extensions\AnnouncementExtensionsTests.cs" />
+    <Compile Include="Implementation\AnnouncementsCategoryTests.cs" />
+    <Compile Include="Implementation\AnnouncementTests.cs" />
+    <Compile Include="Extensions\ArticleExtensionsTests.cs" />
+    <Compile Include="Implementation\ArticlesCategoryTests.cs" />
+    <Compile Include="Implementation\ArticleTests.cs" />
+    <Compile Include="Extensions\ArtsAlbumExtensionsTests.cs" />
+    <Compile Include="Implementation\ArtsAlbumTests.cs" />
+    <Compile Include="Extensions\ArtsExtensionsTests.cs" />
+    <Compile Include="Implementation\ArtTests.cs" />
+    <Compile Include="Extensions\AudioExtensionsTests.cs" />
+    <Compile Include="Implementation\AudiosCategoryTests.cs" />
+    <Compile Include="Implementation\AudioTests.cs" />
+    <Compile Include="Extensions\BlogEntryExtensionsTests.cs" />
+    <Compile Include="Implementation\BlogEntryTests.cs" />
+    <Compile Include="Implementation\BlogTests.cs" />
+    <Compile Include="Implementation\CategoryUnitTests.cs" />
+    <Compile Include="Implementation\CategoryUnitTestsBase.cs" />
+    <Compile Include="Extensions\CityExtensionsTests.cs" />
+    <Compile Include="Implementation\CityTests.cs" />
+    <Compile Include="Implementation\CommentTests.cs" />
+    <Compile Include="Extensions\CountryExtensionsTests.cs" />
+    <Compile Include="Implementation\CountryTests.cs" />
+    <Compile Include="Extensions\DownloadExtensionsTests.cs" />
+    <Compile Include="Implementation\DownloadsCategoryTests.cs" />
+    <Compile Include="Implementation\DownloadTests.cs" />
+    <Compile Include="Implementation\EntityUnitTests.cs" />
+    <Compile Include="Implementation\FaqTests.cs" />
+    <Compile Include="Extensions\IDateableExtensionsTests.cs" />
+    <Compile Include="Extensions\IDimensionableExtensionsTests.cs" />
+    <Compile Include="Extensions\IEntityExtensionsTests.cs" />
+    <Compile Include="Extensions\ILocalizableExtensionsTests.cs" />
+    <Compile Include="Extensions\INameableExtensionsTests.cs" />
+    <Compile Include="Extensions\ITaggableExtensionsTests.cs" />
+    <Compile Include="Implementation\ItemTests.cs" />
+    <Compile Include="Extensions\ITimestampableExtensionsTests.cs" />
+    <Compile Include="Extensions\ITypeableExtensionsTests.cs" />
+    <Compile Include="Implementation\JsonDefaultSettingsTests.cs" />
+    <Compile Include="Extensions\LocationExtensionsTests.cs" />
+    <Compile Include="Implementation\LocationTests.cs" />
+    <Compile Include="Implementation\MockJsonObject.cs" />
+    <Compile Include="Implementation\NotificationTests.cs" />
+    <Compile Include="Extensions\ObjectExtensionsTests.cs" />
+    <Compile Include="Implementation\PersonTests.cs" />
+    <Compile Include="Extensions\PlaycastExtensionsTests.cs" />
+    <Compile Include="Implementation\PlaycastsCategoryTests.cs" />
+    <Compile Include="Implementation\PlaycastTests.cs" />
+    <Compile Include="Extensions\ProfileExtensionsTests.cs" />
+    <Compile Include="Implementation\ProfileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingTests.cs" />
-    <Compile Include="SongExtensionsTests.cs" />
-    <Compile Include="SongsAlbumExtensionsTests.cs" />
-    <Compile Include="SongsAlbumTests.cs" />
-    <Compile Include="SongTests.cs" />
-    <Compile Include="StringExtensionsTests.cs" />
-    <Compile Include="SubscriptionExtensionsTests.cs" />
-    <Compile Include="SubscriptionTests.cs" />
-    <Compile Include="TextExtensionsTests.cs" />
-    <Compile Include="TextsCategoryTests.cs" />
-    <Compile Include="TextTests.cs" />
-    <Compile Include="TextTranslationTests.cs" />
-    <Compile Include="VideoExtensionsTests.cs" />
-    <Compile Include="VideosCategoryTests.cs" />
-    <Compile Include="VideoTests.cs" />
-    <Compile Include="WebLinkExtensionsTests.cs" />
-    <Compile Include="WebLinksCategoryTests.cs" />
-    <Compile Include="WebLinkTests.cs" />
+    <Compile Include="Implementation\SettingTests.cs" />
+    <Compile Include="Extensions\SongExtensionsTests.cs" />
+    <Compile Include="Extensions\SongsAlbumExtensionsTests.cs" />
+    <Compile Include="Implementation\SongsAlbumTests.cs" />
+    <Compile Include="Implementation\SongTests.cs" />
+    <Compile Include="Extensions\StringExtensionsTests.cs" />
+    <Compile Include="Extensions\SubscriptionExtensionsTests.cs" />
+    <Compile Include="Implementation\SubscriptionTests.cs" />
+    <Compile Include="Extensions\TextExtensionsTests.cs" />
+    <Compile Include="Implementation\TextsCategoryTests.cs" />
+    <Compile Include="Implementation\TextTests.cs" />
+    <Compile Include="Implementation\TextTranslationTests.cs" />
+    <Compile Include="Extensions\VideoExtensionsTests.cs" />
+    <Compile Include="Implementation\VideosCategoryTests.cs" />
+    <Compile Include="Implementation\VideoTests.cs" />
+    <Compile Include="Extensions\WebLinkExtensionsTests.cs" />
+    <Compile Include="Implementation\WebLinksCategoryTests.cs" />
+    <Compile Include="Implementation\WebLinkTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

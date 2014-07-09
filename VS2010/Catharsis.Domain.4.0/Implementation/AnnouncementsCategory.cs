@@ -13,7 +13,7 @@ namespace Catharsis.Domain
     ///   <para>Parent category.</para>
     /// </summary>
     [Description("Parent category")]
-    public virtual AnnouncementsCategory Parent { get; set; }
+    public virtual AnnouncementsCategory Parent { get; set; } 
 
     /// <summary>
     ///   <para>Creates new category of announcements.</para>

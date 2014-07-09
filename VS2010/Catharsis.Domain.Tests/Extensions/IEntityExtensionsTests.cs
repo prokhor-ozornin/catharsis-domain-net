@@ -74,7 +74,6 @@ namespace Catharsis.Domain
       Assert.True(ReferenceEquals(new[] { element }.AsQueryable().RandomEntity(), element));
       elements = new[] { new Entity(), new Entity() };
       Assert.True(elements.AsQueryable().Contains(elements.RandomEntity()));
-
     }
 
     private sealed class Entity : IEntity

@@ -42,7 +42,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestJson(song, new { Id = 1, Album = new { Id = 0, Comments = new object[] {}, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "album.name", Tags = new object[] {}}, Audio = "audio", Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = song.DateCreated.ISO8601(), Language = "language", LastUpdated = song.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
+      this.TestJson(song, new { Id = 1, Album = new { Id = 0, Comments = new object[] {}, DateCreated = album.DateCreated.ISO8601(), LastUpdated = album.LastUpdated.ISO8601(), Name = "album.name", Tags = new object[] {}}, Audio = "audio", Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = song.DateCreated.ISO8601(), Language = "language", LastUpdated = song.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
     }
 
     /// <summary>

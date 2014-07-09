@@ -10,7 +10,7 @@ namespace Catharsis.Domain
   ///   <para>Represents custom category of content.</para>
   /// </summary>
   [Description("Represents user blog/journal")]
-  public partial class Category : IComparable<Category>, IEquatable<Category>, IEntity, INameable
+  public partial class Category : IComparable<ICategory>, IEquatable<ICategory>, ICategory
   {
     private string name;
 
@@ -78,21 +78,21 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Compares the current <see cref="Category"/> instance with another.</para>
+    ///   <para>Compares the current <see cref="ICategory"/> instance with another.</para>
     /// </summary>
     /// <returns>A value that indicates the relative order of the instances being compared.</returns>
-    /// <param name="other">The <see cref="Category"/> to compare with this instance.</param>
-    public virtual int CompareTo(Category other)
+    /// <param name="other">The <see cref="ICategory"/> to compare with this instance.</param>
+    public virtual int CompareTo(ICategory other)
     {
       return this.Name.CompareTo(other.Name, StringComparison.InvariantCultureIgnoreCase);
     }
 
     /// <summary>
-    ///   <para>Determines whether two <see cref="Category"/> instances are equal.</para>
+    ///   <para>Determines whether two <see cref="ICategory"/> instances are equal.</para>
     /// </summary>
     /// <param name="other">The instance to compare with the current one.</param>
     /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(Category other)
+    public virtual bool Equals(ICategory other)
     {
       return this.Equality(other, category => category.Language, category => category.Name);
     }
@@ -104,7 +104,7 @@ namespace Catharsis.Domain
     /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
     public override bool Equals(object other)
     {
-      return this.Equals(other as Category);
+      return this.Equals(other as ICategory);
     }
 
     /// <summary>

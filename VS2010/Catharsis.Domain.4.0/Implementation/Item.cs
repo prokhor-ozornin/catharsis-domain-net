@@ -12,7 +12,7 @@ namespace Catharsis.Domain
   ///   <para>Represents base content element.</para>
   /// </summary>
   [Description("Represents base content element")]
-  public partial class Item : IComparable<Item>, IEquatable<Item>, IEntity, ICommentable, ILocalizable, INameable, ITaggable, ITimestampable
+  public partial class Item : IComparable<Item>, IEquatable<Item>, IEntity, ILocalizable, INameable, ITaggable, ITimestampable
   {
     private string name;
 

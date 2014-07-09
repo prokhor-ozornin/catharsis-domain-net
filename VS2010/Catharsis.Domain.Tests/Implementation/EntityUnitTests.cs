@@ -18,21 +18,23 @@ namespace Catharsis.Domain
     [Fact]
     public void Id_Property()
     {
-      Assert.Equal(1, typeof(ENTITY).NewInstance().To<ENTITY>().Id = 1);
+      Assert.Equal(1, typeof(ENTITY).NewInstance().To<ENTITY>().Property("Id", 1).Id);
     }
 
     [Fact]
     public void Version_Property()
     {
-      Assert.Equal(1, typeof(ENTITY).NewInstance().To<ENTITY>().Version = 1);
+      Assert.Equal(1, typeof(ENTITY).NewInstance().To<ENTITY>().Property("Version", 1).Version);
     }
 
-    protected void TestCompareTo<PROPERTY>(string property, PROPERTY lower, PROPERTY greater)
+    protected void TestCompareTo<PROPERTY>(string property, PROPERTY lower, PROPERTY greater, Func<ENTITY> constructor = null)
     {
       Assertion.NotEmpty(property);
 
-      var first = typeof(ENTITY).NewInstance().To<IComparable<ENTITY>>();
-      var second = typeof(ENTITY).NewInstance().To<ENTITY>();
+      constructor = constructor ?? (() => typeof(ENTITY).NewInstance().To<ENTITY>());
+
+      var first = constructor().To<IComparable<ENTITY>>();
+      var second = constructor().To<ENTITY>();
 
       first.Property(property, lower);
       second.Property(property, lower);
@@ -42,31 +44,33 @@ namespace Catharsis.Domain
       Assert.True(first.CompareTo(second) < 0);
     }
 
-    protected void TestEquality<PROPERTY>(string property, PROPERTY oldValue, PROPERTY newValue)
+    protected void TestEquality<PROPERTY>(string property, PROPERTY oldValue, PROPERTY newValue, Func<ENTITY> constructor = null)
     {
       Assertion.NotEmpty(property);
 
-      var entity = typeof(ENTITY).NewInstance();
+      constructor = constructor ?? (() => typeof(ENTITY).NewInstance().To<ENTITY>());
+      var entity = constructor();
 
       Assert.False(entity.Equals(null));
       Assert.True(entity.Equals(entity));
-      Assert.True(entity.Equals(typeof(ENTITY).NewInstance()));
-      
-      Assert.True(typeof(ENTITY).NewInstance().Property(property, oldValue).Equals(typeof(ENTITY).NewInstance().Property(property, oldValue)));
-      Assert.False(typeof(ENTITY).NewInstance().Property(property, oldValue).Equals(typeof(ENTITY).NewInstance().Property(property, newValue)));
+      Assert.True(entity.Equals(constructor()));
+
+      Assert.True(constructor().Property(property, oldValue).Equals(constructor().Property(property, oldValue)));
+      Assert.False(constructor().Property(property, oldValue).Equals(constructor().Property(property, newValue)));
     }
 
-    protected void TestHashCode<PROPERTY>(string property, PROPERTY oldValue, PROPERTY newValue)
+    protected void TestHashCode<PROPERTY>(string property, PROPERTY oldValue, PROPERTY newValue, Func<ENTITY> constructor = null)
     {
       Assertion.NotEmpty(property);
 
-      var entity = typeof(ENTITY).NewInstance();
+      constructor = constructor ?? (() => typeof(ENTITY).NewInstance().To<ENTITY>());
+      var entity = constructor();
 
-      Assert.Equal(entity.GetHashCode(), entity.GetHashCode());
-      Assert.Equal(typeof(ENTITY).NewInstance().GetHashCode(), entity.GetHashCode());
+      Assert.True(entity.GetHashCode() == entity.GetHashCode());
+      Assert.True(entity.GetHashCode() == constructor().GetHashCode());
 
-      Assert.Equal(typeof(ENTITY).NewInstance().Property(property, oldValue).GetHashCode(), typeof(ENTITY).NewInstance().Property(property, oldValue).GetHashCode());
-      Assert.NotEqual(typeof(ENTITY).NewInstance().Property(property, oldValue).GetHashCode(), typeof(ENTITY).NewInstance().Property(property, newValue).GetHashCode());
+      Assert.True(constructor().Property(property, oldValue).GetHashCode() == constructor().Property(property, oldValue).GetHashCode());
+      Assert.True(constructor().Property(property, oldValue).GetHashCode() != constructor().Property(property, newValue).GetHashCode());
     }
 
     protected void TestDescription(params string[] properties)
@@ -132,11 +136,11 @@ namespace Catharsis.Domain
       Assert.True(xml.Contains(@"<?xml version=""1.0"" encoding=""utf-16""?>"));
       if (attributes == null)
       {
-        Assert.True(xml.Contains(@"<{0} xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" />".FormatSelf(typeof(ENTITY).Name)));
+        Assert.True(xml.Contains(@"<{0}".FormatSelf(typeof(ENTITY).Name)));
       }
       else
       {
-        Assert.True(xml.Contains(@"<{0} xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">".FormatSelf(typeof(ENTITY).Name)));
+        Assert.True(xml.Contains(@"<{0}".FormatSelf(typeof(ENTITY).Name)));
         Assert.True(xml.Contains("</{0}>".FormatSelf(typeof(ENTITY).Name)));
         foreach (var tag in tags)
         {

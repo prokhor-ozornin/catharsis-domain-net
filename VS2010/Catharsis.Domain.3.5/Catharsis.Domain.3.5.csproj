@@ -33,9 +33,8 @@
     <DocumentationFile>bin\Release\Catharsis.Domain.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Catharsis.Commons, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Catharsis.Commons.2.5\lib\net35\Catharsis.Commons.dll</HintPath>
+    <Reference Include="Catharsis.Commons">
+      <HintPath>..\packages\Catharsis.Commons.2.6.1\lib\net35\Catharsis.Commons.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
@@ -45,143 +44,323 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Catharsis.Domain.4.0\Announcement.cs">
-      <Link>Announcement.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\AnnouncementExtensions.cs">
+      <Link>Extensions\AnnouncementExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\AnnouncementExtensions.cs">
-      <Link>AnnouncementExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\ArtExtensions.cs">
+      <Link>Extensions\ArtExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\AnnouncementsCategory.cs">
-      <Link>AnnouncementsCategory.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\ArticleExtensions.cs">
+      <Link>Extensions\ArticleExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Art.cs">
-      <Link>Art.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\ArtsAlbumExtensions.cs">
+      <Link>Extensions\ArtsAlbumExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ArtExtensions.cs">
-      <Link>ArtExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\AudioExtensions.cs">
+      <Link>Extensions\AudioExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Article.cs">
-      <Link>Article.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\BlogEntryExtensions.cs">
+      <Link>Extensions\BlogEntryExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ArticleExtensions.cs">
-      <Link>ArticleExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\CityExtensions.cs">
+      <Link>Extensions\CityExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ArticlesCategory.cs">
-      <Link>ArticlesCategory.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\CountryExtensions.cs">
+      <Link>Extensions\CountryExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ArtsAlbum.cs">
-      <Link>ArtsAlbum.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\DownloadExtensions.cs">
+      <Link>Extensions\DownloadExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ArtsAlbumExtensions.cs">
-      <Link>ArtsAlbumExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\IDateableExtensions.cs">
+      <Link>Extensions\IDateableExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Audio.cs">
-      <Link>Audio.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\IDimensionableExtensions.cs">
+      <Link>Extensions\IDimensionableExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\AudioExtensions.cs">
-      <Link>AudioExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\IEntityExtensions.cs">
+      <Link>Extensions\IEntityExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\AudiosCategory.cs">
-      <Link>AudiosCategory.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\ILocalizableExtensions.cs">
+      <Link>Extensions\ILocalizableExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Blog.cs">
-      <Link>Blog.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\INameableExtensions.cs">
+      <Link>Extensions\INameableExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\BlogEntry.cs">
-      <Link>BlogEntry.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\ITaggableExtensions.cs">
+      <Link>Extensions\ITaggableExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\BlogEntryExtensions.cs">
-      <Link>BlogEntryExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\ITimestampableExtensions.cs">
+      <Link>Extensions\ITimestampableExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Category.cs">
-      <Link>Category.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\ITypeableExtensions.cs">
+      <Link>Extensions\ITypeableExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\City.cs">
-      <Link>City.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\LocationExtensions.cs">
+      <Link>Extensions\LocationExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\CityExtensions.cs">
-      <Link>CityExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\PlaycastExtensions.cs">
+      <Link>Extensions\PlaycastExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Comment.cs">
-      <Link>Comment.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\ProfileExtensions.cs">
+      <Link>Extensions\ProfileExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Country.cs">
-      <Link>Country.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\SongExtensions.cs">
+      <Link>Extensions\SongExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\CountryExtensions.cs">
-      <Link>CountryExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\SongsAlbumExtensions.cs">
+      <Link>Extensions\SongsAlbumExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Download.cs">
-      <Link>Download.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\SubscriptionExtensions.cs">
+      <Link>Extensions\SubscriptionExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\DownloadExtensions.cs">
-      <Link>DownloadExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\TextExtensions.cs">
+      <Link>Extensions\TextExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\DownloadsCategory.cs">
-      <Link>DownloadsCategory.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\VideoExtensions.cs">
+      <Link>Extensions\VideoExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Faq.cs">
-      <Link>Faq.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Extensions\WebLinkExtensions.cs">
+      <Link>Extensions\WebLinkExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ICommentable.cs">
-      <Link>ICommentable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Announcement.cs">
+      <Link>Implementation\Announcement.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\IDateable.cs">
-      <Link>IDateable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\AnnouncementsCategory.cs">
+      <Link>Implementation\AnnouncementsCategory.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\IDateableExtensions.cs">
-      <Link>IDateableExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Art.cs">
+      <Link>Implementation\Art.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\IDimensionable.cs">
-      <Link>IDimensionable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Article.cs">
+      <Link>Implementation\Article.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\IDimensionableExtensions.cs">
-      <Link>IDimensionableExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\ArticlesCategory.cs">
+      <Link>Implementation\ArticlesCategory.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\IEntity.cs">
-      <Link>IEntity.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\ArtsAlbum.cs">
+      <Link>Implementation\ArtsAlbum.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\IEntityExtensions.cs">
-      <Link>IEntityExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Audio.cs">
+      <Link>Implementation\Audio.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\IIdentifyable.cs">
-      <Link>IIdentifyable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\AudiosCategory.cs">
+      <Link>Implementation\AudiosCategory.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ILocalizable.cs">
-      <Link>ILocalizable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Blog.cs">
+      <Link>Implementation\Blog.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ILocalizableExtensions.cs">
-      <Link>ILocalizableExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\BlogEntry.cs">
+      <Link>Implementation\BlogEntry.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\INameable.cs">
-      <Link>INameable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Category.cs">
+      <Link>Implementation\Category.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\INameableExtensions.cs">
-      <Link>INameableExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\City.cs">
+      <Link>Implementation\City.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ITaggable.cs">
-      <Link>ITaggable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Comment.cs">
+      <Link>Implementation\Comment.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ITaggableExtensions.cs">
-      <Link>ITaggableExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Country.cs">
+      <Link>Implementation\Country.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Item.cs">
-      <Link>Item.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Download.cs">
+      <Link>Implementation\Download.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ITimestampable.cs">
-      <Link>ITimestampable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\DownloadsCategory.cs">
+      <Link>Implementation\DownloadsCategory.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ITimestampableExtensions.cs">
-      <Link>ITimestampableExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Faq.cs">
+      <Link>Implementation\Faq.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ITypeable.cs">
-      <Link>ITypeable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Item.cs">
+      <Link>Implementation\Item.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ITypeableExtensions.cs">
-      <Link>ITypeableExtensions.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Location.cs">
+      <Link>Implementation\Location.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\IVersionable.cs">
-      <Link>IVersionable.cs</Link>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Notification.cs">
+      <Link>Implementation\Notification.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Person.cs">
+      <Link>Implementation\Person.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Playcast.cs">
+      <Link>Implementation\Playcast.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\PlaycastsCategory.cs">
+      <Link>Implementation\PlaycastsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Profile.cs">
+      <Link>Implementation\Profile.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Setting.cs">
+      <Link>Implementation\Setting.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Song.cs">
+      <Link>Implementation\Song.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\SongsAlbum.cs">
+      <Link>Implementation\SongsAlbum.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Subscription.cs">
+      <Link>Implementation\Subscription.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Text.cs">
+      <Link>Implementation\Text.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\TextsCategory.cs">
+      <Link>Implementation\TextsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\TextTranslation.cs">
+      <Link>Implementation\TextTranslation.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Video.cs">
+      <Link>Implementation\Video.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\VideosCategory.cs">
+      <Link>Implementation\VideosCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\WebLink.cs">
+      <Link>Implementation\WebLink.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\WebLinksCategory.cs">
+      <Link>Implementation\WebLinksCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IAnnouncement.cs">
+      <Link>Interface\IAnnouncement.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IAnnouncementsCategory.cs">
+      <Link>Interface\IAnnouncementsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IArt.cs">
+      <Link>Interface\IArt.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IArticle.cs">
+      <Link>Interface\IArticle.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IArticlesCategory.cs">
+      <Link>Interface\IArticlesCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IArtsAlbum.cs">
+      <Link>Interface\IArtsAlbum.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IAudio.cs">
+      <Link>Interface\IAudio.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IAudiosCategory.cs">
+      <Link>Interface\IAudiosCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IBlog.cs">
+      <Link>Interface\IBlog.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IBlogEntry.cs">
+      <Link>Interface\IBlogEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ICategory.cs">
+      <Link>Interface\ICategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ICity.cs">
+      <Link>Interface\ICity.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IComment.cs">
+      <Link>Interface\IComment.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ICountry.cs">
+      <Link>Interface\ICountry.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IDateable.cs">
+      <Link>Interface\IDateable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IDimensionable.cs">
+      <Link>Interface\IDimensionable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IDownload.cs">
+      <Link>Interface\IDownload.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IDownloadsCategory.cs">
+      <Link>Interface\IDownloadsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IEntity.cs">
+      <Link>Interface\IEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IFaq.cs">
+      <Link>Interface\IFaq.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IIdentifyable.cs">
+      <Link>Interface\IIdentifyable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IItem.cs">
+      <Link>Interface\IItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ILocalizable.cs">
+      <Link>Interface\ILocalizable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ILocation.cs">
+      <Link>Interface\ILocation.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\INameable.cs">
+      <Link>Interface\INameable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\INotification.cs">
+      <Link>Interface\INotification.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IPerson.cs">
+      <Link>Interface\IPerson.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IPlaycast.cs">
+      <Link>Interface\IPlaycast.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IPlaycastsCategory.cs">
+      <Link>Interface\IPlaycastsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IProfile.cs">
+      <Link>Interface\IProfile.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ISetting.cs">
+      <Link>Interface\ISetting.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ISong.cs">
+      <Link>Interface\ISong.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ISongsAlbum.cs">
+      <Link>Interface\ISongsAlbum.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ISubscription.cs">
+      <Link>Interface\ISubscription.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ITaggable.cs">
+      <Link>Interface\ITaggable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IText.cs">
+      <Link>Interface\IText.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ITextsCategory.cs">
+      <Link>Interface\ITextsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ITextTranslation.cs">
+      <Link>Interface\ITextTranslation.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ITimestampable.cs">
+      <Link>Interface\ITimestampable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\ITypeable.cs">
+      <Link>Interface\ITypeable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IVersionable.cs">
+      <Link>Interface\IVersionable.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IVideo.cs">
+      <Link>Interface\IVideo.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IVideosCategory.cs">
+      <Link>Interface\IVideosCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IWebLink.cs">
+      <Link>Interface\IWebLink.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Interface\IWebLinksCategory.cs">
+      <Link>Interface\IWebLinksCategory.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\JsonDefaultSettings.cs">
       <Link>JsonDefaultSettings.cs</Link>
@@ -195,95 +374,18 @@
     <Compile Include="..\Catharsis.Domain.4.0\JsonNameableEntityConverter.cs">
       <Link>JsonNameableEntityConverter.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Location.cs">
-      <Link>Location.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\LocationExtensions.cs">
-      <Link>LocationExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Notification.cs">
-      <Link>Notification.cs</Link>
-    </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\ObjectExtensions.cs">
       <Link>ObjectExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Person.cs">
-      <Link>Person.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Playcast.cs">
-      <Link>Playcast.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\PlaycastExtensions.cs">
-      <Link>PlaycastExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\PlaycastsCategory.cs">
-      <Link>PlaycastsCategory.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Profile.cs">
-      <Link>Profile.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\ProfileExtensions.cs">
-      <Link>ProfileExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Setting.cs">
-      <Link>Setting.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Song.cs">
-      <Link>Song.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\SongExtensions.cs">
-      <Link>SongExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\SongsAlbum.cs">
-      <Link>SongsAlbum.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\SongsAlbumExtensions.cs">
-      <Link>SongsAlbumExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\StringExtensions.cs">
       <Link>StringExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Subscription.cs">
-      <Link>Subscription.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\SubscriptionExtensions.cs">
-      <Link>SubscriptionExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Text.cs">
-      <Link>Text.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\TextExtensions.cs">
-      <Link>TextExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\TextsCategory.cs">
-      <Link>TextsCategory.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\TextTranslation.cs">
-      <Link>TextTranslation.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\Video.cs">
-      <Link>Video.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\VideoExtensions.cs">
-      <Link>VideoExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\VideosCategory.cs">
-      <Link>VideosCategory.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\WebLink.cs">
-      <Link>WebLink.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\WebLinkExtensions.cs">
-      <Link>WebLinkExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Catharsis.Domain.4.0\WebLinksCategory.cs">
-      <Link>WebLinksCategory.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
