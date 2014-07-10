@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Xml.Linq;
 using Catharsis.Commons;
 using Xunit;
 
@@ -126,13 +127,13 @@ namespace Catharsis.Domain
         }
         else if (value is DateTime)
         {
-          value = value.To<DateTime>().AsXml();
+          value = XDocument.Parse(value.To<DateTime>().ToXml()).Root.Value;
         }
 
         return string.Format(CultureInfo.InvariantCulture, "<{0}>{1}</{0}>", property.Name, value);
       });
 
-      var xml = entity.Xml();
+      var xml = entity.ToXml();
       Assert.True(xml.Contains(@"<?xml version=""1.0"" encoding=""utf-16""?>"));
       if (attributes == null)
       {
