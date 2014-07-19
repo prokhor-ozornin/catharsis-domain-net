@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using Catharsis.Commons;
-using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -10,24 +8,10 @@ namespace Catharsis.Domain
   ///   <para>Represents geographical country.</para>
   /// </summary>
   [Description("Represents geographical country")]
-  public partial class Country : IComparable<Country>, IEquatable<Country>, IEntity, INameable
+  public partial class Country : Entity, IComparable<Country>, INameable
   {
     private string isoCode;
     private string name;
-
-    /// <summary>
-    ///   <para>Unique identifier of country.</para>
-    /// </summary>
-    [Description("Unique identifier of country")]
-    public virtual long Id { get; set; }
-
-    /// <summary>
-    ///   <para>Version number of current country instance.</para>
-    /// </summary>
-    [Description("Version number of current country instance")]
-    [XmlIgnore]
-    [JsonIgnore]
-    public virtual long Version { get; set; }
 
     /// <summary>
     ///   <para>URI of country's flag image.</para>
@@ -99,35 +83,6 @@ namespace Catharsis.Domain
     public virtual int CompareTo(Country other)
     {
       return this.Name.CompareTo(other.Name, StringComparison.InvariantCultureIgnoreCase);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="Country"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(Country other)
-    {
-      return this.Equality(other, country => country.IsoCode);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Country);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(country => country.IsoCode);
     }
 
     /// <summary>

@@ -18,7 +18,7 @@ namespace Catharsis.Domain
     public override void Attributes()
     {
       base.Attributes();
-      this.TestDescription("Annotation", "Category", "Comments", "DateCreated", "Image", "Language", "LastUpdated", "Name", "Tags", "Text");
+      this.TestDescription("Annotation", "Category", "Comments", "CreatedAt", "Image", "Language", "UpdatedAt", "Name", "Tags", "Text");
     }
 
     /// <summary>
@@ -28,10 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var article = new Article();
-      this.TestJson(article, new { Id = 0, Comments = new object[] { }, DateCreated = article.DateCreated.ISO8601(), LastUpdated = article.LastUpdated.ISO8601(), Tags = new object[] { } });
+      this.TestJson(article, new { Id = 0, Comments = new object[] { }, CreatedAt = article.CreatedAt.ISO8601(), Tags = new object[] { }, UpdatedAt = article.UpdatedAt.ISO8601() });
 
       article = new Article("name");
-      this.TestJson(article, new { Id = 0, Comments = new object[] { }, DateCreated = article.DateCreated, LastUpdated = article.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { } });
+      this.TestJson(article, new { Id = 0, Comments = new object[] { }, CreatedAt = article.CreatedAt.ISO8601(), Name = "name", Tags = new object[] { }, UpdatedAt = article.UpdatedAt.ISO8601() });
 
       var comment = new Comment("comment.name", "comment.text");
       article = new Article("name", new ArticlesCategory("category.name"), "annotation", "text", "image")
@@ -41,7 +41,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestJson(article, new { Id = 1, Annotation = "annotation", Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = article.DateCreated.ISO8601(), Image = "image", Language = "language", LastUpdated = article.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
+      this.TestJson(article, new { Id = 1, Annotation = "annotation", Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, CreatedAt = comment.CreatedAt.ISO8601(), Name = "comment.name", Text = "comment.text", UpdatedAt = comment.UpdatedAt.ISO8601() } }, CreatedAt = article.CreatedAt.ISO8601(), Image = "image", Language = "language", Name = "name", Tags = new object[] { "tag" }, Text = "text", UpdatedAt = article.UpdatedAt.ISO8601() });
     }
 
     /// <summary>
@@ -51,10 +51,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var article = new Article();
-      this.TestXml(article, new { Id = 0, DateCreated = article.DateCreated, LastUpdated = article.LastUpdated });
+      this.TestXml(article, new { Id = 0, CreatedAt = article.CreatedAt, UpdatedAt = article.UpdatedAt });
 
       article = new Article("name");
-      this.TestXml(article, new { Id = 0, DateCreated = article.DateCreated, LastUpdated = article.LastUpdated, Name = "name" });
+      this.TestXml(article, new { Id = 0, CreatedAt = article.CreatedAt, UpdatedAt = article.UpdatedAt, Name = "name" });
 
       var comment = new Comment("comment.name", "comment.text");
       article = new Article("name", new ArticlesCategory("category.name"), "annotation", "text", "image")
@@ -64,7 +64,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(article, new { Id = 1, Annotation = "annotation", DateCreated = article.DateCreated, Image = "image", Language = "language", LastUpdated = article.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(article, new { Id = 1, Annotation = "annotation", CreatedAt = article.CreatedAt, Image = "image", Language = "language", UpdatedAt = article.UpdatedAt, Name = "name", Text = "text" });
     }
 
     /// <summary>
@@ -80,10 +80,10 @@ namespace Catharsis.Domain
       Assert.Equal(0, article.Id);
       Assert.Null(article.Category);
       Assert.False(article.Comments.Any());
-      Assert.True(article.DateCreated >= DateTime.MinValue && article.DateCreated <= DateTime.UtcNow);
+      Assert.True(article.CreatedAt >= DateTime.MinValue && article.CreatedAt <= DateTime.UtcNow);
       Assert.Null(article.Image);
       Assert.Null(article.Language);
-      Assert.True(article.LastUpdated >= DateTime.MinValue && article.LastUpdated <= DateTime.UtcNow);
+      Assert.True(article.UpdatedAt >= DateTime.MinValue && article.UpdatedAt <= DateTime.UtcNow);
       Assert.Null(article.Name);
       Assert.False(article.Tags.Any());
       Assert.Null(article.Text);
@@ -96,10 +96,10 @@ namespace Catharsis.Domain
       Assert.Equal(0, article.Id);
       Assert.NotNull(article.Category);
       Assert.False(article.Comments.Any());
-      Assert.True(article.DateCreated >= DateTime.MinValue && article.DateCreated <= DateTime.UtcNow);
+      Assert.True(article.CreatedAt >= DateTime.MinValue && article.CreatedAt <= DateTime.UtcNow);
       Assert.NotNull(article.Image);
       Assert.Null(article.Language);
-      Assert.True(article.LastUpdated >= DateTime.MinValue && article.LastUpdated <= DateTime.UtcNow);
+      Assert.True(article.UpdatedAt >= DateTime.MinValue && article.UpdatedAt <= DateTime.UtcNow);
       Assert.Equal("name", article.Name);
       Assert.False(article.Tags.Any());
       Assert.Equal("text", article.Text);
@@ -132,28 +132,6 @@ namespace Catharsis.Domain
     public void Image_Property()
     {
       Assert.Equal("image", new Article { Image = "image" }.Image);
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Article.Equals(Article)"/></description></item>
-    ///     <item><description><see cref="Article.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Category", new ArticlesCategory { Name = "first" }, new ArticlesCategory { Name = "second" });
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Article.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Category", new ArticlesCategory { Name = "first" }, new ArticlesCategory { Name = "second" });
     }
   }
 }

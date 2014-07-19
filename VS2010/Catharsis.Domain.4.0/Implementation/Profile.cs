@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using Catharsis.Commons;
-using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -10,26 +8,12 @@ namespace Catharsis.Domain
   ///   <para>Represents a profile of user, which is a combination of credentials in external system like social network.</para>
   /// </summary>
   [Description("Represents a profile of user, which is a combination of credentials in external system like social network")]
-  public partial class Profile : IComparable<Profile>, IEquatable<Profile>, IEntity, INameable
+  public partial class Profile : Entity, IComparable<Profile>, INameable
   {
     private string name;
     private string type;
     private string url;
     private string username;
-
-    /// <summary>
-    ///   <para>Unique identifier of profile.</para>
-    /// </summary>
-    [Description("Unique identifier of profile")]
-    public virtual long Id { get; set; }
-
-    /// <summary>
-    ///   <para>Version number of current profile instance.</para>
-    /// </summary>
-    [Description("Version number of current profile instance")]
-    [XmlIgnore]
-    [JsonIgnore]
-    public virtual long Version { get; set; }
 
     /// <summary>
     ///   <para>Email address of user.</para>
@@ -147,35 +131,6 @@ namespace Catharsis.Domain
     public virtual int CompareTo(Profile other)
     {
       return this.Username.CompareTo(other.Username, StringComparison.InvariantCultureIgnoreCase);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="Profile"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(Profile other)
-    {
-      return this.Equality(other, profile => profile.Type, profile => profile.Username);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Profile);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(profile => profile.Type, profile => profile.Username);
     }
 
     /// <summary>

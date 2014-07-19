@@ -18,7 +18,7 @@ namespace Catharsis.Domain
     public override void Attributes()
     {
       base.Attributes();
-      this.TestDescription("Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
+      this.TestDescription("Comments", "CreatedAt", "Language", "UpdatedAt", "Name", "Tags", "Text");
     }
 
     /// <summary>
@@ -28,10 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var item = new Item();
-      this.TestJson(item, new { Id = 0, Comments = new object[] { }, DateCreated = item.DateCreated.ISO8601(), LastUpdated = item.LastUpdated.ISO8601(), Tags = new object[] { } });
+      this.TestJson(item, new { Id = 0, Comments = new object[] { }, CreatedAt = item.CreatedAt.ISO8601(), Tags = new object[] { }, UpdatedAt = item.UpdatedAt.ISO8601() });
 
       item = new Item("name");
-      this.TestJson(item, new { Id = 0, Comments = new object[] { }, DateCreated = item.DateCreated.ISO8601(), LastUpdated = item.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { } });
+      this.TestJson(item, new { Id = 0, Comments = new object[] { }, CreatedAt = item.CreatedAt.ISO8601(), Name = "name", Tags = new object[] { }, UpdatedAt = item.UpdatedAt.ISO8601() });
 
       var comment = new Comment("comment.name", "comment.text");
       item = new Item("name", "text")
@@ -41,7 +41,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestJson(item, new { Id = 1, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = item.DateCreated.ISO8601(), Language = "language", LastUpdated = item.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
+      this.TestJson(item, new { Id = 1, Comments = new object[] { new { Id = 0, CreatedAt = comment.CreatedAt.ISO8601(), Name = "comment.name", Text = "comment.text", UpdatedAt = comment.UpdatedAt.ISO8601() } }, CreatedAt = item.CreatedAt.ISO8601(), Language = "language", Name = "name", Tags = new object[] { "tag" }, Text = "text", UpdatedAt = item.UpdatedAt.ISO8601() });
     }
 
     /// <summary>
@@ -51,10 +51,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var item = new Item();
-      this.TestXml(item, new { Id = 0, DateCreated = item.DateCreated, LastUpdated = item.LastUpdated });
+      this.TestXml(item, new { Id = 0, CreatedAt = item.CreatedAt, UpdatedAt = item.UpdatedAt });
 
       item = new Item("name");
-      this.TestXml(item, new { Id = 0, DateCreated = item.DateCreated, LastUpdated = item.LastUpdated, Name = "name" });
+      this.TestXml(item, new { Id = 0, CreatedAt = item.CreatedAt, UpdatedAt = item.UpdatedAt, Name = "name" });
 
       var comment = new Comment("comment.name", "comment.text");
       item = new Item("name", "text")
@@ -64,7 +64,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(item, new { Id = 1, DateCreated = item.DateCreated, Language = "language", LastUpdated = item.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(item, new { Id = 1, CreatedAt = item.CreatedAt, Language = "language", UpdatedAt = item.UpdatedAt, Name = "name", Text = "text" });
     }
 
     /// <summary>
@@ -77,10 +77,10 @@ namespace Catharsis.Domain
     {
       var item = new Item();
       Assert.False(item.Comments.Any());
-      Assert.True(item.DateCreated >= DateTime.MinValue && item.DateCreated <= DateTime.UtcNow);
+      Assert.True(item.CreatedAt >= DateTime.MinValue && item.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, item.Id);
       Assert.Null(item.Language);
-      Assert.True(item.LastUpdated >= DateTime.MinValue && item.LastUpdated <= DateTime.UtcNow);
+      Assert.True(item.UpdatedAt >= DateTime.MinValue && item.UpdatedAt <= DateTime.UtcNow);
       Assert.Null(item.Name);
       Assert.False(item.Tags.Any());
       Assert.Null(item.Text);
@@ -90,10 +90,10 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentException>(() => new Item(string.Empty));
       item = new Item("name", "text");
       Assert.False(item.Comments.Any());
-      Assert.True(item.DateCreated >= DateTime.MinValue && item.DateCreated <= DateTime.UtcNow);
+      Assert.True(item.CreatedAt >= DateTime.MinValue && item.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, item.Id);
       Assert.Null(item.Language);
-      Assert.True(item.LastUpdated >= DateTime.MinValue && item.LastUpdated <= DateTime.UtcNow);
+      Assert.True(item.UpdatedAt >= DateTime.MinValue && item.UpdatedAt <= DateTime.UtcNow);
       Assert.Equal("name", item.Name);
       Assert.False(item.Tags.Any());
       Assert.Equal("text", item.Text);
@@ -119,12 +119,12 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of <see cref="Item.DateCreated"/> property.</para>
+    ///   <para>Performs testing of <see cref="Item.CreatedAt"/> property.</para>
     /// </summary>
     [Fact]
-    public void DateCreated_Property()
+    public void CreatedAt_Property()
     {
-      Assert.Equal(DateTime.MinValue, new Item { DateCreated = DateTime.MinValue }.DateCreated);
+      Assert.Equal(DateTime.MinValue, new Item { CreatedAt = DateTime.MinValue }.CreatedAt);
     }
 
     /// <summary>
@@ -137,12 +137,12 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of <see cref="Item.LastUpdated"/> property.</para>
+    ///   <para>Performs testing of <see cref="Item.UpdatedAt"/> property.</para>
     /// </summary>
     [Fact]
-    public void LastUpdated_Property()
+    public void UpdatedAt_Property()
     {
-      Assert.Equal(DateTime.MaxValue, new Item { LastUpdated = DateTime.MaxValue }.LastUpdated);
+      Assert.Equal(DateTime.MaxValue, new Item { UpdatedAt = DateTime.MaxValue }.UpdatedAt);
     }
 
     /// <summary>
@@ -187,31 +187,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo("DateCreated", DateTime.MinValue, DateTime.MaxValue);
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Item.Equals(Item)"/></description></item>
-    ///     <item><description><see cref="Item.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Language", "first", "second");
-      this.TestEquality("Name", "first", "second");
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Item.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Language", "first", "second");
-      this.TestHashCode("Name", "first", "second");
+      this.TestCompareTo("CreatedAt", DateTime.MinValue, DateTime.MaxValue);
     }
 
     /// <summary>

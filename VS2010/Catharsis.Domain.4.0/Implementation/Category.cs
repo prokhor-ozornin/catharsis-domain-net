@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using Catharsis.Commons;
-using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -10,23 +8,9 @@ namespace Catharsis.Domain
   ///   <para>Represents custom category of content.</para>
   /// </summary>
   [Description("Represents user blog/journal")]
-  public partial class Category : IComparable<ICategory>, IEquatable<ICategory>, ICategory
+  public partial class Category : Entity, IComparable<ICategory>, ICategory
   {
     private string name;
-
-    /// <summary>
-    ///   <para>Unique identifier of category.</para>
-    /// </summary>
-    [Description("Unique identifier of category")]
-    public virtual long Id { get; set; }
-
-    /// <summary>
-    ///   <para>Version number of current category instance.</para>
-    /// </summary>
-    [Description("Version number of current category instance")]
-    [XmlIgnore]
-    [JsonIgnore]
-    public virtual long Version { get; set; }
 
     /// <summary>
     ///   <para>Description of category.</para>
@@ -85,35 +69,6 @@ namespace Catharsis.Domain
     public virtual int CompareTo(ICategory other)
     {
       return this.Name.CompareTo(other.Name, StringComparison.InvariantCultureIgnoreCase);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="ICategory"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(ICategory other)
-    {
-      return this.Equality(other, category => category.Language, category => category.Name);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as ICategory);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(category => category.Language, category => category.Name);
     }
 
     /// <summary>

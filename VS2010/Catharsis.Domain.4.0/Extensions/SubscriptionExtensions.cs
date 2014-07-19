@@ -137,7 +137,7 @@ namespace Catharsis.Domain
     {
       Assertion.NotNull(subscriptions);
 
-      return subscriptions.Where(subscription => subscription.ExpiredOn != null && subscription.ExpiredOn.Value > DateTime.UtcNow);
+      return subscriptions.Where(subscription => subscription.ExpiredAt != null && subscription.ExpiredAt.Value > DateTime.UtcNow);
     }
 
     /// <summary>
@@ -150,7 +150,7 @@ namespace Catharsis.Domain
     {
       Assertion.NotNull(subscriptions);
 
-      return subscriptions.Where(subscription => subscription != null && subscription.ExpiredOn != null && subscription.ExpiredOn.Value <= DateTime.UtcNow);
+      return subscriptions.Where(subscription => subscription != null && subscription.ExpiredAt != null && subscription.ExpiredAt.Value <= DateTime.UtcNow);
     }
 
     /// <summary>
@@ -163,7 +163,7 @@ namespace Catharsis.Domain
     {
       Assertion.NotNull(subscriptions);
 
-      return subscriptions.Where(subscription => subscription.ExpiredOn == null || (subscription.ExpiredOn != null && subscription.ExpiredOn.Value > DateTime.UtcNow));
+      return subscriptions.Where(subscription => subscription.ExpiredAt == null || (subscription.ExpiredAt != null && subscription.ExpiredAt.Value > DateTime.UtcNow));
     }
 
     /// <summary>
@@ -176,7 +176,7 @@ namespace Catharsis.Domain
     {
       Assertion.NotNull(subscriptions);
 
-      return subscriptions.Where(subscription => subscription != null && (subscription.ExpiredOn == null || (subscription.ExpiredOn != null && subscription.ExpiredOn.Value > DateTime.UtcNow)));
+      return subscriptions.Where(subscription => subscription != null && (subscription.ExpiredAt == null || (subscription.ExpiredAt != null && subscription.ExpiredAt.Value > DateTime.UtcNow)));
     }
   }
 }

@@ -18,7 +18,7 @@ namespace Catharsis.Domain
     public override void Attributes()
     {
       base.Attributes();
-      this.TestDescription("Album", "Comments", "Image", "Language", "LastUpdated", "Material", "Name", "Person", "Place", "Tags", "Text");
+      this.TestDescription("Album", "Comments", "Image", "Language", "UpdatedAt", "Material", "Name", "Person", "Place", "Tags", "Text");
     }
 
     /// <summary>
@@ -28,10 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var art = new Art();
-      this.TestJson(art, new { Id = 0, Comments = new object[] {}, DateCreated = art.DateCreated.ISO8601(), LastUpdated = art.LastUpdated.ISO8601(), Tags = new object[] {} });
+      this.TestJson(art, new { Id = 0, Comments = new object[] { }, CreatedAt = art.CreatedAt.ISO8601(), Tags = new object[] { }, UpdatedAt = art.UpdatedAt.ISO8601() });
 
       art = new Art("name", "image");
-      this.TestJson(art, new { Id = 0, Comments = new object[] {}, DateCreated = art.DateCreated.ISO8601(), Image = "image", LastUpdated = art.LastUpdated.ISO8601(), Name = "name", Tags = new object[] {} });
+      this.TestJson(art, new { Id = 0, Comments = new object[] { }, CreatedAt = art.CreatedAt.ISO8601(), Image = "image", Name = "name", Tags = new object[] { }, UpdatedAt = art.UpdatedAt.ISO8601() });
 
       var comment = new Comment("comment.name", "comment.text");
       var album = new ArtsAlbum("album.name");
@@ -45,18 +45,18 @@ namespace Catharsis.Domain
       this.TestJson(art, new
       {
         Id = 1,
-        Album = new { Id = 0, Comments = new object[] { }, DateCreated = album.DateCreated.ISO8601(), LastUpdated = album.LastUpdated.ISO8601(), Name = "album.name", Tags = new object[] { } },
-        Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } },
-        DateCreated = art.DateCreated.ISO8601(),
+        Album = new { Id = 0, Comments = new object[] { }, CreatedAt = album.CreatedAt.ISO8601(), Name = "album.name", Tags = new object[] { }, UpdatedAt = album.UpdatedAt.ISO8601() },
+        Comments = new object[] { new { Id = 0, CreatedAt = comment.CreatedAt.ISO8601(), Name = "comment.name", Text = "comment.text", UpdatedAt = comment.UpdatedAt.ISO8601() } },
+        CreatedAt = art.CreatedAt.ISO8601(),
         Image = "image",
         Language = "language",
-        LastUpdated = art.LastUpdated.ISO8601(),
         Material = "material",
         Name = "name",
         Person = new { Id = 0, NameFirst = "person.nameFirst", NameLast = "person.nameLast" },
         Place = "place",
         Tags = new object[] { "tag" },
-        Text = "text"
+        Text = "text",
+        UpdatedAt = art.UpdatedAt.ISO8601()
       });
     }
 
@@ -67,10 +67,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var art = new Art();
-      this.TestXml(art, new { Id = 0, DateCreated = art.DateCreated, LastUpdated = art.LastUpdated });
+      this.TestXml(art, new { Id = 0, CreatedAt = art.CreatedAt, UpdatedAt = art.UpdatedAt });
 
       art = new Art("name", "image");
-      this.TestXml(art, new { Id = 0, DateCreated = art.DateCreated, Image = "image", LastUpdated = art.LastUpdated, Name = "name" });
+      this.TestXml(art, new { Id = 0, CreatedAt = art.CreatedAt, Image = "image", UpdatedAt = art.UpdatedAt, Name = "name" });
 
       var comment = new Comment("comment.name", "comment.text");
       var album = new ArtsAlbum("album.name");
@@ -84,10 +84,10 @@ namespace Catharsis.Domain
       this.TestXml(art, new
       {
         Id = 1,
-        DateCreated = art.DateCreated,
+        CreatedAt = art.CreatedAt,
         Image = "image",
         Language = "language",
-        LastUpdated = art.LastUpdated,
+        UpdatedAt = art.UpdatedAt,
         Material = "material",
         Name = "name",
         Place = "place",
@@ -106,11 +106,11 @@ namespace Catharsis.Domain
       var art = new Art();
       Assert.Null(art.Album);
       Assert.False(art.Comments.Any());
-      Assert.True(art.DateCreated >= DateTime.MinValue && art.DateCreated <= DateTime.UtcNow);
+      Assert.True(art.CreatedAt >= DateTime.MinValue && art.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, art.Id);
       Assert.Null(art.Image);
       Assert.Null(art.Language);
-      Assert.True(art.LastUpdated >= DateTime.MinValue && art.LastUpdated <= DateTime.UtcNow);
+      Assert.True(art.UpdatedAt >= DateTime.MinValue && art.UpdatedAt <= DateTime.UtcNow);
       Assert.Null(art.Material);
       Assert.Null(art.Name);
       Assert.Null(art.Person);
@@ -126,11 +126,11 @@ namespace Catharsis.Domain
       art = new Art("name", "image", new ArtsAlbum(), "text", new Person(), "place", "material");
       Assert.NotNull(art.Album);
       Assert.False(art.Comments.Any());
-      Assert.True(art.DateCreated >= DateTime.MinValue && art.DateCreated <= DateTime.UtcNow);
+      Assert.True(art.CreatedAt >= DateTime.MinValue && art.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, art.Id);
       Assert.NotNull(art.Image);
       Assert.Null(art.Language);
-      Assert.True(art.LastUpdated >= DateTime.MinValue && art.LastUpdated <= DateTime.UtcNow);
+      Assert.True(art.UpdatedAt >= DateTime.MinValue && art.UpdatedAt <= DateTime.UtcNow);
       Assert.Equal("material", art.Material);
       Assert.Equal("name", art.Name);
       Assert.NotNull(art.Person);
@@ -197,30 +197,6 @@ namespace Catharsis.Domain
     public void CompareTo_Method()
     {
       this.TestCompareTo("Name", "first", "second");
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Art.Equals(Art)"/></description></item>
-    ///     <item><description><see cref="Art.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Album", new ArtsAlbum { Name = "first" }, new ArtsAlbum { Name = "second" });
-      this.TestEquality("Person", new Person { NameFirst = "first" }, new Person { NameFirst = "second" });
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Art.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Album", new ArtsAlbum { Name = "first" }, new ArtsAlbum { Name = "second" });
-      this.TestHashCode("Person", new Person { NameFirst = "first" }, new Person { NameFirst = "second" });
     }
   }
 }

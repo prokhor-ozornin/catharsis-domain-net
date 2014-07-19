@@ -30,7 +30,7 @@ namespace Catharsis.Domain
       Assert.False(Enumerable.Empty<Video>().Category(new VideosCategory()).Any());
 
       Assert.Equal(1, new[] { new Video { Category = new VideosCategory { Id = 1 } }, new Video { Category = new VideosCategory { Id = 2 } } }.AsQueryable().Category(new VideosCategory { Id = 1 }).Count());
-      Assert.Equal(1, new[] { null, new Video { Category = new VideosCategory { Name = "first" } }, null, new Video { Category = new VideosCategory { Name = "second" } } }.Category(new VideosCategory { Name = "first" }).Count());
+      Assert.Equal(1, new[] { null, new Video { Category = new VideosCategory { Id = 1 } }, new Video { Category = new VideosCategory { Id = 2 } } }.Category(new VideosCategory { Id = 1 }).Count());
     }
 
     /// <summary>

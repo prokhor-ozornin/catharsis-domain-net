@@ -18,7 +18,7 @@ namespace Catharsis.Domain
     public override void Attributes()
     {
       base.Attributes();
-      this.TestDescription("Blog", "Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
+      this.TestDescription("Blog", "Comments", "CreatedAt", "Language", "UpdatedAt", "Name", "Tags", "Text");
     }
 
     /// <summary>
@@ -28,12 +28,12 @@ namespace Catharsis.Domain
     public void Json()
     {
       var entry = new BlogEntry();
-      this.TestJson(entry, new { Id = 0, Comments = new object[] { }, DateCreated = entry.DateCreated.ISO8601(), LastUpdated = entry.LastUpdated.ISO8601(), Tags = new object[] { } });
+      this.TestJson(entry, new { Id = 0, Comments = new object[] { }, CreatedAt = entry.CreatedAt.ISO8601(), Tags = new object[] { }, UpdatedAt = entry.UpdatedAt.ISO8601() });
 
       var blog = new Blog("blog.name");
 
       entry = new BlogEntry(blog, "name", "text");
-      this.TestJson(entry, new { Id = 0, Blog = new { Id = 0, Comments = new object[] {}, DateCreated = blog.DateCreated.ISO8601(), LastUpdated = blog.LastUpdated.ISO8601(), Name = "blog.name", Tags = new object[] {} }, Comments = new object[] {}, DateCreated = entry.DateCreated.ISO8601(), LastUpdated = entry.LastUpdated.ISO8601(), Name = "name", Tags = new object[] {}, Text = "text" });
+      this.TestJson(entry, new { Id = 0, Blog = new { Id = 0, Comments = new object[] { }, CreatedAt = blog.CreatedAt.ISO8601(), Name = "blog.name", Tags = new object[] { }, UpdatedAt = blog.UpdatedAt.ISO8601() }, Comments = new object[] { }, CreatedAt = entry.CreatedAt.ISO8601(), Name = "name", Tags = new object[] { }, Text = "text", UpdatedAt = entry.UpdatedAt.ISO8601() });
 
       var comment = new Comment("comment.name", "comment.text");
       entry = new BlogEntry(blog, "name", "text")
@@ -43,7 +43,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestJson(entry, new { Id = 1, Blog = new { Id = 0, Comments = new object[] {}, DateCreated = blog.DateCreated.ISO8601(), LastUpdated = blog.LastUpdated.ISO8601(), Name = "blog.name", Tags = new object[] {} }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = entry.DateCreated.ISO8601(), Language = "language", LastUpdated = entry.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
+      this.TestJson(entry, new { Id = 1, Blog = new { Id = 0, Comments = new object[] { }, CreatedAt = blog.CreatedAt.ISO8601(), Name = "blog.name", Tags = new object[] { }, UpdatedAt = blog.UpdatedAt.ISO8601() }, Comments = new object[] { new { Id = 0, CreatedAt = comment.CreatedAt.ISO8601(), Name = "comment.name", Text = "comment.text", UpdatedAt = comment.UpdatedAt.ISO8601() } }, CreatedAt = entry.CreatedAt.ISO8601(), Language = "language", Name = "name", Tags = new object[] { "tag" }, Text = "text", UpdatedAt = entry.UpdatedAt.ISO8601() });
     }
 
     /// <summary>
@@ -53,12 +53,12 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var entry = new BlogEntry();
-      this.TestXml(entry, new { Id = 0, DateCreated = entry.DateCreated, LastUpdated = entry.LastUpdated });
+      this.TestXml(entry, new { Id = 0, CreatedAt = entry.CreatedAt, UpdatedAt = entry.UpdatedAt });
 
       var blog = new Blog("blog.name");
 
       entry = new BlogEntry(blog, "name", "text");
-      this.TestXml(entry, new { Id = 0, DateCreated = entry.DateCreated, LastUpdated = entry.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(entry, new { Id = 0, CreatedAt = entry.CreatedAt, UpdatedAt = entry.UpdatedAt, Name = "name", Text = "text" });
     }
 
     /// <summary>
@@ -72,10 +72,10 @@ namespace Catharsis.Domain
       var entry = new BlogEntry();
       Assert.Null(entry.Blog);
       Assert.False(entry.Comments.Any());
-      Assert.True(entry.DateCreated >= DateTime.MinValue && entry.DateCreated <= DateTime.UtcNow);
+      Assert.True(entry.CreatedAt >= DateTime.MinValue && entry.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, entry.Id);
       Assert.Null(entry.Language);
-      Assert.True(entry.LastUpdated >= DateTime.MinValue && entry.LastUpdated <= DateTime.UtcNow);
+      Assert.True(entry.UpdatedAt >= DateTime.MinValue && entry.UpdatedAt <= DateTime.UtcNow);
       Assert.Null(entry.Name);
       Assert.False(entry.Tags.Any());
       Assert.Null(entry.Text);
@@ -91,9 +91,9 @@ namespace Catharsis.Domain
       Assert.NotNull(entry.Blog);
       Assert.False(entry.Comments.Any());
       Assert.Equal(0, entry.Id);
-      Assert.True(entry.DateCreated >= DateTime.MinValue && entry.DateCreated <= DateTime.UtcNow);
+      Assert.True(entry.CreatedAt >= DateTime.MinValue && entry.CreatedAt <= DateTime.UtcNow);
       Assert.Null(entry.Language);
-      Assert.True(entry.LastUpdated >= DateTime.MinValue && entry.LastUpdated <= DateTime.UtcNow);
+      Assert.True(entry.UpdatedAt >= DateTime.MinValue && entry.UpdatedAt <= DateTime.UtcNow);
       Assert.Equal("name", entry.Name);
       Assert.False(entry.Tags.Any());
       Assert.Equal("text", entry.Text);
@@ -110,28 +110,6 @@ namespace Catharsis.Domain
       
       var blog = new Blog();
       Assert.True(ReferenceEquals(new BlogEntry { Blog = blog }.Blog, blog));
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="BlogEntry.Equals(BlogEntry)"/></description></item>
-    ///     <item><description><see cref="BlogEntry.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Blog", new Blog { Name = "first" }, new Blog { Name = "second" });
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="BlogEntry.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Blog", new Blog { Name = "first" }, new Blog { Name = "second" });
     }
   }
 }

@@ -27,7 +27,7 @@ namespace Catharsis.Domain
       Assert.False(Enumerable.Empty<BlogEntry>().Blog(new Blog()).Any());
 
       Assert.Equal(1, new[] { new BlogEntry { Blog = new Blog { Id = 1 } }, new BlogEntry { Blog = new Blog { Id = 2 } } }.AsQueryable().Blog(new Blog { Id = 1 }).Count());
-      Assert.Equal(1, new[] { null, new BlogEntry { Blog = new Blog { Name = "first" } }, null, new BlogEntry { Blog = new Blog { Name = "second" } } }.Blog(new Blog { Name = "first" }).Count());
+      Assert.Equal(1, new[] { null, new BlogEntry { Blog = new Blog { Id = 1 } }, new BlogEntry { Blog = new Blog { Id = 2 } } }.Blog(new Blog { Id = 1 }).Count());
     }
   }
 }

@@ -86,8 +86,8 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => Enumerable.Empty<Subscription>().AsQueryable().Token(null));
       Assert.Throws<ArgumentNullException>(() => Enumerable.Empty<Subscription>().Token(null));
 
-      Assert.Equal(1, new[] { new Subscription { ExpiredOn = DateTime.MinValue }, new Subscription { ExpiredOn = DateTime.MaxValue } }.AsQueryable().Expired().Count());
-      Assert.Equal(1, new[] { null, new Subscription { ExpiredOn = DateTime.MinValue }, null, new Subscription { ExpiredOn = DateTime.MaxValue } }.Expired().Count());
+      Assert.Equal(1, new[] { new Subscription { ExpiredAt = DateTime.MinValue }, new Subscription { ExpiredAt = DateTime.MaxValue } }.AsQueryable().Expired().Count());
+      Assert.Equal(1, new[] { null, new Subscription { ExpiredAt = DateTime.MinValue }, null, new Subscription { ExpiredAt = DateTime.MaxValue } }.Expired().Count());
     }
 
     /// <summary>
@@ -106,8 +106,8 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => Enumerable.Empty<Subscription>().AsQueryable().Token(null));
       Assert.Throws<ArgumentNullException>(() => Enumerable.Empty<Subscription>().Token(null));
 
-      Assert.Equal(2, new[] { new Subscription(), new Subscription { ExpiredOn = DateTime.MinValue }, new Subscription { ExpiredOn = DateTime.MaxValue } }.AsQueryable().NonExpired().Count());
-      Assert.Equal(2, new[] { null, new Subscription(), null, new Subscription { ExpiredOn = DateTime.MinValue }, null, new Subscription { ExpiredOn = DateTime.MaxValue } }.NonExpired().Count());
+      Assert.Equal(2, new[] { new Subscription(), new Subscription { ExpiredAt = DateTime.MinValue }, new Subscription { ExpiredAt = DateTime.MaxValue } }.AsQueryable().NonExpired().Count());
+      Assert.Equal(2, new[] { null, new Subscription(), null, new Subscription { ExpiredAt = DateTime.MinValue }, null, new Subscription { ExpiredAt = DateTime.MaxValue } }.NonExpired().Count());
     }
   }
 }

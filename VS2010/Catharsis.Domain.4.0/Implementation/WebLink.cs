@@ -8,7 +8,7 @@ namespace Catharsis.Domain
   ///   <para>Represents named hyperlink to external website.</para>
   /// </summary>
   [Description("Represents named hyperlink to external website")]
-  public partial class WebLink : Item, IEquatable<WebLink>
+  public partial class WebLink : Item
   {
     private string url;
 
@@ -57,35 +57,6 @@ namespace Catharsis.Domain
 
       this.Url = url;
       this.Category = category;
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="WebLink"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(WebLink other)
-    {
-      return base.Equals(other) && this.Equality(other, weblink => weblink.Category, weblink => weblink.Url);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as WebLink);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return base.GetHashCode() + this.GetHashCode(weblink => weblink.Category, weblink => weblink.Url);
     }
 
     /// <summary>

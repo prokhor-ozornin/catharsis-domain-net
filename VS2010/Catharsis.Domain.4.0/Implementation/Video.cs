@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using Catharsis.Commons;
-using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -10,23 +8,9 @@ namespace Catharsis.Domain
   ///   <para>Represents a video/movie.</para>
   /// </summary>
   [Description("Represents a video/movie")]
-  public partial class Video : IComparable<Video>, IEquatable<Video>, IEntity, IDimensionable
+  public partial class Video : Entity, IComparable<Video>, IDimensionable
   {
     private string file;
-
-    /// <summary>
-    ///   <para>Unique identifier of video.</para>
-    /// </summary>
-    [Description("Unique identifier of video")]
-    public virtual long Id { get; set; }
-
-    /// <summary>
-    ///   <para>Version number of current video instance.</para>
-    /// </summary>
-    [Description("Version number of current video instance")]
-    [XmlIgnore]
-    [JsonIgnore]
-    public virtual long Version { get; set; }
 
     /// <summary>
     ///   <para>Bitrate of video clip.</para>
@@ -111,35 +95,6 @@ namespace Catharsis.Domain
     public virtual int CompareTo(Video other)
     {
       return this.File.CompareTo(other.File);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="Video"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(Video other)
-    {
-      return this.Equality(other, video => video.Category, video => video.File);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Video);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(video => video.Category, video => video.File);
     }
 
     /// <summary>

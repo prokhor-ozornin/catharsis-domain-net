@@ -10,11 +10,11 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Date of entity's creation.</para>
     /// </summary>
-    DateTime DateCreated { get; }
+    DateTime CreatedAt { get; }
     
     /// <summary>
     ///   <para>Date/time of entity's modification.</para>
     /// </summary>
-    DateTime LastUpdated { get; }
+    DateTime UpdatedAt { get; }
   }
 }

@@ -18,7 +18,7 @@ namespace Catharsis.Domain
     public override void Attributes()
     {
       base.Attributes();
-      this.TestDescription("Audio", "Category", "Comments", "DateCreated", "Image", "Language", "LastUpdated", "Name", "Tags", "Text");
+      this.TestDescription("Audio", "Category", "Comments", "CreatedAt", "Image", "Language", "UpdatedAt", "Name", "Tags", "Text");
     }
 
     /// <summary>
@@ -28,10 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var playcast = new Playcast();
-      this.TestJson(playcast, new { Id = 0, Comments = new object[] { }, DateCreated = playcast.DateCreated.ISO8601(), LastUpdated = playcast.LastUpdated.ISO8601(), Tags = new object[] { } });
+      this.TestJson(playcast, new { Id = 0, Comments = new object[] { }, CreatedAt = playcast.CreatedAt.ISO8601(), Tags = new object[] { }, UpdatedAt = playcast.UpdatedAt.ISO8601() });
 
       playcast = new Playcast("name", "text");
-      this.TestJson(playcast, new { Id = 0, Comments = new object[] {}, DateCreated = playcast.DateCreated.ISO8601(), LastUpdated = playcast.LastUpdated.ISO8601(), Name = "name", Tags = new object[] {}, Text = "text" });
+      this.TestJson(playcast, new { Id = 0, Comments = new object[] { }, CreatedAt = playcast.CreatedAt.ISO8601(), Name = "name", Tags = new object[] { }, Text = "text", UpdatedAt = playcast.UpdatedAt.ISO8601() });
 
       var comment = new Comment("comment.name", "comment.text");
       playcast = new Playcast("name", "text", new PlaycastsCategory("category.name"), "audio", "image")
@@ -41,7 +41,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestJson(playcast, new { Id = 1, Audio = "audio", Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = playcast.DateCreated.ISO8601(), Image = "image", Language = "language", LastUpdated = playcast.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
+      this.TestJson(playcast, new { Id = 1, Audio = "audio", Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, CreatedAt = comment.CreatedAt.ISO8601(), Name = "comment.name", Text = "comment.text", UpdatedAt = comment.UpdatedAt.ISO8601() } }, CreatedAt = playcast.CreatedAt.ISO8601(), Image = "image", Language = "language", Name = "name", Tags = new object[] { "tag" }, Text = "text", UpdatedAt = playcast.UpdatedAt.ISO8601() });
     }
 
     /// <summary>
@@ -51,10 +51,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var playcast = new Playcast();
-      this.TestXml(playcast, new { Id = 0, DateCreated = playcast.DateCreated, LastUpdated = playcast.LastUpdated });
+      this.TestXml(playcast, new { Id = 0, CreatedAt = playcast.CreatedAt, UpdatedAt = playcast.UpdatedAt });
 
       playcast = new Playcast("name", "text");
-      this.TestXml(playcast, new { Id = 0, DateCreated = playcast.DateCreated, LastUpdated = playcast.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(playcast, new { Id = 0, CreatedAt = playcast.CreatedAt, UpdatedAt = playcast.UpdatedAt, Name = "name", Text = "text" });
 
       var comment = new Comment("comment.name", "comment.text");
       playcast = new Playcast("name", "text", new PlaycastsCategory("category.name"), "audio", "image")
@@ -64,7 +64,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(playcast, new { Id = 1, Audio = "audio", DateCreated = playcast.DateCreated, Image = "image", Language = "language", LastUpdated = playcast.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(playcast, new { Id = 1, Audio = "audio", CreatedAt = playcast.CreatedAt, Image = "image", Language = "language", UpdatedAt = playcast.UpdatedAt, Name = "name", Text = "text" });
     }
 
     /// <summary>
@@ -79,11 +79,11 @@ namespace Catharsis.Domain
       Assert.Null(playcast.Audio);
       Assert.Null(playcast.Category);
       Assert.False(playcast.Comments.Any());
-      Assert.True(playcast.DateCreated >= DateTime.MinValue && playcast.DateCreated <= DateTime.UtcNow);
+      Assert.True(playcast.CreatedAt >= DateTime.MinValue && playcast.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, playcast.Id);
       Assert.Null(playcast.Image);
       Assert.Null(playcast.Language);
-      Assert.True(playcast.LastUpdated >= DateTime.MinValue && playcast.LastUpdated <= DateTime.UtcNow);
+      Assert.True(playcast.UpdatedAt >= DateTime.MinValue && playcast.UpdatedAt <= DateTime.UtcNow);
       Assert.Null(playcast.Name);
       Assert.False(playcast.Tags.Any());
       Assert.Null(playcast.Text);
@@ -97,11 +97,11 @@ namespace Catharsis.Domain
       Assert.NotNull(playcast.Audio);
       Assert.NotNull(playcast.Category);
       Assert.False(playcast.Comments.Any());
-      Assert.True(playcast.DateCreated >= DateTime.MinValue && playcast.DateCreated <= DateTime.UtcNow);
+      Assert.True(playcast.CreatedAt >= DateTime.MinValue && playcast.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, playcast.Id);
       Assert.NotNull(playcast.Image);
       Assert.Null(playcast.Language);
-      Assert.True(playcast.LastUpdated >= DateTime.MinValue && playcast.LastUpdated <= DateTime.UtcNow);
+      Assert.True(playcast.UpdatedAt >= DateTime.MinValue && playcast.UpdatedAt <= DateTime.UtcNow);
       Assert.Equal("name", playcast.Name);
       Assert.False(playcast.Tags.Any());
       Assert.Equal("text", playcast.Text);
@@ -134,28 +134,6 @@ namespace Catharsis.Domain
     public void Image_Property()
     {
       Assert.Equal("image", new Playcast { Image = "image" }.Image);
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Playcast.Equals(Playcast)"/></description></item>
-    ///     <item><description><see cref="Playcast.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Category", new PlaycastsCategory { Name = "first" }, new PlaycastsCategory { Name = "second" });
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Playcast.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Category", new PlaycastsCategory { Name = "first" }, new PlaycastsCategory { Name = "second" });
     }
   }
 }

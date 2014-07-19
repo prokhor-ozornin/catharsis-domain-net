@@ -42,9 +42,9 @@
     <DocumentationFile>Bin\Release\Catharsis.Domain.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Catharsis.Commons, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Catharsis.Commons, Version=2.7.5.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Catharsis.Commons.2.7\lib\sl4-wp71\Catharsis.Commons.dll</HintPath>
+      <HintPath>..\packages\Catharsis.Commons.2.7.5\lib\sl4-wp71\Catharsis.Commons.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -183,6 +183,9 @@
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\Implementation\DownloadsCategory.cs">
       <Link>Implementation\DownloadsCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain.4.0\Implementation\Entity.cs">
+      <Link>Implementation\Entity.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain.4.0\Implementation\Faq.cs">
       <Link>Implementation\Faq.cs</Link>

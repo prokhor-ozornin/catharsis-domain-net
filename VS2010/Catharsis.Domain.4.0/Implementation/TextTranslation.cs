@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using Catharsis.Commons;
-using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -10,25 +8,11 @@ namespace Catharsis.Domain
   ///   <para>Represents a translation of literary text to target language.</para>
   /// </summary>
   [Description("Represents a translation of literary text to target language")]
-  public partial class TextTranslation : IComparable<TextTranslation>, IEquatable<TextTranslation>, IEntity, ILocalizable, INameable
+  public partial class TextTranslation : Entity, IComparable<TextTranslation>, ILocalizable, INameable
   {
     private string language;
     private string name;
     private string text;
-
-    /// <summary>
-    ///   <para>Unique identifier of translation.</para>
-    /// </summary>
-    [Description("Unique identifier of translation")]
-    public virtual long Id { get; set; }
-
-    /// <summary>
-    ///   <para>Version number of current translation instance.</para>
-    /// </summary>
-    [Description("Version number of current translation instance")]
-    [XmlIgnore]
-    [JsonIgnore]
-    public virtual long Version { get; set; }
 
     /// <summary>
     ///   <para>Target language to which original text was translated.</para>
@@ -119,35 +103,6 @@ namespace Catharsis.Domain
     public virtual int CompareTo(TextTranslation other)
     {
       return this.Name.CompareTo(other.Name, StringComparison.InvariantCulture);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="TextTranslation"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(TextTranslation other)
-    {
-      return this.Equality(other, translation => translation.Language, translation => translation.Name, translation => translation.Translator);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as TextTranslation);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(translation => translation.Language, translation => translation.Name, translation => translation.Translator);
     }
 
     /// <summary>

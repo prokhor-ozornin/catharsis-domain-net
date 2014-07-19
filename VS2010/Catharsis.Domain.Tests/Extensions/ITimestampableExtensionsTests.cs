@@ -26,19 +26,19 @@ namespace Catharsis.Domain
       Assert.False(Enumerable.Empty<TimestampableEntity>().AsQueryable().CreatedOn().Any());
       Assert.False(Enumerable.Empty<TimestampableEntity>().CreatedOn().Any());
 
-      Assert.Equal(2, new[] { new TimestampableEntity { DateCreated = DateTime.MinValue }, new TimestampableEntity { DateCreated = DateTime.MaxValue } }.AsQueryable().CreatedOn(DateTime.MinValue, DateTime.MaxValue).Count());
-      Assert.Equal(2, new[] { new TimestampableEntity { DateCreated = DateTime.MinValue }, new TimestampableEntity { DateCreated = DateTime.MaxValue } }.AsQueryable().CreatedOn(DateTime.MinValue).Count());
-      Assert.Equal(2, new[] { new TimestampableEntity { DateCreated = DateTime.MinValue }, new TimestampableEntity { DateCreated = DateTime.MaxValue } }.AsQueryable().CreatedOn(null, DateTime.MaxValue).Count());
-      Assert.False(new[] { new TimestampableEntity { DateCreated = DateTime.MinValue }, new TimestampableEntity { DateCreated = DateTime.MaxValue } }.AsQueryable().CreatedOn(DateTime.MinValue.AddDays(1), DateTime.MaxValue.AddDays(-1)).Any());
-      Assert.False(new[] { new TimestampableEntity { DateCreated = DateTime.MinValue }, new TimestampableEntity { DateCreated = DateTime.MinValue } }.AsQueryable().CreatedOn(DateTime.MaxValue.AddDays(-1)).Any());
-      Assert.False(new[] { new TimestampableEntity { DateCreated = DateTime.MaxValue }, new TimestampableEntity { DateCreated = DateTime.MaxValue } }.AsQueryable().CreatedOn(null, DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.Equal(2, new[] { new TimestampableEntity { CreatedAt = DateTime.MinValue }, new TimestampableEntity { CreatedAt = DateTime.MaxValue } }.AsQueryable().CreatedOn(DateTime.MinValue, DateTime.MaxValue).Count());
+      Assert.Equal(2, new[] { new TimestampableEntity { CreatedAt = DateTime.MinValue }, new TimestampableEntity { CreatedAt = DateTime.MaxValue } }.AsQueryable().CreatedOn(DateTime.MinValue).Count());
+      Assert.Equal(2, new[] { new TimestampableEntity { CreatedAt = DateTime.MinValue }, new TimestampableEntity { CreatedAt = DateTime.MaxValue } }.AsQueryable().CreatedOn(null, DateTime.MaxValue).Count());
+      Assert.False(new[] { new TimestampableEntity { CreatedAt = DateTime.MinValue }, new TimestampableEntity { CreatedAt = DateTime.MaxValue } }.AsQueryable().CreatedOn(DateTime.MinValue.AddDays(1), DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.False(new[] { new TimestampableEntity { CreatedAt = DateTime.MinValue }, new TimestampableEntity { CreatedAt = DateTime.MinValue } }.AsQueryable().CreatedOn(DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.False(new[] { new TimestampableEntity { CreatedAt = DateTime.MaxValue }, new TimestampableEntity { CreatedAt = DateTime.MaxValue } }.AsQueryable().CreatedOn(null, DateTime.MaxValue.AddDays(-1)).Any());
 
-      Assert.Equal(2, new[] { new TimestampableEntity { DateCreated = DateTime.MinValue }, new TimestampableEntity { DateCreated = DateTime.MaxValue } }.CreatedOn(DateTime.MinValue, DateTime.MaxValue).Count());
-      Assert.Equal(2, new[] { new TimestampableEntity { DateCreated = DateTime.MinValue }, new TimestampableEntity { DateCreated = DateTime.MaxValue } }.CreatedOn(DateTime.MinValue).Count());
-      Assert.Equal(2, new[] { new TimestampableEntity { DateCreated = DateTime.MinValue }, new TimestampableEntity { DateCreated = DateTime.MaxValue } }.CreatedOn(null, DateTime.MaxValue).Count());
-      Assert.False(new[] { new TimestampableEntity { DateCreated = DateTime.MinValue }, new TimestampableEntity { DateCreated = DateTime.MaxValue } }.CreatedOn(DateTime.MinValue.AddDays(1), DateTime.MaxValue.AddDays(-1)).Any());
-      Assert.False(new[] { new TimestampableEntity { DateCreated = DateTime.MinValue }, new TimestampableEntity { DateCreated = DateTime.MinValue } }.CreatedOn(DateTime.MaxValue.AddDays(-1)).Any());
-      Assert.False(new[] { new TimestampableEntity { DateCreated = DateTime.MaxValue }, new TimestampableEntity { DateCreated = DateTime.MaxValue } }.CreatedOn(null, DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.Equal(2, new[] { new TimestampableEntity { CreatedAt = DateTime.MinValue }, new TimestampableEntity { CreatedAt = DateTime.MaxValue } }.CreatedOn(DateTime.MinValue, DateTime.MaxValue).Count());
+      Assert.Equal(2, new[] { new TimestampableEntity { CreatedAt = DateTime.MinValue }, new TimestampableEntity { CreatedAt = DateTime.MaxValue } }.CreatedOn(DateTime.MinValue).Count());
+      Assert.Equal(2, new[] { new TimestampableEntity { CreatedAt = DateTime.MinValue }, new TimestampableEntity { CreatedAt = DateTime.MaxValue } }.CreatedOn(null, DateTime.MaxValue).Count());
+      Assert.False(new[] { new TimestampableEntity { CreatedAt = DateTime.MinValue }, new TimestampableEntity { CreatedAt = DateTime.MaxValue } }.CreatedOn(DateTime.MinValue.AddDays(1), DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.False(new[] { new TimestampableEntity { CreatedAt = DateTime.MinValue }, new TimestampableEntity { CreatedAt = DateTime.MinValue } }.CreatedOn(DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.False(new[] { new TimestampableEntity { CreatedAt = DateTime.MaxValue }, new TimestampableEntity { CreatedAt = DateTime.MaxValue } }.CreatedOn(null, DateTime.MaxValue.AddDays(-1)).Any());
     }
 
     /// <summary>
@@ -57,26 +57,26 @@ namespace Catharsis.Domain
       Assert.False(Enumerable.Empty<TimestampableEntity>().AsQueryable().UpdatedOn().Any());
       Assert.False(Enumerable.Empty<TimestampableEntity>().UpdatedOn().Any());
 
-      Assert.Equal(2, new[] { new TimestampableEntity { LastUpdated = DateTime.MinValue }, new TimestampableEntity { LastUpdated = DateTime.MaxValue } }.AsQueryable().UpdatedOn(DateTime.MinValue, DateTime.MaxValue).Count());
-      Assert.Equal(2, new[] { new TimestampableEntity { LastUpdated = DateTime.MinValue }, new TimestampableEntity { LastUpdated = DateTime.MaxValue } }.AsQueryable().UpdatedOn(DateTime.MinValue).Count());
-      Assert.Equal(2, new[] { new TimestampableEntity { LastUpdated = DateTime.MinValue }, new TimestampableEntity { LastUpdated = DateTime.MaxValue } }.AsQueryable().UpdatedOn(null, DateTime.MaxValue).Count());
-      Assert.False(new[] { new TimestampableEntity { LastUpdated = DateTime.MinValue }, new TimestampableEntity { LastUpdated = DateTime.MaxValue } }.AsQueryable().UpdatedOn(DateTime.MinValue.AddDays(1), DateTime.MaxValue.AddDays(-1)).Any());
-      Assert.False(new[] { new TimestampableEntity { LastUpdated = DateTime.MinValue }, new TimestampableEntity { LastUpdated = DateTime.MinValue } }.AsQueryable().UpdatedOn(DateTime.MaxValue.AddDays(-1)).Any());
-      Assert.False(new[] { new TimestampableEntity { LastUpdated = DateTime.MaxValue }, new TimestampableEntity { LastUpdated = DateTime.MaxValue } }.AsQueryable().UpdatedOn(null, DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.Equal(2, new[] { new TimestampableEntity { UpdatedAt = DateTime.MinValue }, new TimestampableEntity { UpdatedAt = DateTime.MaxValue } }.AsQueryable().UpdatedOn(DateTime.MinValue, DateTime.MaxValue).Count());
+      Assert.Equal(2, new[] { new TimestampableEntity { UpdatedAt = DateTime.MinValue }, new TimestampableEntity { UpdatedAt = DateTime.MaxValue } }.AsQueryable().UpdatedOn(DateTime.MinValue).Count());
+      Assert.Equal(2, new[] { new TimestampableEntity { UpdatedAt = DateTime.MinValue }, new TimestampableEntity { UpdatedAt = DateTime.MaxValue } }.AsQueryable().UpdatedOn(null, DateTime.MaxValue).Count());
+      Assert.False(new[] { new TimestampableEntity { UpdatedAt = DateTime.MinValue }, new TimestampableEntity { UpdatedAt = DateTime.MaxValue } }.AsQueryable().UpdatedOn(DateTime.MinValue.AddDays(1), DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.False(new[] { new TimestampableEntity { UpdatedAt = DateTime.MinValue }, new TimestampableEntity { UpdatedAt = DateTime.MinValue } }.AsQueryable().UpdatedOn(DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.False(new[] { new TimestampableEntity { UpdatedAt = DateTime.MaxValue }, new TimestampableEntity { UpdatedAt = DateTime.MaxValue } }.AsQueryable().UpdatedOn(null, DateTime.MaxValue.AddDays(-1)).Any());
 
-      Assert.Equal(2, new[] { new TimestampableEntity { LastUpdated = DateTime.MinValue }, new TimestampableEntity { LastUpdated = DateTime.MaxValue } }.UpdatedOn(DateTime.MinValue, DateTime.MaxValue).Count());
-      Assert.Equal(2, new[] { new TimestampableEntity { LastUpdated = DateTime.MinValue }, new TimestampableEntity { LastUpdated = DateTime.MaxValue } }.UpdatedOn(DateTime.MinValue).Count());
-      Assert.Equal(2, new[] { new TimestampableEntity { LastUpdated = DateTime.MinValue }, new TimestampableEntity { LastUpdated = DateTime.MaxValue } }.UpdatedOn(null, DateTime.MaxValue).Count());
-      Assert.False(new[] { new TimestampableEntity { LastUpdated = DateTime.MinValue }, new TimestampableEntity { LastUpdated = DateTime.MaxValue } }.UpdatedOn(DateTime.MinValue.AddDays(1), DateTime.MaxValue.AddDays(-1)).Any());
-      Assert.False(new[] { new TimestampableEntity { LastUpdated = DateTime.MinValue }, new TimestampableEntity { LastUpdated = DateTime.MinValue } }.UpdatedOn(DateTime.MaxValue.AddDays(-1)).Any());
-      Assert.False(new[] { new TimestampableEntity { LastUpdated = DateTime.MaxValue }, new TimestampableEntity { LastUpdated = DateTime.MaxValue } }.UpdatedOn(null, DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.Equal(2, new[] { new TimestampableEntity { UpdatedAt = DateTime.MinValue }, new TimestampableEntity { UpdatedAt = DateTime.MaxValue } }.UpdatedOn(DateTime.MinValue, DateTime.MaxValue).Count());
+      Assert.Equal(2, new[] { new TimestampableEntity { UpdatedAt = DateTime.MinValue }, new TimestampableEntity { UpdatedAt = DateTime.MaxValue } }.UpdatedOn(DateTime.MinValue).Count());
+      Assert.Equal(2, new[] { new TimestampableEntity { UpdatedAt = DateTime.MinValue }, new TimestampableEntity { UpdatedAt = DateTime.MaxValue } }.UpdatedOn(null, DateTime.MaxValue).Count());
+      Assert.False(new[] { new TimestampableEntity { UpdatedAt = DateTime.MinValue }, new TimestampableEntity { UpdatedAt = DateTime.MaxValue } }.UpdatedOn(DateTime.MinValue.AddDays(1), DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.False(new[] { new TimestampableEntity { UpdatedAt = DateTime.MinValue }, new TimestampableEntity { UpdatedAt = DateTime.MinValue } }.UpdatedOn(DateTime.MaxValue.AddDays(-1)).Any());
+      Assert.False(new[] { new TimestampableEntity { UpdatedAt = DateTime.MaxValue }, new TimestampableEntity { UpdatedAt = DateTime.MaxValue } }.UpdatedOn(null, DateTime.MaxValue.AddDays(-1)).Any());
     }
 
     private sealed class TimestampableEntity : ITimestampable
     {
-      public DateTime DateCreated { get; set; }
+      public DateTime CreatedAt { get; set; }
 
-      public DateTime LastUpdated { get; set; }
+      public DateTime UpdatedAt { get; set; }
     }
   }
 }

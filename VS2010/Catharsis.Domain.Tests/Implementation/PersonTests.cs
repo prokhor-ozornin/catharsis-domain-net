@@ -214,32 +214,6 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Person.Equals(Person)"/></description></item>
-    ///     <item><description><see cref="Person.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("NameFirst", "first", "second");
-      this.TestEquality("NameLast", "first", "second");
-      this.TestEquality("NameMiddle", "first", "second");
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Person.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("NameFirst", "first", "second");
-      this.TestHashCode("NameLast", "first", "second");
-      this.TestHashCode("NameMiddle", "first", "second");
-    }
-
-    /// <summary>
     ///   <para>Performs testing of <see cref="Person.ToString()"/> method.</para>
     /// </summary>
     [Fact]

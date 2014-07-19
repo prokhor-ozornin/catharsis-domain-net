@@ -8,7 +8,7 @@ namespace Catharsis.Domain
   ///   <para>Represents a free or paid informational message.</para>
   /// </summary>
   [Description("Represents a free or paid informational message")]
-  public partial class Announcement : Item, IEquatable<Announcement>
+  public partial class Announcement : Item
   {
     /// <summary>
     ///   <para>Category of announcement.</para>
@@ -60,35 +60,6 @@ namespace Catharsis.Domain
       this.Image = image;
       this.Currency = currency;
       this.Price = price;
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="Announcement"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(Announcement other)
-    {
-      return base.Equals(other) && this.Equality(other, announcement => announcement.Category);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Announcement);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return base.GetHashCode() + this.GetHashCode(announcement => announcement.Category);
     }
   }
 }

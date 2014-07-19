@@ -12,23 +12,9 @@ namespace Catharsis.Domain
   ///   <para>Represents base content element.</para>
   /// </summary>
   [Description("Represents base content element")]
-  public partial class Item : IComparable<Item>, IEquatable<Item>, IEntity, ILocalizable, INameable, ITaggable, ITimestampable
+  public partial class Item : Entity, IComparable<Item>, ILocalizable, INameable, ITaggable, ITimestampable
   {
     private string name;
-
-    /// <summary>
-    ///   <para>Unique identifier of item.</para>
-    /// </summary>
-    [Description("Unique identifier of item")]
-    public virtual long Id { get; set; }
-
-    /// <summary>
-    ///   <para>Version number of current item instance.</para>
-    /// </summary>
-    [Description("Version number of current item instance")]
-    [XmlIgnore]
-    [JsonIgnore]
-    public virtual long Version { get; set; }
 
     /// <summary>
     ///   <para>Collection of associated comments.</para>
@@ -58,7 +44,7 @@ namespace Catharsis.Domain
     ///   <para>Date/ time when item was first created.</para>
     /// </summary>
     [Description("Date/ time when item was first created")]
-    public virtual DateTime DateCreated  { get; set; }
+    public virtual DateTime CreatedAt  { get; set; }
     
     /// <summary>
     ///   <para>ISO language code of item's content.</para>
@@ -70,7 +56,7 @@ namespace Catharsis.Domain
     ///   <para>Date/time when item was modified.</para>
     /// </summary>
     [Description("Date/time when item was modified")]
-    public virtual DateTime LastUpdated { get; set; }
+    public virtual DateTime UpdatedAt { get; set; }
     
     /// <summary>
     ///   <para>Name of item.</para>
@@ -126,8 +112,8 @@ namespace Catharsis.Domain
     public Item()
     {
       var now = DateTime.UtcNow;
-      this.DateCreated = now;
-      this.LastUpdated = now;
+      this.CreatedAt = now;
+      this.UpdatedAt = now;
 
       this.Comments = new List<Comment>();
       this.Tags = new List<string>();
@@ -153,36 +139,7 @@ namespace Catharsis.Domain
     /// <param name="other">The <see cref="Item"/> to compare with this instance.</param>
     public virtual int CompareTo(Item other)
     {
-      return this.DateCreated.CompareTo(other.DateCreated);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="Item"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(Item other)
-    {
-      return this.Equality(other, item => item.Language, item => item.Name);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Item);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(item => item.Language, item => item.Name);
+      return this.CreatedAt.CompareTo(other.CreatedAt);
     }
 
     /// <summary>

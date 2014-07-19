@@ -18,7 +18,7 @@ namespace Catharsis.Domain
     public override void Attributes()
     {
       base.Attributes();
-      this.TestDescription("Category", "Comments", "Currency", "DateCreated", "Image", "Language", "Name", "Price", "Tags", "Text");
+      this.TestDescription("Category", "Comments", "Currency", "CreatedAt", "Image", "Language", "Name", "Price", "Tags", "Text");
     }
 
     /// <summary>
@@ -28,10 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var announcement = new Announcement();
-      this.TestJson(announcement, new { Id = 0, Comments = new object[] { }, DateCreated = announcement.DateCreated.ISO8601(), LastUpdated = announcement.LastUpdated.ISO8601(), Tags = new object[] { } });
+      this.TestJson(announcement, new { Id = 0, Comments = new object[] { }, CreatedAt = announcement.CreatedAt.ISO8601(), Tags = new object[] { }, UpdatedAt = announcement.UpdatedAt.ISO8601() });
 
       announcement = new Announcement("name", "text");
-      this.TestJson(announcement, new { Id = 0, Comments = new object[] { }, DateCreated = announcement.DateCreated.ISO8601(), LastUpdated = announcement.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { }, Text = "text" });
+      this.TestJson(announcement, new { Id = 0, Comments = new object[] { }, CreatedAt = announcement.CreatedAt.ISO8601(), Name = "name", Tags = new object[] { }, Text = "text", UpdatedAt = announcement.UpdatedAt.ISO8601() });
       
       var comment = new Comment("comment.name", "comment.text");
       announcement = new Announcement("name", "text", new AnnouncementsCategory("category.name"), "image", "currency", (decimal)1.5)
@@ -41,7 +41,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestJson(announcement, new { Id = 1, Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, Currency = "currency", DateCreated = announcement.DateCreated.ISO8601(), Image = "image", Language = "language", LastUpdated = announcement.LastUpdated.ISO8601(), Name = "name", Price = 1.5, Tags = new object[] { "tag" }, Text = "text" });
+      this.TestJson(announcement, new { Id = 1, Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, CreatedAt = comment.CreatedAt.ISO8601(), Name = "comment.name", Text = "comment.text", UpdatedAt = comment.UpdatedAt.ISO8601() } }, CreatedAt = announcement.CreatedAt.ISO8601(), Currency = "currency", Image = "image", Language = "language", Name = "name", Price = 1.5, Tags = new object[] { "tag" }, Text = "text", UpdatedAt = announcement.UpdatedAt.ISO8601() });
     }
 
     /// <summary>
@@ -51,10 +51,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var announcement = new Announcement();
-      this.TestXml(announcement, new { Id = 0, DateCreated = announcement.DateCreated, LastUpdated = announcement.LastUpdated });
+      this.TestXml(announcement, new { Id = 0, CreatedAt = announcement.CreatedAt, UpdatedAt = announcement.UpdatedAt });
 
       announcement = new Announcement("name", "text");
-      this.TestXml(announcement, new { Id = 0, DateCreated = announcement.DateCreated, LastUpdated = announcement.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(announcement, new { Id = 0, CreatedAt = announcement.CreatedAt, UpdatedAt = announcement.UpdatedAt, Name = "name", Text = "text" });
 
       var comment = new Comment("comment.name", "comment.text");
       announcement = new Announcement("name", "text", new AnnouncementsCategory("category.name"), "image", "currency", (decimal)1.0)
@@ -64,7 +64,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(announcement, new { Id = 1, Currency = "currency", DateCreated = announcement.DateCreated, Image = "image", Language = "language", LastUpdated = announcement.LastUpdated, Name = "name", Price = 1.0, Text = "text" });
+      this.TestXml(announcement, new { Id = 1, Currency = "currency", CreatedAt = announcement.CreatedAt, Image = "image", Language = "language", UpdatedAt = announcement.UpdatedAt, Name = "name", Price = 1.0, Text = "text" });
     }
 
     /// <summary>
@@ -80,10 +80,10 @@ namespace Catharsis.Domain
       Assert.Null(announcement.Category);
       Assert.False(announcement.Comments.Any());
       Assert.Null(announcement.Currency);
-      Assert.True(announcement.DateCreated >= DateTime.MinValue && announcement.DateCreated <= DateTime.UtcNow);
+      Assert.True(announcement.CreatedAt >= DateTime.MinValue && announcement.CreatedAt <= DateTime.UtcNow);
       Assert.Null(announcement.Image);
       Assert.Null(announcement.Language);
-      Assert.True(announcement.LastUpdated >= DateTime.MinValue && announcement.LastUpdated <= DateTime.UtcNow);
+      Assert.True(announcement.UpdatedAt >= DateTime.MinValue && announcement.UpdatedAt <= DateTime.UtcNow);
       Assert.Null(announcement.Name);
       Assert.Null(announcement.Price);
       Assert.False(announcement.Tags.Any());
@@ -99,10 +99,10 @@ namespace Catharsis.Domain
       Assert.NotNull(announcement.Category);
       Assert.False(announcement.Comments.Any());
       Assert.Equal("currency", announcement.Currency);
-      Assert.True(announcement.DateCreated >= DateTime.MinValue && announcement.DateCreated <= DateTime.UtcNow);
+      Assert.True(announcement.CreatedAt >= DateTime.MinValue && announcement.CreatedAt <= DateTime.UtcNow);
       Assert.Equal("image", announcement.Image);
       Assert.Null(announcement.Language);
-      Assert.True(announcement.LastUpdated >= DateTime.MinValue && announcement.LastUpdated <= DateTime.UtcNow);
+      Assert.True(announcement.UpdatedAt >= DateTime.MinValue && announcement.UpdatedAt <= DateTime.UtcNow);
       Assert.Equal("name", announcement.Name);
       Assert.Equal(decimal.One, announcement.Price);
       Assert.False(announcement.Tags.Any());
@@ -145,28 +145,6 @@ namespace Catharsis.Domain
     public void Price_Property()
     {
       Assert.Equal(decimal.One, new Announcement { Price = decimal.One }.Price);
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Announcement.Equals(Announcement)"/></description></item>
-    ///     <item><description><see cref="Announcement.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Category", new AnnouncementsCategory { Name = "first" }, new AnnouncementsCategory { Name = "second" });
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Announcement.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Category", new AnnouncementsCategory { Name = "first" }, new AnnouncementsCategory { Name = "second" });
     }
   }
 }

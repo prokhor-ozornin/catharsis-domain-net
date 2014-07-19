@@ -18,7 +18,7 @@ namespace Catharsis.Domain
     public override void Attributes()
     {
       base.Attributes();
-      this.TestDescription("Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text");
+      this.TestDescription("Comments", "CreatedAt", "Language", "UpdatedAt", "Name", "Tags", "Text");
     }
 
     /// <summary>
@@ -28,10 +28,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var faq = new Faq();
-      this.TestJson(faq, new { Id = 0, Comments = new object[] { }, DateCreated = faq.DateCreated.ISO8601(), LastUpdated = faq.LastUpdated.ISO8601(), Tags = new object[] { } });
+      this.TestJson(faq, new { Id = 0, Comments = new object[] { }, CreatedAt = faq.CreatedAt.ISO8601(), Tags = new object[] { }, UpdatedAt = faq.UpdatedAt.ISO8601() });
 
       faq = new Faq("name", "text");
-      this.TestJson(faq, new { Id = 0, Comments = new object[] {}, DateCreated = faq.DateCreated.ISO8601(), LastUpdated = faq.LastUpdated.ISO8601(), Name = "name", Tags = new object[] {}, Text = "text" });
+      this.TestJson(faq, new { Id = 0, Comments = new object[] { }, CreatedAt = faq.CreatedAt.ISO8601(), Name = "name", Tags = new object[] { }, Text = "text", UpdatedAt = faq.UpdatedAt.ISO8601() });
 
       var comment = new Comment("comment.name", "comment.text");
       faq = new Faq("name", "text")
@@ -41,7 +41,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestJson(faq, new { Id = 1, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = faq.DateCreated.ISO8601(), Language = "language", LastUpdated = faq.LastUpdated.ISO8601(), Name = "name", Tags = new object[] { "tag" }, Text = "text" });
+      this.TestJson(faq, new { Id = 1, Comments = new object[] { new { Id = 0, CreatedAt = comment.CreatedAt.ISO8601(), Name = "comment.name", Text = "comment.text", UpdatedAt = comment.UpdatedAt.ISO8601() } }, CreatedAt = faq.CreatedAt.ISO8601(), Language = "language", Name = "name", Tags = new object[] { "tag" }, Text = "text", UpdatedAt = faq.UpdatedAt.ISO8601() });
     }
 
     /// <summary>
@@ -51,10 +51,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var faq = new Faq();
-      this.TestXml(faq, new { Id = 0, DateCreated = faq.DateCreated, LastUpdated = faq.LastUpdated });
+      this.TestXml(faq, new { Id = 0, CreatedAt = faq.CreatedAt, UpdatedAt = faq.UpdatedAt });
 
       faq = new Faq("name", "text");
-      this.TestXml(faq, new { Id = 0, DateCreated = faq.DateCreated, LastUpdated = faq.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(faq, new { Id = 0, CreatedAt = faq.CreatedAt, UpdatedAt = faq.UpdatedAt, Name = "name", Text = "text" });
 
       var comment = new Comment("comment.name", "comment.text");
       faq = new Faq("name", "text")
@@ -64,7 +64,7 @@ namespace Catharsis.Domain
         Comments = new List<Comment> { comment },
         Tags = new List<string> { "tag" }
       };
-      this.TestXml(faq, new { Id = 1, DateCreated = faq.DateCreated, Language = "language", LastUpdated = faq.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(faq, new { Id = 1, CreatedAt = faq.CreatedAt, Language = "language", UpdatedAt = faq.UpdatedAt, Name = "name", Text = "text" });
     }
 
     /// <summary>
@@ -77,10 +77,10 @@ namespace Catharsis.Domain
     {
       var faq = new Faq();
       Assert.False(faq.Comments.Any());
-      Assert.True(faq.DateCreated >= DateTime.MinValue && faq.DateCreated <= DateTime.UtcNow);
+      Assert.True(faq.CreatedAt >= DateTime.MinValue && faq.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, faq.Id);
       Assert.Null(faq.Language);
-      Assert.True(faq.LastUpdated >= DateTime.MinValue && faq.LastUpdated <= DateTime.UtcNow);
+      Assert.True(faq.UpdatedAt >= DateTime.MinValue && faq.UpdatedAt <= DateTime.UtcNow);
       Assert.Null(faq.Name);
       Assert.False(faq.Tags.Any());
       Assert.Null(faq.Text);
@@ -92,10 +92,10 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentException>(() => new Faq("name", string.Empty));
       faq = new Faq("name", "text");
       Assert.False(faq.Comments.Any());
-      Assert.True(faq.DateCreated >= DateTime.MinValue && faq.DateCreated <= DateTime.UtcNow);
+      Assert.True(faq.CreatedAt >= DateTime.MinValue && faq.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, faq.Id);
       Assert.Null(faq.Language);
-      Assert.True(faq.LastUpdated >= DateTime.MinValue && faq.LastUpdated <= DateTime.UtcNow);
+      Assert.True(faq.UpdatedAt >= DateTime.MinValue && faq.UpdatedAt <= DateTime.UtcNow);
       Assert.Equal("name", faq.Name);
       Assert.False(faq.Tags.Any());
       Assert.Equal("text", faq.Text);

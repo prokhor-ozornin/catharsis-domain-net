@@ -18,7 +18,7 @@ namespace Catharsis.Domain
     public override void Attributes()
     {
       base.Attributes();
-      this.TestDescription("Category", "Comments", "DateCreated", "Language", "LastUpdated", "Name", "Tags", "Text", "Person", "Translations");
+      this.TestDescription("Category", "Comments", "CreatedAt", "Language", "UpdatedAt", "Name", "Tags", "Text", "Person", "Translations");
     }
 
     /// <summary>
@@ -28,12 +28,12 @@ namespace Catharsis.Domain
     public void Json()
     {
       var text = new Text();
-      this.TestJson(text, new { Id = 0, Comments = new object[] { }, DateCreated = text.DateCreated.ISO8601(), LastUpdated = text.LastUpdated.ISO8601(), Tags = new object[] { }, Translations = new object[] { } });
+      this.TestJson(text, new { Id = 0, Comments = new object[] { }, CreatedAt = text.CreatedAt.ISO8601(), Tags = new object[] { }, Translations = new object[] { }, UpdatedAt = text.UpdatedAt.ISO8601() });
 
       var person = new Person("person.nameFirst", "person.nameLast");
       
       text = new Text("name", "text", person);
-      this.TestJson(text, new { Id = 0, Comments = new object[] {}, DateCreated = text.DateCreated.ISO8601(), LastUpdated = text.LastUpdated.ISO8601(), Name = "name", Person = new { Id = 0, NameFirst = "person.nameFirst", NameLast = "person.nameLast" }, Tags = new object[] {}, Text = "text", Translations = new object[] {} });
+      this.TestJson(text, new { Id = 0, Comments = new object[] { }, CreatedAt = text.CreatedAt.ISO8601(), Name = "name", Person = new { Id = 0, NameFirst = "person.nameFirst", NameLast = "person.nameLast" }, Tags = new object[] { }, Text = "text", Translations = new object[] { }, UpdatedAt = text.UpdatedAt.ISO8601() });
 
       var comment = new Comment("comment.name", "comment.text");
       var translation = new TextTranslation("translation.language", "translation.name", "translation.text");
@@ -45,7 +45,7 @@ namespace Catharsis.Domain
         Tags = new List<string> { "tag" },
         Translations = new List<TextTranslation> { translation }
       };
-      this.TestJson(text, new { Id = 1, Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "comment.name", Text = "comment.text" } }, DateCreated = text.DateCreated.ISO8601(), Language = "language", LastUpdated = text.LastUpdated.ISO8601(), Name = "name", Person = new { Id = 0, NameFirst = "person.nameFirst", NameLast = "person.nameLast" }, Tags = new object[] { "tag" }, Text = "text", Translations = new object[] { new { Id = 0, Language = "translation.language", Name = "translation.name", Text = "translation.text" } } });
+      this.TestJson(text, new { Id = 1, Category = new { Id = 0, Name = "category.name" }, Comments = new object[] { new { Id = 0, CreatedAt = comment.CreatedAt.ISO8601(), Name = "comment.name", Text = "comment.text", UpdatedAt = comment.UpdatedAt.ISO8601() } }, CreatedAt = text.CreatedAt.ISO8601(), Language = "language", Name = "name", Person = new { Id = 0, NameFirst = "person.nameFirst", NameLast = "person.nameLast" }, Tags = new object[] { "tag" }, Text = "text", Translations = new object[] { new { Id = 0, Language = "translation.language", Name = "translation.name", Text = "translation.text" } }, UpdatedAt = text.UpdatedAt.ISO8601() });
     }
 
     /// <summary>
@@ -55,12 +55,12 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var text = new Text();
-      this.TestXml(text, new { Id = 0, DateCreated = text.DateCreated, LastUpdated = text.LastUpdated });
+      this.TestXml(text, new { Id = 0, CreatedAt = text.CreatedAt, UpdatedAt = text.UpdatedAt });
 
       var person = new Person("person.nameFirst", "person.nameLast");
 
       text = new Text("name", "text", person);
-      this.TestXml(text, new { Id = 0, DateCreated = text.DateCreated, LastUpdated = text.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(text, new { Id = 0, CreatedAt = text.CreatedAt, UpdatedAt = text.UpdatedAt, Name = "name", Text = "text" });
 
       var comment = new Comment("comment.name", "comment.text");
       var translation = new TextTranslation("translation.language", "translation.name", "translation.text");
@@ -72,7 +72,7 @@ namespace Catharsis.Domain
         Tags = new List<string> { "tag" },
         Translations = new List<TextTranslation> { translation }
       };
-      this.TestXml(text, new { Id = 1, DateCreated = text.DateCreated, Language = "language", LastUpdated = text.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(text, new { Id = 1, CreatedAt = text.CreatedAt, Language = "language", UpdatedAt = text.UpdatedAt, Name = "name", Text = "text" });
     }
 
     /// <summary>
@@ -86,10 +86,10 @@ namespace Catharsis.Domain
       var text = new Text();
       Assert.Null(text.Category);
       Assert.False(text.Comments.Any());
-      Assert.True(text.DateCreated >= DateTime.MinValue && text.DateCreated <= DateTime.UtcNow);
+      Assert.True(text.CreatedAt >= DateTime.MinValue && text.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, text.Id);
       Assert.Null(text.Language);
-      Assert.True(text.LastUpdated >= DateTime.MinValue && text.LastUpdated <= DateTime.UtcNow);
+      Assert.True(text.UpdatedAt >= DateTime.MinValue && text.UpdatedAt <= DateTime.UtcNow);
       Assert.Null(text.Name);
       Assert.False(text.Tags.Any());
       Assert.Null(text.Text);
@@ -105,10 +105,10 @@ namespace Catharsis.Domain
       text = new Text("name", "text", new Person(), new TextsCategory());
       Assert.NotNull(text.Category);
       Assert.False(text.Comments.Any());
-      Assert.True(text.DateCreated >= DateTime.MinValue && text.DateCreated <= DateTime.UtcNow);
+      Assert.True(text.CreatedAt >= DateTime.MinValue && text.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, text.Id);
       Assert.Null(text.Language);
-      Assert.True(text.LastUpdated >= DateTime.MinValue && text.LastUpdated <= DateTime.UtcNow);
+      Assert.True(text.UpdatedAt >= DateTime.MinValue && text.UpdatedAt <= DateTime.UtcNow);
       Assert.Equal("name", text.Name);
       Assert.False(text.Tags.Any());
       Assert.Equal("text", text.Text);
@@ -153,30 +153,6 @@ namespace Catharsis.Domain
       Assert.True(ReferenceEquals(text.Translations.Single(), translation));
       text.Translations.Add(translation);
       Assert.Equal(2, text.Translations.Count);
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Text.Equals(Text)"/></description></item>
-    ///     <item><description><see cref="Text.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Category", new TextsCategory { Name = "first" }, new TextsCategory { Name = "second" });
-      this.TestEquality("Person", new Person { NameFirst = "first" }, new Person { NameFirst = "second" });
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Text.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Category", new TextsCategory { Name = "first" }, new TextsCategory { Name = "second" });
-      this.TestHashCode("Person", new Person { NameFirst = "first" }, new Person { NameFirst = "second" });
     }
   }
 }

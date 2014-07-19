@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using Catharsis.Commons;
-using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -10,23 +8,9 @@ namespace Catharsis.Domain
   ///   <para>Represents a named setting/option.</para>
   /// </summary>
   [Description("Represents a named setting/option")]
-  public partial class Setting : IComparable<Setting>, IEquatable<Setting>, IEntity, INameable
+  public partial class Setting : Entity, IComparable<Setting>, INameable
   {
     private string name;
-
-    /// <summary>
-    ///   <para>Unique identifier of setting.</para>
-    /// </summary>
-    [Description("Unique identifier of setting")]
-    public virtual long Id { get; set; }
-
-    /// <summary>
-    ///   <para>Version number of current setting instance.</para>
-    /// </summary>
-    [Description("Version number of current setting instance")]
-    [XmlIgnore]
-    [JsonIgnore]
-    public virtual long Version { get; set; }
 
     /// <summary>
     ///   <para>Name of setting.</para>
@@ -79,35 +63,6 @@ namespace Catharsis.Domain
     public virtual int CompareTo(Setting other)
     {
       return this.Name.CompareTo(other.Name, StringComparison.InvariantCultureIgnoreCase);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="Setting"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(Setting other)
-    {
-      return this.Equality(other, setting => setting.Name);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Setting);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(setting => setting.Name);
     }
 
     /// <summary>

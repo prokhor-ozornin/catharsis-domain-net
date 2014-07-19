@@ -12,7 +12,7 @@ namespace Catharsis.Domain
   ///   <para>Represents a literary text.</para>
   /// </summary>
   [Description("Represents a literary text")]
-  public partial class Text : Item, IEquatable<Text>
+  public partial class Text : Item
   {
     private Person person;
 
@@ -87,35 +87,6 @@ namespace Catharsis.Domain
       this.Category = category;
       this.Person = person;
       this.Translations = new List<TextTranslation>();
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="Text"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(Text other)
-    {
-      return base.Equals(other) && this.Equality(other, text => text.Category, text => text.Person);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Text);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return base.GetHashCode() + this.GetHashCode(text => text.Category, text => text.Person);
     }
   }
 }

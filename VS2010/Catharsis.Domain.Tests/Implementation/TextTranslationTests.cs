@@ -141,32 +141,6 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="TextTranslation.Equals(TextTranslation)"/></description></item>
-    ///     <item><description><see cref="TextTranslation.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Language", "first", "second");
-      this.TestEquality("Name", "first", "second");
-      this.TestEquality("Translator", "first", "second");
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="TextTranslation.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Language", "first", "second");
-      this.TestHashCode("Name", "first", "second");
-      this.TestHashCode("Translator", "first", "second");
-    }
-
-    /// <summary>
     ///   <para>Performs testing of <see cref="TextTranslation.ToString()"/> method.</para>
     /// </summary>
     [Fact]

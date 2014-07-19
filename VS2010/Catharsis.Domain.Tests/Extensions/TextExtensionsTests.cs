@@ -30,7 +30,7 @@ namespace Catharsis.Domain
       Assert.False(Enumerable.Empty<Text>().Category(new TextsCategory()).Any());
       
       Assert.Equal(1, new[] { new Text { Category = new TextsCategory { Id = 1 } }, new Text { Category = new TextsCategory { Id = 2 } } }.AsQueryable().Category(new TextsCategory { Id = 1 }).Count());
-      Assert.Equal(1, new[] { null, new Text { Category = new TextsCategory { Name = "first" } }, null, new Text { Category = new TextsCategory { Name = "second" } } }.Category(new TextsCategory { Name = "first" }).Count());
+      Assert.Equal(1, new[] { null, new Text { Category = new TextsCategory { Id = 1 } }, new Text { Category = new TextsCategory { Id = 2 } } }.Category(new TextsCategory { Id = 1 }).Count());
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ namespace Catharsis.Domain
       Assert.False(Enumerable.Empty<Text>().Person(new Person()).Any());
 
       Assert.Equal(1, new[] { new Text { Person = new Person { Id = 1 } }, new Text { Person = new Person { Id = 2 } } }.AsQueryable().Person(new Person { Id = 1 }).Count());
-      Assert.Equal(1, new[] { null, new Text { Person = new Person { NameFirst = "first" } }, null, new Text { Person = new Person { NameFirst = "second" } } }.Person(new Person { NameFirst = "first" }).Count());
+      Assert.Equal(1, new[] { null, new Text { Person = new Person { Id = 1 } }, new Text { Person = new Person { Id = 2 } } }.Person(new Person { Id = 1 }).Count());
     }
   }
 }

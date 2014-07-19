@@ -155,30 +155,6 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Video.Equals(Video)"/></description></item>
-    ///     <item><description><see cref="Video.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Category", new VideosCategory { Name = "first" }, new VideosCategory { Name = "second" });
-      this.TestEquality("File", "first", "second");
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Video.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Category", new VideosCategory { Name = "first" }, new VideosCategory { Name = "second" });
-      this.TestHashCode("File", "first", "second");
-    }
-
-    /// <summary>
     ///   <para>Performs testing of <see cref="Video.ToString()"/> method.</para>
     /// </summary>
     [Fact]

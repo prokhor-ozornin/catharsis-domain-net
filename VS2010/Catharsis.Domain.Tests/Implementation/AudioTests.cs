@@ -129,30 +129,6 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Audio.Equals(Audio)"/></description></item>
-    ///     <item><description><see cref="Audio.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Category", new AudiosCategory { Name = "first" }, new AudiosCategory { Name = "second" });
-      this.TestEquality("File", "first", "second");
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Audio.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Category", new AudiosCategory { Name = "first" }, new AudiosCategory { Name = "second" });
-      this.TestHashCode("File", "first", "second");
-    }
-
-    /// <summary>
     ///   <para>Performs testing of <see cref="Audio.ToString()"/> method.</para>
     /// </summary>
     [Fact]

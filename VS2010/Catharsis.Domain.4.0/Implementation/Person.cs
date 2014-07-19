@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using Catharsis.Commons;
-using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -10,24 +8,10 @@ namespace Catharsis.Domain
   ///   <para>Represents a human person/user.</para>
   /// </summary>
   [Description("Represents a human person/user")]
-  public partial class Person : IComparable<Person>, IEquatable<Person>, IEntity
+  public partial class Person : Entity, IComparable<Person>
   {
     private string nameFirst;
     private string nameLast;
-
-    /// <summary>
-    ///   <para>Unique identifier of person.</para>
-    /// </summary>
-    [Description("Unique identifier of person")]
-    public virtual long Id { get; set; }
-
-    /// <summary>
-    ///   <para>Version number of current person instance.</para>
-    /// </summary>
-    [Description("Version number of current person instance")]
-    [XmlIgnore]
-    [JsonIgnore]
-    public virtual long Version { get; set; }
 
     /// <summary>
     ///   <para>Day of person's birth date.</para>
@@ -163,35 +147,6 @@ namespace Catharsis.Domain
     public virtual int CompareTo(Person other)
     {
       return this.NameLast.CompareTo(other.NameLast, StringComparison.InvariantCultureIgnoreCase);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="Person"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(Person other)
-    {
-      return this.Equality(other, person => person.BirthDay, person => person.BirthMonth, person => person.BirthYear, person => person.DeathDay, person => person.DeathMonth, person => person.DeathYear, person => person.NameFirst, person => person.NameLast, person => person.NameMiddle);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Person);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(person => person.BirthDay, person => person.BirthMonth, person => person.BirthYear, person => person.DeathDay, person => person.DeathMonth, person => person.DeathYear, person => person.NameFirst, person => person.NameLast, person => person.NameMiddle);
     }
 
     /// <summary>

@@ -22,12 +22,12 @@ namespace Catharsis.Domain
 
       if (from != null)
       {
-        entities = entities.Where(entity => entity.DateCreated >= from.Value);
+        entities = entities.Where(entity => entity.CreatedAt >= from.Value);
       }
 
       if (to != null)
       {
-        entities = entities.Where(entity => entity.DateCreated <= to.Value);
+        entities = entities.Where(entity => entity.CreatedAt <= to.Value);
       }
 
       return entities;
@@ -48,12 +48,12 @@ namespace Catharsis.Domain
 
       if (from != null)
       {
-        entities = entities.Where(entity => entity != null && entity.DateCreated >= from.Value);
+        entities = entities.Where(entity => entity != null && entity.CreatedAt >= from.Value);
       }
 
       if (to != null)
       {
-        entities = entities.Where(entity => entity != null && entity.DateCreated <= to.Value);
+        entities = entities.Where(entity => entity != null && entity.CreatedAt <= to.Value);
       }
 
       return entities;
@@ -74,12 +74,12 @@ namespace Catharsis.Domain
 
       if (from != null)
       {
-        entities = entities.Where(entity => entity.LastUpdated >= from.Value);
+        entities = entities.Where(entity => entity.UpdatedAt >= from.Value);
       }
 
       if (to != null)
       {
-        entities = entities.Where(entity => entity.LastUpdated <= to.Value);
+        entities = entities.Where(entity => entity.UpdatedAt <= to.Value);
       }
 
       return entities;
@@ -100,12 +100,12 @@ namespace Catharsis.Domain
 
       if (from != null)
       {
-        entities = entities.Where(entity => entity != null && entity.LastUpdated >= from.Value);
+        entities = entities.Where(entity => entity != null && entity.UpdatedAt >= from.Value);
       }
 
       if (to != null)
       {
-        entities = entities.Where(entity => entity != null && entity.LastUpdated <= to.Value);
+        entities = entities.Where(entity => entity != null && entity.UpdatedAt <= to.Value);
       }
 
       return entities;

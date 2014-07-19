@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using Catharsis.Commons;
-using Newtonsoft.Json;
 
 namespace Catharsis.Domain
 {
@@ -10,24 +8,10 @@ namespace Catharsis.Domain
   ///   <para>Represents user's subscription.</para>
   /// </summary>
   [Description("Represents user's subscription")]
-  public partial class Subscription : IComparable<Subscription>, IEquatable<Subscription>, IEntity, ITimestampable
+  public partial class Subscription : Entity, IComparable<Subscription>, ITimestampable
   {
     private string email;
     private string token;
-
-    /// <summary>
-    ///   <para>Unique identifier of subscription.</para>
-    /// </summary>
-    [Description("Unique identifier of subscription")]
-    public virtual long Id { get; set; }
-
-    /// <summary>
-    ///   <para>Version number of current subscription instance.</para>
-    /// </summary>
-    [Description("Version number of current subscription instance")]
-    [XmlIgnore]
-    [JsonIgnore]
-    public virtual long Version { get; set; }
 
     /// <summary>
     ///   <para>Whether subscription is active/enabled or inactive/disabled.</para>
@@ -39,7 +23,7 @@ namespace Catharsis.Domain
     ///   <para>Date/time when subscription was made.</para>
     /// </summary>
     [Description("Date/time when subscription was made")]
-    public virtual DateTime DateCreated { get; set; }
+    public virtual DateTime CreatedAt { get; set; }
     
     /// <summary>
     ///   <para>Email address of subscriber.</para>
@@ -62,13 +46,13 @@ namespace Catharsis.Domain
     ///   <para>Date/time when subscription should expire.</para>
     /// </summary>
     [Description("Date/time when subscription should expire")]
-    public virtual DateTime? ExpiredOn { get; set; }
+    public virtual DateTime? ExpiredAt { get; set; }
     
     /// <summary>
     ///   <para>Date/time when subscription was altered.</para>
     /// </summary>
     [Description("Date/time when subscription was altered")]
-    public virtual DateTime LastUpdated { get; set; }
+    public virtual DateTime UpdatedAt { get; set; }
     
     /// <summary>
     ///   <para>Unique string token/marker of subscription.</para>
@@ -92,8 +76,8 @@ namespace Catharsis.Domain
     /// </summary>
     public Subscription()
     {
-      this.DateCreated = DateTime.UtcNow;
-      this.LastUpdated = DateTime.UtcNow;
+      this.CreatedAt = DateTime.UtcNow;
+      this.UpdatedAt = DateTime.UtcNow;
       this.Active = true;
       this.Token = Guid.NewGuid().ToString();
     }
@@ -108,7 +92,7 @@ namespace Catharsis.Domain
     public Subscription(string email, DateTime? expiredOn = null) : this()
     {
       this.Email = email;
-      this.ExpiredOn = expiredOn;
+      this.ExpiredAt = expiredOn;
     }
 
     /// <summary>
@@ -118,36 +102,7 @@ namespace Catharsis.Domain
     /// <param name="other">The <see cref="Subscription"/> to compare with this instance.</param>
     public virtual int CompareTo(Subscription other)
     {
-      return this.DateCreated.CompareTo(other.DateCreated);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="Subscription"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(Subscription other)
-    {
-      return this.Equality(other, subscription => subscription.Email);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Subscription);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(subscription => subscription.Email);
+      return this.CreatedAt.CompareTo(other.CreatedAt);
     }
 
     /// <summary>

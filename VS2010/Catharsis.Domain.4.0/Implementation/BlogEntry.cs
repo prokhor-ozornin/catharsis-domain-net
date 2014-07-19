@@ -8,7 +8,7 @@ namespace Catharsis.Domain
   ///   <para>Represents text record in user's blog/journal.</para>
   /// </summary>
   [Description("Represents user blog/journal")]
-  public partial class BlogEntry : Item, IEquatable<BlogEntry>
+  public partial class BlogEntry : Item
   {
     private Blog blog;
 
@@ -48,35 +48,6 @@ namespace Catharsis.Domain
       Assertion.NotEmpty(text);
 
       this.Blog = blog;
-    }
-
-    /// <summary>
-    ///   <para>Determines whether two <see cref="BlogEntry"/> instances are equal.</para>
-    /// </summary>
-    /// <param name="other">The instance to compare with the current one.</param>
-    /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-    public virtual bool Equals(BlogEntry other)
-    {
-      return base.Equals(other) && this.Equality(other, entry => entry.Blog);
-    }
-
-    /// <summary>
-    ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
-    /// </summary>
-    /// <param name="other">The object to compare with the current object.</param>
-    /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as BlogEntry);
-    }
-
-    /// <summary>
-    ///   <para>Returns hash code for the current object.</para>
-    /// </summary>
-    /// <returns>Hash code of current instance.</returns>
-    public override int GetHashCode()
-    {
-      return base.GetHashCode() + this.GetHashCode(entry => entry.Blog);
     }
   }
 }

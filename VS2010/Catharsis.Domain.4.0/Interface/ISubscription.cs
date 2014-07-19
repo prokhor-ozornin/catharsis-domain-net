@@ -20,7 +20,7 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Date/time when subscription should expire.</para>
     /// </summary>
-    DateTime? ExpiredOn { get; }
+    DateTime? ExpiredAt { get; }
 
     /// <summary>
     ///   <para>Unique string token/marker of subscription.</para>

@@ -16,7 +16,7 @@ namespace Catharsis.Domain
     public override void Attributes()
     {
       base.Attributes();
-      this.TestDescription("Active", "DateCreated", "Email", "ExpiredOn", "LastUpdated", "Token");
+      this.TestDescription("Active", "CreatedAt", "Email", "ExpiredAt", "UpdatedAt", "Token");
     }
 
     /// <summary>
@@ -26,16 +26,16 @@ namespace Catharsis.Domain
     public void Json()
     {
       var subscription = new Subscription();
-      this.TestJson(subscription, new { Id = 0, Active = true, DateCreated = subscription.DateCreated.ISO8601(), LastUpdated = subscription.LastUpdated.ISO8601(), Token = subscription.Token });
+      this.TestJson(subscription, new { Id = 0, Active = true, CreatedAt = subscription.CreatedAt.ISO8601(), Token = subscription.Token, UpdatedAt = subscription.UpdatedAt.ISO8601() });
 
       subscription = new Subscription("email");
-      this.TestJson(subscription, new { Id = 0, Active = true, DateCreated = subscription.DateCreated.ISO8601(), Email = "email", LastUpdated = subscription.LastUpdated.ISO8601(), Token = subscription.Token });
+      this.TestJson(subscription, new { Id = 0, Active = true, CreatedAt = subscription.CreatedAt.ISO8601(), Email = "email", Token = subscription.Token, UpdatedAt = subscription.UpdatedAt.ISO8601() });
 
       subscription = new Subscription("email", DateTime.MinValue)
       {
         Id = 1
       };
-      this.TestJson(subscription, new { Id = 1, Active = true, DateCreated = subscription.DateCreated.ISO8601(), Email = "email", ExpiredOn = DateTime.MinValue.ISO8601(), LastUpdated = subscription.LastUpdated.ISO8601(), Token = subscription.Token });
+      this.TestJson(subscription, new { Id = 1, Active = true, CreatedAt = subscription.CreatedAt.ISO8601(), Email = "email", ExpiredAt = DateTime.MinValue.ISO8601(), Token = subscription.Token, UpdatedAt = subscription.UpdatedAt.ISO8601() });
     }
 
     /// <summary>
@@ -45,16 +45,16 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var subscription = new Subscription();
-      this.TestXml(subscription, new { Id = 0, Active = true, DateCreated = subscription.DateCreated, LastUpdated = subscription.LastUpdated, Token = subscription.Token });
+      this.TestXml(subscription, new { Id = 0, Active = true, CreatedAt = subscription.CreatedAt, UpdatedAt = subscription.UpdatedAt, Token = subscription.Token });
 
       subscription = new Subscription("email");
-      this.TestXml(subscription, new { Id = 0, Active = true, DateCreated = subscription.DateCreated, Email = "email", LastUpdated = subscription.LastUpdated, Token = subscription.Token });
+      this.TestXml(subscription, new { Id = 0, Active = true, CreatedAt = subscription.CreatedAt, Email = "email", UpdatedAt = subscription.UpdatedAt, Token = subscription.Token });
 
       subscription = new Subscription("email", DateTime.MinValue)
       {
         Id = 1
       };
-      this.TestXml(subscription, new { Id = 1, Active = true, DateCreated = subscription.DateCreated, Email = "email", ExpiredOn = DateTime.MinValue, LastUpdated = subscription.LastUpdated, Token = subscription.Token });
+      this.TestXml(subscription, new { Id = 1, Active = true, CreatedAt = subscription.CreatedAt, Email = "email", ExpiredAt = DateTime.MinValue, UpdatedAt = subscription.UpdatedAt, Token = subscription.Token });
     }
 
     /// <summary>
@@ -67,21 +67,21 @@ namespace Catharsis.Domain
     {
       var subscription = new Subscription();
       Assert.True(subscription.Active);
-      Assert.True(subscription.DateCreated >= DateTime.MinValue && subscription.DateCreated <= DateTime.UtcNow);
+      Assert.True(subscription.CreatedAt >= DateTime.MinValue && subscription.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, subscription.Id);
       Assert.Null(subscription.Email);
-      Assert.Null(subscription.ExpiredOn);
-      Assert.True(subscription.LastUpdated >= DateTime.MinValue && subscription.LastUpdated <= DateTime.UtcNow);
+      Assert.Null(subscription.ExpiredAt);
+      Assert.True(subscription.UpdatedAt >= DateTime.MinValue && subscription.UpdatedAt <= DateTime.UtcNow);
       Assert.NotNull(subscription.Token);
 
       Assert.Throws<ArgumentNullException>(() => new Subscription(null));
       Assert.Throws<ArgumentException>(() => new Subscription(string.Empty));
       subscription = new Subscription("email", DateTime.MaxValue);
       Assert.True(subscription.Active);
-      Assert.True(subscription.DateCreated >= DateTime.MinValue && subscription.DateCreated <= DateTime.UtcNow);
+      Assert.True(subscription.CreatedAt >= DateTime.MinValue && subscription.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, subscription.Id);
       Assert.Equal("email", subscription.Email);
-      Assert.True(subscription.LastUpdated >= DateTime.MinValue && subscription.LastUpdated <= DateTime.UtcNow);
+      Assert.True(subscription.UpdatedAt >= DateTime.MinValue && subscription.UpdatedAt <= DateTime.UtcNow);
       Assert.NotNull(subscription.Token);
     }
 
@@ -95,12 +95,12 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of <see cref="Subscription.DateCreated"/> property.</para>
+    ///   <para>Performs testing of <see cref="Subscription.CreatedAt"/> property.</para>
     /// </summary>
     [Fact]
-    public void DateCreated_Property()
+    public void CreatedAt_Property()
     {
-      Assert.Equal(DateTime.MinValue, new Subscription { DateCreated = DateTime.MinValue }.DateCreated);
+      Assert.Equal(DateTime.MinValue, new Subscription { CreatedAt = DateTime.MinValue }.CreatedAt);
     }
 
     /// <summary>
@@ -116,21 +116,21 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of <see cref="Subscription.ExpiredOn"/> property.</para>
+    ///   <para>Performs testing of <see cref="Subscription.ExpiredAt"/> property.</para>
     /// </summary>
     [Fact]
     public void ExpiredOn_Property()
     {
-      Assert.Equal(DateTime.MinValue, new Subscription { ExpiredOn = DateTime.MinValue }.ExpiredOn);
+      Assert.Equal(DateTime.MinValue, new Subscription { ExpiredAt = DateTime.MinValue }.ExpiredAt);
     }
 
     /// <summary>
-    ///   <para>Performs testing of <see cref="Subscription.LastUpdated"/> property.</para>
+    ///   <para>Performs testing of <see cref="Subscription.UpdatedAt"/> property.</para>
     /// </summary>
     [Fact]
-    public void LastUpdated_Property()
+    public void UpdatedAt_Property()
     {
-      Assert.Equal(DateTime.MaxValue, new Subscription { LastUpdated = DateTime.MaxValue }.LastUpdated);
+      Assert.Equal(DateTime.MaxValue, new Subscription { UpdatedAt = DateTime.MaxValue }.UpdatedAt);
     }
 
     /// <summary>
@@ -151,29 +151,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo("DateCreated", DateTime.MinValue, DateTime.MaxValue);
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Subscription.Equals(Subscription)"/></description></item>
-    ///     <item><description><see cref="Subscription.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Email", "first", "second");
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Subscription.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Email", "first", "second");
+      this.TestCompareTo("CreatedAt", DateTime.MinValue, DateTime.MaxValue);
     }
 
     /// <summary>

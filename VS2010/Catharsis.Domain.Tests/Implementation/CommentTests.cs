@@ -16,7 +16,7 @@ namespace Catharsis.Domain
     public override void Attributes()
     {
       base.Attributes();
-      this.TestDescription("DateCreated", "LastUpdated", "Name", "Text");
+      this.TestDescription("CreatedAt", "UpdatedAt", "Name", "Text");
     }
 
     /// <summary>
@@ -26,10 +26,10 @@ namespace Catharsis.Domain
     public void Json()
     {
       var comment = new Comment();
-      this.TestJson(comment, new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601() });
+      this.TestJson(comment, new { Id = 0, CreatedAt = comment.CreatedAt.ISO8601(), UpdatedAt = comment.UpdatedAt.ISO8601() });
 
       comment = new Comment("name", "text");
-      this.TestJson(comment, new { Id = 0, DateCreated = comment.DateCreated.ISO8601(), LastUpdated = comment.LastUpdated.ISO8601(), Name = "name", Text = "text" });
+      this.TestJson(comment, new { Id = 0, CreatedAt = comment.CreatedAt.ISO8601(), Name = "name", Text = "text", UpdatedAt = comment.UpdatedAt.ISO8601() });
     }
 
     /// <summary>
@@ -39,10 +39,10 @@ namespace Catharsis.Domain
     public void Xml()
     {
       var comment = new Comment();
-      this.TestXml(comment, new { Id = 0, DateCreated = comment.DateCreated, LastUpdated = comment.LastUpdated });
+      this.TestXml(comment, new { Id = 0, CreatedAt = comment.CreatedAt, UpdatedAt = comment.UpdatedAt });
 
       comment = new Comment("name", "text");
-      this.TestXml(comment, new { Id = 0, DateCreated = comment.DateCreated, LastUpdated = comment.LastUpdated, Name = "name", Text = "text" });
+      this.TestXml(comment, new { Id = 0, CreatedAt = comment.CreatedAt, UpdatedAt = comment.UpdatedAt, Name = "name", Text = "text" });
     }
 
     /// <summary>
@@ -54,9 +54,9 @@ namespace Catharsis.Domain
     public void Constructors()
     {
       var comment = new Comment();
-      Assert.True(comment.DateCreated >= DateTime.MinValue && comment.DateCreated <= DateTime.UtcNow);
+      Assert.True(comment.CreatedAt >= DateTime.MinValue && comment.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, comment.Id);
-      Assert.True(comment.LastUpdated >= DateTime.MinValue && comment.LastUpdated <= DateTime.UtcNow);
+      Assert.True(comment.UpdatedAt >= DateTime.MinValue && comment.UpdatedAt <= DateTime.UtcNow);
       Assert.Null(comment.Name);
       Assert.Null(comment.Text);
       Assert.Equal(0, comment.Version);
@@ -66,30 +66,30 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentException>(() => new Comment(string.Empty, "text"));
       Assert.Throws<ArgumentException>(() => new Comment("name", string.Empty));
       comment = new Comment("name", "text");
-      Assert.True(comment.DateCreated >= DateTime.MinValue && comment.DateCreated <= DateTime.UtcNow);
+      Assert.True(comment.CreatedAt >= DateTime.MinValue && comment.CreatedAt <= DateTime.UtcNow);
       Assert.Equal(0, comment.Id);
-      Assert.True(comment.LastUpdated >= DateTime.MinValue && comment.LastUpdated <= DateTime.UtcNow);
+      Assert.True(comment.UpdatedAt >= DateTime.MinValue && comment.UpdatedAt <= DateTime.UtcNow);
       Assert.Equal("name", comment.Name);
       Assert.Equal("text", comment.Text);
       Assert.Equal(0, comment.Version);
     }
 
     /// <summary>
-    ///   <para>Performs testing of <see cref="Comment.DateCreated"/> property.</para>
+    ///   <para>Performs testing of <see cref="Comment.CreatedAt"/> property.</para>
     /// </summary>
     [Fact]
-    public void DateCreated_Property()
+    public void CreatedAt_Property()
     {
-      Assert.Equal(DateTime.MinValue, new Comment { DateCreated = DateTime.MinValue }.DateCreated);
+      Assert.Equal(DateTime.MinValue, new Comment { CreatedAt = DateTime.MinValue }.CreatedAt);
     }
 
     /// <summary>
-    ///   <para>Performs testing of <see cref="Comment.LastUpdated"/> property.</para>
+    ///   <para>Performs testing of <see cref="Comment.UpdatedAt"/> property.</para>
     /// </summary>
     [Fact]
-    public void LastUpdated_Property()
+    public void UpdatedAt_Property()
     {
-      Assert.Equal(DateTime.MinValue, new Comment { LastUpdated = DateTime.MinValue }.LastUpdated);
+      Assert.Equal(DateTime.MinValue, new Comment { UpdatedAt = DateTime.MinValue }.UpdatedAt);
     }
 
     /// <summary>
@@ -122,31 +122,7 @@ namespace Catharsis.Domain
     [Fact]
     public void CompareTo_Method()
     {
-      this.TestCompareTo("DateCreated", DateTime.MinValue, DateTime.MaxValue);
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="Comment.Equals(Comment)"/></description></item>
-    ///     <item><description><see cref="Comment.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Name", "first", "second");
-      this.TestEquality("Text", "first", "second");
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="Comment.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Name", "first", "second");
-      this.TestHashCode("Text", "first", "second");
+      this.TestCompareTo("CreatedAt", DateTime.MinValue, DateTime.MaxValue);
     }
 
     /// <summary>

@@ -47,7 +47,7 @@ namespace Catharsis.Domain
       Assert.False(Enumerable.Empty<Location>().City(new City()).Any());
 
       Assert.Equal(1, new[] { new Location { City = new City { Id = 1 } }, new Location { City = new City { Id = 2 } } }.AsQueryable().City(new City { Id = 1 }).Count());
-      Assert.Equal(1, new[] { null, new Location { City = new City { Name = "first" } }, null, new Location { City = new City { Name = "second" } } }.City(new City { Name = "first" }).Count());
+      Assert.Equal(1, new[] { null, new Location { City = new City { Id = 1 } }, new Location { City = new City { Id = 2 } } }.City(new City { Id = 1 }).Count());
     }
 
     /// <summary>

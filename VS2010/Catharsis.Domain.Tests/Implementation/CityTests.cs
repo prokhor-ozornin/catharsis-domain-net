@@ -129,32 +129,6 @@ namespace Catharsis.Domain
     }
 
     /// <summary>
-    ///   <para>Performs testing of following methods :</para>
-    ///   <list type="bullet">
-    ///     <item><description><see cref="City.Equals(City)"/></description></item>
-    ///     <item><description><see cref="City.Equals(object)"/></description></item>
-    ///   </list>
-    /// </summary>
-    [Fact]
-    public void Equals_Methods()
-    {
-      this.TestEquality("Country", new Country { IsoCode = "first" }, new Country { IsoCode = "second" });
-      this.TestEquality("Name", "first", "second");
-      this.TestEquality("Region", "first", "second");
-    }
-
-    /// <summary>
-    ///   <para>Performs testing of <see cref="City.GetHashCode()"/> method.</para>
-    /// </summary>
-    [Fact]
-    public void GetHashCode_Method()
-    {
-      this.TestHashCode("Country", new Country { IsoCode = "first" }, new Country { IsoCode = "second" });
-      this.TestHashCode("Name", "first", "second");
-      this.TestHashCode("Region", "first", "second");
-    }
-
-    /// <summary>
     ///   <para>Performs testing of <see cref="City.ToString()"/> method.</para>
     /// </summary>
     [Fact]

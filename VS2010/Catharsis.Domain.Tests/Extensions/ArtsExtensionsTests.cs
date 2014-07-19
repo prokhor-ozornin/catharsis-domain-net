@@ -30,7 +30,7 @@ namespace Catharsis.Domain
       Assert.False(Enumerable.Empty<Art>().Album(new ArtsAlbum()).Any());
 
       Assert.Equal(1, new[] { new Art { Album = new ArtsAlbum { Id = 1 } }, new Art { Album = new ArtsAlbum { Id = 2 } } }.AsQueryable().Album(new ArtsAlbum { Id = 2 }).Count());
-      Assert.Equal(1, new[] { null, new Art { Album = new ArtsAlbum { Name = "first" } }, null, new Art { Album = new ArtsAlbum { Name = "second" } } }.Album(new ArtsAlbum { Name = "first" }).Count());
+      Assert.Equal(1, new[] { null, new Art { Album = new ArtsAlbum { Id = 1 } }, new Art { Album = new ArtsAlbum { Id = 2 } } }.Album(new ArtsAlbum { Id = 2 }).Count());
     }
 
     /// <summary>
