@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['updatedon_3c_20t_20_3e',['UpdatedOn&lt; T &gt;',['../class_catharsis_1_1_domain_1_1_i_timestampable_extensions.html#aee0c681b1bd70068a9f0862b3c865f33',1,'Catharsis.Domain.ITimestampableExtensions.UpdatedOn&lt; T &gt;(this IQueryable&lt; T &gt; entities, DateTime?from=null, DateTime?to=null)'],['../class_catharsis_1_1_domain_1_1_i_timestampable_extensions.html#ae08f7fb75fe4c0e04b83c8ef1634eae2',1,'Catharsis.Domain.ITimestampableExtensions.UpdatedOn&lt; T &gt;(this IEnumerable&lt; T &gt; entities, DateTime?from=null, DateTime?to=null)']]],
+  ['username',['Username',['../class_catharsis_1_1_domain_1_1_profile_extensions.html#a023d264034fb71c7a68413eeff804780',1,'Catharsis.Domain.ProfileExtensions.Username(this IQueryable&lt; Profile &gt; profiles, string username)'],['../class_catharsis_1_1_domain_1_1_profile_extensions.html#acc44dc255873ca628ddec13f9ef67a45',1,'Catharsis.Domain.ProfileExtensions.Username(this IEnumerable&lt; Profile &gt; profiles, string username)']]]
+];
