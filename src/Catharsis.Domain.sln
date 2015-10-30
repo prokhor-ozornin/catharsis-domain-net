@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsis.Domain.Windows", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsis.Domain.3.5", "Catharsis.Domain.3.5\Catharsis.Domain.3.5.csproj", "{01E27863-E954-428A-9D8D-09BB3D528C24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsis.Domain.3.5.CP", "Catharsis.Domain.3.5.CP\Catharsis.Domain.3.5.CP.csproj", "{40470C8A-10E6-4456-8CFA-2D9DA5400327}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -213,6 +215,22 @@ Global
 		{01E27863-E954-428A-9D8D-09BB3D528C24}.Release|x64.Build.0 = Release|Any CPU
 		{01E27863-E954-428A-9D8D-09BB3D528C24}.Release|x86.ActiveCfg = Release|Any CPU
 		{01E27863-E954-428A-9D8D-09BB3D528C24}.Release|x86.Build.0 = Release|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Debug|ARM.Build.0 = Debug|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Debug|x64.Build.0 = Debug|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Debug|x86.Build.0 = Debug|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|ARM.ActiveCfg = Release|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|ARM.Build.0 = Release|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|x64.ActiveCfg = Release|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|x64.Build.0 = Release|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|x86.ActiveCfg = Release|Any CPU
+		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
