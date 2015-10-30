@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{19CB82F3-5265-42A8-9538-17DD1F335B6B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Catharsis.Domain</RootNamespace>
+    <AssemblyName>Catharsis.Domain.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Catharsis.Commons, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Catharsis.Commons.3.0.4\lib\net45\Catharsis.Commons.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="xunit.assert, Version=2.1.0.3179, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.assert.2.1.0\lib\dotnet\xunit.assert.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="xunit.core, Version=2.1.0.3179, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.extensibility.core.2.1.0\lib\dotnet\xunit.core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="xunit.execution.desktop, Version=2.1.0.3179, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.extensibility.execution.2.1.0\lib\net45\xunit.execution.desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddressTest.cs" />
+    <Compile Include="ApiKeyTest.cs" />
+    <Compile Include="AreaTest.cs" />
+    <Compile Include="ContactTest.cs" />
+    <Compile Include="EntityTest.cs" />
+    <Compile Include="Extensions\AddressExtensionsTest.cs" />
+    <Compile Include="Extensions\AnnouncementExtensionsTest.cs" />
+    <Compile Include="Extensions\ApiKeyExtensionsTest.cs" />
+    <Compile Include="Extensions\AreaExtensionsTest.cs" />
+    <Compile Include="Extensions\ContactExtensionsTest.cs" />
+    <Compile Include="AnnouncementTest.cs" />
+    <Compile Include="Extensions\AudioExtensionsTest.cs" />
+    <Compile Include="AudioTest.cs" />
+    <Compile Include="Extensions\CityExtensionsTest.cs" />
+    <Compile Include="CityTest.cs" />
+    <Compile Include="Extensions\CountryExtensionsTest.cs" />
+    <Compile Include="CountryTest.cs" />
+    <Compile Include="Extensions\DownloadExtensionsTest.cs" />
+    <Compile Include="DownloadTest.cs" />
+    <Compile Include="Extensions\LogMessageExtensionsTest.cs" />
+    <Compile Include="Extensions\NewsExtensionsTest.cs" />
+    <Compile Include="Extensions\MediaExtensionsTest.cs" />
+    <Compile Include="Extensions\PersonExtensionsTest.cs" />
+    <Compile Include="Extensions\PlaycastExtensionsTest.cs" />
+    <Compile Include="Extensions\PushNotificationExtensionsTest.cs" />
+    <Compile Include="Extensions\RegionExtensionsTest.cs" />
+    <Compile Include="Extensions\ScriptExtensionsTest.cs" />
+    <Compile Include="Extensions\SeoWebPageExtensionsTest.cs" />
+    <Compile Include="Extensions\SettingExtensionsTest.cs" />
+    <Compile Include="Extensions\SitemapEntryExtensionsTest.cs" />
+    <Compile Include="Extensions\StorageFileExtensionsTest.cs" />
+    <Compile Include="Extensions\TagExtensionsTest.cs" />
+    <Compile Include="Extensions\WebBrowserExtensionsTest.cs" />
+    <Compile Include="Extensions\WebLinkExtensionsTest.cs" />
+    <Compile Include="Extensions\WebPageExtensionsTest.cs" />
+    <Compile Include="FaqTest.cs" />
+    <Compile Include="Extensions\IEntityExtensionsTest.cs" />
+    <Compile Include="ImageTest.cs" />
+    <Compile Include="Extensions\LocationExtensionsTest.cs" />
+    <Compile Include="LocationTest.cs" />
+    <Compile Include="LogMessageTest.cs" />
+    <Compile Include="MoneyTest.cs" />
+    <Compile Include="NewsTest.cs" />
+    <Compile Include="MediaTest.cs" />
+    <Compile Include="PersonTest.cs" />
+    <Compile Include="PlaycastTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PushNotificationTest.cs" />
+    <Compile Include="RegionTest.cs" />
+    <Compile Include="ScriptTest.cs" />
+    <Compile Include="SeoWebPageTest.cs" />
+    <Compile Include="SettingTest.cs" />
+    <Compile Include="SitemapEntryTest.cs" />
+    <Compile Include="StorageFileTest.cs" />
+    <Compile Include="Extensions\BookExtensionsTest.cs" />
+    <Compile Include="TagTest.cs" />
+    <Compile Include="BookTest.cs" />
+    <Compile Include="VideoTest.cs" />
+    <Compile Include="WebBrowserTest.cs" />
+    <Compile Include="WebLinkTest.cs" />
+    <Compile Include="WebPageTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Catharsis.Domain.4.0\Catharsis.Domain.4.0.csproj">
+      <Project>{2DBD201F-206F-4AA6-B7BA-C3682C1F75DD}</Project>
+      <Name>Catharsis.Domain.4.0</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

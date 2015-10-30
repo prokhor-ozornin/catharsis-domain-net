@@ -1,18 +1,13 @@
 var class_catharsis_1_1_domain_1_1_person =
 [
-    [ "Person", "class_catharsis_1_1_domain_1_1_person.html#a07b867613042840cf8148217ca00f15d", null ],
-    [ "Person", "class_catharsis_1_1_domain_1_1_person.html#a77bbac9888a8d7ffeee9dc8a2ca60ade", null ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_person.html#a0499f6c0d0e262fcd1e2a5196003d6e6", null ],
+    [ "Equals", "class_catharsis_1_1_domain_1_1_person.html#aea463ae5846e2b428dd43e7822147e2c", null ],
+    [ "Equals", "class_catharsis_1_1_domain_1_1_person.html#aa597b04f493f674e048df7468d543439", null ],
+    [ "GetHashCode", "class_catharsis_1_1_domain_1_1_person.html#aa07de2919f5603a22856d806b0626850", null ],
     [ "ToString", "class_catharsis_1_1_domain_1_1_person.html#ae735a88ad58327c3d5cd10fc84f1e18d", null ],
-    [ "BirthDay", "class_catharsis_1_1_domain_1_1_person.html#a0fb3ba29eb91eb3b5974cf0a0af421d2", null ],
-    [ "BirthMonth", "class_catharsis_1_1_domain_1_1_person.html#a9eb765db42893f37f15abfe7c3745231", null ],
-    [ "BirthYear", "class_catharsis_1_1_domain_1_1_person.html#a5db5bcb9ada396739ea3f31741f40791", null ],
-    [ "DeathDay", "class_catharsis_1_1_domain_1_1_person.html#a0f37d88fdbf35aecb17584e6729d6343", null ],
-    [ "DeathMonth", "class_catharsis_1_1_domain_1_1_person.html#a7d721a999879fe27f27c3c3f52beb707", null ],
-    [ "DeathYear", "class_catharsis_1_1_domain_1_1_person.html#ad2d3c88b22d5a42d00dc01cc7abf889f", null ],
-    [ "Description", "class_catharsis_1_1_domain_1_1_person.html#a1119074884db42ae107cab5d111a45b1", null ],
-    [ "Image", "class_catharsis_1_1_domain_1_1_person.html#ab0794a79f692d11eef4cb3c52b7bbf9a", null ],
-    [ "NameFirst", "class_catharsis_1_1_domain_1_1_person.html#aadddcbda811e66438c52baa4854af443", null ],
-    [ "NameLast", "class_catharsis_1_1_domain_1_1_person.html#a16d64218cef7814736d7f24c5848a803", null ],
-    [ "NameMiddle", "class_catharsis_1_1_domain_1_1_person.html#aba9179e9b5f0da88b998af9c84dcc241", null ]
+    [ "BirthDate", "class_catharsis_1_1_domain_1_1_person.html#a4b137a0fe406d4177b44144668532d8f", null ],
+    [ "DeathDate", "class_catharsis_1_1_domain_1_1_person.html#ae634e40e9c254870cb10fcd4c2704d3b", null ],
+    [ "FirstName", "class_catharsis_1_1_domain_1_1_person.html#aa09ea4650c46ade1ce62c0672d7aeb89", null ],
+    [ "LastName", "class_catharsis_1_1_domain_1_1_person.html#a1a2186af406fce0309b13a2121715109", null ],
+    [ "MiddleName", "class_catharsis_1_1_domain_1_1_person.html#a704ddb1d85f552f67308fda438ff19fd", null ]
 ];

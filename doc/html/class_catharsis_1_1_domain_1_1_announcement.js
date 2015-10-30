@@ -1,9 +1,10 @@
 var class_catharsis_1_1_domain_1_1_announcement =
 [
-    [ "Announcement", "class_catharsis_1_1_domain_1_1_announcement.html#a9b8ba5b549a7b29629ff200c8a9abb5a", null ],
-    [ "Announcement", "class_catharsis_1_1_domain_1_1_announcement.html#a5ebbeb8e5126d68ec64a01d0c5b75069", null ],
-    [ "Category", "class_catharsis_1_1_domain_1_1_announcement.html#a2907f4be5e83cfde2e8ddd03a914fb47", null ],
-    [ "Currency", "class_catharsis_1_1_domain_1_1_announcement.html#a04a8e0ec102542633b36baeeae46826b", null ],
-    [ "Image", "class_catharsis_1_1_domain_1_1_announcement.html#a72cd7c22d1a1ff8d7c3ff22ef994a2d6", null ],
-    [ "Price", "class_catharsis_1_1_domain_1_1_announcement.html#a69eb7711599ad8fbca601967dba28950", null ]
+    [ "CompareTo", "class_catharsis_1_1_domain_1_1_announcement.html#aeb584e88abcf216d929add8151eb25d5", null ],
+    [ "ToString", "class_catharsis_1_1_domain_1_1_announcement.html#a65081b974c0f3028f91b07061e1ba048", null ],
+    [ "Image", "class_catharsis_1_1_domain_1_1_announcement.html#a971160b5b6aedd84f638f32885753969", null ],
+    [ "Name", "class_catharsis_1_1_domain_1_1_announcement.html#af0e61bc2dd36a45ba9f1f46994c01d6a", null ],
+    [ "Price", "class_catharsis_1_1_domain_1_1_announcement.html#a69eb7711599ad8fbca601967dba28950", null ],
+    [ "PriceCurrency", "class_catharsis_1_1_domain_1_1_announcement.html#a83c3e2def4cebc16b5e47fe7b60eea34", null ],
+    [ "Text", "class_catharsis_1_1_domain_1_1_announcement.html#a39bbb0a17ce64ff95b189aba35993dd4", null ]
 ];

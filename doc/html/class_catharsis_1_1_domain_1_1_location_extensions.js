@@ -1,9 +1,9 @@
 var class_catharsis_1_1_domain_1_1_location_extensions =
 [
-    [ "Address", "class_catharsis_1_1_domain_1_1_location_extensions.html#a652a23238f37ef21404f705c80715795", null ],
-    [ "Address", "class_catharsis_1_1_domain_1_1_location_extensions.html#a321d582a32c69e81359fe117a9a0e829", null ],
-    [ "City", "class_catharsis_1_1_domain_1_1_location_extensions.html#a422fddae6774c4aef480af1f56a59d5d", null ],
-    [ "City", "class_catharsis_1_1_domain_1_1_location_extensions.html#aea1e51e4271cd3e43e6090a1dc99b14d", null ],
-    [ "PostalCode", "class_catharsis_1_1_domain_1_1_location_extensions.html#a71e893ae1d52ab33a4492509b06a7bef", null ],
-    [ "PostalCode", "class_catharsis_1_1_domain_1_1_location_extensions.html#a34e644286fee892884698a9cbbd18189", null ]
+    [ "Latitude", "class_catharsis_1_1_domain_1_1_location_extensions.html#a00f87fe6c79e4c97247bb9e13ac3dce1", null ],
+    [ "Latitude", "class_catharsis_1_1_domain_1_1_location_extensions.html#aeaf2c34e11edf4697e515daa59e0ad56", null ],
+    [ "Longitude", "class_catharsis_1_1_domain_1_1_location_extensions.html#ae61c5681476b6165e0cba31806229f21", null ],
+    [ "Longitude", "class_catharsis_1_1_domain_1_1_location_extensions.html#a21edaa19b1f6952b9a17a91b0974f77f", null ],
+    [ "Timezone", "class_catharsis_1_1_domain_1_1_location_extensions.html#a6602c60345b94a37c72783f00682663c", null ],
+    [ "Timezone", "class_catharsis_1_1_domain_1_1_location_extensions.html#ab3f048c467c4313ea171ae59dd8d08f3", null ]
 ];

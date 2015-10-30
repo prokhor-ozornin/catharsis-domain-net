@@ -1,8 +1,14 @@
 var searchData=
 [
-  ['active',['Active',['../class_catharsis_1_1_domain_1_1_subscription.html#ad96e85d483661a25cfb31b0c82faf76c',1,'Catharsis.Domain.Subscription.Active()'],['../interface_catharsis_1_1_domain_1_1_i_subscription.html#a005fa0affc8eca46a4b29bcbf256b7ea',1,'Catharsis.Domain.ISubscription.Active()']]],
-  ['address',['Address',['../class_catharsis_1_1_domain_1_1_location.html#a114e183a06ac86dab7b652bae3924eb7',1,'Catharsis.Domain.Location.Address()'],['../interface_catharsis_1_1_domain_1_1_i_location.html#a7be18754a4a766f6b057160735092309',1,'Catharsis.Domain.ILocation.Address()']]],
-  ['album',['Album',['../class_catharsis_1_1_domain_1_1_art.html#a99fd3668ce25e10b7c8a9bff05ad91da',1,'Catharsis.Domain.Art.Album()'],['../class_catharsis_1_1_domain_1_1_song.html#a95589287dbbb1ab0ca38dfc38d755b52',1,'Catharsis.Domain.Song.Album()'],['../interface_catharsis_1_1_domain_1_1_i_art.html#a59704a38591f623a882ec8bd2661c7df',1,'Catharsis.Domain.IArt.Album()'],['../interface_catharsis_1_1_domain_1_1_i_song.html#af3b42bff35d2b1e970c6e474780de27f',1,'Catharsis.Domain.ISong.Album()']]],
-  ['annotation',['Annotation',['../class_catharsis_1_1_domain_1_1_article.html#a759ebd658cfeac45fb37a18d27597b06',1,'Catharsis.Domain.Article.Annotation()'],['../interface_catharsis_1_1_domain_1_1_i_article.html#a15bcbd4598d9f228cb5fb7ea24e2b5ce',1,'Catharsis.Domain.IArticle.Annotation()']]],
-  ['audio',['Audio',['../class_catharsis_1_1_domain_1_1_playcast.html#a4ebcc91561036fa3cabded09b187d62d',1,'Catharsis.Domain.Playcast.Audio()'],['../class_catharsis_1_1_domain_1_1_song.html#a4995784667ecabbed959658d51f128a5',1,'Catharsis.Domain.Song.Audio()'],['../interface_catharsis_1_1_domain_1_1_i_playcast.html#ac9a37aa6d93a124ca63433b07bb89290',1,'Catharsis.Domain.IPlaycast.Audio()'],['../interface_catharsis_1_1_domain_1_1_i_song.html#a4e2c3522638c261738425a1fe0a6ba4e',1,'Catharsis.Domain.ISong.Audio()']]]
+  ['addresses',['Addresses',['../class_catharsis_1_1_domain_1_1_contact.html#a9518846a00cdbd38d4998f6ea8091711',1,'Catharsis::Domain::Contact']]],
+  ['annotation',['Annotation',['../class_catharsis_1_1_domain_1_1_book.html#ac895d8b6cff6f75c55aaa9b22af9f6b9',1,'Catharsis.Domain.Book.Annotation()'],['../class_catharsis_1_1_domain_1_1_news.html#a283504e69eee3c96b2d9ef3b4e6f5fae',1,'Catharsis.Domain.News.Annotation()']]],
+  ['answer',['Answer',['../class_catharsis_1_1_domain_1_1_faq.html#af1b9345d610f3b3e5096e2d081bb78a3',1,'Catharsis::Domain::Faq']]],
+  ['appdescription',['AppDescription',['../class_catharsis_1_1_domain_1_1_api_key.html#a76757989764c4a9f0fc3816b957bde3b',1,'Catharsis::Domain::ApiKey']]],
+  ['appdomain',['AppDomain',['../class_catharsis_1_1_domain_1_1_api_key.html#a89b05ebae68d7afc0f4cc37b55bd0a37',1,'Catharsis::Domain::ApiKey']]],
+  ['appname',['AppName',['../class_catharsis_1_1_domain_1_1_api_key.html#add2251bc0743f5a070064ef8161b13c9',1,'Catharsis::Domain::ApiKey']]],
+  ['area',['Area',['../class_catharsis_1_1_domain_1_1_city.html#a21e610d777574a566d262387142dd40b',1,'Catharsis.Domain.City.Area()'],['../class_catharsis_1_1_domain_1_1_region.html#af54e6e35f5159605ad1470e8d1fa8e28',1,'Catharsis.Domain.Region.Area()']]],
+  ['audio',['Audio',['../class_catharsis_1_1_domain_1_1_playcast.html#a6e560abdfb6151c1d46ef1a3f3e7c147',1,'Catharsis::Domain::Playcast']]],
+  ['author',['Author',['../class_catharsis_1_1_domain_1_1_book.html#a49410078516eee634afd18ae011b4a80',1,'Catharsis::Domain::Book']]],
+  ['authorname',['AuthorName',['../class_catharsis_1_1_domain_1_1_media.html#a025de4c5c399f7d642b2e001ecc5a609',1,'Catharsis::Domain::Media']]],
+  ['authoruri',['AuthorUri',['../class_catharsis_1_1_domain_1_1_media.html#aca303e401eece07e03a702941792f9d4',1,'Catharsis::Domain::Media']]]
 ];

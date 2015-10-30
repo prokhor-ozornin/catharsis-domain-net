@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['width',['Width',['../class_catharsis_1_1_domain_1_1_video.html#ac4b0006b84e124299b5ab5d14a833944',1,'Catharsis.Domain.Video.Width()'],['../interface_catharsis_1_1_domain_1_1_i_dimensionable.html#a51b546bc65c8dd2d074378341682968a',1,'Catharsis.Domain.IDimensionable.Width()']]]
+  ['updatedon',['UpdatedOn',['../class_catharsis_1_1_domain_1_1_entity.html#af8d7cb009ea89746733ce2dab23ff305',1,'Catharsis.Domain.Entity.UpdatedOn()'],['../interface_catharsis_1_1_domain_1_1_i_entity.html#a797e99cba6e08c7ff4e3042a989504bb',1,'Catharsis.Domain.IEntity.UpdatedOn()']]],
+  ['uri',['Uri',['../class_catharsis_1_1_domain_1_1_media.html#a230573c2e2617e57e3151db3714d54aa',1,'Catharsis.Domain.Media.Uri()'],['../class_catharsis_1_1_domain_1_1_seo_web_page.html#abb093ea025bc636268bb932a8e5a2560',1,'Catharsis.Domain.SeoWebPage.Uri()'],['../class_catharsis_1_1_domain_1_1_sitemap_entry.html#af328bc6da4b47ec9dd28bdc87d71aea6',1,'Catharsis.Domain.SitemapEntry.Uri()'],['../class_catharsis_1_1_domain_1_1_web_browser.html#a18403d957d089e03fa73799c62c703c3',1,'Catharsis.Domain.WebBrowser.Uri()'],['../class_catharsis_1_1_domain_1_1_web_link.html#a93f038d87dd504d3706e2a66b169f7c3',1,'Catharsis.Domain.WebLink.Uri()'],['../class_catharsis_1_1_domain_1_1_web_page.html#aea03e57ee3f747d101ac65a80bc81de9',1,'Catharsis.Domain.WebPage.Uri()']]],
+  ['useragent',['UserAgent',['../class_catharsis_1_1_domain_1_1_web_browser.html#adbcfa75e11576c190fa3345946339c7e',1,'Catharsis::Domain::WebBrowser']]]
 ];
