@@ -3,7 +3,7 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
-      "Catharsis.Commons/3.0.2": {
+      "Catharsis.Commons/3.0.4": {
         "compile": {
           "lib/netcore451/Catharsis.Commons.dll": {}
         },
@@ -1546,7 +1546,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
-      "Catharsis.Commons/3.0.2": {
+      "Catharsis.Commons/3.0.4": {
         "compile": {
           "lib/netcore451/Catharsis.Commons.dll": {}
         },
@@ -3179,7 +3179,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "Catharsis.Commons/3.0.2": {
+      "Catharsis.Commons/3.0.4": {
         "compile": {
           "lib/netcore451/Catharsis.Commons.dll": {}
         },
@@ -4784,7 +4784,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
-      "Catharsis.Commons/3.0.2": {
+      "Catharsis.Commons/3.0.4": {
         "compile": {
           "lib/netcore451/Catharsis.Commons.dll": {}
         },
@@ -6422,7 +6422,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "Catharsis.Commons/3.0.2": {
+      "Catharsis.Commons/3.0.4": {
         "compile": {
           "lib/netcore451/Catharsis.Commons.dll": {}
         },
@@ -8027,7 +8027,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
-      "Catharsis.Commons/3.0.2": {
+      "Catharsis.Commons/3.0.4": {
         "compile": {
           "lib/netcore451/Catharsis.Commons.dll": {}
         },
@@ -9665,7 +9665,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "Catharsis.Commons/3.0.2": {
+      "Catharsis.Commons/3.0.4": {
         "compile": {
           "lib/netcore451/Catharsis.Commons.dll": {}
         },
@@ -11271,8 +11271,8 @@
     }
   },
   "libraries": {
-    "Catharsis.Commons/3.0.2": {
-      "sha512": "tMoOg4zaw33YLpr3nhIqg5LzUZpeD6zqNoJsKuJzTfwAbyro8Yo94ONYTxdkhcqCeIgKVWSZtq+5M31EPf4GFg==",
+    "Catharsis.Commons/3.0.4": {
+      "sha512": "5yKOJEC0mWZ/g0jF9W4emG+DcRy/+dCRiK0p6EXpn6XiUyB7UtYRtJ+eSIRHSwf0pStRUIYu3xV5WlRLXpLDKg==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -11308,7 +11308,7 @@
         "lib/wpa81/Catharsis.Commons.dll",
         "lib/wpa81/Catharsis.Commons.pdb",
         "lib/wpa81/Catharsis.Commons.XML",
-        "package/services/metadata/core-properties/25e9fb35d1c242348e092efe518d54ea.psmdcp"
+        "package/services/metadata/core-properties/433483d5ac1f45feb38b772a016c4226.psmdcp"
       ]
     },
     "Microsoft.CSharp/4.0.0": {
@@ -14662,7 +14662,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Catharsis.Commons >= 3.0.2",
+      "Catharsis.Commons >= 3.0.4",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
     ],
     "UAP,Version=v10.0": []

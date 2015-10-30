@@ -296,8 +296,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Catharsis.Commons, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Catharsis.Commons.3.0.2\lib\netcore451\Catharsis.Commons.dll</HintPath>
+    <Reference Include="Catharsis.Commons, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Catharsis.Commons.3.0.4\lib\netcore451\Catharsis.Commons.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
