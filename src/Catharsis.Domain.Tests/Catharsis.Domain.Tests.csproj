@@ -92,6 +92,7 @@
     <Compile Include="Extensions\SitemapEntryExtensionsTest.cs" />
     <Compile Include="Extensions\StorageFileExtensionsTest.cs" />
     <Compile Include="Extensions\TagExtensionsTest.cs" />
+    <Compile Include="Extensions\WeatherForecastExtensionsTest.cs" />
     <Compile Include="Extensions\WebBrowserExtensionsTest.cs" />
     <Compile Include="Extensions\WebLinkExtensionsTest.cs" />
     <Compile Include="Extensions\WebPageExtensionsTest.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="TagTest.cs" />
     <Compile Include="BookTest.cs" />
     <Compile Include="VideoTest.cs" />
+    <Compile Include="WeatherForecastTest.cs" />
     <Compile Include="WebBrowserTest.cs" />
     <Compile Include="WebLinkTest.cs" />
     <Compile Include="WebPageTest.cs" />

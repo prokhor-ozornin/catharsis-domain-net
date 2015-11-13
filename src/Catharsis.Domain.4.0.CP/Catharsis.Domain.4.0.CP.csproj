@@ -150,6 +150,9 @@
     <Compile Include="..\catharsis.domain\extensions\TagExtensions.cs">
       <Link>Extensions\TagExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Catharsis.Domain\Extensions\WeatherForecastExtensions.cs">
+      <Link>Extensions\WeatherForecastExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\catharsis.domain\extensions\WebBrowserExtensions.cs">
       <Link>Extensions\WebBrowserExtensions.cs</Link>
     </Compile>
@@ -224,6 +227,12 @@
     </Compile>
     <Compile Include="..\Catharsis.Domain\Video.cs">
       <Link>Video.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain\WeatherForecast.cs">
+      <Link>WeatherForecast.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain\WeatherType.cs">
+      <Link>WeatherType.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain\WebBrowser.cs">
       <Link>WebBrowser.cs</Link>
