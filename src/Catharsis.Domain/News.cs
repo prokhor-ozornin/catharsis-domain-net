@@ -1,4 +1,5 @@
 ﻿using Catharsis.Commons;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,46 +13,59 @@ namespace Catharsis.Domain
   [Serializable]
   [Description("Новость проекта")]
 #endif
+  [Table(Schema.TableName)]
   public partial class News : Entity, IComparable<News>, IEquatable<News>
   {
     /// <summary>
     ///   <para>Аннотация к новости</para>
     /// </summary>
 #if NET_35
-    [Description("Аннотация к новости")]
+    [Description(Schema.ColumnCommentAnnotation)]
 #endif
+    [Column(Schema.ColumnNameAnnotation)]
+    [NotNull]
+    [MaxLength(1000)]
     public virtual string Annotation { get; set; }
 
     /// <summary>
     ///   <para>Файл изображения для новости</para>
     /// </summary>
 #if NET_35
-    [Description("Файл изображения для новости")]
+    [Description(Schema.ColumnCommentImage)]
 #endif
+    [Column(Schema.ColumnNameImage)]
+    [Indexed(Name = "idx__news__image_id")]
     public virtual Image Image { get; set; }
 
     /// <summary>
     ///   <para>Заголовок новости</para>
     /// </summary>
 #if NET_35
-    [Description("Заголовок новости")]
+    [Description(Schema.ColumnCommentName)]
 #endif
+    [Column(Schema.ColumnNameName)]
+    [NotNull]
+    [Indexed(Name = "idx__news__name")]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>Ключевые слова, описывающие содержимое новости</para>
     /// </summary>
 #if NET_35
-    [Description("Ключевые слова, описывающие содержимое новости")]
+    [Description(Schema.ColumnCommentTags)]
 #endif
+    [Column(Schema.ColumnNameTags)]
     public virtual ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();
 
     /// <summary>
     ///   <para>Полный текст новости</para>
     /// </summary>
 #if NET_35
-    [Description("Полный текст новости")]
+    [Description(Schema.ColumnCommentText)]
 #endif
+    [Column(Schema.ColumnNameText)]
+    [NotNull]
+    [MaxLength(4000)]
     public virtual string Text { get; set; }
 
     public virtual int CompareTo(News other)
@@ -59,7 +73,7 @@ namespace Catharsis.Domain
       return this.CreatedOn.Value.CompareTo(other.CreatedOn.Value);
     }
 
-    public bool Equals(News other)
+    public virtual bool Equals(News other)
     {
       return this.Equality(other, it => it.CreatedOn, it => it.Name);
     }
@@ -77,6 +91,36 @@ namespace Catharsis.Domain
     public override string ToString()
     {
       return this.Name?.Trim() ?? string.Empty;
+    }
+
+    public static class Schema
+    {
+      public const string TableName = "news";
+      public const string TableComment = "Новости проекта";
+
+      public const string ColumnNameId = "id";
+      public const string ColumnCommentId = "Уникальный идентификатор";
+
+      public const string ColumnNameCreatedOn = "created_on";
+      public const string ColumnCommentCreatedOn = "Дата/время публикации новости";
+
+      public const string ColumnNameUpdatedOn = "updated_on";
+      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения новости";
+
+      public const string ColumnNameAnnotation = "annotation";
+      public const string ColumnCommentAnnotation = "Аннотация к новости";
+
+      public const string ColumnNameImage = "image_id";
+      public const string ColumnCommentImage = "Файл изображения для новости";
+
+      public const string ColumnNameName = "name";
+      public const string ColumnCommentName = "Заголовок новости";
+
+      public const string ColumnNameTags = "tags";
+      public const string ColumnCommentTags = "Ключевые слова, описывающие содержимое новости";
+
+      public const string ColumnNameText = "text";
+      public const string ColumnCommentText = "Полный текст новости";
     }
   }
 }

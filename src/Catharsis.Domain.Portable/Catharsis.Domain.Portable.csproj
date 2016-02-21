@@ -2,43 +2,41 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{01E27863-E954-428A-9D8D-09BB3D528C24}</ProjectGuid>
+    <ProjectGuid>{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Catharsis.Domain</RootNamespace>
     <AssemblyName>Catharsis.Domain</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET_35</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Catharsis.Domain.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NET_35</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Catharsis.Domain.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Catharsis.Commons, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Catharsis.Commons.3.0.4\lib\net35\Catharsis.Commons.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Catharsis.Domain\Address.cs">
@@ -131,7 +129,7 @@
     <Compile Include="..\catharsis.domain\extensions\PlaycastExtensions.cs">
       <Link>Extensions\PlaycastExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain\Extensions\PushNotificationExtensions.cs">
+    <Compile Include="..\catharsis.domain\extensions\PushNotificationExtensions.cs">
       <Link>Extensions\PushNotificationExtensions.cs</Link>
     </Compile>
     <Compile Include="..\catharsis.domain\extensions\RegionExtensions.cs">
@@ -155,7 +153,7 @@
     <Compile Include="..\catharsis.domain\extensions\TagExtensions.cs">
       <Link>Extensions\TagExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain\Extensions\WeatherForecastExtensions.cs">
+    <Compile Include="..\catharsis.domain\extensions\WeatherForecastExtensions.cs">
       <Link>Extensions\WeatherForecastExtensions.cs</Link>
     </Compile>
     <Compile Include="..\catharsis.domain\extensions\WebBrowserExtensions.cs">
@@ -191,10 +189,10 @@
     <Compile Include="..\Catharsis.Domain\News.cs">
       <Link>News.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain\Orm\SQLite.cs">
+    <Compile Include="..\catharsis.domain\orm\SQLite.cs">
       <Link>Orm\SQLite.cs</Link>
     </Compile>
-    <Compile Include="..\Catharsis.Domain\Orm\SQLiteAsync.cs">
+    <Compile Include="..\catharsis.domain\orm\SQLiteAsync.cs">
       <Link>Orm\SQLiteAsync.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain\Person.cs">
@@ -256,10 +254,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

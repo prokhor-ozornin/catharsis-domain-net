@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Catharsis.Commons;
+using SQLite;
 
 namespace Catharsis.Domain
 {
@@ -18,6 +19,7 @@ namespace Catharsis.Domain
 #if NET_35
     [Description("Дата/время создания")]
 #endif
+    [Column(Schema.ColumnNameCreatedOn)]
     public virtual DateTime? CreatedOn { get; set; } = DateTime.UtcNow;
 
     /// <summary>
@@ -26,6 +28,9 @@ namespace Catharsis.Domain
 #if NET_35
     [Description("Уникальный идентификатор")]
 #endif
+    [PrimaryKey]
+    [AutoIncrement]
+    [Column(Schema.ColumnNameId)]
     public virtual long? Id { get; set; }
 
     /// <summary>
@@ -50,6 +55,7 @@ namespace Catharsis.Domain
 #if NET_35
     [Description("Дата/время последнего обновления")]
 #endif
+    [Column(Schema.ColumnNameUpdatedOn)]
     public virtual DateTime? UpdatedOn { get; set; }
 
     /// <summary>
@@ -58,6 +64,7 @@ namespace Catharsis.Domain
 #if NET_35
     [Description("Номер версии")]
 #endif
+    [Column(Schema.ColumnVersion)]
     public virtual long? Version { get; set; }
 
     public override bool Equals(object other)
@@ -73,6 +80,14 @@ namespace Catharsis.Domain
     public override string ToString()
     {
       return $"{this.GetType().Name}#{this.Id}";
+    }
+
+    public static class Schema
+    {
+      public const string ColumnNameId = "id";
+      public const string ColumnNameCreatedOn = "created_on";
+      public const string ColumnNameUpdatedOn = "updated_on";
+      public const string ColumnVersion = "version";
     }
   }
 }

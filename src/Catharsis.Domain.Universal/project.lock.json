@@ -209,6 +209,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "sqlite-net/1.0.7": {},
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.0, )",
@@ -1795,6 +1796,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "sqlite-net/1.0.7": {},
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.0, )",
@@ -3414,6 +3416,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "sqlite-net/1.0.7": {},
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.0, )",
@@ -5038,6 +5041,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "sqlite-net/1.0.7": {},
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.0, )",
@@ -6657,6 +6661,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "sqlite-net/1.0.7": {},
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.0, )",
@@ -8281,6 +8286,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "sqlite-net/1.0.7": {},
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.0, )",
@@ -9900,6 +9906,7 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "sqlite-net/1.0.7": {},
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.0, )",
@@ -11962,6 +11969,18 @@
         "ref/net46/Microsoft.Win32.Primitives.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._"
+      ]
+    },
+    "sqlite-net/1.0.7": {
+      "sha512": "l/I6/ohOcEc9hlO5rHoETMR50UVgBjj8NmPb0JbkKZU+HSyY74LL6AB5RtStuPR2DBpzZ6VGl1jJ2/oC69lIuA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "content/SQLite.cs",
+        "content/SQLiteAsync.cs",
+        "package/services/metadata/core-properties/08bbbd70c9d54a609fce08975f5cd0ed.psmdcp",
+        "sqlite-net.nuspec"
       ]
     },
     "System.AppContext/4.0.0": {
@@ -14663,7 +14682,8 @@
   "projectFileDependencyGroups": {
     "": [
       "Catharsis.Commons >= 3.0.4",
-      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
+      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "sqlite-net >= 1.0.7"
     ],
     "UAP,Version=v10.0": []
   }

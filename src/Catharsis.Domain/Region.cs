@@ -1,4 +1,5 @@
 ﻿using Catharsis.Commons;
+using SQLite;
 using System;
 using System.ComponentModel;
 
@@ -11,22 +12,29 @@ namespace Catharsis.Domain
   [Serializable]
   [Description("Регион")]
 #endif
+  [Table(Schema.TableName)]
   public partial class Region : Entity, IComparable<Region>, IEquatable<Region>
   {
     /// <summary>
     ///   <para>Территория, к которой относится регион</para>
     /// </summary>
 #if NET_35
-    [Description("Территория, к которой относится регион")]
+    [Description(Schema.ColumnCommentArea)]
 #endif
+    [Column(Schema.ColumnNameArea)]
+    [NotNull]
+    [Indexed(Name = "idx__regions__area_id")]
     public virtual Area Area { get; set; }
 
     /// <summary>
     ///   <para>Наименование региона</para>
     /// </summary>
 #if NET_35
-    [Description("Наименование региона")]
+    [Description(Schema.ColumnCommentName)]
 #endif
+    [Column(Schema.ColumnNameName)]
+    [NotNull]
+    [Indexed(Name = "idx__regions__name")]
     public virtual string Name { get; set; }
 
     public virtual int CompareTo(Region other)
@@ -34,7 +42,7 @@ namespace Catharsis.Domain
       return this.Name.CompareTo(other.Name);
     }
 
-    public bool Equals(Region other)
+    public virtual bool Equals(Region other)
     {
       return this.Equality(other, it => it.Area, it => it.Name);
     }
@@ -52,6 +60,27 @@ namespace Catharsis.Domain
     public override string ToString()
     {
       return this.Name?.Trim() ?? string.Empty;
+    }
+
+    public static class Schema
+    {
+      public const string TableName = "regions";
+      public const string TableComment = "Географические регионы";
+
+      public const string ColumnNameId = "id";
+      public const string ColumnCommentId = "Уникальный идентификатор";
+
+      public const string ColumnNameCreatedOn = "created_on";
+      public const string ColumnCommentCreatedOn = "Дата/время добавления региона";
+
+      public const string ColumnNameUpdatedOn = "updated_on";
+      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения региона";
+
+      public const string ColumnNameArea = "area_id";
+      public const string ColumnCommentArea = "Территория, к которой относится регион";
+
+      public const string ColumnNameName = "name";
+      public const string ColumnCommentName = "Наименование региона";
     }
   }
 }

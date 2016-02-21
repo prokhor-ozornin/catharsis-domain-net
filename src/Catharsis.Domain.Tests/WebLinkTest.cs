@@ -14,6 +14,7 @@ namespace Catharsis.Domain
       Assert.Null(fixture.UpdatedOn);
       Assert.Null(fixture.Version);
       Assert.Null(fixture.Description);
+      Assert.Null(fixture.Image); 
       Assert.Null(fixture.Name);
       Assert.Null(fixture.Uri);
     }
@@ -21,20 +22,20 @@ namespace Catharsis.Domain
     [Fact]
     public void compare_to()
     {
-      this.test_compare_to("Uri", new Uri("schema://first"), new Uri("schema://second"));
+      this.test_compare_to("Uri", "first", "second");
     }
 
     [Fact]
     public void equals_and_hash_code()
     {
-      this.test_equals_and_hash_code("Uri", new Uri("schema://first"), new Uri("schema://second"));
+      this.test_equals_and_hash_code("Uri", "first", "second");
     }
 
     [Fact]
     public void to_string()
     {
       Assert.Empty(new WebLink().ToString());
-      Assert.Equal("schema://uri/", new WebLink { Uri = new Uri("schema://uri") }.ToString());
+      Assert.Equal("schema://uri", new WebLink { Uri = "schema://uri" }.ToString());
     }
   }
 }

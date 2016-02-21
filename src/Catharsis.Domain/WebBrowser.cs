@@ -1,4 +1,5 @@
 ﻿using Catharsis.Commons;
+using SQLite;
 using System;
 using System.ComponentModel;
 
@@ -11,38 +12,48 @@ namespace Catharsis.Domain
   [Serializable]
   [Description("Web браузер")]
 #endif
+  [Table(Schema.TableName)]
   public partial class WebBrowser : Entity, IComparable<WebBrowser>, IEquatable<WebBrowser>
   {
     /// <summary>
     ///   <para>Описание браузера</para>
     /// </summary>
 #if NET_35
-    [Description("Описание браузера")]
+    [Description(Schema.ColumnCommentDescription)]
 #endif
+    [Column(Schema.ColumnNameDescription)]
+    [MaxLength(1000)]
     public virtual string Description { get; set; }
 
     /// <summary>
     ///   <para>Наименование/код браузера</para>
     /// </summary>
 #if NET_35
-    [Description("Наименование/код браузера")]
+    [Description(Schema.ColumnCommentName)]
 #endif
+    [Column(Schema.ColumnNameName)]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>Адрес сайта разработчиков</para>
     /// </summary>
 #if NET_35
-    [Description("Адрес сайта разработчиков")]
+    [Description(Schema.ColumnCommentUri)]
 #endif
+    [Column(Schema.ColumnNameUri)]
+    [MaxLength(1000)]
     public virtual Uri Uri { get; set; }
 
     /// <summary>
     ///   <para>Значение HTTP заголовка User-Agent</para>
     /// </summary>
 #if NET_35
-    [Description("Значение HTTP заголовка User-Agent")]
+    [Description(Schema.ColumnCommentUserAgent)]
 #endif
+    [Column(Schema.ColumnNameUserAgent)]
+    [NotNull]
+    [MaxLength(1000)]
+    [Unique(Name = "idx__web_browsers__user_agent")]
     public virtual string UserAgent { get; set; }
 
     public virtual int CompareTo(WebBrowser other)
@@ -50,7 +61,7 @@ namespace Catharsis.Domain
       return this.UserAgent.CompareTo(other.UserAgent);
     }
 
-    public bool Equals(WebBrowser other)
+    public virtual bool Equals(WebBrowser other)
     {
       return this.Equality(other, it => it.UserAgent);
     }
@@ -68,6 +79,33 @@ namespace Catharsis.Domain
     public override string ToString()
     {
       return this.UserAgent?.Trim() ?? string.Empty;
+    }
+
+    public static class Schema
+    {
+      public const string TableName = "web_browsers";
+      public const string TableComment = "Web браузеры";
+
+      public const string ColumnNameId = "id";
+      public const string ColumnCommentId = "Уникальный идентификатор";
+
+      public const string ColumnNameCreatedOn = "created_on";
+      public const string ColumnCommentCreatedOn = "Дата/время добавления web браузера";
+
+      public const string ColumnNameUpdatedOn = "updated_on";
+      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения web браузера";
+
+      public const string ColumnNameDescription = "description";
+      public const string ColumnCommentDescription = "Описание браузера";
+
+      public const string ColumnNameName = "name";
+      public const string ColumnCommentName = "Наименование/код браузера";
+
+      public const string ColumnNameUri = "uri";
+      public const string ColumnCommentUri = "Адрес сайта разработчиков";
+
+      public const string ColumnNameUserAgent = "user_agent";
+      public const string ColumnCommentUserAgent = "Значение HTTP заголовка User-Agent";
     }
   }
 }

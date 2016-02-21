@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsis.Domain.Tests", "Catharsis.Domain.Tests\Catharsis.Domain.Tests.csproj", "{19CB82F3-5265-42A8-9538-17DD1F335B6B}"
 EndProject
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsis.Domain.3.5", "Catharsis.Domain.3.5\Catharsis.Domain.3.5.csproj", "{01E27863-E954-428A-9D8D-09BB3D528C24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsis.Domain.3.5.CP", "Catharsis.Domain.3.5.CP\Catharsis.Domain.3.5.CP.csproj", "{40470C8A-10E6-4456-8CFA-2D9DA5400327}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catharsis.Domain.Portable", "Catharsis.Domain.Portable\Catharsis.Domain.Portable.csproj", "{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -231,6 +233,22 @@ Global
 		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|x64.Build.0 = Release|Any CPU
 		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|x86.ActiveCfg = Release|Any CPU
 		{40470C8A-10E6-4456-8CFA-2D9DA5400327}.Release|x86.Build.0 = Release|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Debug|ARM.Build.0 = Debug|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Debug|x64.Build.0 = Debug|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Debug|x86.Build.0 = Debug|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Release|ARM.ActiveCfg = Release|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Release|ARM.Build.0 = Release|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Release|x64.ActiveCfg = Release|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Release|x64.Build.0 = Release|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Release|x86.ActiveCfg = Release|Any CPU
+		{79C097ED-14A7-454E-8B40-83CA3B4C1BE7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

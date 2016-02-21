@@ -51,15 +51,12 @@
       <HintPath>..\packages\Catharsis.Commons.3.0.4\lib\sl50\Catharsis.Commons.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mscorlib" />
-    <Reference Include="System.Windows" />
-    <Reference Include="system" />
+    <Reference Include="System" />
     <Reference Include="System.Core">
       <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Catharsis.Domain\Address.cs">
@@ -88,6 +85,9 @@
     </Compile>
     <Compile Include="..\Catharsis.Domain\Country.cs">
       <Link>Country.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain\DirectoryCompany.cs">
+      <Link>DirectoryCompany.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain\Download.cs">
       <Link>Download.cs</Link>
@@ -121,6 +121,9 @@
     </Compile>
     <Compile Include="..\catharsis.domain\extensions\CountryExtensions.cs">
       <Link>Extensions\CountryExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain\Extensions\DirectoryCompanyExtensions.cs">
+      <Link>Extensions\DirectoryCompanyExtensions.cs</Link>
     </Compile>
     <Compile Include="..\catharsis.domain\extensions\DownloadExtensions.cs">
       <Link>Extensions\DownloadExtensions.cs</Link>
@@ -205,6 +208,12 @@
     </Compile>
     <Compile Include="..\Catharsis.Domain\News.cs">
       <Link>News.cs</Link>
+    </Compile>
+    <Compile Include="..\catharsis.domain\orm\SQLite.cs">
+      <Link>Orm\SQLite.cs</Link>
+    </Compile>
+    <Compile Include="..\catharsis.domain\orm\SQLiteAsync.cs">
+      <Link>Orm\SQLiteAsync.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain\Person.cs">
       <Link>Person.cs</Link>

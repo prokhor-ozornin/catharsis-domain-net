@@ -41,7 +41,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
       <Private>True</Private>
@@ -60,10 +59,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\catharsis.domain\orm\SQLite.cs">
+      <Link>Orm\SQLite.cs</Link>
+    </Compile>
+    <Compile Include="..\catharsis.domain\orm\SQLiteAsync.cs">
+      <Link>Orm\SQLiteAsync.cs</Link>
+    </Compile>
     <Compile Include="AddressTest.cs" />
     <Compile Include="ApiKeyTest.cs" />
     <Compile Include="AreaTest.cs" />
     <Compile Include="ContactTest.cs" />
+    <Compile Include="DirectoryCompanyTest.cs" />
     <Compile Include="EntityTest.cs" />
     <Compile Include="Extensions\AddressExtensionsTest.cs" />
     <Compile Include="Extensions\AnnouncementExtensionsTest.cs" />
@@ -77,6 +83,7 @@
     <Compile Include="CityTest.cs" />
     <Compile Include="Extensions\CountryExtensionsTest.cs" />
     <Compile Include="CountryTest.cs" />
+    <Compile Include="Extensions\DirectoryCompanyExtensionsTest.cs" />
     <Compile Include="Extensions\DownloadExtensionsTest.cs" />
     <Compile Include="DownloadTest.cs" />
     <Compile Include="Extensions\LogMessageExtensionsTest.cs" />

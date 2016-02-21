@@ -67,6 +67,9 @@
     <Compile Include="..\Catharsis.Domain\Country.cs">
       <Link>Country.cs</Link>
     </Compile>
+    <Compile Include="..\Catharsis.Domain\DirectoryCompany.cs">
+      <Link>DirectoryCompany.cs</Link>
+    </Compile>
     <Compile Include="..\Catharsis.Domain\Download.cs">
       <Link>Download.cs</Link>
     </Compile>
@@ -99,6 +102,9 @@
     </Compile>
     <Compile Include="..\Catharsis.Domain\Extensions\CountryExtensions.cs">
       <Link>Extensions\CountryExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Catharsis.Domain\Extensions\DirectoryCompanyExtensions.cs">
+      <Link>Extensions\DirectoryCompanyExtensions.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain\Extensions\DownloadExtensions.cs">
       <Link>Extensions\DownloadExtensions.cs</Link>
@@ -183,6 +189,12 @@
     </Compile>
     <Compile Include="..\Catharsis.Domain\News.cs">
       <Link>News.cs</Link>
+    </Compile>
+    <Compile Include="..\catharsis.domain\orm\SQLite.cs">
+      <Link>Orm\SQLite.cs</Link>
+    </Compile>
+    <Compile Include="..\catharsis.domain\orm\SQLiteAsync.cs">
+      <Link>Orm\SQLiteAsync.cs</Link>
     </Compile>
     <Compile Include="..\Catharsis.Domain\Person.cs">
       <Link>Person.cs</Link>

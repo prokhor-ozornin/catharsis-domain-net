@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.ComponentModel;
 
 namespace Catharsis.Domain
@@ -10,22 +11,29 @@ namespace Catharsis.Domain
   [Serializable]
   [Description("Часто Задаваемый Вопрос (Ч.А.В.О.)")]
 #endif
+  [Table(Schema.TableName)]
   public partial class Faq : Entity, IComparable<Faq>
   {
     /// <summary>
     ///   <para>Текст вопроса</para>
     /// </summary>
 #if NET_35
-    [Description("Текст вопроса")]
+    [Description(Schema.ColumnCommentAnswer)]
 #endif
+    [Column(Schema.ColumnNameAnswer)]
+    [NotNull]
+    [MaxLength(4000)]
     public virtual string Answer { get; set; }
 
     /// <summary>
     ///   <para>Текст ответа</para>
     /// </summary>
 #if NET_35
-    [Description("Текст ответа")]
+    [Description(Schema.ColumnCommentQuestion)]
 #endif
+    [Column(Schema.ColumnNameQuestion)]
+    [NotNull]
+    [MaxLength(4000)]
     public virtual string Question { get; set; }
 
     public virtual int CompareTo(Faq other)
@@ -36,6 +44,27 @@ namespace Catharsis.Domain
     public override string ToString()
     {
       return this.Question?.Trim() ?? string.Empty;
+    }
+
+    public static class Schema
+    {
+      public const string TableName = "faqs";
+      public const string TableComment = "Часто Задаваемые Вопросы";
+
+      public const string ColumnNameId = "id";
+      public const string ColumnCommentId = "Уникальный идентификатор";
+
+      public const string ColumnNameCreatedOn = "created_on";
+      public const string ColumnCommentCreatedOn = "Дата/время добавления Часто Задаваемого Вопроса";
+
+      public const string ColumnNameUpdatedOn = "updated_on";
+      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения Часто Задаваемого Вопроса";
+
+      public const string ColumnNameAnswer = "answer";
+      public const string ColumnCommentAnswer = "Текст ответа";
+
+      public const string ColumnNameQuestion = "question";
+      public const string ColumnCommentQuestion = "Текст вопроса";
     }
   }
 }

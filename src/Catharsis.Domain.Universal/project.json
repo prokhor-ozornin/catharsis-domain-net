@@ -1,7 +1,8 @@
 ﻿{
   "dependencies": {
     "Catharsis.Commons": "3.0.4",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
+    "sqlite-net": "1.0.7"
   },
   "frameworks": {
     "uap10.0": {}

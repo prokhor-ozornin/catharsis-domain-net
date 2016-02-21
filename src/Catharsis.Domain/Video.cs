@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using Catharsis.Commons;
+using SQLite;
 
 namespace Catharsis.Domain
 {
@@ -11,14 +12,17 @@ namespace Catharsis.Domain
   [Serializable]
   [Description("Видео")]
 #endif
+  [Table(Schema.TableName)]
   public partial class Video : Media, IComparable<Video>, IEquatable<Video>
   {
     /// <summary>
     ///   <para>Файл, представляющий видео</para>
     /// </summary>
 #if NET_35
-    [Description("Файл, представляющий видео")]
+    [Description(Schema.ColumnCommentFile)]
 #endif
+    [Column(Schema.ColumnNameFile)]
+    [Indexed(Name = "idx__videos__file_id")]
     public virtual StorageFile File { get; set; }
 
     public virtual int CompareTo(Video other)
@@ -26,7 +30,7 @@ namespace Catharsis.Domain
       return this.CreatedOn.Value.CompareTo(other.CreatedOn.Value);
     }
 
-    public bool Equals(Video other)
+    public virtual bool Equals(Video other)
     {
       return this.Equality(other, it => it.File, it => it.Uri);
     }
@@ -39,6 +43,18 @@ namespace Catharsis.Domain
     public override int GetHashCode()
     {
       return this.GetHashCode(it => it.File, it => it.Uri);
+    }
+
+    public static class Schema
+    {
+      public const string TableName = "videos";
+      public const string TableComment = "Видео";
+
+      public const string ColumnNameId = "id";
+      public const string ColumnCommentId = "Уникальный идентификатор";
+
+      public const string ColumnNameFile = "file_id";
+      public const string ColumnCommentFile = "Файл, представляющий видео";
     }
   }
 }
