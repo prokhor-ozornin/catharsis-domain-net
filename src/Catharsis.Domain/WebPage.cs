@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Web страница")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class WebPage : Entity, IComparable<WebPage>, IEquatable<WebPage>
+  public class WebPage : Entity, IComparable<WebPage>, IEquatable<WebPage>
   {
     /// <summary>
     ///   <para>Наименование локали для текста web страницы</para>

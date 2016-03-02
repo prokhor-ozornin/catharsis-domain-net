@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Компания из справочника")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class DirectoryCompany : Entity, IComparable<DirectoryCompany>, IEquatable<DirectoryCompany>
+  public class DirectoryCompany : Entity, IComparable<DirectoryCompany>, IEquatable<DirectoryCompany>
   {
     /// <summary>
     ///   <para>Внешний служебный код компании</para>

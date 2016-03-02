@@ -11,10 +11,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Настроечная опция")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Setting : Entity, IComparable<Setting>, IEquatable<Setting>
+  public class Setting : Entity, IComparable<Setting>, IEquatable<Setting>
   {
     /// <summary>
     ///   <para>Описание настроечной опции</para>

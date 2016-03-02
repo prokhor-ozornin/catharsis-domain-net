@@ -11,10 +11,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Адрес")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Address : Entity, IComparable<Address>
+  public class Address : Entity, IComparable<Address>
   {
     /// <summary>
     ///   <para>Город, к которому относится адрес</para>

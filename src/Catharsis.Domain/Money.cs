@@ -10,7 +10,7 @@ namespace Catharsis.Domain
 #if NET_35
   [Serializable]
 #endif
-  public partial struct Money : IEquatable<Money>
+  public struct Money : IEquatable<Money>
   {
     public Money(decimal amount) : this(amount, new RegionInfo(CultureInfo.CurrentCulture.ToString()).ISOCurrencySymbol)
     {

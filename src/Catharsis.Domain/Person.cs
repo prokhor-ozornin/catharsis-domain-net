@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Персона")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Person : Entity, IComparable<Person>, IEquatable<Person>
+  public class Person : Entity, IComparable<Person>, IEquatable<Person>
   {
     /// <summary>
     ///   <para>Дата рождения</para>

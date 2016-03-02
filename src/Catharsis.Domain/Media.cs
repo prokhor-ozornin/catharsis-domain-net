@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Медиа ресурс")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Media : Entity, IComparable<Media>, IEquatable<Media>
+  public class Media : Entity, IComparable<Media>, IEquatable<Media>
   {
     /// <summary>
     ///   <para>Имя создателя медиа ресурса</para>

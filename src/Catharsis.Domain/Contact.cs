@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Контакт")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Contact : Entity, IComparable<Contact>
+  public class Contact : Entity, IComparable<Contact>
   {
     /// <summary>
     ///   <para>Адреса</para>

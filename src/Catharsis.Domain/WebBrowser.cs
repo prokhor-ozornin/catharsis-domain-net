@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Web браузер")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class WebBrowser : Entity, IComparable<WebBrowser>, IEquatable<WebBrowser>
+  public class WebBrowser : Entity, IComparable<WebBrowser>, IEquatable<WebBrowser>
   {
     /// <summary>
     ///   <para>Описание браузера</para>

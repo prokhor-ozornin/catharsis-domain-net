@@ -34,3 +34,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("3.0.3")]
 [assembly: AssemblyFileVersion("3.0.3")]
 [assembly: CLSCompliant(true)]
+[assembly: AssemblyTitleAttribute("Catharsis.Domain")]
+[assembly: AssemblyCompanyAttribute("Prokhor Ozornin <prokhor.ozornin@yandex.ru>")]
+[assembly: AssemblyProductAttribute("Catharsis.Domain")]
+[assembly: AssemblyCopyrightAttribute("Copyright © 2014 - 2016")]
+[assembly: AssemblyVersionAttribute("3.1")]
+[assembly: AssemblyFileVersionAttribute("3.1")]
+

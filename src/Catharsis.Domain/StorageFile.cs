@@ -11,10 +11,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Файл")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class StorageFile : Entity, IComparable<StorageFile>, IEquatable<StorageFile>
+  public class StorageFile : Entity, IComparable<StorageFile>, IEquatable<StorageFile>
   {
     /// <summary>
     ///   <para>MIME тип содержимого файла</para>

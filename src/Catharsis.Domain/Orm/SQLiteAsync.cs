@@ -30,7 +30,7 @@ using System.Threading.Tasks;
 
 namespace SQLite
 {
-	public partial class SQLiteAsyncConnection
+	public class SQLiteAsyncConnection
 	{
 		SQLiteConnectionString _connectionString;
         SQLiteOpenFlags _openFlags;

@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Программный скрипт")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Script : Entity, IComparable<Script>, IEquatable<Script>
+  public class Script : Entity, IComparable<Script>, IEquatable<Script>
   {
     /// <summary>
     ///   <para>Программный код скрипта</para>

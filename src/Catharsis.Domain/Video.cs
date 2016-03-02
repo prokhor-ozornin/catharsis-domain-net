@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Видео")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Video : Media, IComparable<Video>, IEquatable<Video>
+  public class Video : Media, IComparable<Video>, IEquatable<Video>
   {
     /// <summary>
     ///   <para>Файл, представляющий видео</para>

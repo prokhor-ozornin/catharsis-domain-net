@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Географическая точка")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Location : Entity, IEquatable<Location>
+  public class Location : Entity, IEquatable<Location>
   {
     /// <summary>
     ///   <para>Широта (градусов) географической точки</para>

@@ -13,7 +13,7 @@ namespace Catharsis.Domain
   [Description("Ключевое слово")]
 #endif
   [Table(Schema.TableName)]
-  public partial class Tag : Entity, IComparable<Tag>, IEquatable<Tag>
+  public class Tag : Entity, IComparable<Tag>, IEquatable<Tag>
   {
     /// <summary>
     ///   <para>Значение ключевого слова</para>

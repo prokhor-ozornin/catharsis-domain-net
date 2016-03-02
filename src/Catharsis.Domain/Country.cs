@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Страна")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Country : Entity, IComparable<Country>, IEquatable<Country>
+  public class Country : Entity, IComparable<Country>, IEquatable<Country>
   {
     /// <summary>
     ///   <para>Наименование валюты, используемой в стране</para>

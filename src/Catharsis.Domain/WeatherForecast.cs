@@ -7,10 +7,10 @@ namespace Catharsis.Domain
 {
 #if NET_35
   [Serializable]
-  [Description("Прогноз погоды")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class WeatherForecast : Entity, IComparable<WeatherForecast>, IEquatable<WeatherForecast>
+  public class WeatherForecast : Entity, IComparable<WeatherForecast>, IEquatable<WeatherForecast>
   {
     /// <summary>
     ///   <para>Город для прогноза</para>

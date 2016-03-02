@@ -11,10 +11,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Push уведомление")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class PushNotification : Entity, IComparable<PushNotification>, IEquatable<PushNotification>
+  public class PushNotification : Entity, IComparable<PushNotification>, IEquatable<PushNotification>
   {
     /// <summary>
     ///   <para>Признак того, что уведомление было отправлено на мобильное устройство</para>

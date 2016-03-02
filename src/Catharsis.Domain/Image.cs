@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Изображение")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Image : Media, IComparable<Image>, IEquatable<Image>
+  public class Image : Media, IComparable<Image>, IEquatable<Image>
   {
     /// <summary>
     ///   <para>Файл, представляющий изображение</para>

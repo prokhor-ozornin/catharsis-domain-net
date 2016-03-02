@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Аудио")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Audio : Media, IEquatable<Audio>
+  public class Audio : Media, IEquatable<Audio>
   {
     /// <summary>
     ///   <para>Битрейт аудио дорожки</para>

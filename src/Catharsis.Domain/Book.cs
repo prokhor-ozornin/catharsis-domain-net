@@ -11,10 +11,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Литературное произведение")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Book : Entity, IComparable<Book>, IEquatable<Book>
+  public class Book : Entity, IComparable<Book>, IEquatable<Book>
   {
     /// <summary>
     ///   <para>Аннотация к произведению</para>

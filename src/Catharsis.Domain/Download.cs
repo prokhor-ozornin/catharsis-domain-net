@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Загружаемый материал")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Download : Entity, IComparable<Download>, IEquatable<Download>
+  public class Download : Entity, IComparable<Download>, IEquatable<Download>
   {
     /// <summary>
     ///   <para>Описание материала</para>

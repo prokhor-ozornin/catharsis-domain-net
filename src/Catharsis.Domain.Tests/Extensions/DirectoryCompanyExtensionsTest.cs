@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Catharsis.Domain
 {
-  public sealed class DirectoryCompanyExtensionsTest
+  /*public sealed class DirectoryCompanyExtensionsTest
   {
     [Fact]
     public void name_queryable()
@@ -26,5 +26,5 @@ namespace Catharsis.Domain
 
       Assert.Equal(1, new[] { null, new DirectoryCompany(), new DirectoryCompany { Name = "First" }, new DirectoryCompany { Name = "Second" } }.Name("f").Count());
     }
-  }
+  }*/
 }

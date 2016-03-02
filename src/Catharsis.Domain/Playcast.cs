@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Плейкаст")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Playcast : Entity, IComparable<Playcast>
+  public class Playcast : Entity, IComparable<Playcast>
   {
     /// <summary>
     ///   <para>Аудио-сопровождение плейкаста</para>

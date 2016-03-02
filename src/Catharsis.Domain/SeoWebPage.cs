@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("SEO данные о web странице")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class SeoWebPage : Entity, IComparable<SeoWebPage>, IEquatable<SeoWebPage>
+  public class SeoWebPage : Entity, IComparable<SeoWebPage>, IEquatable<SeoWebPage>
   {
     /// <summary>
     ///   <para>Наименование локали для содержимого web страницы</para>

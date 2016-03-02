@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Территория")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Area : Entity, IComparable<Area>, IEquatable<Area>
+  public class Area : Entity, IComparable<Area>, IEquatable<Area>
   {
     /// <summary>
     ///   <para>Страна, в которой расположена территория</para>

@@ -9,10 +9,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Объявление")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Announcement : Entity, IComparable<Announcement>
+  public class Announcement : Entity, IComparable<Announcement>
   {
     /// <summary>
     ///   <para>Связанный файл изображения</para>

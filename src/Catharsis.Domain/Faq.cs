@@ -9,10 +9,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Часто Задаваемый Вопрос (Ч.А.В.О.)")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class Faq : Entity, IComparable<Faq>
+  public class Faq : Entity, IComparable<Faq>
   {
     /// <summary>
     ///   <para>Текст вопроса</para>

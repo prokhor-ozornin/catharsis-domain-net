@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Ключ доступа API")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class ApiKey : Entity, IComparable<ApiKey>, IEquatable<ApiKey>
+  public class ApiKey : Entity, IComparable<ApiKey>, IEquatable<ApiKey>
   {
     /// <summary>
     ///   <para>Описание приложения, использующего ключ доступа</para>

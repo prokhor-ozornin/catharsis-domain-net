@@ -8,10 +8,7 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Бизнес-сущность</para>
   /// </summary>
-#if NET_35
-  [Description("Бизнес-сущность")]
-#endif
-  public abstract partial class Entity : IEntity
+  public abstract class Entity : IEntity
   {
     /// <summary>
     ///   <para>Дата/время создания</para>

@@ -11,10 +11,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Новость проекта")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class News : Entity, IComparable<News>, IEquatable<News>
+  public class News : Entity, IComparable<News>, IEquatable<News>
   {
     /// <summary>
     ///   <para>Аннотация к новости</para>

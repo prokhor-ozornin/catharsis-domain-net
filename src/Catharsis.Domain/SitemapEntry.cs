@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Элемент карты сайта")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class SitemapEntry : Entity, IComparable<SitemapEntry>, IEquatable<SitemapEntry>
+  public class SitemapEntry : Entity, IComparable<SitemapEntry>, IEquatable<SitemapEntry>
   {
     /// <summary>
     ///   <para>Частота обновлений ресурса, доступного по URI адресу</para>

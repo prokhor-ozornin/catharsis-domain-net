@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Запись лога")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class LogMessage : Entity, IComparable<LogMessage>, IEquatable<LogMessage>
+  public class LogMessage : Entity, IComparable<LogMessage>, IEquatable<LogMessage>
   {
     /// <summary>
     ///   <para>Уровень логгирования записей</para>

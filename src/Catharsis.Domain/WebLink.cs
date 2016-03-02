@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Web гиперссылка")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class WebLink : Entity, IComparable<WebLink>, IEquatable<WebLink>
+  public class WebLink : Entity, IComparable<WebLink>, IEquatable<WebLink>
   {
     /// <summary>
     ///   <para>Описание гиперссылки</para>

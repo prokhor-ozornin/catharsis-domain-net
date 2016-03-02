@@ -123,7 +123,7 @@ namespace SQLite
 	/// <summary>
 	/// Represents an open connection to a SQLite database.
 	/// </summary>
-	public partial class SQLiteConnection : IDisposable
+	public class SQLiteConnection : IDisposable
 	{
 		private bool _open;
 		private TimeSpan _busyTimeout;
@@ -1963,7 +1963,7 @@ namespace SQLite
 		}
 	}
 
-	public partial class SQLiteCommand
+	public class SQLiteCommand
 	{
 		SQLiteConnection _conn;
 		private List<Binding> _bindings;

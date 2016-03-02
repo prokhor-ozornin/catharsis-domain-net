@@ -10,10 +10,10 @@ namespace Catharsis.Domain
   /// </summary>
 #if NET_35
   [Serializable]
-  [Description("Город")]
+  [Description(Schema.TableComment)]
 #endif
   [Table(Schema.TableName)]
-  public partial class City : Entity, IComparable<City>, IEquatable<City>
+  public class City : Entity, IComparable<City>, IEquatable<City>
   {
     /// <summary>
     ///   <para>Территория, к которой относится город</para>
