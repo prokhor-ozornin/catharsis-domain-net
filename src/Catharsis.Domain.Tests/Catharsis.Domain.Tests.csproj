@@ -59,12 +59,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\catharsis.domain\orm\SQLite.cs">
-      <Link>Orm\SQLite.cs</Link>
-    </Compile>
-    <Compile Include="..\catharsis.domain\orm\SQLiteAsync.cs">
-      <Link>Orm\SQLiteAsync.cs</Link>
-    </Compile>
     <Compile Include="AddressTest.cs" />
     <Compile Include="ApiKeyTest.cs" />
     <Compile Include="AreaTest.cs" />
@@ -121,6 +115,8 @@
     <Compile Include="SeoWebPageTest.cs" />
     <Compile Include="SettingTest.cs" />
     <Compile Include="SitemapEntryTest.cs" />
+    <Compile Include="SQLite.cs" />
+    <Compile Include="SQLiteAsync.cs" />
     <Compile Include="StorageFileTest.cs" />
     <Compile Include="Extensions\BookExtensionsTest.cs" />
     <Compile Include="TagTest.cs" />
@@ -135,9 +131,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Catharsis.Domain.4.0\Catharsis.Domain.4.0.csproj">
-      <Project>{2DBD201F-206F-4AA6-B7BA-C3682C1F75DD}</Project>
-      <Name>Catharsis.Domain.4.0</Name>
+    <ProjectReference Include="..\Catharsis.Domain.4.5\Catharsis.Domain.4.5.csproj">
+      <Project>{1446ef19-8be9-4174-be21-76fded10baf3}</Project>
+      <Name>Catharsis.Domain.4.5</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

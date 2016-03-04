@@ -35,10 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\Catharsis.Domain\Address.cs">
       <Link>Address.cs</Link>
     </Compile>
@@ -189,12 +185,6 @@
     <Compile Include="..\Catharsis.Domain\News.cs">
       <Link>News.cs</Link>
     </Compile>
-    <Compile Include="..\catharsis.domain\orm\SQLite.cs">
-      <Link>Orm\SQLite.cs</Link>
-    </Compile>
-    <Compile Include="..\catharsis.domain\orm\SQLiteAsync.cs">
-      <Link>Orm\SQLiteAsync.cs</Link>
-    </Compile>
     <Compile Include="..\Catharsis.Domain\Person.cs">
       <Link>Person.cs</Link>
     </Compile>
@@ -253,6 +243,11 @@
       <Link>WebPage.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLite.cs" />
+    <Compile Include="SQLiteAsync.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

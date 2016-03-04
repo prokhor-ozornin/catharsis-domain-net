@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Catharsis.Commons;
 using System.Collections.Generic;
-using SQLite;
+using SQLite.Net.Attributes;
 
 namespace Catharsis.Domain
 {

@@ -1,5 +1,5 @@
 ﻿using Catharsis.Commons;
-using SQLite;
+using SQLite.Net.Attributes;
 using System;
 using System.ComponentModel;
 using System.Text;
