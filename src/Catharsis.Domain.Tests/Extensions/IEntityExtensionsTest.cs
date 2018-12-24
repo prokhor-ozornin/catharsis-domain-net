@@ -32,10 +32,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, entities.CreatedOn().Count());
       Assert.Equal(2, entities.CreatedOn(new DateTime(1999, 1, 31)).Count());
       Assert.Empty(entities.CreatedOn(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, entities.CreatedOn(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
+      Assert.Single(entities.CreatedOn(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
       Assert.Equal(2, entities.CreatedOn(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
       Assert.Empty(entities.CreatedOn(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, entities.CreatedOn(to: new DateTime(2000, 1, 1)).Count());
+      Assert.Single(entities.CreatedOn(to: new DateTime(2000, 1, 1)));
       Assert.Equal(2, entities.CreatedOn(to: new DateTime(2000, 1, 3)).Count());
     }
 
@@ -105,10 +105,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, entities.UpdatedOn().Count());
       Assert.Equal(2, entities.UpdatedOn(new DateTime(1999, 1, 31)).Count());
       Assert.Empty(entities.UpdatedOn(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, entities.UpdatedOn(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
+      Assert.Single(entities.UpdatedOn(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
       Assert.Equal(2, entities.UpdatedOn(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
       Assert.Empty(entities.UpdatedOn(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, entities.UpdatedOn(to: new DateTime(2000, 1, 1)).Count());
+      Assert.Single(entities.UpdatedOn(to: new DateTime(2000, 1, 1)));
       Assert.Equal(2, entities.UpdatedOn(to: new DateTime(2000, 1, 3)).Count());
     }
 

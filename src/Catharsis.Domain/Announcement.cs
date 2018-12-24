@@ -7,60 +7,48 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Объявление</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Announcement : Entity, IComparable<Announcement>
   {
     /// <summary>
     ///   <para>Связанный файл изображения</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentImage)]
-#endif
     [Column(Schema.ColumnNameImage)]
-    [Indexed(Name = "idx__announcements__image_id")]
+    [Indexed(Name = "idx__announcement__image_id")]
     public virtual Image Image { get; set; }
 
     /// <summary>
     ///   <para>Наименование/заголовок</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
-    [Indexed(Name = "idx__announcements__name")]
+    [Indexed(Name = "idx__announcement__name")]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>Стоимость публикации</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentPrice)]
-#endif
     [Column(Schema.ColumnNamePrice)]
-    [Indexed(Name = "idx__announcements__price")]
+    [Indexed(Name = "idx__announcement__price")]
     public virtual decimal? Price { get; set; }
 
     /// <summary>
     ///   <para>Валюта стоимости публикации</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentPriceCurrency)]
-#endif
     [Column(Schema.ColumnNamePriceCurrency)]
-    [Indexed(Name = "idx__announcements__price_currency")]
+    [Indexed(Name = "idx__announcement__price_currency")]
     public virtual string PriceCurrency { get; set; }
 
     /// <summary>
     ///   <para>Текстовое содержимое</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentText)]
-#endif
     [Column(Schema.ColumnNameText)]
     [NotNull]
     [MaxLength(4000)]
@@ -76,9 +64,9 @@ namespace Catharsis.Domain
       return this.Name?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "announcements";
+      public const string TableName = "announcement";
       public const string TableComment = "Объявления";
 
       public const string ColumnNameId = "id";

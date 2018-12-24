@@ -12,7 +12,7 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IQueryable<Book>) null).Author(new Person()));
 
-      Assert.False(Enumerable.Empty<Book>().AsQueryable().Author(new Person()).Any());
+      Assert.Empty(Enumerable.Empty<Book>().AsQueryable().Author(new Person()));
       Assert.Equal(1, new[] { new Book { Author = new Person { Id = 1 } }, new Book { Author = new Person { Id = 2 } } }.AsQueryable().Author(new Person { Id = 1 }).Count());
     }
 
@@ -21,8 +21,8 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Book>)null).Author(new Person()));
 
-      Assert.False(Enumerable.Empty<Book>().Author(new Person()).Any());
-      Assert.Equal(1, new[] { null, new Book(), new Book { Author = new Person { FirstName = "first" } }, new Book { Author = new Person { FirstName = "second" } } }.Author(new Person { FirstName = "first" }).Count());
+      Assert.Empty(Enumerable.Empty<Book>().Author(new Person()));
+      Assert.Single(new[] { null, new Book(), new Book { Author = new Person { FirstName = "first" } }, new Book { Author = new Person { FirstName = "second" } } }.Author(new Person { FirstName = "first" }));
     }
 
     [Fact]
@@ -42,7 +42,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Book[] { }.Language(null));
       Assert.Throws<ArgumentException>(() => new Book[] { }.Language(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Book(), new Book { Language = "First" }, new Book { Language = "Second" } }.Language("first").Count());
+      Assert.Single(new[] { null, new Book(), new Book { Language = "First" }, new Book { Language = "Second" } }.Language("first"));
     }
 
     [Fact]
@@ -70,10 +70,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, books.PublishDate().Count());
       Assert.Equal(2, books.PublishDate(new DateTime(1999, 1, 31)).Count());
       Assert.Empty(books.PublishDate(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, books.PublishDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
+      Assert.Single(books.PublishDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
       Assert.Equal(2, books.PublishDate(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
       Assert.Empty(books.PublishDate(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, books.PublishDate(to: new DateTime(2000, 1, 1)).Count());
+      Assert.Single(books.PublishDate(to: new DateTime(2000, 1, 1)));
       Assert.Equal(2, books.PublishDate(to: new DateTime(2000, 1, 3)).Count());
     }
 
@@ -92,7 +92,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Book>)null).Tag(new Tag()));
       Assert.Throws<ArgumentNullException>(() => new Book[] { }.Tag(null));
 
-      Assert.Equal(1, new[] { null, new Book(), new Book { Tags = new HashSet<Tag> { new Tag { Name = "first" } } }, new Book { Tags = new HashSet<Tag> { new Tag { Name = "second" } } } }.Tag(new Tag { Name = "first" }).Count());
+      Assert.Single(new[] { null, new Book(), new Book { Tags = new HashSet<Tag> { new Tag { Name = "first" } } }, new Book { Tags = new HashSet<Tag> { new Tag { Name = "second" } } } }.Tag(new Tag { Name = "first" }));
     }
 
     [Fact]

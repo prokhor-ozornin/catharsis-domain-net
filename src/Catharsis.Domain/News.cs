@@ -9,19 +9,15 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Новость проекта</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class News : Entity, IComparable<News>, IEquatable<News>
   {
     /// <summary>
     ///   <para>Аннотация к новости</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentAnnotation)]
-#endif
     [Column(Schema.ColumnNameAnnotation)]
     [NotNull]
     [MaxLength(1000)]
@@ -30,9 +26,7 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Файл изображения для новости</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentImage)]
-#endif
     [Column(Schema.ColumnNameImage)]
     [Indexed(Name = "idx__news__image_id")]
     public virtual Image Image { get; set; }
@@ -40,9 +34,7 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Заголовок новости</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
     [Indexed(Name = "idx__news__name")]
@@ -51,18 +43,14 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Ключевые слова, описывающие содержимое новости</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentTags)]
-#endif
     [Column(Schema.ColumnNameTags)]
     public virtual ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();
 
     /// <summary>
     ///   <para>Полный текст новости</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentText)]
-#endif
     [Column(Schema.ColumnNameText)]
     [NotNull]
     [MaxLength(4000)]
@@ -93,7 +81,7 @@ namespace Catharsis.Domain
       return this.Name?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
       public const string TableName = "news";
       public const string TableComment = "Новости проекта";

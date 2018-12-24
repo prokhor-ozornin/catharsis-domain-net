@@ -21,8 +21,8 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Region>)null).Area(new Area()));
 
-      Assert.Equal(1, new[] { null, new Region { Area = new Area { Name = "first" } }, new Region { Area = new Area { Name = "second" } } }.Area(new Area { Name = "first" }).Count());
-      Assert.Equal(1, new[] { null, new Region(), new Region { Area = new Area { Name = "first" } } }.Area(null).Count());
+      Assert.Single(new[] { null, new Region { Area = new Area { Name = "first" } }, new Region { Area = new Area { Name = "second" } } }.Area(new Area { Name = "first" }));
+      Assert.Single(new[] { null, new Region(), new Region { Area = new Area { Name = "first" } } }.Area(null));
     }
 
     [Fact]
@@ -42,7 +42,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Region[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new Region[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Region(), new Region { Name = "First" }, new Region { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new Region(), new Region { Name = "First" }, new Region { Name = "Second" } }.Name("f"));
     }
   }
 }

@@ -8,63 +8,51 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Персона</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Person : Entity, IComparable<Person>, IEquatable<Person>
   {
     /// <summary>
     ///   <para>Дата рождения</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentBirthDate)]
-#endif
     [Column(Schema.ColumnNameBirthDate)]
-    [Indexed(Name = "idx__people__birth_date")]
+    [Indexed(Name = "idx__person__birth_date")]
     public virtual DateTime? BirthDate { get; set; }
 
     /// <summary>
     ///   <para>Дата смерти</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDeathDate)]
-#endif
     [Column(Schema.ColumnNameDeathDate)]
-    [Indexed(Name = "idx__people__death_date")]
+    [Indexed(Name = "idx__person__death_date")]
     public virtual DateTime? DeathDate { get; set; }
 
     /// <summary>
     ///   <para>Имя</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentFirstName)]
-#endif
     [Column(Schema.ColumnNameFirstName)]
     [NotNull]
-    [Indexed(Name = "idx__people__first_name")]
+    [Indexed(Name = "idx__person__first_name")]
     public virtual string FirstName { get; set; }
 
     /// <summary>
     ///   <para>Фамилия</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLastName)]
-#endif
     [Column(Schema.ColumnNameLastName)]
     [NotNull]
-    [Indexed(Name = "idx__people__last_name")]
+    [Indexed(Name = "idx__person__last_name")]
     public virtual string LastName { get; set; }
 
     /// <summary>
     ///   <para>Отчество</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentMiddleName)]
-#endif
     [Column(Schema.ColumnNameMiddleName)]
-    [Indexed(Name = "idx__people__middle_name")]
+    [Indexed(Name = "idx__person__middle_name")]
     public virtual string MiddleName { get; set; }
 
     public virtual int CompareTo(Person other)
@@ -92,9 +80,9 @@ namespace Catharsis.Domain
       return $"{this.LastName ?? string.Empty} {this.FirstName ?? string.Empty} {this.MiddleName ?? string.Empty}".Trim();
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "people";
+      public const string TableName = "person";
       public const string TableComment = "Персоны";
 
       public const string ColumnNameId = "id";

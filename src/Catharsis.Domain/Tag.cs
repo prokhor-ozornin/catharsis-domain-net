@@ -8,22 +8,18 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Ключевое слово</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description("Ключевое слово")]
-#endif
   [Table(Schema.TableName)]
   public class Tag : Entity, IComparable<Tag>, IEquatable<Tag>
   {
     /// <summary>
     ///   <para>Значение ключевого слова</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
-    [Unique(Name = "idx__tags__name")]
+    [Unique(Name = "tag__name")]
     public virtual string Name { get; set; }
 
     public virtual int CompareTo(Tag other)
@@ -51,9 +47,9 @@ namespace Catharsis.Domain
       return this.Name?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "tags";
+      public const string TableName = "tag";
       public const string TableComment = "Ключевые слова (теги)";
 
       public const string ColumnNameId = "id";

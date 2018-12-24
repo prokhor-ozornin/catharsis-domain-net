@@ -1,5 +1,6 @@
 var class_catharsis_1_1_domain_1_1_playcast =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_playcast_1_1_schema.html", "class_catharsis_1_1_domain_1_1_playcast_1_1_schema" ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_playcast.html#a48865d457bec987e6a8f1e310a5ee340", null ],
     [ "ToString", "class_catharsis_1_1_domain_1_1_playcast.html#a415e30fbb2d5916d1057ac9a377e7d5b", null ],
     [ "Audio", "class_catharsis_1_1_domain_1_1_playcast.html#a6e560abdfb6151c1d46ef1a3f3e7c147", null ],

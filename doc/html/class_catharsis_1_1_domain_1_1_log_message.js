@@ -1,7 +1,8 @@
 var class_catharsis_1_1_domain_1_1_log_message =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_log_message_1_1_schema.html", "class_catharsis_1_1_domain_1_1_log_message_1_1_schema" ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_log_message.html#a6afbc03184e9865a091a840e40984a70", null ],
-    [ "Equals", "class_catharsis_1_1_domain_1_1_log_message.html#a1916ed484d1f6fa90cfc6fdbadab8004", null ],
+    [ "Equals", "class_catharsis_1_1_domain_1_1_log_message.html#ae6db95946ccb6127a187cfa57210619d", null ],
     [ "Equals", "class_catharsis_1_1_domain_1_1_log_message.html#a893c74c7d0097d1015989a87fcfbb31f", null ],
     [ "GetHashCode", "class_catharsis_1_1_domain_1_1_log_message.html#a099685c258b2b55d39746125d3bb7ee0", null ],
     [ "ToString", "class_catharsis_1_1_domain_1_1_log_message.html#afb643235b0219f68dd724092d5ded598", null ],

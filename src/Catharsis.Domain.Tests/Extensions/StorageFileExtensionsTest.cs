@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new StorageFile[] { }.ContentType(null));
       Assert.Throws<ArgumentException>(() => new StorageFile[] { }.ContentType(string.Empty));
 
-      Assert.Equal(1, new[] { null, new StorageFile(), new StorageFile { ContentType = "First" }, new StorageFile { ContentType = "Second" } }.ContentType("first").Count());
+      Assert.Single(new[] { null, new StorageFile(), new StorageFile { ContentType = "First" }, new StorageFile { ContentType = "Second" } }.ContentType("first"));
     }
 
     [Fact]
@@ -44,7 +44,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new StorageFile[] { }.Storage(null));
       Assert.Throws<ArgumentException>(() => new StorageFile[] { }.Storage(string.Empty));
 
-      Assert.Equal(1, new[] { null, new StorageFile(), new StorageFile { Storage = "First" }, new StorageFile { Storage = "Second" } }.Storage("first").Count());
+      Assert.Single(new[] { null, new StorageFile(), new StorageFile { Storage = "First" }, new StorageFile { Storage = "Second" } }.Storage("first"));
     }
   }
 }

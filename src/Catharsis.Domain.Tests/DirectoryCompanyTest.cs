@@ -26,13 +26,6 @@ namespace Catharsis.Domain
     }
 
     [Fact]
-    public void equals_and_hash_code()
-    {
-      this.test_equals_and_hash_code("Name", "first", "second");
-      this.test_equals_and_hash_code("ShortName", "first", "second");
-    }
-
-    [Fact]
     public void to_string()
     {
       Assert.Empty(new DirectoryCompany().ToString());

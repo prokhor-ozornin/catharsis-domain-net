@@ -9,19 +9,15 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Литературное произведение</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Book : Entity, IComparable<Book>, IEquatable<Book>
   {
     /// <summary>
     ///   <para>Аннотация к произведению</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentAnnotation)]
-#endif
     [Column(Schema.ColumnNameAnnotation)]
     [MaxLength(1000)]
     public virtual string Annotation { get; set; }
@@ -29,20 +25,16 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Автор произведения</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentAuthor)]
-#endif
     [Column(Schema.ColumnNameAuthor)]
     [NotNull]
-    [Indexed(Name = "idx__books__author_id")]
+    [Indexed(Name = "idx__book__author_id")]
     public virtual Person Author { get; set; }
 
     /// <summary>
     ///   <para>Текстовое содержимое произведения</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentContents)]
-#endif
     [Column(Schema.ColumnNameContents)]
     [NotNull]
     public virtual string Contents { get; set; }
@@ -50,41 +42,33 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Изображение для обложки</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentCover)]
-#endif
     [Column(Schema.ColumnNameCover)]
-    [Indexed(Name = "idx__books__cover_id")]
+    [Indexed(Name = "idx__book__cover_id")]
     public virtual Image Cover { get; set; }
 
     /// <summary>
     ///   <para>Уникальный ISBN идентификатор</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentIsbn)]
-#endif
     [Column(Schema.ColumnNameIsbn)]
-    [Indexed(Name = "idx__books__isbn")]
+    [Indexed(Name = "idx__book__isbn")]
     [MaxLength(13)]
     public virtual string Isbn { get; set; }
 
     /// <summary>
     ///   <para>Национальный язык написания</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLanguage)]
-#endif
     [Column(Schema.ColumnNameLanguage)]
-    [Indexed(Name = "idx__books__language")]
+    [Indexed(Name = "idx__book__language")]
     [MaxLength(2)]
     public virtual string Language { get; set; }
 
     /// <summary>
     ///   <para>Примечания к произведению</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentNotes)]
-#endif
     [Column(Schema.ColumnNameNotes)]
     [MaxLength(1000)]
     public virtual string Notes { get; set; }
@@ -92,41 +76,33 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Дата публикации</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentPublishDate)]
-#endif
     [Column(Schema.ColumnNamePublishDate)]
-    [Indexed(Name = "idx__books__publish_date")]
+    [Indexed(Name = "idx__book__publish_date")]
     public virtual DateTime? PublishDate { get; set; }
 
     /// <summary>
     ///   <para>Наименование издательства-публикатора</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentPublisher)]
-#endif
     [Column(Schema.ColumnNamePublisher)]
-    [Indexed(Name = "idx__books__publisher")]
+    [Indexed(Name = "idx__book__publisher")]
     public virtual string Publisher { get; set; }
 
     /// <summary>
     ///   <para>Ключевые слова, описывающие содержимое произведения</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentTags)]
-#endif
     [Column(Schema.ColumnNameTags)]
     public virtual ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();
 
     /// <summary>
     ///   <para>Наименование произведения</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentTitle)]
-#endif
     [Column(Schema.ColumnNameTitle)]
     [NotNull]
-    [Indexed(Name = "idx__books__title")]
+    [Indexed(Name = "idx__book__title")]
     public virtual string Title { get; set; }
 
     public virtual int CompareTo(Book other)
@@ -154,9 +130,9 @@ namespace Catharsis.Domain
       return this.Title?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "books";
+      public const string TableName = "book";
       public const string TableComment = "Литературные произведения";
 
       public const string ColumnNameId = "id";

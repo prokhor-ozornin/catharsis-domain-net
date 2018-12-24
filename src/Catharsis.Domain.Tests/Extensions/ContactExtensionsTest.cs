@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Email(null));
       Assert.Throws<ArgumentException>(() => new Contact[] { }.Email(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Contact(), new Contact { Emails = new HashSet<string> { "prokhor.ozornin@yandex.ru" } }, new Contact { Emails = new HashSet<string> { "prokhor.ozornin@gmail.com" } } }.Email("prokhor.ozornin@yandex.ru").Count());
+      Assert.Single(new[] { null, new Contact(), new Contact { Emails = new HashSet<string> { "prokhor.ozornin@yandex.ru" } }, new Contact { Emails = new HashSet<string> { "prokhor.ozornin@gmail.com" } } }.Email("prokhor.ozornin@yandex.ru"));
     }
 
     [Fact]
@@ -44,7 +44,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Fax(null));
       Assert.Throws<ArgumentException>(() => new Contact[] { }.Fax(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Contact(), new Contact { Fax = "First" }, new Contact { Fax = "Second" } }.Fax("first").Count());
+      Assert.Single(new[] { null, new Contact(), new Contact { Fax = "First" }, new Contact { Fax = "Second" } }.Fax("first"));
     }
 
     [Fact]
@@ -64,7 +64,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Icq(null));
       Assert.Throws<ArgumentException>(() => new Contact[] { }.Icq(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Contact(), new Contact { Icq = "First" }, new Contact { Icq = "Second" } }.Icq("first").Count());
+      Assert.Single(new[] { null, new Contact(), new Contact { Icq = "First" }, new Contact { Icq = "Second" } }.Icq("first"));
     }
 
     [Fact]
@@ -84,7 +84,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Jabber(null));
       Assert.Throws<ArgumentException>(() => new Contact[] { }.Jabber(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Contact(), new Contact { Jabber = "First" }, new Contact { Jabber = "Second" } }.Jabber("first").Count());
+      Assert.Single(new[] { null, new Contact(), new Contact { Jabber = "First" }, new Contact { Jabber = "Second" } }.Jabber("first"));
     }
 
     [Fact]
@@ -104,7 +104,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Phone(null));
       Assert.Throws<ArgumentException>(() => new Contact[] { }.Phone(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Contact(), new Contact { Phones = new HashSet<string> { "+79650000000" } }, new Contact { Phones = new HashSet<string> { "+79120000000" } } }.Phone("+79650000000").Count());
+      Assert.Single(new[] { null, new Contact(), new Contact { Phones = new HashSet<string> { "+79650000000" } }, new Contact { Phones = new HashSet<string> { "+79120000000" } } }.Phone("+79650000000"));
     }
 
     [Fact]
@@ -124,7 +124,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Skype(null));
       Assert.Throws<ArgumentException>(() => new Contact[] { }.Skype(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Contact(), new Contact { Skype = "First" }, new Contact { Skype = "Second" } }.Skype("first").Count());
+      Assert.Single(new[] { null, new Contact(), new Contact { Skype = "First" }, new Contact { Skype = "Second" } }.Skype("first"));
     }
   }
 }

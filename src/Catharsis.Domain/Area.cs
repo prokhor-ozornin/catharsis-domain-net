@@ -8,33 +8,27 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Территория</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Area : Entity, IComparable<Area>, IEquatable<Area>
   {
     /// <summary>
     ///   <para>Страна, в которой расположена территория</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentCountry)]
-#endif
     [Column(Schema.ColumnNameCountry)]
     [NotNull]
-    [Indexed(Name = "idx__areas__country_id")]
+    [Indexed(Name = "idx__area__country_id")]
     public virtual Country Country { get; set; }
 
     /// <summary>
     ///   <para>Наименование территории</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
-    [Indexed(Name = "idx__areas__name")]
+    [Indexed(Name = "idx__area__name")]
     public virtual string Name { get; set; }
 
     public virtual int CompareTo(Area other)
@@ -62,9 +56,9 @@ namespace Catharsis.Domain
       return this.Name?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "areas";
+      public const string TableName = "area";
       public const string TableComment = "Географические территории";
 
       public const string ColumnNameId = "id";

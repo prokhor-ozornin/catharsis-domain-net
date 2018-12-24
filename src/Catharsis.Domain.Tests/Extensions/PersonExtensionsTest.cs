@@ -32,10 +32,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, people.BirthDate().Count());
       Assert.Equal(2, people.BirthDate(new DateTime(1999, 1, 31)).Count());
       Assert.Empty(people.BirthDate(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, people.BirthDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
+      Assert.Single(people.BirthDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
       Assert.Equal(2, people.BirthDate(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
       Assert.Empty(people.BirthDate(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, people.BirthDate(to: new DateTime(2000, 1, 1)).Count());
+      Assert.Single(people.BirthDate(to: new DateTime(2000, 1, 1)));
       Assert.Equal(2, people.BirthDate(to: new DateTime(2000, 1, 3)).Count());
     }
 
@@ -64,10 +64,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, people.DeathDate().Count());
       Assert.Equal(2, people.DeathDate(new DateTime(1999, 1, 31)).Count());
       Assert.Empty(people.DeathDate(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, people.DeathDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
+      Assert.Single(people.DeathDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
       Assert.Equal(2, people.DeathDate(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
       Assert.Empty(people.DeathDate(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, people.DeathDate(to: new DateTime(2000, 1, 1)).Count());
+      Assert.Single(people.DeathDate(to: new DateTime(2000, 1, 1)));
       Assert.Equal(2, people.DeathDate(to: new DateTime(2000, 1, 3)).Count());
     }
 
@@ -88,7 +88,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Person[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new Person[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Person(), new Person { FirstName = "First" }, new Person { FirstName = "Second" } }.Name("first").Count());
+      Assert.Single(new[] { null, new Person(), new Person { FirstName = "First" }, new Person { FirstName = "Second" } }.Name("first"));
     }
   }
 }

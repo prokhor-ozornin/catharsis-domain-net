@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new WebPage[] { }.Locale(null));
       Assert.Throws<ArgumentException>(() => new WebPage[] { }.Locale(string.Empty));
 
-      Assert.Equal(1, new[] { null, new WebPage(), new WebPage { Locale = "First" }, new WebPage { Locale = "Second" } }.Locale("first").Count());
+      Assert.Single(new[] { null, new WebPage(), new WebPage { Locale = "First" }, new WebPage { Locale = "Second" } }.Locale("first"));
     }
 
     [Fact]
@@ -44,7 +44,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new WebPage[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new WebPage[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new WebPage(), new WebPage { Name = "First" }, new WebPage { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new WebPage(), new WebPage { Name = "First" }, new WebPage { Name = "Second" } }.Name("f"));
     }
   }
 }

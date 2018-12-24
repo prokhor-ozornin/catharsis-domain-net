@@ -9,59 +9,47 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Настроечная опция</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Setting : Entity, IComparable<Setting>, IEquatable<Setting>
   {
     /// <summary>
     ///   <para>Описание настроечной опции</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDescription)]
-#endif
     [Column(Schema.ColumnNameDescription)]
     public virtual string Description { get; set; }
 
     /// <summary>
     ///   <para>Наименование настроечной опции</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
-    [Unique(Name = "idx__settings__name")]
+    [Unique(Name = "setting__name")]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>Тип данных для значения настроечной опции</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentType)]
-#endif
     [Column(Schema.ColumnNameType)]
     [NotNull]
-    [Indexed(Name = "idx__settings__type")]
+    [Indexed(Name = "idx__setting__type")]
     public virtual SettingType? Type { get; set; }
 
     /// <summary>
     ///   <para>Значение настроечной опции</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentValue)]
-#endif
     [Column(Schema.ColumnNameValue)]
     public virtual string Value { get; set; }
 
     /// <summary>
     ///   <para>Список значений настроечной опции</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentValues)]
-#endif
     [Column(Schema.ColumnNameValues)]
     public virtual IList<string> Values { get; set; } = new List<string>();
 
@@ -90,9 +78,9 @@ namespace Catharsis.Domain
       return this.Value ?? this.Values.ToListString();
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "settings";
+      public const string TableName = "setting";
       public const string TableComment = "Настроечные опции";
 
       public const string ColumnNameId = "id";

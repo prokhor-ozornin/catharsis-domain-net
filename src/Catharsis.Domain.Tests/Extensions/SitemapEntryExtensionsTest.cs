@@ -20,7 +20,7 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<SitemapEntry>)null).ChangeFrequency(SitemapChangeFrequency.Daily));
 
-      Assert.Equal(1, new[] { null, new SitemapEntry(), new SitemapEntry { ChangeFrequency = SitemapChangeFrequency.Always }, new SitemapEntry { ChangeFrequency = SitemapChangeFrequency.Daily } }.ChangeFrequency(SitemapChangeFrequency.Daily).Count());
+      Assert.Single(new[] { null, new SitemapEntry(), new SitemapEntry { ChangeFrequency = SitemapChangeFrequency.Always }, new SitemapEntry { ChangeFrequency = SitemapChangeFrequency.Daily } }.ChangeFrequency(SitemapChangeFrequency.Daily));
     }
 
     [Fact]
@@ -48,10 +48,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, entries.Date().Count());
       Assert.Equal(2, entries.Date(new DateTime(1999, 1, 31)).Count());
       Assert.Empty(entries.Date(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, entries.Date(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
+      Assert.Single(entries.Date(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
       Assert.Equal(2, entries.Date(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
       Assert.Empty(entries.Date(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, entries.Date(to: new DateTime(2000, 1, 1)).Count());
+      Assert.Single(entries.Date(to: new DateTime(2000, 1, 1)));
       Assert.Equal(2, entries.Date(to: new DateTime(2000, 1, 3)).Count());
     }
 
@@ -80,10 +80,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, downloads.Downloads().Count());
       Assert.Equal(2, downloads.Downloads(0).Count());
       Assert.Empty(downloads.Downloads(3));
-      Assert.Equal(1, downloads.Downloads(0, 1).Count());
+      Assert.Single(downloads.Downloads(0, 1));
       Assert.Equal(2, downloads.Downloads(1, 2).Count());
       Assert.Empty(downloads.Downloads(to: 0));
-      Assert.Equal(1, downloads.Downloads(to: 1).Count());
+      Assert.Single(downloads.Downloads(to: 1));
       Assert.Equal(2, downloads.Downloads(to: 3).Count());
     }
   }

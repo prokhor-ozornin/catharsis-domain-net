@@ -21,8 +21,8 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<City>)null).Area(new Area()));
 
-      Assert.Equal(1, new[] { null, new City { Area = new Area { Name = "first" } }, new City { Area = new Area { Name = "second" } } }.Area(new Area { Name = "first" }).Count());
-      Assert.Equal(1, new[] { null, new City(), new City { Area = new Area { Name = "first" } } }.Area(null).Count());
+      Assert.Single(new[] { null, new City { Area = new Area { Name = "first" } }, new City { Area = new Area { Name = "second" } } }.Area(new Area { Name = "first" }));
+      Assert.Single(new[] { null, new City(), new City { Area = new Area { Name = "first" } } }.Area(null));
     }
 
     [Fact]
@@ -39,8 +39,8 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<City>)null).Country(new Country()));
 
-      Assert.Equal(1, new[] { null, new City { Country = new Country { IsoCode = "first" } }, new City { Country = new Country { IsoCode = "second" } } }.Country(new Country { IsoCode = "first" }).Count());
-      Assert.Equal(1, new[] { null, new City(), new City { Country = new Country { IsoCode = "first" } } }.Country(null).Count());
+      Assert.Single(new[] { null, new City { Country = new Country { IsoCode = "first" } }, new City { Country = new Country { IsoCode = "second" } } }.Country(new Country { IsoCode = "first" }));
+      Assert.Single(new[] { null, new City(), new City { Country = new Country { IsoCode = "first" } } }.Country(null));
     }
 
     [Fact]
@@ -56,7 +56,7 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Audio>)null).Bitrate(0));
 
-      Assert.Equal(1, new[] { null, new City(), new City { Federal = false }, new City { Federal = true } }.Federal(true).Count());
+      Assert.Single(new[] { null, new City(), new City { Federal = false }, new City { Federal = true } }.Federal(true));
     }
 
     [Fact]
@@ -73,8 +73,8 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<City>)null).Region(new Region()));
 
-      Assert.Equal(1, new[] { null, new City { Region = new Region { Name = "first" } }, new City { Region = new Region { Name = "second" } } }.Region(new Region { Name = "first" }).Count());
-      Assert.Equal(1, new[] { null, new City(), new City { Region = new Region { Name = "first" } } }.Region(null).Count());
+      Assert.Single(new[] { null, new City { Region = new Region { Name = "first" } }, new City { Region = new Region { Name = "second" } } }.Region(new Region { Name = "first" }));
+      Assert.Single(new[] { null, new City(), new City { Region = new Region { Name = "first" } } }.Region(null));
     }
   }
 }

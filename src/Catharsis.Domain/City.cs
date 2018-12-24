@@ -8,73 +8,59 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Город</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class City : Entity, IComparable<City>, IEquatable<City>
   {
     /// <summary>
     ///   <para>Территория, к которой относится город</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentArea)]
-#endif
     [Column(Schema.ColumnNameArea)]
-    [Indexed(Name = "idx__cities__area_id")]
+    [Indexed(Name = "idx__city__area_id")]
     public virtual Area Area { get; set; }
 
     /// <summary>
     ///   <para>Страна, в которой расположен город</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentCountry)]
-#endif
     [Column(Schema.ColumnNameCountry)]
     [NotNull]
-    [Indexed(Name = "idx__cities__country_id")]
+    [Indexed(Name = "idx__city__country_id")]
     public virtual Country Country { get; set; }
 
     /// <summary>
     ///   <para>Признак того, что город имеет федеральное значение</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentFederal)]
-#endif
     [Column(Schema.ColumnNameFederal)]
-    [Indexed(Name = "idx__cities__federal")]
+    [Indexed(Name = "idx__city__federal")]
     public virtual bool? Federal { get; set; }
 
     /// <summary>
     ///   <para>Географические координаты города</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLocation)]
-#endif
     [Column(Schema.ColumnNameLocation)]
-    [Indexed(Name = "idx__cities__location_id")]
+    [Indexed(Name = "idx__city__location_id")]
     public virtual Location Location { get; set; }
 
     /// <summary>
     ///   <para>Наименование города</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
-    [Indexed(Name = "idx__cities__name")]
+    [Indexed(Name = "idx__city__name")]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>Регион, к которому относится город</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentRegion)]
-#endif
     [Column(Schema.ColumnNameRegion)]
-    [Indexed(Name = "idx__cities__region_id")]
+    [Indexed(Name = "idx__city__region_id")]
     public virtual Region Region { get; set; }
 
     public virtual int CompareTo(City other)
@@ -102,9 +88,9 @@ namespace Catharsis.Domain
       return this.Name?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "cities";
+      public const string TableName = "city";
       public const string TableComment = "Географические города";
 
       public const string ColumnNameId = "id";

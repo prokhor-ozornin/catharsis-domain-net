@@ -1,5 +1,6 @@
 var namespace_catharsis_1_1_domain =
 [
+    [ "Extensions", "namespace_catharsis_1_1_domain_1_1_extensions.html", "namespace_catharsis_1_1_domain_1_1_extensions" ],
     [ "Address", "class_catharsis_1_1_domain_1_1_address.html", "class_catharsis_1_1_domain_1_1_address" ],
     [ "AddressExtensions", "class_catharsis_1_1_domain_1_1_address_extensions.html", "class_catharsis_1_1_domain_1_1_address_extensions" ],
     [ "Announcement", "class_catharsis_1_1_domain_1_1_announcement.html", "class_catharsis_1_1_domain_1_1_announcement" ],
@@ -18,6 +19,7 @@ var namespace_catharsis_1_1_domain =
     [ "ContactExtensions", "class_catharsis_1_1_domain_1_1_contact_extensions.html", "class_catharsis_1_1_domain_1_1_contact_extensions" ],
     [ "Country", "class_catharsis_1_1_domain_1_1_country.html", "class_catharsis_1_1_domain_1_1_country" ],
     [ "CountryExtensions", "class_catharsis_1_1_domain_1_1_country_extensions.html", "class_catharsis_1_1_domain_1_1_country_extensions" ],
+    [ "DirectoryCompany", "class_catharsis_1_1_domain_1_1_directory_company.html", "class_catharsis_1_1_domain_1_1_directory_company" ],
     [ "Download", "class_catharsis_1_1_domain_1_1_download.html", "class_catharsis_1_1_domain_1_1_download" ],
     [ "DownloadExtensions", "class_catharsis_1_1_domain_1_1_download_extensions.html", "class_catharsis_1_1_domain_1_1_download_extensions" ],
     [ "Entity", "class_catharsis_1_1_domain_1_1_entity.html", "class_catharsis_1_1_domain_1_1_entity" ],
@@ -55,6 +57,7 @@ var namespace_catharsis_1_1_domain =
     [ "Tag", "class_catharsis_1_1_domain_1_1_tag.html", "class_catharsis_1_1_domain_1_1_tag" ],
     [ "TagExtensions", "class_catharsis_1_1_domain_1_1_tag_extensions.html", "class_catharsis_1_1_domain_1_1_tag_extensions" ],
     [ "Video", "class_catharsis_1_1_domain_1_1_video.html", "class_catharsis_1_1_domain_1_1_video" ],
+    [ "WeatherForecast", "class_catharsis_1_1_domain_1_1_weather_forecast.html", "class_catharsis_1_1_domain_1_1_weather_forecast" ],
     [ "WebBrowser", "class_catharsis_1_1_domain_1_1_web_browser.html", "class_catharsis_1_1_domain_1_1_web_browser" ],
     [ "WebBrowserExtensions", "class_catharsis_1_1_domain_1_1_web_browser_extensions.html", "class_catharsis_1_1_domain_1_1_web_browser_extensions" ],
     [ "WebLink", "class_catharsis_1_1_domain_1_1_web_link.html", "class_catharsis_1_1_domain_1_1_web_link" ],

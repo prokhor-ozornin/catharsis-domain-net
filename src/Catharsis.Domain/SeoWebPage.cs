@@ -8,31 +8,25 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>SEO данные о web странице</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class SeoWebPage : Entity, IComparable<SeoWebPage>, IEquatable<SeoWebPage>
   {
     /// <summary>
     ///   <para>Наименование локали для содержимого web страницы</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLocale)]
-#endif
     [Column(Schema.ColumnNameLocale)]
     [NotNull]
     [MaxLength(2)]
-    [Indexed(Name = "idx__seo_web_pages__locale")]
+    [Indexed(Name = "idx__seo_web_page__locale")]
     public virtual string Locale { get; set; }
 
     /// <summary>
     ///   <para>Значение title заголовка для web страницы</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentTitle)]
-#endif
     [Column(Schema.ColumnNameTitle)]
     [NotNull]
     public virtual string Title { get; set; }
@@ -40,13 +34,11 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>URI адрес web страницы</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentUri)]
-#endif
     [Column(Schema.ColumnNameUri)]
     [NotNull]
     [MaxLength(1000)]
-    [Indexed(Name = "idx__seo_web_pages__uri")]
+    [Indexed(Name = "idx__seo_web_page__uri")]
     public virtual Uri Uri { get; set; }
 
     public virtual int CompareTo(SeoWebPage other)
@@ -74,9 +66,9 @@ namespace Catharsis.Domain
       return this.Uri?.ToString() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "seo_web_pages";
+      public const string TableName = "seo_web_page";
       public const string TableComment = "SEO данные о web страницах";
 
       public const string ColumnNameId = "id";

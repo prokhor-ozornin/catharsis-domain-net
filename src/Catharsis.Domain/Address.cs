@@ -9,30 +9,24 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Адрес</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Address : Entity, IComparable<Address>
   {
     /// <summary>
     ///   <para>Город, к которому относится адрес</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentCity)]
-#endif
     [Column(Schema.ColumnNameCity)]
     [NotNull]
-    [Indexed(Name = "idx__addresses__city_id")]
+    [Indexed(Name = "idx__address__city_id")]
     public virtual City City { get; set; }
 
     /// <summary>
     ///   <para>Дополнительные примечания, относящиеся к адресу</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDescription)]
-#endif
     [Column(Schema.ColumnNameDescription)]
     [MaxLength(350)]
     public virtual string Description { get; set; }
@@ -40,31 +34,25 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Географическая точка с координатами адреса</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLocation)]
-#endif
     [Column(Schema.ColumnNameLocation)]
-    [Indexed(Name = "idx__addresses__location_id")]
+    [Indexed(Name = "idx__address__location_id")]
     public virtual Location Location { get; set; }
 
     /// <summary>
     ///   <para>Адрес (улица, дом)</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
-    [Indexed(Name = "idx__addresses__name")]
+    [Indexed(Name = "idx__address__name")]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>Почтовый индекс</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentZip)]
-#endif
     [Column(Schema.ColumnNameZip)]
-    [Indexed(Name = "idx__addresses__zip")]
+    [Indexed(Name = "idx__address__zip")]
     public virtual string Zip { get; set; }
 
     public virtual int CompareTo(Address other)
@@ -94,9 +82,9 @@ namespace Catharsis.Domain
       return parts.Join(",");
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "addresses";
+      public const string TableName = "address";
       public const string TableComment = "Географические адреса";
 
       public const string ColumnNameId = "id";

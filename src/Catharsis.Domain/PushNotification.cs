@@ -9,39 +9,31 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Push уведомление</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class PushNotification : Entity, IComparable<PushNotification>, IEquatable<PushNotification>
   {
     /// <summary>
     ///   <para>Признак того, что уведомление было отправлено на мобильное устройство</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDelivered)]
-#endif
     [Column(Schema.ColumnNameDelivered)]
     [NotNull]
-    [Indexed(Name = "idx__push_notifications__delivered")]
+    [Indexed(Name = "idx__push_notification__delivered")]
     public virtual bool? Delivered { get; set; }
 
     /// <summary>
     ///   <para>Идентификаторы мобильных устройств - получателей уведомления</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDevices)]
-#endif
     [Column(Schema.ColumnNameDevices)]
     public virtual ICollection<string> Devices { get; set; } = new HashSet<string>();
 
     /// <summary>
     ///   <para>Полезная нагрузка (данные) уведомления</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentPayload)]
-#endif
     [Column(Schema.ColumnNamePayload)]
     [NotNull]
     public virtual string Payload { get; set; }
@@ -49,22 +41,18 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Провайдер/служба, через которую производится рассылка уведомлений</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentProvider)]
-#endif
     [Column(Schema.ColumnNameProvider)]
     [NotNull]
-    [Indexed(Name = "idx__push_notifications__provider")]
+    [Indexed(Name = "idx__push_notification__provider")]
     public virtual PushNotificationProvider? Provider { get; set; }
 
     /// <summary>
     ///   <para>Время жизни/длительность попыток доставки уведомления в секундах</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentTtl)]
-#endif
     [Column(Schema.ColumnNameTtl)]
-    [Indexed(Name = "idx__push_notifications__ttl")]
+    [Indexed(Name = "idx__push_notification__ttl")]
     public virtual long? Ttl { get; set; }
 
     public virtual int CompareTo(PushNotification other)
@@ -92,9 +80,9 @@ namespace Catharsis.Domain
       return this.Payload?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "push_notifications";
+      public const string TableName = "push_notification";
       public const string TableComment = "Push уведомления для мобильных устройств";
 
       public const string ColumnNameId = "id";

@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Country[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new Country[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Country(), new Country { Name = "First" }, new Country { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new Country(), new Country { Name = "First" }, new Country { Name = "Second" } }.Name("f"));
     }
 
     [Fact]

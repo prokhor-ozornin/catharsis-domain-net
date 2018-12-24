@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['name_3c_20t_20_3e',['Name&lt; T &gt;',['../class_catharsis_1_1_domain_1_1_i_nameable_extensions.html#a8cdeb3f38112361adc90be174b4ab0f4',1,'Catharsis.Domain.INameableExtensions.Name&lt; T &gt;(this IQueryable&lt; T &gt; entities, string name)'],['../class_catharsis_1_1_domain_1_1_i_nameable_extensions.html#a5b69ebabb6eb8d0751ccd28b5265e13b',1,'Catharsis.Domain.INameableExtensions.Name&lt; T &gt;(this IEnumerable&lt; T &gt; entities, string name)']]],
-  ['nonexpired',['NonExpired',['../class_catharsis_1_1_domain_1_1_subscription_extensions.html#ab3dace0099f077b9c03c99efd9489dec',1,'Catharsis.Domain.SubscriptionExtensions.NonExpired(this IQueryable&lt; Subscription &gt; subscriptions)'],['../class_catharsis_1_1_domain_1_1_subscription_extensions.html#a9fd650300fd7e6b87f3ed36f4da15164',1,'Catharsis.Domain.SubscriptionExtensions.NonExpired(this IEnumerable&lt; Subscription &gt; subscriptions)']]],
-  ['notification',['Notification',['../class_catharsis_1_1_domain_1_1_notification.html#aa71cbb1e6a0847d0ce0afc13e7869a07',1,'Catharsis.Domain.Notification.Notification()'],['../class_catharsis_1_1_domain_1_1_notification.html#afa8a7863a0f9b71a78a831e41d8ca736',1,'Catharsis.Domain.Notification.Notification(string text, int type=0)']]]
-];

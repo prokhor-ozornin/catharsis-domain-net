@@ -8,88 +8,70 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Контакт</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Contact : Entity, IComparable<Contact>
   {
     /// <summary>
     ///   <para>Адреса</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentAddresses)]
-#endif
     [Column(Schema.ColumnNameAddresses)]
     public virtual ICollection<Address> Addresses { get; set; } = new List<Address>();
 
     /// <summary>
     ///   <para>Адреса электронной почты</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentEmails)]
-#endif
     [Column(Schema.ColumnNameEmails)]
     public virtual ICollection<string> Emails { get; set; } = new List<string>();
 
     /// <summary>
     ///   <para>Номер факса</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentFax)]
-#endif
     [Column(Schema.ColumnNameFax)]
-    [Indexed(Name = "idx__contacts__fax")]
+    [Indexed(Name = "idx__contact__fax")]
     public virtual string Fax { get; set; }
 
     /// <summary>
     ///   <para>Логин ICQ мессенджера</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentIcq)]
-#endif
     [Column(Schema.ColumnNameIcq)]
-    [Indexed(Name = "idx__contacts__icq")]
+    [Indexed(Name = "idx__contact__icq")]
     public virtual string Icq { get; set; }
 
     /// <summary>
     ///   <para>Логин Jabber мессенджера</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentJabber)]
-#endif
     [Column(Schema.ColumnNameJabber)]
-    [Indexed(Name = "idx__contacts__jabber")]
+    [Indexed(Name = "idx__contact__jabber")]
     public virtual string Jabber { get; set; }
 
     /// <summary>
     ///   <para>Номера телефонов</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentPhones)]
-#endif
     [Column(Schema.ColumnNamePhones)]
     public virtual ICollection<string> Phones { get; set; } = new List<string>();
 
     /// <summary>
     ///   <para>Логин Skype мессенджера</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentSkype)]
-#endif
     [Column(Schema.ColumnNameSkype)]
-    [Indexed(Name = "idx__contacts__skype")]
+    [Indexed(Name = "idx__contact__skype")]
     public virtual string Skype { get; set; }
 
     /// <summary>
     ///   <para>Веб-сайт</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentWebsite)]
-#endif
     [Column(Schema.ColumnNameWebsite)]
-    [Indexed(Name = "idx__contacts__website")]
+    [Indexed(Name = "idx__contact__website")]
     public virtual string Website { get; set; }
 
     public virtual int CompareTo(Contact other)
@@ -97,9 +79,9 @@ namespace Catharsis.Domain
       return this.CreatedOn.Value.CompareTo(other.CreatedOn.Value);
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "contacts";
+      public const string TableName = "contact";
       public const string TableComment = "Контактные данные";
 
       public const string ColumnNameId = "id";

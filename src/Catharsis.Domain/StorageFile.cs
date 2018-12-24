@@ -9,30 +9,24 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Файл</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class StorageFile : Entity, IComparable<StorageFile>, IEquatable<StorageFile>
   {
     /// <summary>
     ///   <para>MIME тип содержимого файла</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentContentType)]
-#endif
     [Column(Schema.ColumnNameContentType)]
     [NotNull]
-    [Indexed(Name = "idx__files__content_type")]
+    [Indexed(Name = "idx__file__content_type")]
     public virtual string ContentType { get; set; }
 
     /// <summary>
     ///   <para>Наименование файла</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
     public virtual string Name { get; set; }
@@ -40,9 +34,7 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Путь к файлу в хранилище</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentPath)]
-#endif
     [Column(Schema.ColumnNamePath)]
     [MaxLength(1000)]
     public virtual string Path { get; set; }
@@ -50,22 +42,18 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Размер файла в байтах</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentSize)]
-#endif
     [Column(Schema.ColumnNameSize)]
     [NotNull]
-    [Indexed(Name = "idx__files__size")]
+    [Indexed(Name = "idx__file__size")]
     public virtual long? Size { get; set; }
 
     /// <summary>
     ///   <para>Тип файлового хранилища</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentStorage)]
-#endif
     [Column(Schema.ColumnNameStorage)]
-    [Indexed(Name = "idx__files__storage")]
+    [Indexed(Name = "idx__file__storage")]
     public virtual string Storage { get; set; }
 
     public virtual string FullPath
@@ -117,9 +105,9 @@ namespace Catharsis.Domain
       return this.FullPath;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "files";
+      public const string TableName = "file";
       public const string TableComment = "Файлы в хранилище";
 
       public const string ColumnNameId = "id";

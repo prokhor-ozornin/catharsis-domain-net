@@ -32,10 +32,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, downloads.Downloads().Count());
       Assert.Equal(2, downloads.Downloads(0).Count());
       Assert.Empty(downloads.Downloads(3));
-      Assert.Equal(1, downloads.Downloads(0, 1).Count());
+      Assert.Single(downloads.Downloads(0, 1));
       Assert.Equal(2, downloads.Downloads(1, 2).Count());
       Assert.Empty(downloads.Downloads(to: 0));
-      Assert.Equal(1, downloads.Downloads(to: 1).Count());
+      Assert.Single(downloads.Downloads(to: 1));
       Assert.Equal(2, downloads.Downloads(to: 3).Count());
     }
 
@@ -56,7 +56,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Download[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new Download[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Download(), new Download { Name = "First" }, new Download { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new Download(), new Download { Name = "First" }, new Download { Name = "Second" } }.Name("f"));
     }
   }
 }

@@ -1,5 +1,6 @@
 var class_catharsis_1_1_domain_1_1_faq =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_faq_1_1_schema.html", "class_catharsis_1_1_domain_1_1_faq_1_1_schema" ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_faq.html#a78d5e1a37583ec5785218051404c365d", null ],
     [ "ToString", "class_catharsis_1_1_domain_1_1_faq.html#ad198db2c264a806fcbf0acb996a2b57f", null ],
     [ "Answer", "class_catharsis_1_1_domain_1_1_faq.html#af1b9345d610f3b3e5096e2d081bb78a3", null ],

@@ -1,7 +1,8 @@
 var class_catharsis_1_1_domain_1_1_push_notification =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_push_notification_1_1_schema.html", "class_catharsis_1_1_domain_1_1_push_notification_1_1_schema" ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_push_notification.html#a48adc39bce88fd872b27f10c9dd86d12", null ],
-    [ "Equals", "class_catharsis_1_1_domain_1_1_push_notification.html#a7bc6a4a2e44e1ecd4d56c4da241ba9a8", null ],
+    [ "Equals", "class_catharsis_1_1_domain_1_1_push_notification.html#a6c3139e472faf538faa5840942b086d3", null ],
     [ "Equals", "class_catharsis_1_1_domain_1_1_push_notification.html#af78f09a03db54416bbd87cf66df6ec98", null ],
     [ "GetHashCode", "class_catharsis_1_1_domain_1_1_push_notification.html#a13cf5b0d6bb136fe541a38cc887d2af5", null ],
     [ "ToString", "class_catharsis_1_1_domain_1_1_push_notification.html#a628932d77c186df290d65633b81fd956", null ],

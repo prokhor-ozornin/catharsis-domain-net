@@ -8,46 +8,36 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Компания из справочника</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class DirectoryCompany : Entity, IComparable<DirectoryCompany>, IEquatable<DirectoryCompany>
   {
     /// <summary>
     ///   <para>Внешний служебный код компании</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentCode)]
-#endif
     [Column(Schema.ColumnNameCode)]
     public virtual string Code { get; set; }
 
     /// <summary>
     ///   <para>Контактные данные компании</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentContact)]
-#endif
     [Column(Schema.ColumnNameContact)]
     public virtual Contact Contact { get; set; }
 
     /// <summary>
     ///   <para>Полное наименование компании</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>Краткое наименование компании</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentShortName)]
-#endif
     [Column(Schema.ColumnNameShortName)]
     public virtual string ShortName { get; set; }
 
@@ -76,9 +66,9 @@ namespace Catharsis.Domain
       return this.Name?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "directory_companies";
+      public const string TableName = "directory_company";
       public const string TableComment = "Компании из справочника";
 
       public const string ColumnNameId = "id";

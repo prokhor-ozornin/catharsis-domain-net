@@ -1,5 +1,6 @@
 var class_catharsis_1_1_domain_1_1_address =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_address_1_1_schema.html", "class_catharsis_1_1_domain_1_1_address_1_1_schema" ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_address.html#afd15a42012f3c2d07bfee91d9d6bdad7", null ],
     [ "ToString", "class_catharsis_1_1_domain_1_1_address.html#a7313c739cc2dad428e7c88b475c363f6", null ],
     [ "City", "class_catharsis_1_1_domain_1_1_address.html#adbc9383c17c288eacc9516504c17b667", null ],

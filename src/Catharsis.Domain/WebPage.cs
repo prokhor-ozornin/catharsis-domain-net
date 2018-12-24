@@ -8,42 +8,34 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Web страница</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class WebPage : Entity, IComparable<WebPage>, IEquatable<WebPage>
   {
     /// <summary>
     ///   <para>Наименование локали для текста web страницы</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLocale)]
-#endif
     [Column(Schema.ColumnNameLocale)]
     [NotNull]
     [MaxLength(2)]
-    [Indexed(Name = "idx__web_pages__locale")]
+    [Indexed(Name = "idx__web_page__locale")]
     public virtual string Locale { get; set; }
 
     /// <summary>
     ///   <para>Наименование web страницы</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
-    [Indexed(Name = "idx__web_pages__name")]
+    [Indexed(Name = "idx__web_page__name")]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>HTML код (текст) web страницы</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentText)]
-#endif
     [Column(Schema.ColumnNameText)]
     [NotNull]
     public virtual string Text { get; set; }
@@ -51,13 +43,11 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>URI адрес web страницы</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentUri)]
-#endif
     [Column(Schema.ColumnNameUri)]
     [NotNull]
     [MaxLength(1000)]
-    [Indexed(Name = "idx__web_pages__uri")]
+    [Indexed(Name = "idx__web_page__uri")]
     public virtual Uri Uri { get; set; }
 
     public virtual int CompareTo(WebPage other)
@@ -85,9 +75,9 @@ namespace Catharsis.Domain
       return this.Name?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "web_pages";
+      public const string TableName = "web_page";
       public const string TableComment = "Web страницы с динамическим содержимым";
 
       public const string ColumnNameId = "id";

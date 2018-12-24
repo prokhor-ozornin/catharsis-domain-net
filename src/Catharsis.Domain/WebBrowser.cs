@@ -8,19 +8,15 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Web браузер</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class WebBrowser : Entity, IComparable<WebBrowser>, IEquatable<WebBrowser>
   {
     /// <summary>
     ///   <para>Описание браузера</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDescription)]
-#endif
     [Column(Schema.ColumnNameDescription)]
     [MaxLength(1000)]
     public virtual string Description { get; set; }
@@ -28,18 +24,14 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Наименование/код браузера</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>Адрес сайта разработчиков</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentUri)]
-#endif
     [Column(Schema.ColumnNameUri)]
     [MaxLength(1000)]
     public virtual Uri Uri { get; set; }
@@ -47,13 +39,11 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Значение HTTP заголовка User-Agent</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentUserAgent)]
-#endif
     [Column(Schema.ColumnNameUserAgent)]
     [NotNull]
     [MaxLength(1000)]
-    [Unique(Name = "idx__web_browsers__user_agent")]
+    [Unique(Name = "web_browser__user_agent")]
     public virtual string UserAgent { get; set; }
 
     public virtual int CompareTo(WebBrowser other)
@@ -81,9 +71,9 @@ namespace Catharsis.Domain
       return this.UserAgent?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "web_browsers";
+      public const string TableName = "web_browser";
       public const string TableComment = "Web браузеры";
 
       public const string ColumnNameId = "id";

@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new ApiKey[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new ApiKey[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new ApiKey(), new ApiKey { Name = "First" }, new ApiKey { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new ApiKey(), new ApiKey { Name = "First" }, new ApiKey { Name = "Second" } }.Name("f"));
     }
   }
 }

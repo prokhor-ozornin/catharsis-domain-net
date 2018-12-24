@@ -1,7 +1,8 @@
 var class_catharsis_1_1_domain_1_1_storage_file =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_storage_file_1_1_schema.html", "class_catharsis_1_1_domain_1_1_storage_file_1_1_schema" ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_storage_file.html#a7cac9f1d0d8070958716b21dd2a4288f", null ],
-    [ "Equals", "class_catharsis_1_1_domain_1_1_storage_file.html#af0d88fcdf73e0ff13511e50370b3f255", null ],
+    [ "Equals", "class_catharsis_1_1_domain_1_1_storage_file.html#a5cb612afdcb78f10e2dcf2bec5d25265", null ],
     [ "Equals", "class_catharsis_1_1_domain_1_1_storage_file.html#ae5c88935efca2874cf637b5fcfe378c6", null ],
     [ "GetHashCode", "class_catharsis_1_1_domain_1_1_storage_file.html#a763a7c91f08426d83799d34312424050", null ],
     [ "ToString", "class_catharsis_1_1_domain_1_1_storage_file.html#a8da9c6c3b642abb89e1820b26c79ede0", null ],

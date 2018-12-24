@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Announcement[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new Announcement[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Announcement(), new Announcement { Name = "First" }, new Announcement { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new Announcement(), new Announcement { Name = "First" }, new Announcement { Name = "Second" } }.Name("f"));
     }
 
     [Fact]
@@ -52,10 +52,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, announcements.Price().Count());
       Assert.Equal(2, announcements.Price(0).Count());
       Assert.Empty(announcements.Price(3));
-      Assert.Equal(1, announcements.Price(0, 1).Count());
+      Assert.Single(announcements.Price(0, 1));
       Assert.Equal(2, announcements.Price(1, 2).Count());
       Assert.Empty(announcements.Price(to: 0));
-      Assert.Equal(1, announcements.Price(to: 1).Count());
+      Assert.Single(announcements.Price(to: 1));
       Assert.Equal(2, announcements.Price(to: 3).Count());
     }
   }

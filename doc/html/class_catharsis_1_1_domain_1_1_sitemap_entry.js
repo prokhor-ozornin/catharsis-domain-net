@@ -1,5 +1,6 @@
 var class_catharsis_1_1_domain_1_1_sitemap_entry =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_sitemap_entry_1_1_schema.html", "class_catharsis_1_1_domain_1_1_sitemap_entry_1_1_schema" ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_sitemap_entry.html#afada5b80942d03b60bbc1be6ddd39792", null ],
     [ "Equals", "class_catharsis_1_1_domain_1_1_sitemap_entry.html#ad93d2a44de1c7eeff589a96aff5fce90", null ],
     [ "Equals", "class_catharsis_1_1_domain_1_1_sitemap_entry.html#a8952e57415950c08c4ca27d161a032aa", null ],

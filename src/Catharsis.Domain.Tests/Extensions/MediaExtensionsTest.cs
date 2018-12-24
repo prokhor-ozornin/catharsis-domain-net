@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Media[] { }.ContentType(null));
       Assert.Throws<ArgumentException>(() => new Media[] { }.ContentType(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Media(), new Media { ContentType = "First" }, new Media { ContentType = "Second" } }.ContentType("first").Count());
+      Assert.Single(new[] { null, new Media(), new Media { ContentType = "First" }, new Media { ContentType = "Second" } }.ContentType("first"));
     }
 
     [Fact]
@@ -52,10 +52,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, medias.Duration().Count());
       Assert.Equal(2, medias.Duration(0).Count());
       Assert.Empty(medias.Duration(3));
-      Assert.Equal(1, medias.Duration(0, 1).Count());
+      Assert.Single(medias.Duration(0, 1));
       Assert.Equal(2, medias.Duration(1, 2).Count());
       Assert.Empty(medias.Duration(to: 0));
-      Assert.Equal(1, medias.Duration(to: 1).Count());
+      Assert.Single(medias.Duration(to: 1));
       Assert.Equal(2, medias.Duration(to: 3).Count());
     }
 
@@ -84,10 +84,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, medias.Height().Count());
       Assert.Equal(2, medias.Height(0).Count());
       Assert.Empty(medias.Height(3));
-      Assert.Equal(1, medias.Height(0, 1).Count());
+      Assert.Single(medias.Height(0, 1));
       Assert.Equal(2, medias.Height(1, 2).Count());
       Assert.Empty(medias.Height(to: 0));
-      Assert.Equal(1, medias.Height(to: 1).Count());
+      Assert.Single(medias.Height(to: 1));
       Assert.Equal(2, medias.Height(to: 3).Count());
     }
 
@@ -108,7 +108,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Media[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new Media[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Media(), new Media { Name = "First" }, new Media { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new Media(), new Media { Name = "First" }, new Media { Name = "Second" } }.Name("f"));
     }
 
     [Fact]
@@ -136,10 +136,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, medias.Width().Count());
       Assert.Equal(2, medias.Width(0).Count());
       Assert.Empty(medias.Width(3));
-      Assert.Equal(1, medias.Width(0, 1).Count());
+      Assert.Single(medias.Width(0, 1));
       Assert.Equal(2, medias.Width(1, 2).Count());
       Assert.Empty(medias.Width(to: 0));
-      Assert.Equal(1, medias.Width(to: 1).Count());
+      Assert.Single(medias.Width(to: 1));
       Assert.Equal(2, medias.Width(to: 3).Count());
     }
   }

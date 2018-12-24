@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new WebBrowser[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new WebBrowser[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new WebBrowser(), new WebBrowser { Name = "First" }, new WebBrowser { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new WebBrowser(), new WebBrowser { Name = "First" }, new WebBrowser { Name = "Second" } }.Name("f"));
     }
 
     [Fact]

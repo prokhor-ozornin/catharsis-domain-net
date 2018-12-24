@@ -32,10 +32,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, downloads.Duration().Count());
       Assert.Equal(2, downloads.Duration(0).Count());
       Assert.Empty(downloads.Duration(3));
-      Assert.Equal(1, downloads.Duration(0, 1).Count());
+      Assert.Single(downloads.Duration(0, 1));
       Assert.Equal(2, downloads.Duration(1, 2).Count());
       Assert.Empty(downloads.Duration(to: 0));
-      Assert.Equal(1, downloads.Duration(to: 1).Count());
+      Assert.Single(downloads.Duration(to: 1));
       Assert.Equal(2, downloads.Duration(to: 3).Count());
     }
 
@@ -52,7 +52,7 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Script>)null).Executed(true));
 
-      Assert.Equal(1, new[] { null, new Script(), new Script { Executed = false }, new Script { Executed = true } }.Executed(true).Count());
+      Assert.Single(new[] { null, new Script(), new Script { Executed = false }, new Script { Executed = true } }.Executed(true));
     }
 
     [Fact]
@@ -72,7 +72,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Script[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new Script[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Script(), new Script { Name = "First" }, new Script { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new Script(), new Script { Name = "First" }, new Script { Name = "Second" } }.Name("f"));
     }
   }
 }

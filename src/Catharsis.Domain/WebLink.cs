@@ -8,19 +8,15 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Гиперссылка.</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class WebLink : Entity, IComparable<WebLink>, IEquatable<WebLink>
   {
     /// <summary>
     ///   <para>Описание гиперссылки</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDescription)]
-#endif
     [Column(Schema.ColumnNameDescription)]
     [MaxLength(4000)]
     public virtual string Description { get; set; }
@@ -28,34 +24,28 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Изображение, представляющее гиперссылку</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentImage)]
-#endif
     [Column(Schema.ColumnNameImage)]
-    [Indexed(Name = "idx__web_links__image_id")]
+    [Indexed(Name = "idx__web_link__image_id")]
     public virtual Image Image { get; set; }
 
     /// <summary>
     ///   <para>Наименование гиперссылки</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
-    [Indexed(Name = "idx__web_links__name")]
+    [Indexed(Name = "idx__web_link__name")]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>URI адрес гиперссылки</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentUri)]
-#endif
     [Column(Schema.ColumnNameUri)]
     [NotNull]
     [MaxLength(1000)]
-    [Unique(Name = "idx__web_links__uri")]
+    [Unique(Name = "web_link__uri")]
     public virtual string Uri { get; set; }
 
     public virtual int CompareTo(WebLink other)
@@ -83,9 +73,9 @@ namespace Catharsis.Domain
       return this.Uri?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "web_links";
+      public const string TableName = "web_link";
       public const string TableComment = "Web гиперссылки";
 
       public const string ColumnNameId = "id";

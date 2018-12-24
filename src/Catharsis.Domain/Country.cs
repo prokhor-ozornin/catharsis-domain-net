@@ -8,19 +8,15 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Страна</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Country : Entity, IComparable<Country>, IEquatable<Country>
   {
     /// <summary>
     ///   <para>Наименование валюты, используемой в стране</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentCurrency)]
-#endif
     [Column(Schema.ColumnNameCurrency)]
     [NotNull]
     public virtual string Currency { get; set; }
@@ -28,45 +24,37 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Код валюты, используемой в стране</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentCurrencyCode)]
-#endif
     [Column(Schema.ColumnNameCurrencyCode)]
     [NotNull]
     [MaxLength(3)]
-    [Indexed(Name = "idx__countries__currency_code")]
+    [Indexed(Name = "idx__country__currency_code")]
     public virtual string CurrencyCode { get; set; }
 
     /// <summary>
     ///   <para>Уникальный ISO код страны</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentIsoCode)]
-#endif
     [Column(Schema.ColumnNameIsoCode)]
     [NotNull]
     [MaxLength(2)]
-    [Unique(Name = "idx__countries__iso_code")]
+    [Unique(Name = "country__iso_code")]
     public virtual string IsoCode { get; set; }
 
     /// <summary>
     ///   <para>Основной язык страны</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLanguage)]
-#endif
     [Column(Schema.ColumnNameLanguage)]
     public virtual string Language { get; set; }
 
     /// <summary>
     ///   <para>Наименование страны</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
-    [Unique(Name = "idx__countries__name")]
+    [Unique(Name = "country__name")]
     public virtual string Name { get; set; }
 
     public virtual int CompareTo(Country other)
@@ -94,9 +82,9 @@ namespace Catharsis.Domain
       return this.Name?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "countries";
+      public const string TableName = "country";
       public const string TableComment = "Географические страны";
 
       public const string ColumnNameId = "id";

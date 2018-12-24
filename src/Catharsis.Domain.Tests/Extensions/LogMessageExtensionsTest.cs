@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new LogMessage[] { }.Level(null));
       Assert.Throws<ArgumentException>(() => new LogMessage[] { }.Level(string.Empty));
 
-      Assert.Equal(1, new[] { null, new LogMessage(), new LogMessage { Level = "First" }, new LogMessage { Level = "Second" } }.Level("first").Count());
+      Assert.Single(new[] { null, new LogMessage(), new LogMessage { Level = "First" }, new LogMessage { Level = "Second" } }.Level("first"));
     }
 
     [Fact]
@@ -44,7 +44,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new LogMessage[] { }.Logger(null));
       Assert.Throws<ArgumentException>(() => new LogMessage[] { }.Logger(string.Empty));
 
-      Assert.Equal(1, new[] { null, new LogMessage(), new LogMessage { Logger = "First" }, new LogMessage { Logger = "Second" } }.Logger("first").Count());
+      Assert.Single(new[] { null, new LogMessage(), new LogMessage { Logger = "First" }, new LogMessage { Logger = "Second" } }.Logger("first"));
     }
 
     [Fact]
@@ -64,7 +64,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new LogMessage[] { }.Thread(null));
       Assert.Throws<ArgumentException>(() => new LogMessage[] { }.Thread(string.Empty));
 
-      Assert.Equal(1, new[] { null, new LogMessage(), new LogMessage { Thread = "First" }, new LogMessage { Thread = "Second" } }.Thread("first").Count());
+      Assert.Single(new[] { null, new LogMessage(), new LogMessage { Thread = "First" }, new LogMessage { Thread = "Second" } }.Thread("first"));
     }
   }
 }

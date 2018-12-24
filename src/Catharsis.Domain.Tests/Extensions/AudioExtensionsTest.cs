@@ -20,7 +20,7 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Audio>)null).Bitrate(0));
 
-      Assert.Equal(1, new[] { null, new Audio(), new Audio { Bitrate = 32 }, new Audio { Bitrate = 64 } }.Bitrate(32).Count());
+      Assert.Single(new[] { null, new Audio(), new Audio { Bitrate = 32 }, new Audio { Bitrate = 64 } }.Bitrate(32));
     }
   }
 }

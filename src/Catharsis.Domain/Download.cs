@@ -8,19 +8,15 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Загружаемый материал</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Download : Entity, IComparable<Download>, IEquatable<Download>
   {
     /// <summary>
     ///   <para>Описание материала</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDescription)]
-#endif
     [Column(Schema.ColumnNameDescription)]
     [MaxLength(4000)]
     public virtual string Description { get; set; }
@@ -28,44 +24,36 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Количество скачиваний</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDownloads)]
-#endif
     [Column(Schema.ColumnNameDownloads)]
     [NotNull]
-    [Indexed(Name = "idx__downloads__downloads")]
+    [Indexed(Name = "idx__download__downloads")]
     public virtual long? Downloads { get; set; }
 
     /// <summary>
     ///   <para>Файл, представляющий загружаемый материал</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentFile)]
-#endif
     [Column(Schema.ColumnNameFile)]
     [NotNull]
-    [Indexed(Name = "idx__downloads__file_id")]
+    [Indexed(Name = "idx__download__file_id")]
     public virtual StorageFile File { get; set; }
 
     /// <summary>
     ///   <para>Изображение, связанное с материалом</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentImage)]
-#endif
     [Column(Schema.ColumnNameImage)]
-    [Indexed(Name = "idx__downloads__image_id")]
+    [Indexed(Name = "idx__download__image_id")]
     public virtual Image Image { get; set; }
 
     /// <summary>
     ///   <para>Наименование материала</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
-    [Indexed(Name = "idx__downloads__name")]
+    [Indexed(Name = "idx__download__name")]
     public virtual string Name { get; set; }
 
     public virtual int CompareTo(Download other)
@@ -93,9 +81,9 @@ namespace Catharsis.Domain
       return this.Name?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "downloads";
+      public const string TableName = "download";
       public const string TableComment = "Загружаемые материалы";
 
       public const string ColumnNameId = "id";

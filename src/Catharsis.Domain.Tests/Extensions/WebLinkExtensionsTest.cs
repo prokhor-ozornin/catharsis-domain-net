@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new WebLink[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new WebLink[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new WebLink(), new WebLink { Name = "First" }, new WebLink { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new WebLink(), new WebLink { Name = "First" }, new WebLink { Name = "Second" } }.Name("f"));
     }
   }
 }

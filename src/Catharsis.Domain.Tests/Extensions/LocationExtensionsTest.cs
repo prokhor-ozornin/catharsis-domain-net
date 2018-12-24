@@ -32,10 +32,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, locations.Latitude().Count());
       Assert.Equal(2, locations.Latitude(0).Count());
       Assert.Empty(locations.Latitude(3));
-      Assert.Equal(1, locations.Latitude(0, 1).Count());
+      Assert.Single(locations.Latitude(0, 1));
       Assert.Equal(2, locations.Latitude(1, 2).Count());
       Assert.Empty(locations.Latitude(to: 0));
-      Assert.Equal(1, locations.Latitude(to: 1).Count());
+      Assert.Single(locations.Latitude(to: 1));
       Assert.Equal(2, locations.Latitude(to: 3).Count());
     }
 
@@ -64,10 +64,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, locations.Longitude().Count());
       Assert.Equal(2, locations.Longitude(0).Count());
       Assert.Empty(locations.Longitude(3));
-      Assert.Equal(1, locations.Longitude(0, 1).Count());
+      Assert.Single(locations.Longitude(0, 1));
       Assert.Equal(2, locations.Longitude(1, 2).Count());
       Assert.Empty(locations.Longitude(to: 0));
-      Assert.Equal(1, locations.Longitude(to: 1).Count());
+      Assert.Single(locations.Longitude(to: 1));
       Assert.Equal(2, locations.Longitude(to: 3).Count());
     }
 
@@ -88,7 +88,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Location[] { }.Timezone(null));
       Assert.Throws<ArgumentException>(() => new Location[] { }.Timezone(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Location(), new Location { Timezone = "First" }, new Location { Timezone = "Second" } }.Timezone("f").Count());
+      Assert.Single(new[] { null, new Location(), new Location { Timezone = "First" }, new Location { Timezone = "Second" } }.Timezone("f"));
     }
   }
 }

@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new SeoWebPage[] { }.Locale(null));
       Assert.Throws<ArgumentException>(() => new SeoWebPage[] { }.Locale(string.Empty));
 
-      Assert.Equal(1, new[] { null, new SeoWebPage(), new SeoWebPage { Locale = "First" }, new SeoWebPage { Locale = "Second" } }.Locale("first").Count());
+      Assert.Single(new[] { null, new SeoWebPage(), new SeoWebPage { Locale = "First" }, new SeoWebPage { Locale = "Second" } }.Locale("first"));
     }
   }
 }

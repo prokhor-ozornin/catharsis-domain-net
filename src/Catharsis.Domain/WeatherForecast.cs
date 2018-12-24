@@ -5,97 +5,77 @@ using System.ComponentModel;
 
 namespace Catharsis.Domain
 {
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class WeatherForecast : Entity, IComparable<WeatherForecast>, IEquatable<WeatherForecast>
   {
     /// <summary>
     ///   <para>Город для прогноза</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentCity)]
-#endif
     [Column(Schema.ColumnNameCity)]
     [NotNull]
-    [Indexed(Name = "idx__weather_forecasts__city_id")]
+    [Indexed(Name = "idx__weather_forecast__city_id")]
     public virtual City City { get; set; }
 
     /// <summary>
     ///   <para>Облачность, %</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentCloudiness)]
-#endif
     [Column(Schema.ColumnNameCloudiness)]
     public virtual byte? Cloudiness { get; set; }
 
     /// <summary>
     ///   <para>Дата прогноза</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDate)]
-#endif
     [Column(Schema.ColumnNameDate)]
     [NotNull]
-    [Indexed(Name = "idx__weather_forecasts__date")]
+    [Indexed(Name = "idx__weather_forecast__date")]
     public virtual DateTime? Date { get; set; }
 
     /// <summary>
     ///   <para>Влажность, %</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentHumidity)]
-#endif
     [Column(Schema.ColumnNameHumidity)]
     public virtual byte? Humidity { get; set; }
 
     /// <summary>
     ///   <para>Атмосферное давление, мм. рт. столба</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentPressure)]
-#endif
     [Column(Schema.ColumnNamePressure)]
     public virtual short? Pressure { get; set; }
 
     /// <summary>
     ///   <para>Температура воздуха, градусов Цельсия</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentTemperature)]
-#endif
     [Column(Schema.ColumnNameTemperature)]
     public virtual short? Temperature { get; set; }
 
     /// <summary>
     ///   <para>Тип погодных условий</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentType)]
-#endif
     [Column(Schema.ColumnNameType)]
     [NotNull]
-    [Indexed(Name = "idx__weather_forecasts__type")]
+    [Indexed(Name = "idx__weather_forecast__type")]
     public virtual WeatherType? Type { get; set; }
 
     /// <summary>
     ///   <para>Направление движения ветра, градусов</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentWindDirection)]
-#endif
     [Column(Schema.ColumnNameWindDirection)]
     public virtual decimal? WindDirection { get; set; }
 
     /// <summary>
     ///   <para>Скорость движения ветра, метров/сек.</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentWindSpeed)]
-#endif
     [Column(Schema.ColumnNameWindSpeed)]
     public virtual decimal? WindSpeed { get; set; }
 
@@ -119,9 +99,9 @@ namespace Catharsis.Domain
       return this.GetHashCode(it => it.City, it => it.Date);
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "weather_forecasts";
+      public const string TableName = "weather_forecast";
       public const string TableComment = "Прогнозы погоды по дням";
 
       public const string ColumnNameId = "id";

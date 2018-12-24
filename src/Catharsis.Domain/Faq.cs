@@ -7,19 +7,15 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Часто Задаваемый Вопрос (Ч.А.В.О.)</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Faq : Entity, IComparable<Faq>
   {
     /// <summary>
     ///   <para>Текст вопроса</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentAnswer)]
-#endif
     [Column(Schema.ColumnNameAnswer)]
     [NotNull]
     [MaxLength(4000)]
@@ -28,9 +24,7 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Текст ответа</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentQuestion)]
-#endif
     [Column(Schema.ColumnNameQuestion)]
     [NotNull]
     [MaxLength(4000)]
@@ -46,9 +40,9 @@ namespace Catharsis.Domain
       return this.Question?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "faqs";
+      public const string TableName = "faq";
       public const string TableComment = "Часто Задаваемые Вопросы";
 
       public const string ColumnNameId = "id";

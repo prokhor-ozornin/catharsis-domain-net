@@ -1,5 +1,6 @@
 var class_catharsis_1_1_domain_1_1_entity =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_entity_1_1_schema.html", "class_catharsis_1_1_domain_1_1_entity_1_1_schema" ],
     [ "Equals", "class_catharsis_1_1_domain_1_1_entity.html#a28b89062a1773f7f3853f4a73b5c26fb", null ],
     [ "GetHashCode", "class_catharsis_1_1_domain_1_1_entity.html#a67845719b0094a007a31f3d6289acb02", null ],
     [ "ToString", "class_catharsis_1_1_domain_1_1_entity.html#a8ed693437fbb8ce77895dcfbc4364f7c", null ],

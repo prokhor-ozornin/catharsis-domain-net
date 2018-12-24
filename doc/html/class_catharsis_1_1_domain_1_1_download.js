@@ -1,7 +1,8 @@
 var class_catharsis_1_1_domain_1_1_download =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_download_1_1_schema.html", "class_catharsis_1_1_domain_1_1_download_1_1_schema" ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_download.html#a946b2d398f2ca2bfa9942831753e405a", null ],
-    [ "Equals", "class_catharsis_1_1_domain_1_1_download.html#a824ba608806775458bbc4a808dcd91c2", null ],
+    [ "Equals", "class_catharsis_1_1_domain_1_1_download.html#a0cb3748bac0e51d7aa6d4d2d6118f7e1", null ],
     [ "Equals", "class_catharsis_1_1_domain_1_1_download.html#ab6a2dcc8591db010e7d9f42c1b8f1025", null ],
     [ "GetHashCode", "class_catharsis_1_1_domain_1_1_download.html#a570990e6e70f21941bcdae18810a2456", null ],
     [ "ToString", "class_catharsis_1_1_domain_1_1_download.html#aa24b5198ec71cf799ca137578f1c95e6", null ],

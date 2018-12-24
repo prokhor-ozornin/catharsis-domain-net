@@ -1,5 +1,6 @@
 var class_catharsis_1_1_domain_1_1_contact =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_contact_1_1_schema.html", "class_catharsis_1_1_domain_1_1_contact_1_1_schema" ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_contact.html#aab66f6abfdc42ac32a23a04447e8d25e", null ],
     [ "Addresses", "class_catharsis_1_1_domain_1_1_contact.html#a9518846a00cdbd38d4998f6ea8091711", null ],
     [ "Emails", "class_catharsis_1_1_domain_1_1_contact.html#ab2973812daa0698724d4e75661f8f754", null ],

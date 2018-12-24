@@ -21,8 +21,8 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Address>)null).City(new City()));
 
-      Assert.Equal(1, new[] { null, new Address { City = new City { Name = "first" } }, new Address { City = new City { Name = "second" } } }.City(new City { Name = "first" }).Count());
-      Assert.Equal(1, new[] { null, new Address(), new Address { City = new City { Name = "first" } } }.City(null).Count());
+      Assert.Single(new[] { null, new Address { City = new City { Name = "first" } }, new Address { City = new City { Name = "second" } } }.City(new City { Name = "first" }));
+      Assert.Single(new[] { null, new Address(), new Address { City = new City { Name = "first" } } }.City(null));
     }
 
     [Fact]
@@ -42,7 +42,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Address[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new Address[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Address(), new Address { Name = "First" }, new Address { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new Address(), new Address { Name = "First" }, new Address { Name = "Second" } }.Name("f"));
     }
   }
 }

@@ -48,7 +48,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new Setting[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new Setting[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new Setting(), new Setting { Name = "First" }, new Setting { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new Setting(), new Setting { Name = "First" }, new Setting { Name = "Second" } }.Name("f"));
     }
 
     [Fact]

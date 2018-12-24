@@ -8,60 +8,48 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Плейкаст</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Playcast : Entity, IComparable<Playcast>
   {
     /// <summary>
     ///   <para>Аудио-сопровождение плейкаста</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentAudio)]
-#endif
     [Column(Schema.ColumnNameAudio)]
-    [Indexed(Name = "idx__playcasts__audio_id")]
+    [Indexed(Name = "idx__playcast__audio_id")]
     public virtual Audio Audio { get; set; }
 
     /// <summary>
     ///   <para>Изображение для плейкаста</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentImage)]
-#endif
     [Column(Schema.ColumnNameImage)]
     [NotNull]
-    [Indexed(Name = "idx__playcasts__image_id")]
+    [Indexed(Name = "idx__playcast__image_id")]
     public virtual Image Image { get; set; }
 
     /// <summary>
     ///   <para>Наименование плейкаста</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentName)]
-#endif
     [Column(Schema.ColumnNameName)]
     [NotNull]
-    [Indexed(Name = "idx__playcasts__name")]
+    [Indexed(Name = "idx__playcast__name")]
     public virtual string Name { get; set; }
 
     /// <summary>
     ///   <para>Ключевые слова, описывающие содержимое плейкаста</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentTags)]
-#endif
     [Column(Schema.ColumnNameTags)]
     public virtual ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();
 
     /// <summary>
     ///   <para>Текст плейкаста</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentText)]
-#endif
     [Column(Schema.ColumnNameText)]
     [NotNull]
     [MaxLength(4000)]
@@ -70,11 +58,9 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Видео-содержимое плейкаста</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentVideo)]
-#endif
     [Column(Schema.ColumnNameVideo)]
-    [Indexed(Name = "idx__playcasts__video_id")]
+    [Indexed(Name = "idx__playcast__video_id")]
     public virtual Video Video { get; set; }
 
     public virtual int CompareTo(Playcast other)
@@ -87,9 +73,9 @@ namespace Catharsis.Domain
       return this.Name?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "playcasts";
+      public const string TableName = "playcast";
       public const string TableComment = "Плейкасты";
 
       public const string ColumnNameId = "id";

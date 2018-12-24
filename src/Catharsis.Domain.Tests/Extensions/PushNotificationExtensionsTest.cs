@@ -20,7 +20,7 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<PushNotification>)null).Delivered(true));
 
-      Assert.Equal(1, new[] { new PushNotification { Delivered = false }, new PushNotification { Delivered = true } }.Delivered(true).Count());
+      Assert.Single(new[] { new PushNotification { Delivered = false }, new PushNotification { Delivered = true } }.Delivered(true));
     }
 
     [Fact]
@@ -36,7 +36,7 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<PushNotification>)null).Provider(PushNotificationProvider.Apple));
 
-      Assert.Equal(1, new[] { null, new PushNotification(), new PushNotification { Provider = PushNotificationProvider.Apple }, new PushNotification { Provider = PushNotificationProvider.Google } }.Provider(PushNotificationProvider.Google).Count());
+      Assert.Single(new[] { null, new PushNotification(), new PushNotification { Provider = PushNotificationProvider.Apple }, new PushNotification { Provider = PushNotificationProvider.Google } }.Provider(PushNotificationProvider.Google));
     }
 
     [Fact]
@@ -64,10 +64,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, notifications.Ttl().Count());
       Assert.Equal(2, notifications.Ttl(0).Count());
       Assert.Empty(notifications.Ttl(3));
-      Assert.Equal(1, notifications.Ttl(0, 1).Count());
+      Assert.Single(notifications.Ttl(0, 1));
       Assert.Equal(2, notifications.Ttl(1, 2).Count());
       Assert.Empty(notifications.Ttl(to: 0));
-      Assert.Equal(1, notifications.Ttl(to: 1).Count());
+      Assert.Single(notifications.Ttl(to: 1));
       Assert.Equal(2, notifications.Ttl(to: 3).Count());
     }
   }

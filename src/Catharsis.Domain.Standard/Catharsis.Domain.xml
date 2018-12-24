@@ -1,0 +1,993 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Catharsis.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:Catharsis.Domain.Address">
+            <summary>
+              <para>Адрес</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Address.City">
+            <summary>
+              <para>Город, к которому относится адрес</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Address.Description">
+            <summary>
+              <para>Дополнительные примечания, относящиеся к адресу</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Address.Location">
+            <summary>
+              <para>Географическая точка с координатами адреса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Address.Name">
+            <summary>
+              <para>Адрес (улица, дом)</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Address.Zip">
+            <summary>
+              <para>Почтовый индекс</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Announcement">
+            <summary>
+              <para>Объявление</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Announcement.Image">
+            <summary>
+              <para>Связанный файл изображения</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Announcement.Name">
+            <summary>
+              <para>Наименование/заголовок</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Announcement.Price">
+            <summary>
+              <para>Стоимость публикации</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Announcement.PriceCurrency">
+            <summary>
+              <para>Валюта стоимости публикации</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Announcement.Text">
+            <summary>
+              <para>Текстовое содержимое</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.ApiKey">
+            <summary>
+              <para>Ключ доступа API</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.AppDescription">
+            <summary>
+              <para>Описание приложения, использующего ключ доступа</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.AppDomain">
+            <summary>
+              <para>Доменное имя, с которого приложение осуществляет запросы к API</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.AppName">
+            <summary>
+              <para>Наименование приложения, использующего ключ доступа</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.Contact">
+            <summary>
+              <para>Контактные данные лица, на имя которого выдан ключ доступ</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.Name">
+            <summary>
+              <para>Ф.И.О. контактного лица, на имя которого выдан ключ доступа</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.Value">
+            <summary>
+              <para>Значение ключа доступа</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Area">
+            <summary>
+              <para>Территория</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Area.Country">
+            <summary>
+              <para>Страна, в которой расположена территория</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Area.Name">
+            <summary>
+              <para>Наименование территории</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Audio">
+            <summary>
+              <para>Аудио</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Audio.Bitrate">
+            <summary>
+              <para>Битрейт аудио дорожки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Audio.File">
+            <summary>
+              <para>Файл, представляющий аудио</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Book">
+            <summary>
+              <para>Литературное произведение</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Annotation">
+            <summary>
+              <para>Аннотация к произведению</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Author">
+            <summary>
+              <para>Автор произведения</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Contents">
+            <summary>
+              <para>Текстовое содержимое произведения</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Cover">
+            <summary>
+              <para>Изображение для обложки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Isbn">
+            <summary>
+              <para>Уникальный ISBN идентификатор</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Language">
+            <summary>
+              <para>Национальный язык написания</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Notes">
+            <summary>
+              <para>Примечания к произведению</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.PublishDate">
+            <summary>
+              <para>Дата публикации</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Publisher">
+            <summary>
+              <para>Наименование издательства-публикатора</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Tags">
+            <summary>
+              <para>Ключевые слова, описывающие содержимое произведения</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Title">
+            <summary>
+              <para>Наименование произведения</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.City">
+            <summary>
+              <para>Город</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Area">
+            <summary>
+              <para>Территория, к которой относится город</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Country">
+            <summary>
+              <para>Страна, в которой расположен город</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Federal">
+            <summary>
+              <para>Признак того, что город имеет федеральное значение</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Location">
+            <summary>
+              <para>Географические координаты города</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Name">
+            <summary>
+              <para>Наименование города</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Region">
+            <summary>
+              <para>Регион, к которому относится город</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Contact">
+            <summary>
+              <para>Контакт</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Addresses">
+            <summary>
+              <para>Адреса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Emails">
+            <summary>
+              <para>Адреса электронной почты</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Fax">
+            <summary>
+              <para>Номер факса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Icq">
+            <summary>
+              <para>Логин ICQ мессенджера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Jabber">
+            <summary>
+              <para>Логин Jabber мессенджера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Phones">
+            <summary>
+              <para>Номера телефонов</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Skype">
+            <summary>
+              <para>Логин Skype мессенджера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Website">
+            <summary>
+              <para>Веб-сайт</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Country">
+            <summary>
+              <para>Страна</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Country.Currency">
+            <summary>
+              <para>Наименование валюты, используемой в стране</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Country.CurrencyCode">
+            <summary>
+              <para>Код валюты, используемой в стране</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Country.IsoCode">
+            <summary>
+              <para>Уникальный ISO код страны</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Country.Language">
+            <summary>
+              <para>Основной язык страны</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Country.Name">
+            <summary>
+              <para>Наименование страны</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.DirectoryCompany">
+            <summary>
+              <para>Компания из справочника</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.DirectoryCompany.Code">
+            <summary>
+              <para>Внешний служебный код компании</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.DirectoryCompany.Contact">
+            <summary>
+              <para>Контактные данные компании</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.DirectoryCompany.Name">
+            <summary>
+              <para>Полное наименование компании</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.DirectoryCompany.ShortName">
+            <summary>
+              <para>Краткое наименование компании</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Download">
+            <summary>
+              <para>Загружаемый материал</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Download.Description">
+            <summary>
+              <para>Описание материала</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Download.Downloads">
+            <summary>
+              <para>Количество скачиваний</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Download.File">
+            <summary>
+              <para>Файл, представляющий загружаемый материал</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Download.Image">
+            <summary>
+              <para>Изображение, связанное с материалом</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Download.Name">
+            <summary>
+              <para>Наименование материала</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Entity">
+            <summary>
+              <para>Бизнес-сущность</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.CreatedOn">
+            <summary>
+              <para>Дата/время создания</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.Id">
+            <summary>
+              <para>Уникальный идентификатор</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.LastModified">
+            <summary>
+              <para>Дата/время создания/обновления</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.Tag">
+            <summary>
+              <para>Уникальный ключ для кэширования</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.UpdatedOn">
+            <summary>
+            /  <para>Дата/время последнего обновления</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.Version">
+            <summary>
+              <para>Номер версии</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Faq">
+            <summary>
+              <para>Часто Задаваемый Вопрос (Ч.А.В.О.)</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Faq.Answer">
+            <summary>
+              <para>Текст вопроса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Faq.Question">
+            <summary>
+              <para>Текст ответа</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.IEntity">
+            <summary>
+              <para>Бизнес-сущность</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.CreatedOn">
+            <summary>
+              <para>Дата/время создания</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.Id">
+            <summary>
+              <para>Уникальный идентификатор</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.UpdatedOn">
+            <summary>
+              <para>Дата/время последнего обновления</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.Version">
+            <summary>
+              <para>Номер версии</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Image">
+            <summary>
+              <para>Изображение</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Image.File">
+            <summary>
+              <para>Файл, представляющий изображение</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Location">
+            <summary>
+              <para>Географическая точка</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Location.Latitude">
+            <summary>
+              <para>Широта (градусов) географической точки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Location.Longitude">
+            <summary>
+              <para>Долгота (градусов) географической точки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Location.Timezone">
+            <summary>
+              <para>Наименование связанной с географической точкой временной зоны</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.LogMessage">
+            <summary>
+              <para>Запись лога</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.LogMessage.Level">
+            <summary>
+              <para>Уровень логгирования записей</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.LogMessage.Logger">
+            <summary>
+              <para>Название класса логгера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.LogMessage.RequestId">
+            <summary>
+              <para>Идентификатор API запроса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.LogMessage.Text">
+            <summary>
+              <para>Текст записи</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.LogMessage.Thread">
+            <summary>
+              <para>Имя потока, осуществлявшего логгирование</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Media">
+            <summary>
+              <para>Медиа ресурс</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.AuthorName">
+            <summary>
+              <para>Имя создателя медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.AuthorUri">
+            <summary>
+              <para>URI адрес страницы создателя медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.ContentType">
+            <summary>
+              <para>MIME тип медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Description">
+            <summary>
+              <para>Описание медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Duration">
+            <summary>
+              <para>Длительность воспроизведения медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Height">
+            <summary>
+              <para>Высота медиа ресурса в пикселях</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Html">
+            <summary>
+              <para>Внедряемый HTML код медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Name">
+            <summary>
+              <para>Заголовок медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.ProviderUri">
+            <summary>
+              <para>URI адрес сайта провайдера ресурсов данного типа</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.ThumbnailHeight">
+            <summary>
+              <para>Высота миниатюры медиа ресурса в пикселях</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.ThumbnailUri">
+            <summary>
+              <para>URI адрес миниатюры медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.ThumbnailWidth">
+            <summary>
+              <para>Ширина миниатюры медиа ресурса в пикселях</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Uri">
+            <summary>
+              <para>URI адрес медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Width">
+            <summary>
+              <para>Ширина ресурса в пикселях</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Money">
+            <summary>
+              <para></para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.News">
+            <summary>
+              <para>Новость проекта</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.News.Annotation">
+            <summary>
+              <para>Аннотация к новости</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.News.Image">
+            <summary>
+              <para>Файл изображения для новости</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.News.Name">
+            <summary>
+              <para>Заголовок новости</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.News.Tags">
+            <summary>
+              <para>Ключевые слова, описывающие содержимое новости</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.News.Text">
+            <summary>
+              <para>Полный текст новости</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Person">
+            <summary>
+              <para>Персона</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Person.BirthDate">
+            <summary>
+              <para>Дата рождения</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Person.DeathDate">
+            <summary>
+              <para>Дата смерти</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Person.FirstName">
+            <summary>
+              <para>Имя</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Person.LastName">
+            <summary>
+              <para>Фамилия</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Person.MiddleName">
+            <summary>
+              <para>Отчество</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Playcast">
+            <summary>
+              <para>Плейкаст</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Audio">
+            <summary>
+              <para>Аудио-сопровождение плейкаста</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Image">
+            <summary>
+              <para>Изображение для плейкаста</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Name">
+            <summary>
+              <para>Наименование плейкаста</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Tags">
+            <summary>
+              <para>Ключевые слова, описывающие содержимое плейкаста</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Text">
+            <summary>
+              <para>Текст плейкаста</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Video">
+            <summary>
+              <para>Видео-содержимое плейкаста</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.PushNotification">
+            <summary>
+              <para>Push уведомление</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.PushNotification.Delivered">
+            <summary>
+              <para>Признак того, что уведомление было отправлено на мобильное устройство</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.PushNotification.Devices">
+            <summary>
+              <para>Идентификаторы мобильных устройств - получателей уведомления</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.PushNotification.Payload">
+            <summary>
+              <para>Полезная нагрузка (данные) уведомления</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.PushNotification.Provider">
+            <summary>
+              <para>Провайдер/служба, через которую производится рассылка уведомлений</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.PushNotification.Ttl">
+            <summary>
+              <para>Время жизни/длительность попыток доставки уведомления в секундах</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Region">
+            <summary>
+              <para>Регион</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Region.Area">
+            <summary>
+              <para>Территория, к которой относится регион</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Region.Name">
+            <summary>
+              <para>Наименование региона</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Script">
+            <summary>
+              <para>Программный скрипт</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Script.Code">
+            <summary>
+              <para>Программный код скрипта</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Script.Duration">
+            <summary>
+              <para>Длительность выполнения скрипта в миллисекундах</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Script.Executed">
+            <summary>
+              <para>Признак того, был ли выполнен скрипт</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Script.Name">
+            <summary>
+              <para>Наименование скрипта</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Script.Path">
+            <summary>
+              <para>Путь к файлу скрипта</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.SeoWebPage">
+            <summary>
+              <para>SEO данные о web странице</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SeoWebPage.Locale">
+            <summary>
+              <para>Наименование локали для содержимого web страницы</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SeoWebPage.Title">
+            <summary>
+              <para>Значение title заголовка для web страницы</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SeoWebPage.Uri">
+            <summary>
+              <para>URI адрес web страницы</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Setting">
+            <summary>
+              <para>Настроечная опция</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Setting.Description">
+            <summary>
+              <para>Описание настроечной опции</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Setting.Name">
+            <summary>
+              <para>Наименование настроечной опции</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Setting.Type">
+            <summary>
+              <para>Тип данных для значения настроечной опции</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Setting.Value">
+            <summary>
+              <para>Значение настроечной опции</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Setting.Values">
+            <summary>
+              <para>Список значений настроечной опции</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.SitemapEntry">
+            <summary>
+              <para>Элемент карты сайта</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SitemapEntry.ChangeFrequency">
+            <summary>
+              <para>Частота обновлений ресурса, доступного по URI адресу</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SitemapEntry.Date">
+            <summary>
+              <para>Дата/время последнего обновления ресурса, доступного по URI адресу</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SitemapEntry.Description">
+            <summary>
+              <para>Описание ресурса, доступного по URI адресу</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SitemapEntry.Priority">
+            <summary>
+              <para>Приоритет ресурса среди элементов карты сайта</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SitemapEntry.Uri">
+            <summary>
+              <para>URI адрес ресурса</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.StorageFile">
+            <summary>
+              <para>Файл</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.StorageFile.ContentType">
+            <summary>
+              <para>MIME тип содержимого файла</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.StorageFile.Name">
+            <summary>
+              <para>Наименование файла</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.StorageFile.Path">
+            <summary>
+              <para>Путь к файлу в хранилище</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.StorageFile.Size">
+            <summary>
+              <para>Размер файла в байтах</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.StorageFile.Storage">
+            <summary>
+              <para>Тип файлового хранилища</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tag">
+            <summary>
+              <para>Ключевое слово</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Tag.Name">
+            <summary>
+              <para>Значение ключевого слова</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Video">
+            <summary>
+              <para>Видео</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Video.File">
+            <summary>
+              <para>Файл, представляющий видео</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.City">
+            <summary>
+              <para>Город для прогноза</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Cloudiness">
+            <summary>
+              <para>Облачность, %</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Date">
+            <summary>
+              <para>Дата прогноза</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Humidity">
+            <summary>
+              <para>Влажность, %</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Pressure">
+            <summary>
+              <para>Атмосферное давление, мм. рт. столба</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Temperature">
+            <summary>
+              <para>Температура воздуха, градусов Цельсия</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Type">
+            <summary>
+              <para>Тип погодных условий</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.WindDirection">
+            <summary>
+              <para>Направление движения ветра, градусов</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.WindSpeed">
+            <summary>
+              <para>Скорость движения ветра, метров/сек.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.WebBrowser">
+            <summary>
+              <para>Web браузер</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebBrowser.Description">
+            <summary>
+              <para>Описание браузера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebBrowser.Name">
+            <summary>
+              <para>Наименование/код браузера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebBrowser.Uri">
+            <summary>
+              <para>Адрес сайта разработчиков</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebBrowser.UserAgent">
+            <summary>
+              <para>Значение HTTP заголовка User-Agent</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.WebLink">
+            <summary>
+              <para>Гиперссылка.</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebLink.Description">
+            <summary>
+              <para>Описание гиперссылки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebLink.Image">
+            <summary>
+              <para>Изображение, представляющее гиперссылку</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebLink.Name">
+            <summary>
+              <para>Наименование гиперссылки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebLink.Uri">
+            <summary>
+              <para>URI адрес гиперссылки</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.WebPage">
+            <summary>
+              <para>Web страница</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebPage.Locale">
+            <summary>
+              <para>Наименование локали для текста web страницы</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebPage.Name">
+            <summary>
+              <para>Наименование web страницы</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebPage.Text">
+            <summary>
+              <para>HTML код (текст) web страницы</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebPage.Uri">
+            <summary>
+              <para>URI адрес web страницы</para>
+            </summary>
+        </member>
+    </members>
+</doc>

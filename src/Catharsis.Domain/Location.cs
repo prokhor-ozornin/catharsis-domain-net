@@ -8,43 +8,35 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Географическая точка</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Location : Entity, IEquatable<Location>
   {
     /// <summary>
     ///   <para>Широта (градусов) географической точки</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLatitude)]
-#endif
     [Column(Schema.ColumnNameLatitude)]
     [NotNull]
-    [Indexed(Name = "idx__locations__latitude")]
+    [Indexed(Name = "idx__location__latitude")]
     public virtual decimal? Latitude { get; set; }
 
     /// <summary>
     ///   <para>Долгота (градусов) географической точки</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLongitude)]
-#endif
     [Column(Schema.ColumnNameLongitude)]
     [NotNull]
-    [Indexed(Name = "idx__locations__longitude")]
+    [Indexed(Name = "idx__location__longitude")]
     public virtual decimal? Longitude { get; set; }
 
     /// <summary>
     ///   <para>Наименование связанной с географической точкой временной зоны</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentTimezone)]
-#endif
     [Column(Schema.ColumnNameTimezone)]
-    [Indexed(Name = "idx__locations__timezone")]
+    [Indexed(Name = "idx__location__timezone")]
     public virtual string Timezone { get; set; }
     
     public virtual bool Equals(Location other)
@@ -67,9 +59,9 @@ namespace Catharsis.Domain
       return this.Latitude != null && this.Longitude != null ? $"{this.Latitude.ToStringInvariant()},{this.Longitude.ToStringInvariant()}" : string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "locations";
+      public const string TableName = "location";
       public const string TableComment = "Географические точки с координатами";
 
       public const string ColumnNameId = "id";

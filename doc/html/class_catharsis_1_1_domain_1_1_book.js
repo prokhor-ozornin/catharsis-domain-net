@@ -1,7 +1,8 @@
 var class_catharsis_1_1_domain_1_1_book =
 [
+    [ "Schema", "class_catharsis_1_1_domain_1_1_book_1_1_schema.html", "class_catharsis_1_1_domain_1_1_book_1_1_schema" ],
     [ "CompareTo", "class_catharsis_1_1_domain_1_1_book.html#a3162da260ad425e001fb2b7b3cc240c4", null ],
-    [ "Equals", "class_catharsis_1_1_domain_1_1_book.html#a3ca490c672641486a3e6f0353dd4c8f9", null ],
+    [ "Equals", "class_catharsis_1_1_domain_1_1_book.html#a871cb0f12d033ca84c36f127cc3fe1a5", null ],
     [ "Equals", "class_catharsis_1_1_domain_1_1_book.html#a605aa05a37b0e699f32a036a4932adbd", null ],
     [ "GetHashCode", "class_catharsis_1_1_domain_1_1_book.html#a83fff4a5da71e0bbf50b40f18be0e066", null ],
     [ "ToString", "class_catharsis_1_1_domain_1_1_book.html#a65b4079d63b3a0f54f996130e3ef6194", null ],

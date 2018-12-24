@@ -24,7 +24,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => new News[] { }.Name(null));
       Assert.Throws<ArgumentException>(() => new News[] { }.Name(string.Empty));
 
-      Assert.Equal(1, new[] { null, new News(), new News { Name = "First" }, new News { Name = "Second" } }.Name("f").Count());
+      Assert.Single(new[] { null, new News(), new News { Name = "First" }, new News { Name = "Second" } }.Name("f"));
     }
 
     [Fact]
@@ -42,7 +42,7 @@ namespace Catharsis.Domain
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<News>)null).Tag(new Tag()));
       Assert.Throws<ArgumentNullException>(() => new News[] { }.Tag(null));
 
-      Assert.Equal(1, new[] { null, new News(), new News { Tags = new HashSet<Tag> { new Tag { Name = "first" } } }, new News { Tags = new HashSet<Tag> { new Tag { Name = "second" } } } }.Tag(new Tag { Name = "first" }).Count());
+      Assert.Single(new[] { null, new News(), new News { Tags = new HashSet<Tag> { new Tag { Name = "first" } } }, new News { Tags = new HashSet<Tag> { new Tag { Name = "second" } } } }.Tag(new Tag { Name = "first" }));
     }
   }
 }

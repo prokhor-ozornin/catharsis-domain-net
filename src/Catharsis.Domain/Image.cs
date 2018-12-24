@@ -8,21 +8,17 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Изображение</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Image : Media, IComparable<Image>, IEquatable<Image>
   {
     /// <summary>
     ///   <para>Файл, представляющий изображение</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentFile)]
-#endif
     [Column(Schema.ColumnNameFile)]
-    [Indexed(Name = "idx__images__file_id")]
+    [Indexed(Name = "idx__image__file_id")]
     public virtual StorageFile File { get; set; }
 
     public virtual int CompareTo(Image other)
@@ -45,9 +41,9 @@ namespace Catharsis.Domain
       return this.GetHashCode(it => it.File, it => it.Uri);
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "images";
+      public const string TableName = "image";
       public const string TableComment = "Изображения";
 
       public const string ColumnNameId = "id";

@@ -8,51 +8,41 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Запись лога</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class LogMessage : Entity, IComparable<LogMessage>, IEquatable<LogMessage>
   {
     /// <summary>
     ///   <para>Уровень логгирования записей</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLevel)]
-#endif
     [Column(Schema.ColumnNameLevel)]
     [NotNull]
-    [Indexed(Name = "idx__logs__level")]
+    [Indexed(Name = "idx__log__level")]
     public virtual string Level { get; set; }
 
     /// <summary>
     ///   <para>Название класса логгера</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentLogger)]
-#endif
     [Column(Schema.ColumnNameLogger)]
     [NotNull]
-    [Indexed(Name = "idx__logs__logger")]
+    [Indexed(Name = "idx__log__logger")]
     public virtual string Logger { get; set; }
 
     /// <summary>
     ///   <para>Идентификатор API запроса</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentRequestId)]
-#endif
     [Column(Schema.ColumnNameRequestId)]
-    [Indexed(Name = "idx__logs__request_id")]
+    [Indexed(Name = "idx__log__request_id")]
     public virtual string RequestId { get; set; }
 
     /// <summary>
     ///   <para>Текст записи</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentText)]
-#endif
     [Column(Schema.ColumnNameText)]
     [NotNull]
     public virtual string Text { get; set; }
@@ -60,12 +50,10 @@ namespace Catharsis.Domain
     /// <summary>
     ///   <para>Имя потока, осуществлявшего логгирование</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentThread)]
-#endif
     [Column(Schema.ColumnNameThread)]
     [NotNull]
-    [Indexed(Name = "idx__logs__thread")]
+    [Indexed(Name = "idx__log__thread")]
     public virtual string Thread { get; set; }
 
     public virtual int CompareTo(LogMessage other)
@@ -93,9 +81,9 @@ namespace Catharsis.Domain
       return this.Text?.Trim() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "log_messages";
+      public const string TableName = "log_message";
       public const string TableComment = "Записи лога";
 
       public const string ColumnNameId = "id";

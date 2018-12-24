@@ -22,8 +22,8 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<WeatherForecast>)null).City(new City()));
 
-      Assert.Equal(1, new[] { null, new WeatherForecast { City = new City { Name = "first" } }, new WeatherForecast { City = new City { Name = "second" } } }.City(new City { Name = "first" }).Count());
-      Assert.Equal(1, new[] { null, new WeatherForecast(), new WeatherForecast { City = new City { Name = "first" } } }.City(null).Count());
+      Assert.Single(new[] { null, new WeatherForecast { City = new City { Name = "first" } }, new WeatherForecast { City = new City { Name = "second" } } }.City(new City { Name = "first" }));
+      Assert.Single(new[] { null, new WeatherForecast(), new WeatherForecast { City = new City { Name = "first" } } }.City(null));
     }
 
     [Fact]
@@ -51,10 +51,10 @@ namespace Catharsis.Domain
       Assert.Equal(3, entries.Date().Count());
       Assert.Equal(2, entries.Date(new DateTime(1999, 1, 31)).Count());
       Assert.Empty(entries.Date(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, entries.Date(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
+      Assert.Single(entries.Date(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
       Assert.Equal(2, entries.Date(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
       Assert.Empty(entries.Date(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, entries.Date(to: new DateTime(2000, 1, 1)).Count());
+      Assert.Single(entries.Date(to: new DateTime(2000, 1, 1)));
       Assert.Equal(2, entries.Date(to: new DateTime(2000, 1, 3)).Count());
     }
 
@@ -71,7 +71,7 @@ namespace Catharsis.Domain
     {
       Assert.Throws<ArgumentNullException>(() => ((IEnumerable<WeatherForecast>)null).Type(WeatherType.ClearSky));
 
-      Assert.Equal(1, new[] { null, new WeatherForecast(), new WeatherForecast { Type = WeatherType.ClearSky }, new WeatherForecast { Type = WeatherType.Thunderstorm } }.Type(WeatherType.ClearSky).Count());
+      Assert.Single(new[] { null, new WeatherForecast(), new WeatherForecast { Type = WeatherType.ClearSky }, new WeatherForecast { Type = WeatherType.Thunderstorm } }.Type(WeatherType.ClearSky));
     }
   }
 }

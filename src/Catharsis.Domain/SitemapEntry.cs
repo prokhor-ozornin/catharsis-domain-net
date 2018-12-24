@@ -8,62 +8,50 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Элемент карты сайта</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class SitemapEntry : Entity, IComparable<SitemapEntry>, IEquatable<SitemapEntry>
   {
     /// <summary>
     ///   <para>Частота обновлений ресурса, доступного по URI адресу</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentChangeFrequency)]
-#endif
     [Column(Schema.ColumnNameChangeFrequency)]
-    [Indexed(Name = "idx__sitemap_entries__change_frequency")]
+    [Indexed(Name = "idx__sitemap_entry__change_frequency")]
     public virtual SitemapChangeFrequency? ChangeFrequency { get; set; }
 
     /// <summary>
     ///   <para>Дата/время последнего обновления ресурса, доступного по URI адресу</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDate)]
-#endif
     [Column(Schema.ColumnNameDate)]
-    [Indexed(Name = "idx__sitemap_entries__date")]
+    [Indexed(Name = "idx__sitemap_entry__date")]
     public virtual DateTime? Date { get; set; }
 
     /// <summary>
     ///   <para>Описание ресурса, доступного по URI адресу</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentDescription)]
-#endif
     [Column(Schema.ColumnNameDescription)]
     public virtual string Description { get; set; }
 
     /// <summary>
     ///   <para>Приоритет ресурса среди элементов карты сайта</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentPriority)]
-#endif
     [Column(Schema.ColumnNamePriority)]
-    [Indexed(Name = "idx__sitemap_entries__priority")]
+    [Indexed(Name = "idx__sitemap_entry__priority")]
     public virtual decimal? Priority { get; set; }
 
     /// <summary>
     ///   <para>URI адрес ресурса</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentUri)]
-#endif
     [Column(Schema.ColumnNameUri)]
     [NotNull]
     [MaxLength(1000)]
-    [Unique(Name = "idx__sitemap_entries__uri")]
+    [Unique(Name = "sitemap_entry__uri")]
     public virtual Uri Uri { get; set; }
 
     public virtual int CompareTo(SitemapEntry other)
@@ -91,9 +79,9 @@ namespace Catharsis.Domain
       return this.Uri?.ToString() ?? string.Empty;
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "sitemap_entries";
+      public const string TableName = "sitemap_entry";
       public const string TableComment = "Элементы карты сайта, описывающие URI ресурсы";
 
       public const string ColumnNameId = "id";

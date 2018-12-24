@@ -8,31 +8,25 @@ namespace Catharsis.Domain
   /// <summary>
   ///   <para>Аудио</para>
   /// </summary>
-#if NET_35
   [Serializable]
   [Description(Schema.TableComment)]
-#endif
   [Table(Schema.TableName)]
   public class Audio : Media, IEquatable<Audio>
   {
     /// <summary>
     ///   <para>Битрейт аудио дорожки</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentBitrate)]
-#endif
     [Column(Schema.ColumnNameBitrate)]
-    [Indexed(Name = "idx__audios__bitrate")]
+    [Indexed(Name = "idx__audio__bitrate")]
     public virtual short? Bitrate { get; set; }
 
     /// <summary>
     ///   <para>Файл, представляющий аудио</para>
     /// </summary>
-#if NET_35
     [Description(Schema.ColumnCommentFile)]
-#endif
     [Column(Schema.ColumnNameFile)]
-    [Indexed(Name = "idx__audios__file_id")]
+    [Indexed(Name = "idx__audio__file_id")]
     public virtual StorageFile File { get; set; }
 
     public virtual bool Equals(Audio other)
@@ -50,9 +44,9 @@ namespace Catharsis.Domain
       return this.GetHashCode(it => it.File, it => it.Uri);
     }
 
-    public static class Schema
+    public static new class Schema
     {
-      public const string TableName = "audios";
+      public const string TableName = "audio";
       public const string TableComment = "Аудио файлы";
 
       public const string ColumnNameId = "id";
