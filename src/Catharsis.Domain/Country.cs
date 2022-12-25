@@ -1,115 +1,82 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using Catharsis.Commons;
-using SQLite.Net.Attributes;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Страна</para>
+/// </summary>
+[Description("Страна")]
+[Serializable]
+[DataContract(Name = nameof(Country))]
+public class Country : Entity, IComparable<Country>, IEquatable<Country>
 {
   /// <summary>
-  ///   <para>Страна</para>
+  ///   <para>Наименование страны</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class Country : Entity, IComparable<Country>, IEquatable<Country>
-  {
-    /// <summary>
-    ///   <para>Наименование валюты, используемой в стране</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentCurrency)]
-    [Column(Schema.ColumnNameCurrency)]
-    [NotNull]
-    public virtual string Currency { get; set; }
+  [DataMember(Name = nameof(Name))]
+  [Description("Наименование страны")]
+  public virtual string? Name { get; set; }
 
-    /// <summary>
-    ///   <para>Код валюты, используемой в стране</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentCurrencyCode)]
-    [Column(Schema.ColumnNameCurrencyCode)]
-    [NotNull]
-    [MaxLength(3)]
-    [Indexed(Name = "idx__country__currency_code")]
-    public virtual string CurrencyCode { get; set; }
+  /// <summary>
+  ///   <para>Основной язык страны</para>
+  /// </summary>
+  [DataMember(Name = nameof(Language))]
+  [Description("Основной язык страны")]
+  public virtual string? Language { get; set; }
 
-    /// <summary>
-    ///   <para>Уникальный ISO код страны</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentIsoCode)]
-    [Column(Schema.ColumnNameIsoCode)]
-    [NotNull]
-    [MaxLength(2)]
-    [Unique(Name = "country__iso_code")]
-    public virtual string IsoCode { get; set; }
+  /// <summary>
+  ///   <para>Наименование валюты, используемой в стране</para>
+  /// </summary>
+  [DataMember(Name = nameof(Currency))]
+  [Description("Наименование валюты, используемой в стране")]
+  public virtual string? Currency { get; set; }
 
-    /// <summary>
-    ///   <para>Основной язык страны</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentLanguage)]
-    [Column(Schema.ColumnNameLanguage)]
-    public virtual string Language { get; set; }
+  /// <summary>
+  ///   <para>Уникальный ISO код страны</para>
+  /// </summary>
+  [DataMember(Name = nameof(IsoCode))]
+  [Description("Уникальный ISO код страны")]
+  public virtual string? IsoCode { get; set; }
 
-    /// <summary>
-    ///   <para>Наименование страны</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentName)]
-    [Column(Schema.ColumnNameName)]
-    [NotNull]
-    [Unique(Name = "country__name")]
-    public virtual string Name { get; set; }
+  /// <summary>
+  ///   <para>Код валюты, используемой в стране</para>
+  /// </summary>
+  [DataMember(Name = nameof(CurrencyCode))]
+  [Description("Код валюты, используемой в стране")]
+  public virtual string? CurrencyCode { get; set; }
 
-    public virtual int CompareTo(Country other)
-    {
-      return this.Name.CompareTo(other.Name);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="Country"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="Country"/> to compare with this instance.</param>
+  public virtual int CompareTo(Country? other) => string.Compare(Name, other?.Name, StringComparison.InvariantCultureIgnoreCase);
 
-    public virtual bool Equals(Country other)
-    {
-      return this.Equality(other, it => it.IsoCode);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="Country"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(Country? other) => this.Equality(other, nameof(IsoCode));
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Country);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as Country);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.IsoCode);
-    }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(IsoCode));
 
-    public override string ToString()
-    {
-      return this.Name?.Trim() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "country";
-      public const string TableComment = "Географические страны";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время добавления страны";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения страны";
-
-      public const string ColumnNameCurrency = "currency";
-      public const string ColumnCommentCurrency = "Наименование валюты, используемой в стране";
-
-      public const string ColumnNameCurrencyCode = "currency_code";
-      public const string ColumnCommentCurrencyCode = "Код валюты, используемой в стране";
-
-      public const string ColumnNameIsoCode = "iso_code";
-      public const string ColumnCommentIsoCode = "Уникальный ISO код страны";
-
-      public const string ColumnNameLanguage = "language";
-      public const string ColumnCommentLanguage = "Основной язык страны";
-
-      public const string ColumnNameName = "name";
-      public const string ColumnCommentName = "Наименование страны";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Name ?? string.Empty;
 }

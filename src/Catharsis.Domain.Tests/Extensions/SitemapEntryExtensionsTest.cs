@@ -1,90 +1,108 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="SitemapEntryExtensions"/>.</para>
+/// </summary>
+public sealed class SitemapEntryExtensionsTest
 {
-  public sealed class SitemapEntryExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SitemapEntryExtensions.ChangeFrequency(IQueryable{SitemapEntry}, SitemapEntry.SitemapChangeFrequency?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ChangeFequency_Queryable_Method()
   {
-    [Fact]
-    public void change_frequency_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<SitemapEntry>)null).ChangeFrequency(SitemapChangeFrequency.Daily));
+    AssertionExtensions.Should(() => ((IQueryable<SitemapEntry>) null!).ChangeFrequency(SitemapEntry.SitemapChangeFrequency.Daily)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new SitemapEntry { ChangeFrequency = SitemapChangeFrequency.Always }, new SitemapEntry { ChangeFrequency = SitemapChangeFrequency.Daily } }.AsQueryable().ChangeFrequency(SitemapChangeFrequency.Daily).Count());
-    }
+    new[] {new SitemapEntry {ChangeFrequency = SitemapEntry.SitemapChangeFrequency.Always}, new SitemapEntry {ChangeFrequency = SitemapEntry.SitemapChangeFrequency.Daily}}.AsQueryable().ChangeFrequency(SitemapEntry.SitemapChangeFrequency.Daily).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void change_frequency_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<SitemapEntry>)null).ChangeFrequency(SitemapChangeFrequency.Daily));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SitemapEntryExtensions.ChangeFrequency(IEnumerable{SitemapEntry}, SitemapEntry.SitemapChangeFrequency?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ChangeFrequency_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<SitemapEntry>) null!).ChangeFrequency(SitemapEntry.SitemapChangeFrequency.Daily)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Single(new[] { null, new SitemapEntry(), new SitemapEntry { ChangeFrequency = SitemapChangeFrequency.Always }, new SitemapEntry { ChangeFrequency = SitemapChangeFrequency.Daily } }.ChangeFrequency(SitemapChangeFrequency.Daily));
-    }
+    new[] {null, new SitemapEntry(), new SitemapEntry {ChangeFrequency = SitemapEntry.SitemapChangeFrequency.Always}, new SitemapEntry {ChangeFrequency = SitemapEntry.SitemapChangeFrequency.Daily}}.ChangeFrequency(SitemapEntry.SitemapChangeFrequency.Daily).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void date_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<SitemapEntry>)null).Date());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SitemapEntryExtensions.Date(IQueryable{SitemapEntry}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Date_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<SitemapEntry>) null!).Date()).ThrowExactly<ArgumentNullException>();
 
-      var entries = new[] { new SitemapEntry { Date = new DateTime(2000, 1, 1) }, new SitemapEntry { Date = new DateTime(2000, 1, 2) } }.AsQueryable();
-      Assert.Equal(2, entries.Date().Count());
-      Assert.Equal(2, entries.Date(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(entries.Date(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, entries.Date(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, entries.Date(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(entries.Date(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, entries.Date(to: new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, entries.Date(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var entries = new[] {new SitemapEntry {Date = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new SitemapEntry {Date = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}}.AsQueryable();
+    entries.Date().Should().HaveCount(2);
+    entries.Date(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entries.Date(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entries.Date(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entries.Date(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entries.Date(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entries.Date(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entries.Date(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void date_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<SitemapEntry>)null).Date());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SitemapEntryExtensions.Date(IEnumerable{SitemapEntry?}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Date_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<SitemapEntry>) null!).Date()).ThrowExactly<ArgumentNullException>();
 
-      var entries = new[] { null, new SitemapEntry(), new SitemapEntry { Date = new DateTime(2000, 1, 1) }, new SitemapEntry { Date = new DateTime(2000, 1, 2) } };
-      Assert.Equal(3, entries.Date().Count());
-      Assert.Equal(2, entries.Date(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(entries.Date(new DateTime(2000, 1, 3)));
-      Assert.Single(entries.Date(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
-      Assert.Equal(2, entries.Date(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(entries.Date(to: new DateTime(1999, 12, 31)));
-      Assert.Single(entries.Date(to: new DateTime(2000, 1, 1)));
-      Assert.Equal(2, entries.Date(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var entries = new[] {null, new SitemapEntry(), new SitemapEntry {Date = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new SitemapEntry {Date = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}};
+    entries.Date().Should().HaveCount(3);
+    entries.Date(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entries.Date(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entries.Date(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entries.Date(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entries.Date(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entries.Date(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entries.Date(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void priority_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Download>)null).Downloads());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SitemapEntryExtensions.Priority(IQueryable{SitemapEntry}, decimal?, decimal?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Priority_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Download>) null!).Downloads()).ThrowExactly<ArgumentNullException>();
 
-      var downloads = new[] { new Download { Downloads = 1 }, new Download { Downloads = 2 } }.AsQueryable();
-      Assert.Equal(2, downloads.Downloads().Count());
-      Assert.Equal(2, downloads.Downloads(0).Count());
-      Assert.Empty(downloads.Downloads(3));
-      Assert.Equal(1, downloads.Downloads(0, 1).Count());
-      Assert.Equal(2, downloads.Downloads(1, 2).Count());
-      Assert.Empty(downloads.Downloads(to: 0));
-      Assert.Equal(1, downloads.Downloads(to: 1).Count());
-      Assert.Equal(2, downloads.Downloads(to: 3).Count());
-    }
+    var downloads = new[] {new Download {Downloads = 1}, new Download {Downloads = 2}}.AsQueryable();
+    downloads.Downloads().Should().HaveCount(3);
+    downloads.Downloads(0).Should().HaveCount(2);
+    downloads.Downloads(3).Should().HaveCount(3);
+    downloads.Downloads(0, 1).Should().ContainSingle();
+    downloads.Downloads(1, 2).Should().HaveCount(2);
+    downloads.Downloads(to: 0).Should().BeEmpty();
+    downloads.Downloads(to: 1).Should().ContainSingle();
+    downloads.Downloads(to: 3).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void priority_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Download>)null).Downloads());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SitemapEntryExtensions.Priority(IEnumerable{SitemapEntry}, decimal?, decimal?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Priority_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Download>) null!).Downloads()).ThrowExactly<ArgumentNullException>();
 
-      var downloads = new[] { null, new Download(), new Download { Downloads = 1 }, new Download { Downloads = 2 } };
-      Assert.Equal(3, downloads.Downloads().Count());
-      Assert.Equal(2, downloads.Downloads(0).Count());
-      Assert.Empty(downloads.Downloads(3));
-      Assert.Single(downloads.Downloads(0, 1));
-      Assert.Equal(2, downloads.Downloads(1, 2).Count());
-      Assert.Empty(downloads.Downloads(to: 0));
-      Assert.Single(downloads.Downloads(to: 1));
-      Assert.Equal(2, downloads.Downloads(to: 3).Count());
-    }
+    var downloads = new[] {null, new Download(), new Download {Downloads = 1}, new Download {Downloads = 2}};
+    downloads.Downloads().Should().HaveCount(3);
+    downloads.Downloads(0).Should().HaveCount(2);
+    downloads.Downloads(3).Should().BeEmpty();
+    downloads.Downloads(0, 1).Should().ContainSingle();
+    downloads.Downloads(1, 2).Should().HaveCount(2);
+    downloads.Downloads(to: 0).Should().BeEmpty();
+    downloads.Downloads(to: 1).Should().ContainSingle();
+    downloads.Downloads(to: 3).Should().HaveCount(2);
   }
 }

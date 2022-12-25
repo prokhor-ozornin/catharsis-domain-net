@@ -1,93 +1,68 @@
-﻿using Catharsis.Commons;
-using SQLite.Net.Attributes;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
+using Catharsis.Commons;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>SEO данные о web странице</para>
+/// </summary>
+[Description("SEO данные о web странице")]
+[Serializable]
+[DataContract(Name = nameof(SeoWebPage))]
+public class SeoWebPage : Entity, IComparable<SeoWebPage>, IEquatable<SeoWebPage>
 {
   /// <summary>
-  ///   <para>SEO данные о web странице</para>
+  ///   <para>Значение title заголовка для web страницы</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class SeoWebPage : Entity, IComparable<SeoWebPage>, IEquatable<SeoWebPage>
-  {
-    /// <summary>
-    ///   <para>Наименование локали для содержимого web страницы</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentLocale)]
-    [Column(Schema.ColumnNameLocale)]
-    [NotNull]
-    [MaxLength(2)]
-    [Indexed(Name = "idx__seo_web_page__locale")]
-    public virtual string Locale { get; set; }
+  [DataMember(Name = nameof(Title))]
+  [Description("Значение title заголовка для web страницы")]
+  public virtual string? Title { get; set; }
 
-    /// <summary>
-    ///   <para>Значение title заголовка для web страницы</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentTitle)]
-    [Column(Schema.ColumnNameTitle)]
-    [NotNull]
-    public virtual string Title { get; set; }
+  /// <summary>
+  ///   <para>URI адрес web страницы</para>
+  /// </summary>
+  [DataMember(Name = nameof(Uri))]
+  [Description("URI адрес web страницы")]
+  public virtual Uri? Uri { get; set; }
 
-    /// <summary>
-    ///   <para>URI адрес web страницы</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentUri)]
-    [Column(Schema.ColumnNameUri)]
-    [NotNull]
-    [MaxLength(1000)]
-    [Indexed(Name = "idx__seo_web_page__uri")]
-    public virtual Uri Uri { get; set; }
+  /// <summary>
+  ///   <para>Наименование локали для содержимого web страницы</para>
+  /// </summary>
+  [DataMember(Name = nameof(Locale))]
+  [Description("Наименование локали для содержимого web страницы")]
+  public virtual string? Locale { get; set; }
 
-    public virtual int CompareTo(SeoWebPage other)
-    {
-      return this.Uri.ToString().CompareTo(other.Uri.ToString());
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="SeoWebPage"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="SeoWebPage"/> to compare with this instance.</param>
+  public virtual int CompareTo(SeoWebPage? other) => string.Compare(Uri?.ToString(), other?.Uri?.ToString(), StringComparison.InvariantCultureIgnoreCase);
 
-    public virtual bool Equals(SeoWebPage other)
-    {
-      return this.Equality(other, it => it.Locale, it => it.Uri);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="SeoWebPage"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(SeoWebPage? other) => this.Equality(other, nameof(Locale), nameof(Uri));
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as SeoWebPage);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as SeoWebPage);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.Locale, it => it.Uri);
-    }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(Locale), nameof(Uri));
 
-    public override string ToString()
-    {
-      return this.Uri?.ToString() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "seo_web_page";
-      public const string TableComment = "SEO данные о web страницах";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentNameId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время создания seo записи для web страницы";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения seo записи для web страницы";
-
-      public const string ColumnNameLocale = "locale";
-      public const string ColumnCommentLocale = "Наименование локали для содержимого web страницы";
-
-      public const string ColumnNameTitle = "title";
-      public const string ColumnCommentTitle = "Значение title заголовка для web страницы";
-
-      public const string ColumnNameUri = "uri";
-      public const string ColumnCommentUri = "URI адрес web страницы";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Uri?.ToString() ?? string.Empty;
 }

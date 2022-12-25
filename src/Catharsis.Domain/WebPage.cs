@@ -1,105 +1,75 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using Catharsis.Commons;
-using SQLite.Net.Attributes;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Web страница</para>
+/// </summary>
+[Description("Web страница")]
+[Serializable]
+[DataContract(Name = nameof(WebPage))]
+public class WebPage : Entity, IComparable<WebPage>, IEquatable<WebPage>
 {
   /// <summary>
-  ///   <para>Web страница</para>
+  ///   <para>Наименование web страницы</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class WebPage : Entity, IComparable<WebPage>, IEquatable<WebPage>
-  {
-    /// <summary>
-    ///   <para>Наименование локали для текста web страницы</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentLocale)]
-    [Column(Schema.ColumnNameLocale)]
-    [NotNull]
-    [MaxLength(2)]
-    [Indexed(Name = "idx__web_page__locale")]
-    public virtual string Locale { get; set; }
+  [DataMember(Name = nameof(Name))]
+  [Description("Наименование web страницы")]
+  public virtual string? Name { get; set; }
 
-    /// <summary>
-    ///   <para>Наименование web страницы</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentName)]
-    [Column(Schema.ColumnNameName)]
-    [NotNull]
-    [Indexed(Name = "idx__web_page__name")]
-    public virtual string Name { get; set; }
+  /// <summary>
+  ///   <para>URI адрес web страницы</para>
+  /// </summary>
+  [DataMember(Name = nameof(Uri))]
+  [Description("URI адрес web страницы")]
+  public virtual Uri? Uri { get; set; }
 
-    /// <summary>
-    ///   <para>HTML код (текст) web страницы</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentText)]
-    [Column(Schema.ColumnNameText)]
-    [NotNull]
-    public virtual string Text { get; set; }
+  /// <summary>
+  ///   <para>Наименование локали для текста web страницы</para>
+  /// </summary>
+  [DataMember(Name = nameof(Locale))]
+  [Description("Наименование локали для текста web страницы")]
+  public virtual string? Locale { get; set; }
 
-    /// <summary>
-    ///   <para>URI адрес web страницы</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentUri)]
-    [Column(Schema.ColumnNameUri)]
-    [NotNull]
-    [MaxLength(1000)]
-    [Indexed(Name = "idx__web_page__uri")]
-    public virtual Uri Uri { get; set; }
+  /// <summary>
+  ///   <para>HTML код (текст) web страницы</para>
+  /// </summary>
+  [DataMember(Name = nameof(Text))]
+  [Description("HTML код (текст) web страницы")]
+  public virtual string? Text { get; set; }
 
-    public virtual int CompareTo(WebPage other)
-    {
-      return this.Name.CompareTo(other.Name);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="WebPage"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="WebPage"/> to compare with this instance.</param>
+  public virtual int CompareTo(WebPage? other) => string.Compare(Name, other?.Name, StringComparison.InvariantCultureIgnoreCase);
 
-    public virtual bool Equals(WebPage other)
-    {
-      return this.Equality(other, it => it.Locale, it => it.Uri);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="WebPage"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(WebPage? other) => this.Equality(other, nameof(Locale), nameof(Uri));
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as WebPage);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as WebPage);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.Locale, it => it.Uri);
-    }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(Locale), nameof(Uri));
 
-    public override string ToString()
-    {
-      return this.Name?.Trim() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "web_page";
-      public const string TableComment = "Web страницы с динамическим содержимым";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время создания web страницы";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения web страницы";
-
-      public const string ColumnNameLocale = "locale";
-      public const string ColumnCommentLocale = "Наименование локали для текста web страницы";
-
-      public const string ColumnNameName = "name";
-      public const string ColumnCommentName = "Наименование web страницы";
-
-      public const string ColumnNameText = "text";
-      public const string ColumnCommentText = "HTML код (текст) web страницы";
-
-      public const string ColumnNameUri = "uri";
-      public const string ColumnCommentUri = "URI адрес web страницы";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Name ?? string.Empty;
 }

@@ -1,122 +1,152 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="BookExtensions"/>.</para>
+/// </summary>
+public sealed class BookExtensionsTest
 {
-  public sealed class BookExtensionsTest
+  /// <summary>
+  ///   <para>Performs testing of <see cref="BookExtensions.Author(IQueryable{Book}, Person?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Author_Queryable_Method()
   {
-    [Fact]
-    public void author_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Book>) null).Author(new Person()));
+    AssertionExtensions.Should(() => ((IQueryable<Book>) null!).Author(new Person())).ThrowExactly<ArgumentNullException>();
 
-      Assert.Empty(Enumerable.Empty<Book>().AsQueryable().Author(new Person()));
-      Assert.Equal(1, new[] { new Book { Author = new Person { Id = 1 } }, new Book { Author = new Person { Id = 2 } } }.AsQueryable().Author(new Person { Id = 1 }).Count());
-    }
+    Enumerable.Empty<Book>().AsQueryable().Author(new Person()).Should().BeEmpty();
+    new[] {new Book {Author = new Person {Id = 1}}, new Book {Author = new Person {Id = 2}}}.AsQueryable().Author(new Person {Id = 1}).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void author_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Book>)null).Author(new Person()));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="BookExtensions.Author(IEnumerable{Book}, Person?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Author_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Book>) null!).Author(new Person())).ThrowExactly<ArgumentNullException>();
 
-      Assert.Empty(Enumerable.Empty<Book>().Author(new Person()));
-      Assert.Single(new[] { null, new Book(), new Book { Author = new Person { FirstName = "first" } }, new Book { Author = new Person { FirstName = "second" } } }.Author(new Person { FirstName = "first" }));
-    }
+    Enumerable.Empty<Book>().Author(new Person()).Should().BeEmpty();
+    new[] {null, new Book(), new Book {Author = new Person {FirstName = "first"}}, new Book {Author = new Person {FirstName = "second"}}}.Author(new Person {FirstName = "first"}).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void language_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Book>)null).Language("fax"));
-      Assert.Throws<ArgumentNullException>(() => new Book[] { }.AsQueryable().Language(null));
-      Assert.Throws<ArgumentException>(() => new Book[] { }.AsQueryable().Language(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="BookExtensions.Language(IQueryable{Book}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Language_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Book>) null!).Language("fax")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Book>().AsQueryable().Language(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Book>().AsQueryable().Language(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Book { Language = "First" }, new Book { Language = "Second" } }.AsQueryable().Language("first").Count());
-    }
+    new[] {new Book {Language = "First"}, new Book {Language = "Second"}}.AsQueryable().Language("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void language_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Book>)null).Language("level"));
-      Assert.Throws<ArgumentNullException>(() => new Book[] { }.Language(null));
-      Assert.Throws<ArgumentException>(() => new Book[] { }.Language(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="BookExtensions.Language(IEnumerable{Book}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Language_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Book>) null!).Language("level")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Book>().Language(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Book>().Language(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Book(), new Book { Language = "First" }, new Book { Language = "Second" } }.Language("first"));
-    }
+    new[] {null, new Book(), new Book {Language = "First"}, new Book {Language = "Second"}}.Language("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void publish_date_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Book>)null).PublishDate());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="BookExtensions.PublishDate(IQueryable{Book}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void PublishDate_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Book>) null!).PublishDate()).ThrowExactly<ArgumentNullException>();
 
-      var books = new[] { new Book { PublishDate = new DateTime(2000, 1, 1) }, new Book { PublishDate = new DateTime(2000, 1, 2) } }.AsQueryable();
-      Assert.Equal(2, books.PublishDate().Count());
-      Assert.Equal(2, books.PublishDate(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(books.PublishDate(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, books.PublishDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, books.PublishDate(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(books.PublishDate(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, books.PublishDate(to: new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, books.PublishDate(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var books = new[] {new Book {PublishDate = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Book {PublishDate = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}}.AsQueryable();
+    books.PublishDate().Should().HaveCount(2);
+    books.PublishDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    books.PublishDate(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    books.PublishDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    books.PublishDate(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    books.PublishDate(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    books.PublishDate(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    books.PublishDate(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void publish_date_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Book>)null).PublishDate());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="BookExtensions.PublishDate(IEnumerable{Book}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void PublishDate_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Book>) null!).PublishDate()).ThrowExactly<ArgumentNullException>();
 
-      var books = new[] { null, new Book(), new Book { PublishDate = new DateTime(2000, 1, 1) }, new Book { PublishDate = new DateTime(2000, 1, 2) } };
-      Assert.Equal(3, books.PublishDate().Count());
-      Assert.Equal(2, books.PublishDate(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(books.PublishDate(new DateTime(2000, 1, 3)));
-      Assert.Single(books.PublishDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
-      Assert.Equal(2, books.PublishDate(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(books.PublishDate(to: new DateTime(1999, 12, 31)));
-      Assert.Single(books.PublishDate(to: new DateTime(2000, 1, 1)));
-      Assert.Equal(2, books.PublishDate(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var books = new[] {null, new Book(), new Book {PublishDate = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Book {PublishDate = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}};
+    books.PublishDate().Should().HaveCount(3);
+    books.PublishDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    books.PublishDate(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    books.PublishDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    books.PublishDate(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    books.PublishDate(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    books.PublishDate(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    books.PublishDate(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void tag_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Book>)null).Tag(new Tag()));
-      Assert.Throws<ArgumentNullException>(() => new Book[] { }.AsQueryable().Tag(null));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="BookExtensions.Tag(IQueryable{Book}, Tag)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Tag_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Book>) null!).Tag(new Tag())).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Book>().AsQueryable().Tag(null!)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new Book { Tags = new HashSet<Tag> { new Tag { Name = "first" } } }, new Book { Tags = new HashSet<Tag> { new Tag { Name = "second" } } } }.AsQueryable().Tag(new Tag { Name = "first" }).Count());
-    }
+    new[] {new Book {Tags = new HashSet<Tag> {new() {Name = "first"}}}, new Book {Tags = new HashSet<Tag> {new() {Name = "second"}}}}.AsQueryable().Tag(new Tag {Name = "first"}).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void tag_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Book>)null).Tag(new Tag()));
-      Assert.Throws<ArgumentNullException>(() => new Book[] { }.Tag(null));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="BookExtensions.Tag(IEnumerable{Book}, Tag)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Tag_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Book>) null!).Tag(new Tag())).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Book>().Tag(null!)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Single(new[] { null, new Book(), new Book { Tags = new HashSet<Tag> { new Tag { Name = "first" } } }, new Book { Tags = new HashSet<Tag> { new Tag { Name = "second" } } } }.Tag(new Tag { Name = "first" }));
-    }
+    new[] {null, new Book(), new Book {Tags = new HashSet<Tag> {new() {Name = "first"}}}, new Book {Tags = new HashSet<Tag> {new() {Name = "second"}}}}.Tag(new Tag {Name = "first"}).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void value_of_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Book>)null).ValueOf("isbn"));
-      Assert.Throws<ArgumentNullException>(() => new Book[] { }.AsQueryable().ValueOf(null));
-      Assert.Throws<ArgumentException>(() => new Book[] { }.AsQueryable().ValueOf(string.Empty));
-      Assert.Throws<InvalidOperationException>(() => new[] { new Book { Isbn = "Isbn" }, new Book { Isbn = "isbn" } }.AsQueryable().ValueOf("isbn"));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="BookExtensions.ValueOf(IQueryable{Book}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ValueOf_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Book>) null!).ValueOf("isbn")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Book>().AsQueryable().ValueOf(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Book>().AsQueryable().ValueOf(string.Empty)).ThrowExactly<ArgumentException>();
+    AssertionExtensions.Should(() => new Book[] {new() {Isbn = "Isbn"}, new() {Isbn = "isbn"}}.AsQueryable().ValueOf("isbn")).ThrowExactly<InvalidOperationException>();
 
-      Assert.Null(new Book[] { }.AsQueryable().ValueOf("isbn"));
-      Assert.NotNull(new[] { new Book { Isbn = "First" }, new Book { Isbn = "Second" } }.AsQueryable().ValueOf("first"));
-    }
+    Array.Empty<Book>().AsQueryable().ValueOf("isbn").Should().BeNull();
+    new[] {new Book {Isbn = "First"}, new Book {Isbn = "Second"}}.AsQueryable().ValueOf("first").Should().NotBeNull();
+  }
 
-    [Fact]
-    public void value_of_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Book>)null).ValueOf("isbn"));
-      Assert.Throws<ArgumentNullException>(() => new Book[] { }.ValueOf(null));
-      Assert.Throws<ArgumentException>(() => new Book[] { }.ValueOf(string.Empty));
-      Assert.Throws<InvalidOperationException>(() => new[] { new Book { Isbn = "Isbn" }, new Book { Isbn = "isbn" } }.ValueOf("isbn"));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="BookExtensions.ValueOf(IEnumerable{Book}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ValueOf_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Book>) null!).ValueOf("isbn")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Book>().ValueOf(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Book>().ValueOf(string.Empty)).ThrowExactly<ArgumentException>();
+    AssertionExtensions.Should(() => new[] {new Book {Isbn = "Isbn"}, new Book {Isbn = "isbn"}}.ValueOf("isbn")).ThrowExactly<InvalidOperationException>();
 
-      Assert.Null(new Book[] { }.ValueOf("isbn"));
-      Assert.NotNull(new[] { new Book { Isbn = "First" }, new Book { Isbn = "Second" } }.ValueOf("first"));
-    }
+    Array.Empty<Book>().ValueOf("isbn").Should().BeNull();
+    new[] {new Book {Isbn = "First"}, new Book {Isbn = "Second"}}.ValueOf("first").Should().NotBeNull();
   }
 }

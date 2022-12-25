@@ -1,93 +1,72 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Catharsis.Commons;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain
+/// <summary>
+///   <para>Set of extension methods for class <see cref="Location"/>.</para>
+/// </summary>
+/// <seealso cref="Location"/>
+public static class LocationExtensions
 {
-  public static class LocationExtensions
+  public static IQueryable<Location> TimeZone(this IQueryable<Location> locations, string timezone) => locations.Where(location => location.TimeZone != null && location.TimeZone.ToLower().StartsWith(timezone.ToLower()));
+
+  public static IEnumerable<Location?> TimeZone(this IEnumerable<Location?> locations, string timezone) => locations.Where(location => location?.TimeZone != null && location.TimeZone.ToLower().StartsWith(timezone.ToLower()));
+
+  public static IQueryable<Location> Latitude(this IQueryable<Location> locations, decimal? from = null, decimal? to = null)
   {
-    public static IQueryable<Location> Latitude(this IQueryable<Location> locations, decimal? from = null, decimal? to = null)
+    if (from != null)
     {
-      Assertion.NotNull(locations);
-
-      if (from != null)
-      {
-        locations = locations.Where(it => it.Latitude >= from.Value);
-      }
-
-      if (to != null)
-      {
-        locations = locations.Where(it => it.Latitude <= to.Value);
-      }
-
-      return locations;
+      locations = locations.Where(location => location.Latitude >= from.Value);
     }
 
-    public static IEnumerable<Location> Latitude(this IEnumerable<Location> locations, decimal? from = null, decimal? to = null)
+    if (to != null)
     {
-      Assertion.NotNull(locations);
-
-      if (from != null)
-      {
-        locations = locations.Where(it => it != null && it.Latitude >= from.Value);
-      }
-
-      if (to != null)
-      {
-        locations = locations.Where(it => it != null && it.Latitude <= to.Value);
-      }
-
-      return locations.Where(it => it != null);
+      locations = locations.Where(location => location.Latitude <= to.Value);
     }
 
-    public static IQueryable<Location> Longitude(this IQueryable<Location> locations, decimal? from = null, decimal? to = null)
+    return locations;
+  }
+
+  public static IEnumerable<Location?> Latitude(this IEnumerable<Location?> locations, decimal? from = null, decimal? to = null)
+  {
+    if (from != null)
     {
-      Assertion.NotNull(locations);
-
-      if (from != null)
-      {
-        locations = locations.Where(it => it.Longitude >= from.Value);
-      }
-
-      if (to != null)
-      {
-        locations = locations.Where(it => it.Longitude <= to.Value);
-      }
-
-      return locations;
+      locations = locations.Where(location => location != null && location.Latitude >= from.Value);
     }
 
-    public static IEnumerable<Location> Longitude(this IEnumerable<Location> locations, decimal? from = null, decimal? to = null)
+    if (to != null)
     {
-      Assertion.NotNull(locations);
-
-      if (from != null)
-      {
-        locations = locations.Where(it => it != null && it.Longitude >= from.Value);
-      }
-
-      if (to != null)
-      {
-        locations = locations.Where(it => it != null && it.Longitude <= to.Value);
-      }
-
-      return locations.Where(it => it != null);
+      locations = locations.Where(location => location != null && location.Latitude <= to.Value);
     }
 
-    public static IQueryable<Location> Timezone(this IQueryable<Location> locations, string timezone)
-    {
-      Assertion.NotNull(locations);
-      Assertion.NotEmpty(timezone);
+    return locations.Where(location => location != null);
+  }
 
-      return locations.Where(it => it.Timezone.ToLower().StartsWith(timezone.ToLower()));
+  public static IQueryable<Location> Longitude(this IQueryable<Location> locations, decimal? from = null, decimal? to = null)
+  {
+    if (from != null)
+    {
+      locations = locations.Where(location => location.Longitude >= from.Value);
     }
 
-    public static IEnumerable<Location> Timezone(this IEnumerable<Location> locations, string timezone)
+    if (to != null)
     {
-      Assertion.NotNull(locations);
-      Assertion.NotEmpty(timezone);
-
-      return locations.Where(it => it?.Timezone != null && it.Timezone.ToLower().StartsWith(timezone.ToLower()));
+      locations = locations.Where(location => location.Longitude <= to.Value);
     }
+
+    return locations;
+  }
+
+  public static IEnumerable<Location?> Longitude(this IEnumerable<Location?> locations, decimal? from = null, decimal? to = null)
+  {
+    if (from != null)
+    {
+      locations = locations.Where(location => location != null && location.Longitude >= from.Value);
+    }
+
+    if (to != null)
+    {
+      locations = locations.Where(location => location != null && location.Longitude <= to.Value);
+    }
+
+    return locations.Where(location => location != null);
   }
 }

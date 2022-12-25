@@ -1,26 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="AudioExtensions"/>.</para>
+/// </summary>
+public sealed class AudioExtensionsTest
 {
-  public sealed class AudioExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="AudioExtensions.Bitrate(IQueryable{Audio}, short?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Bitrate_Queryable_Method()
   {
-    [Fact]
-    public void bitrate_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Audio>) null).Bitrate(0));
+    AssertionExtensions.Should(() => ((IQueryable<Audio>) null!).Bitrate(0)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new Audio { Bitrate = 32 }, new Audio { Bitrate = 64 } }.AsQueryable().Bitrate(32).Count());
-    }
+    new[] {new Audio {Bitrate = 32}, new Audio {Bitrate = 64}}.AsQueryable().Bitrate(32).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void bitrate_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Audio>)null).Bitrate(0));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="AudioExtensions.Bitrate(IEnumerable{Audio}, short?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Bitrate_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Audio>) null!).Bitrate(0)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Single(new[] { null, new Audio(), new Audio { Bitrate = 32 }, new Audio { Bitrate = 64 } }.Bitrate(32));
-    }
+    new[] {null, new Audio(), new Audio {Bitrate = 32}, new Audio {Bitrate = 64}}.Bitrate(32).Should().ContainSingle();
   }
 }

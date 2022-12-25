@@ -1,27 +1,12 @@
-﻿using Catharsis.Commons;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain.Extensions
+/// <summary>
+///   <para>Set of extension methods for class <see cref="DirectoryCompany"/>.</para>
+/// </summary>
+/// <seealso cref="DirectoryCompany"/>
+public static class DirectoryCompanyExtensions
 {
-  public static class DirectoryCompanyExtensions
-  {
-    public static IQueryable<DirectoryCompany> Name(this IQueryable<DirectoryCompany> companies, string name)
-    {
-      Assertion.NotNull(companies);
-      Assertion.NotEmpty(name);
+  public static IQueryable<DirectoryCompany> Name(this IQueryable<DirectoryCompany> companies, string name) => companies.Where(company => company.ShortName != null && company.Name != null && (company.Name.ToLower().StartsWith(name.ToLower()) || company.ShortName.ToLower().StartsWith(name.ToLower())));
 
-      name = name.ToLower();
-      return companies.Where(it => it.Name.ToLower().StartsWith(name) || it.ShortName.ToLower().StartsWith(name));
-    }
-
-    public static IEnumerable<DirectoryCompany> Name(this IEnumerable<DirectoryCompany> companies, string name)
-    {
-      Assertion.NotNull(companies);
-      Assertion.NotEmpty(name);
-
-      name = name.ToLower();
-      return companies.Where(it => it?.Name != null && it.ShortName != null && (it.Name.ToLower().StartsWith(name) || it.ShortName.ToLower().StartsWith(name)));
-    }
-  }
+  public static IEnumerable<DirectoryCompany?> Name(this IEnumerable<DirectoryCompany?> companies, string name) => companies.Where(company => company is {Name: {}, ShortName: {}} && (company.Name.ToLower().StartsWith(name.ToLower()) || company.ShortName.ToLower().StartsWith(name.ToLower())));
 }

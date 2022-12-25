@@ -1,45 +1,123 @@
-﻿using System;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="PushNotification"/>.</para>
+/// </summary>
+public sealed class PushNotificationTest : EntityTest<PushNotification>
 {
-  public sealed class PushNotificationTest : EntityTest<PushNotification>
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotification.Payload"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Payload_Property()
   {
-    [Fact]
-    public void constructors()
-    {
-      var fixture = new PushNotification();
-      Assert.Null(fixture.Id);
-      Assert.True(fixture.CreatedOn <= DateTime.UtcNow);
-      Assert.Null(fixture.UpdatedOn);
-      Assert.Null(fixture.Version);
-      Assert.Null(fixture.Delivered);
-      Assert.Empty(fixture.Devices);
-      Assert.Null(fixture.Payload);
-      Assert.Null(fixture.Provider);
-      Assert.Null(fixture.Ttl);
-    }
+    new PushNotification { Payload = Guid.Empty.ToString() }.Payload.Should().Be(Guid.Empty.ToString());
+  }
 
-    [Fact]
-    public void compare_to()
-    {
-      this.test_compare_to("CreatedOn", DateTime.MinValue, DateTime.MaxValue);
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotification.Provider"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Provider_Property()
+  {
+    new PushNotification { Provider = PushNotification.ProviderType.Microsoft }.Provider.Should().Be(PushNotification.ProviderType.Microsoft);
+  }
 
-    [Fact]
-    public void equals_and_hash_code()
-    {
-      this.test_equals_and_hash_code("CreatedOn", DateTime.MinValue, DateTime.MaxValue);
-      this.test_equals_and_hash_code("Provider", PushNotificationProvider.Apple, PushNotificationProvider.Google);
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotification.Delivered"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Delivered_Property()
+  {
+    new PushNotification { Delivered = true }.Delivered.Should().BeTrue();
+  }
 
-    [Fact]
-    public void to_string()
-    {
-      Assert.Empty(new PushNotification().ToString());
-      Assert.Empty(new PushNotification { Payload = string.Empty }.ToString());
-      Assert.Empty(new PushNotification { Payload = " " }.ToString());
-      Assert.Equal("payload", new PushNotification { Payload = " payload " }.ToString());
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotification.Ttl"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Ttl_Property()
+  {
+    new PushNotification { Ttl = long.MaxValue }.Ttl.Should().Be(long.MaxValue);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotification.Devices"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Devices_Property()
+  {
+    var devices = new HashSet<string>();
+    new PushNotification { Devices = devices }.Devices.Should().BeSameAs(devices);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of class constructor(s).</para>
+  /// </summary>
+  /// <seealso cref="PushNotification()"/>
+  [Fact]
+  public void Constructors()
+  {
+    var notification = new PushNotification();
+
+    notification.Id.Should().BeNull();
+    notification.Uuid.Should().NotBeNull();
+    notification.Version.Should().BeNull();
+    notification.CreatedOn.Should().BeOnOrBefore(DateTimeOffset.UtcNow);
+    notification.UpdatedOn.Should().BeNull();
+
+    notification.Payload.Should().BeNull();
+    notification.Provider.Should().BeNull();
+    notification.Delivered.Should().BeNull();
+    notification.Ttl.Should().BeNull();
+    notification.Devices.Should().BeEmpty();
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotification.CompareTo(PushNotification)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void CompareTo_Method()
+  {
+    TestCompareTo(nameof(PushNotification.CreatedOn), DateTimeOffset.MinValue, DateTimeOffset.MaxValue);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
+  ///     <item><description><see cref="PushNotification.Equals(PushNotification)"/></description></item>
+  ///     <item><description><see cref="PushNotification.Equals(object)"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void Equals_Methods()
+  {
+    TestEquality(nameof(PushNotification.CreatedOn), DateTimeOffset.MinValue, DateTimeOffset.MaxValue);
+    TestEquality(nameof(PushNotification.Provider), PushNotification.ProviderType.Apple, PushNotification.ProviderType.Google);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotification.GetHashCode()"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void GetHashCode_Method()
+  {
+    TestHashCode("CreatedOn", DateTimeOffset.MinValue, DateTimeOffset.MaxValue);
+    TestHashCode("Provider", PushNotification.ProviderType.Apple, PushNotification.ProviderType.Google);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotification.ToString()"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ToString_Method()
+  {
+    new PushNotification().ToString().Should().BeEmpty();
+    new PushNotification { Payload = string.Empty }.ToString().Should().BeEmpty();
+    new PushNotification { Payload = " " }.ToString().Should().BeEmpty();
+    new PushNotification { Payload = Guid.Empty.ToString() }.ToString().Should().Be(Guid.Empty.ToString());
   }
 }

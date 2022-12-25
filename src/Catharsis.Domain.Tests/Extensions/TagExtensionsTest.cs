@@ -1,34 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="TagExtensions"/>.</para>
+/// </summary>
+public sealed class TagExtensionsTest
 {
-  public sealed class TagExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="TagExtensions.ForName(IQueryable{Tag}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ForName_Queryable_Method()
   {
-    [Fact]
-    public void for_name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Tag>)null).ForName("name"));
-      Assert.Throws<ArgumentNullException>(() => new Tag[] { }.AsQueryable().ForName(null));
-      Assert.Throws<ArgumentException>(() => new Tag[] { }.AsQueryable().ForName(string.Empty));
-      Assert.Throws<InvalidOperationException>(() => new[] { new Tag { Name = "Name" }, new Tag { Name = "name" } }.AsQueryable().ForName("name"));
+    AssertionExtensions.Should(() => ((IQueryable<Tag>) null!).ForName("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Tag>().AsQueryable().ForName(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Tag>().AsQueryable().ForName(string.Empty)).ThrowExactly<ArgumentException>();
+    AssertionExtensions.Should(() => new[] {new Tag {Name = "Name"}, new Tag {Name = "name"}}.AsQueryable().ForName("name")).ThrowExactly<InvalidOperationException>();
 
-      Assert.Null(new Tag[] { }.AsQueryable().ForName("name"));
-      Assert.NotNull(new[] { new Tag { Name = "First" }, new Tag { Name = "Second" } }.AsQueryable().ForName("first"));
-    }
+    Array.Empty<Tag>().AsQueryable().ForName("name").Should().BeNull();
+    new[] {new Tag {Name = "First"}, new Tag {Name = "Second"}}.AsQueryable().ForName("first").Should().NotBeNull();
+  }
 
-    [Fact]
-    public void for_name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Tag>)null).ForName("name"));
-      Assert.Throws<ArgumentNullException>(() => new Tag[] { }.ForName(null));
-      Assert.Throws<ArgumentException>(() => new Tag[] { }.ForName(string.Empty));
-      Assert.Throws<InvalidOperationException>(() => new[] { new Tag { Name = "Name" }, new Tag { Name = "name" } }.ForName("name"));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="TagExtensions.ForName(IEnumerable{Tag}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ForName_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Tag>) null!).ForName("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Tag>().ForName(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Tag>().ForName(string.Empty)).ThrowExactly<ArgumentException>();
+    AssertionExtensions.Should(() => new[] {new Tag {Name = "Name"}, new Tag {Name = "name"}}.ForName("name")).ThrowExactly<InvalidOperationException>();
 
-      Assert.Null(new Tag[] { }.ForName("name"));
-      Assert.NotNull(new[] { new Tag { Name = "First" }, new Tag { Name = "Second" } }.ForName("first"));
-    }
+    Array.Empty<Tag>().ForName("name").Should().BeNull();
+    new[] {new Tag {Name = "First"}, new Tag {Name = "Second"}}.ForName("first").Should().NotBeNull();
   }
 }

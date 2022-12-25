@@ -1,114 +1,82 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using Catharsis.Commons;
-using SQLite.Net.Attributes;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Загружаемый материал</para>
+/// </summary>
+[Description("Загружаемый материал")]
+[Serializable]
+[DataContract(Name = nameof(Download))]
+public class Download : Entity, IComparable<Download>, IEquatable<Download>
 {
   /// <summary>
-  ///   <para>Загружаемый материал</para>
+  ///   <para>Наименование материала</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class Download : Entity, IComparable<Download>, IEquatable<Download>
-  {
-    /// <summary>
-    ///   <para>Описание материала</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentDescription)]
-    [Column(Schema.ColumnNameDescription)]
-    [MaxLength(4000)]
-    public virtual string Description { get; set; }
+  [DataMember(Name = nameof(Name))]
+  [Description("Наименование материала")]
+  public virtual string? Name { get; set; }
 
-    /// <summary>
-    ///   <para>Количество скачиваний</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentDownloads)]
-    [Column(Schema.ColumnNameDownloads)]
-    [NotNull]
-    [Indexed(Name = "idx__download__downloads")]
-    public virtual long? Downloads { get; set; }
+  /// <summary>
+  ///   <para>Описание материала</para>
+  /// </summary>
+  [DataMember(Name = nameof(Description))]
+  [Description("Описание материала")]
+  public virtual string? Description { get; set; }
 
-    /// <summary>
-    ///   <para>Файл, представляющий загружаемый материал</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentFile)]
-    [Column(Schema.ColumnNameFile)]
-    [NotNull]
-    [Indexed(Name = "idx__download__file_id")]
-    public virtual StorageFile File { get; set; }
+  /// <summary>
+  ///   <para>Файл, представляющий загружаемый материал</para>
+  /// </summary>
+  [DataMember(Name = nameof(File))]
+  [Description("Файл, представляющий загружаемый материал")]
+  public virtual StorageFile? File { get; set; }
 
-    /// <summary>
-    ///   <para>Изображение, связанное с материалом</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentImage)]
-    [Column(Schema.ColumnNameImage)]
-    [Indexed(Name = "idx__download__image_id")]
-    public virtual Image Image { get; set; }
+  /// <summary>
+  ///   <para>Изображение, связанное с материалом</para>
+  /// </summary>
+  [DataMember(Name = nameof(Image))]
+  [Description("Изображение, связанное с материалом")]
+  public virtual Image? Image { get; set; }
 
-    /// <summary>
-    ///   <para>Наименование материала</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentName)]
-    [Column(Schema.ColumnNameName)]
-    [NotNull]
-    [Indexed(Name = "idx__download__name")]
-    public virtual string Name { get; set; }
+  /// <summary>
+  ///   <para>Количество скачиваний</para>
+  /// </summary>
+  [DataMember(Name = nameof(Downloads))]
+  [Description("Количество скачиваний")]
+  public virtual long? Downloads { get; set; }
 
-    public virtual int CompareTo(Download other)
-    {
-      return this.Name.CompareTo(other.Name);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="Download"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="Download"/> to compare with this instance.</param>
+  public virtual int CompareTo(Download? other) => string.Compare(Name, other?.Name, StringComparison.InvariantCultureIgnoreCase);
 
-    public virtual bool Equals(Download other)
-    {
-      return this.Equality(other, it => it.File);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="Download"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(Download? other) => this.Equality(other, nameof(File));
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Download);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as Download);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.File);
-    }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(File));
 
-    public override string ToString()
-    {
-      return this.Name?.Trim() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "download";
-      public const string TableComment = "Загружаемые материалы";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время добавления материала";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего обновления материала";
-
-      public const string ColumnNameDescription = "description";
-      public const string ColumnCommentDescription = "Описание материала";
-
-      public const string ColumnNameDownloads = "downloads";
-      public const string ColumnCommentDownloads = "Количество скачиваний";
-
-      public const string ColumnNameFile = "file_id";
-      public const string ColumnCommentFile = "Файл, представляющий загружаемый материал";
-
-      public const string ColumnNameImage = "image_id";
-      public const string ColumnCommentImage = "Изображение, связанное с материалом";
-
-      public const string ColumnNameName = "name";
-      public const string ColumnCommentName = "Наименование материала";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Name ?? string.Empty;
 }

@@ -1,181 +1,124 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using Catharsis.Commons;
-using System.Collections.Generic;
-using SQLite.Net.Attributes;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Литературное произведение</para>
+/// </summary>
+[Description("Литературное произведение")]
+[Serializable]
+[DataContract(Name = nameof(Book))]
+public class Book : Entity, IComparable<Book>, IEquatable<Book>
 {
   /// <summary>
-  ///   <para>Литературное произведение</para>
+  ///   <para>Наименование произведения</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class Book : Entity, IComparable<Book>, IEquatable<Book>
-  {
-    /// <summary>
-    ///   <para>Аннотация к произведению</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentAnnotation)]
-    [Column(Schema.ColumnNameAnnotation)]
-    [MaxLength(1000)]
-    public virtual string Annotation { get; set; }
+  [DataMember(Name = nameof(Title))]
+  [Description("Наименование произведения")]
+  public virtual string? Title { get; set; }
 
-    /// <summary>
-    ///   <para>Автор произведения</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentAuthor)]
-    [Column(Schema.ColumnNameAuthor)]
-    [NotNull]
-    [Indexed(Name = "idx__book__author_id")]
-    public virtual Person Author { get; set; }
+  /// <summary>
+  ///   <para>Автор произведения</para>
+  /// </summary>
+  [DataMember(Name = nameof(Author))]
+  [Description("Автор произведения")]
+  public virtual Person? Author { get; set; }
 
-    /// <summary>
-    ///   <para>Текстовое содержимое произведения</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentContents)]
-    [Column(Schema.ColumnNameContents)]
-    [NotNull]
-    public virtual string Contents { get; set; }
+  /// <summary>
+  ///   <para>Национальный язык написания</para>
+  /// </summary>
+  [DataMember(Name = nameof(Language))]
+  [Description("Национальный язык написания")]
+  public virtual string? Language { get; set; }
 
-    /// <summary>
-    ///   <para>Изображение для обложки</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentCover)]
-    [Column(Schema.ColumnNameCover)]
-    [Indexed(Name = "idx__book__cover_id")]
-    public virtual Image Cover { get; set; }
+  /// <summary>
+  ///   <para>Уникальный ISBN идентификатор</para>
+  /// </summary>
+  [DataMember(Name = nameof(Isbn))]
+  [Description("Уникальный ISBN идентификатор")]
+  public virtual string? Isbn { get; set; }
 
-    /// <summary>
-    ///   <para>Уникальный ISBN идентификатор</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentIsbn)]
-    [Column(Schema.ColumnNameIsbn)]
-    [Indexed(Name = "idx__book__isbn")]
-    [MaxLength(13)]
-    public virtual string Isbn { get; set; }
+  /// <summary>
+  ///   <para>Аннотация к произведению</para>
+  /// </summary>
+  [DataMember(Name = nameof(Annotation))]
+  [Description("Аннотация к произведению")]
+  public virtual string? Annotation { get; set; }
 
-    /// <summary>
-    ///   <para>Национальный язык написания</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentLanguage)]
-    [Column(Schema.ColumnNameLanguage)]
-    [Indexed(Name = "idx__book__language")]
-    [MaxLength(2)]
-    public virtual string Language { get; set; }
+  /// <summary>
+  ///   <para>Примечания к произведению</para>
+  /// </summary>
+  [DataMember(Name = nameof(Notes))]
+  [Description("Примечания к произведению")]
+  public virtual string? Notes { get; set; }
 
-    /// <summary>
-    ///   <para>Примечания к произведению</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentNotes)]
-    [Column(Schema.ColumnNameNotes)]
-    [MaxLength(1000)]
-    public virtual string Notes { get; set; }
+  /// <summary>
+  ///   <para>Дата публикации</para>
+  /// </summary>
+  [DataMember(Name = nameof(PublishDate))]
+  [Description("Дата публикации")]
+  public virtual DateTimeOffset? PublishDate { get; set; }
 
-    /// <summary>
-    ///   <para>Дата публикации</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentPublishDate)]
-    [Column(Schema.ColumnNamePublishDate)]
-    [Indexed(Name = "idx__book__publish_date")]
-    public virtual DateTime? PublishDate { get; set; }
+  /// <summary>
+  ///   <para>Наименование издательства-публикатора</para>
+  /// </summary>
+  [DataMember(Name = nameof(Publisher))]
+  [Description("Наименование издательства-публикатора")]
+  public virtual string? Publisher { get; set; }
 
-    /// <summary>
-    ///   <para>Наименование издательства-публикатора</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentPublisher)]
-    [Column(Schema.ColumnNamePublisher)]
-    [Indexed(Name = "idx__book__publisher")]
-    public virtual string Publisher { get; set; }
+  /// <summary>
+  ///   <para>Изображение для обложки</para>
+  /// </summary>
+  [DataMember(Name = nameof(Cover))]
+  [Description("Изображение для обложки")]
+  public virtual Image? Cover { get; set; }
 
-    /// <summary>
-    ///   <para>Ключевые слова, описывающие содержимое произведения</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentTags)]
-    [Column(Schema.ColumnNameTags)]
-    public virtual ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();
+  /// <summary>
+  ///   <para>Текстовое содержимое произведения</para>
+  /// </summary>
+  [DataMember(Name = nameof(Contents))]
+  [Description("Текстовое содержимое произведения")]
+  public virtual string? Contents { get; set; }
 
-    /// <summary>
-    ///   <para>Наименование произведения</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentTitle)]
-    [Column(Schema.ColumnNameTitle)]
-    [NotNull]
-    [Indexed(Name = "idx__book__title")]
-    public virtual string Title { get; set; }
+  /// <summary>
+  ///   <para>Ключевые слова, описывающие содержимое произведения</para>
+  /// </summary>
+  [DataMember(Name = nameof(Tags))]
+  [Description("Ключевые слова, описывающие содержимое произведения")]
+  public virtual ISet<Tag> Tags { get; set; } = new HashSet<Tag>();
 
-    public virtual int CompareTo(Book other)
-    {
-      return this.Title.CompareTo(other.Title);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="Book"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="Book"/> to compare with this instance.</param>
+  public virtual int CompareTo(Book? other) => string.Compare(Title, other?.Title, StringComparison.InvariantCultureIgnoreCase);
 
-    public virtual bool Equals(Book other)
-    {
-      return this.Equality(other, it => it.Isbn);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="Book"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(Book? other) => this.Equality(other, nameof(Isbn));
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Book);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as Book);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.Isbn);
-    }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(Isbn));
 
-    public override string ToString()
-    {
-      return this.Title?.Trim() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "book";
-      public const string TableComment = "Литературные произведения";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время добавления литературного произведения";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего обновления литературного произведения";
-
-      public const string ColumnNameAnnotation = "annotation";
-      public const string ColumnCommentAnnotation = "Аннотация к произведению";
-
-      public const string ColumnNameAuthor = "author";
-      public const string ColumnCommentAuthor = "Автор произведения";
-
-      public const string ColumnNameContents = "contents";
-      public const string ColumnCommentContents = "Текстовое содержимое произведения";
-
-      public const string ColumnNameCover = "cover_id";
-      public const string ColumnCommentCover = "Изображение для обложки";
-
-      public const string ColumnNameIsbn = "isbn";
-      public const string ColumnCommentIsbn = "Уникальный ISBN идентификатор";
-
-      public const string ColumnNameLanguage = "language";
-      public const string ColumnCommentLanguage = "Национальный язык написания";
-
-      public const string ColumnNameNotes = "notes";
-      public const string ColumnCommentNotes = "Примечания к произведению";
-
-      public const string ColumnNamePublishDate = "publish_date";
-      public const string ColumnCommentPublishDate = "Дата публикации";
-
-      public const string ColumnNamePublisher = "publisher";
-      public const string ColumnCommentPublisher = "Наименование издательства-публикатора";
-
-      public const string ColumnNameTags = "tags";
-      public const string ColumnCommentTags = "Ключевые слова, описывающие содержимое произведения";
-
-      public const string ColumnNameTitle = "title";
-      public const string ColumnCommentTitle = "Наименование произведения";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Title ?? string.Empty;
 }

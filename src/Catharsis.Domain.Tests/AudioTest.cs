@@ -1,40 +1,92 @@
-﻿using System;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="Audio"/>.</para>
+/// </summary>
+public sealed class AudioTest : EntityTest<Audio>
 {
-  public sealed class AudioTest : EntityTest<Audio>
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Audio.Bitrate"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Bitrate_Property()
   {
-    [Fact]
-    public void constructors()
-    {
-      var fixture = new Audio();
-      Assert.Null(fixture.Id);
-      Assert.True(fixture.CreatedOn <= DateTime.UtcNow);
-      Assert.Null(fixture.UpdatedOn);
-      Assert.Null(fixture.Version);
-      Assert.Null(fixture.Bitrate);
-      Assert.Null(fixture.File);
-    }
+    new Audio { Bitrate = short.MaxValue }.Bitrate.Should().Be(short.MaxValue);
+  }
 
-    [Fact]
-    public void compare_to()
-    {
-      this.test_compare_to("CreatedOn", DateTime.MinValue, DateTime.MaxValue);
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Audio.File"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void File_Property()
+  {
+    var file = new StorageFile();
+    new Audio { File = file }.File.Should().BeSameAs(file);
+  }
 
-    [Fact]
-    public void equals_and_hash_code()
-    {
-      this.test_equals_and_hash_code("File", new StorageFile { Name = "first" }, new StorageFile { Name = "second" });
-      this.test_equals_and_hash_code("Uri", new Uri("schema://first"), new Uri("schema://second"));
-    }
+  /// <summary>
+  ///   <para>Performs testing of class constructor(s).</para>
+  /// </summary>
+  /// <seealso cref="Audio()"/>
+  [Fact]
+  public void Constructors()
+  {
+    var audio = new Audio();
 
-    [Fact]
-    public void to_string()
-    {
-      Assert.Empty(new Audio().ToString());
-      Assert.Equal("schema://uri/", new Audio { Uri = new Uri("schema://uri") }.ToString());
-    }
+    audio.Id.Should().BeNull();
+    audio.Uuid.Should().NotBeNull();
+    audio.Version.Should().BeNull();
+    audio.CreatedOn.Should().BeOnOrBefore(DateTimeOffset.UtcNow);
+    audio.UpdatedOn.Should().BeNull();
+
+    audio.Bitrate.Should().BeNull();
+    audio.File.Should().BeNull();
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Audio.CompareTo(Audio)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void CompareTo_Method()
+  {
+    TestCompareTo(nameof(Audio.CreatedOn), DateTimeOffset.MinValue, DateTimeOffset.MaxValue);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
+  ///     <item><description><see cref="Audio.Equals(Audio)"/></description></item>
+  ///     <item><description><see cref="Audio.Equals(object)"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void Equals_Methods()
+  {
+    TestEquality(nameof(Audio.File), new StorageFile { Name = "first" }, new StorageFile { Name = "second" });
+    TestEquality(nameof(Audio.Uri), "schema://first".ToUri(), "schema://second".ToUri());
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Audio.GetHashCode()"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void GetHashCode_Method()
+  {
+    TestHashCode(nameof(Audio.File), new StorageFile { Name = "first" }, new StorageFile { Name = "second" });
+    TestHashCode(nameof(Audio.Uri), "schema://first".ToUri(), "schema://second".ToUri());
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Audio.ToString()"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ToString_Method()
+  {
+    new Audio().ToString().Should().BeEmpty();
+    new Audio { Uri = "schema://uri".ToUri() }.ToString().Should().Be("schema://uri/");
   }
 }

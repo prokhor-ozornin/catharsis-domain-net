@@ -1,50 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="WebPageExtensions"/>.</para>
+/// </summary>
+public sealed class WebPageExtensionsTest
 {
-  public sealed class WebPageExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WebPageExtensions.Locale(IQueryable{WebPage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Locale_Queryable_Method()
   {
-    [Fact]
-    public void locale_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<WebPage>)null).Locale("locale"));
-      Assert.Throws<ArgumentNullException>(() => new WebPage[] { }.AsQueryable().Locale(null));
-      Assert.Throws<ArgumentException>(() => new WebPage[] { }.AsQueryable().Locale(string.Empty));
+    AssertionExtensions.Should(() => ((IQueryable<WebPage>) null!).Locale("locale")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebPage>().AsQueryable().Locale(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebPage>().AsQueryable().Locale(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new WebPage { Locale = "First" }, new WebPage { Locale = "Second" } }.AsQueryable().Locale("first").Count());
-    }
+    new[] {new WebPage {Locale = "First"}, new WebPage {Locale = "Second"}}.AsQueryable().Locale("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void locale_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<WebPage>)null).Locale("locale"));
-      Assert.Throws<ArgumentNullException>(() => new WebPage[] { }.Locale(null));
-      Assert.Throws<ArgumentException>(() => new WebPage[] { }.Locale(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WebPageExtensions.Locale(IEnumerable{WebPage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Locale_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<WebPage>) null!).Locale("locale")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebPage>().Locale(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebPage>().Locale(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new WebPage(), new WebPage { Locale = "First" }, new WebPage { Locale = "Second" } }.Locale("first"));
-    }
+    new[] {null, new WebPage(), new WebPage {Locale = "First"}, new WebPage {Locale = "Second"}}.Locale("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<WebPage>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new WebPage[] { }.AsQueryable().Name(null));
-      Assert.Throws<ArgumentException>(() => new WebPage[] { }.AsQueryable().Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WebPageExtensions.Name(IQueryable{WebPage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<WebPage>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebPage>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebPage>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new WebPage { Name = "First" }, new WebPage { Name = "Second" } }.AsQueryable().Name("f").Count());
-    }
+    new[] {new WebPage {Name = "First"}, new WebPage {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<WebPage>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new WebPage[] { }.Name(null));
-      Assert.Throws<ArgumentException>(() => new WebPage[] { }.Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WebPageExtensions.Name(IEnumerable{WebPage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<WebPage>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebPage>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebPage>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new WebPage(), new WebPage { Name = "First" }, new WebPage { Name = "Second" } }.Name("f"));
-    }
+    new[] {null, new WebPage(), new WebPage {Name = "First"}, new WebPage {Name = "Second"}}.Name("f").Should().ContainSingle();
   }
 }

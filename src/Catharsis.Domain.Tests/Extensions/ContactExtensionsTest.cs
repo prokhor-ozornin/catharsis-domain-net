@@ -1,130 +1,166 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="ContactExtensions"/>.</para>
+/// </summary>
+public sealed class ContactExtensionsTest
 {
-  public sealed class ContactExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Email(IQueryable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Email_Queryable_Method()
   {
-    [Fact]
-    public void email_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Contact>)null).Email("prokhor.ozornin@yandex.ru"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.AsQueryable().Email(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.AsQueryable().Email(string.Empty));
+    AssertionExtensions.Should(() => ((IQueryable<Contact>) null!).Email("prokhor.ozornin@yandex.ru")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Email(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Email(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Contact { Emails = new HashSet<string> { "prokhor.ozornin@yandex.ru" } }, new Contact { Emails = new HashSet<string> { "prokhor.ozornin@gmail.com" } } }.AsQueryable().Email("prokhor.ozornin@yandex.ru").Count());
-    }
+    new[] {new Contact {Emails = new HashSet<string> {"prokhor.ozornin@yandex.ru"}}, new Contact {Emails = new HashSet<string> {"prokhor.ozornin@gmail.com"}}}.AsQueryable().Email("prokhor.ozornin@yandex.ru").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void email_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Contact>)null).Email("prokhor.ozornin@yandex.ru"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Email(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.Email(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Email(IEnumerable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Email_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Contact>) null!).Email("prokhor.ozornin@yandex.ru")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Email(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Email(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Contact(), new Contact { Emails = new HashSet<string> { "prokhor.ozornin@yandex.ru" } }, new Contact { Emails = new HashSet<string> { "prokhor.ozornin@gmail.com" } } }.Email("prokhor.ozornin@yandex.ru"));
-    }
+    new[] {null, new Contact(), new Contact {Emails = new HashSet<string> {"prokhor.ozornin@yandex.ru"}}, new Contact {Emails = new HashSet<string> {"prokhor.ozornin@gmail.com"}}}.Email("prokhor.ozornin@yandex.ru").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void fax_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Contact>)null).Fax("fax"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.AsQueryable().Fax(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.AsQueryable().Fax(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Fax(IQueryable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Fax_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Contact>) null!).Fax("fax")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Fax(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Fax(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Contact { Fax = "First" }, new Contact { Fax = "Second" } }.AsQueryable().Fax("first").Count());
-    }
+    new[] {new Contact {Fax = "First"}, new Contact {Fax = "Second"}}.AsQueryable().Fax("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void fax_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Contact>)null).Fax("level"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Fax(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.Fax(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Fax(IEnumerable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Fax_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Contact>) null!).Fax("level")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Fax(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Fax(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Contact(), new Contact { Fax = "First" }, new Contact { Fax = "Second" } }.Fax("first"));
-    }
+    new[] {null, new Contact(), new Contact {Fax = "First"}, new Contact {Fax = "Second"}}.Fax("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void icq_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Contact>)null).Icq("icq"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.AsQueryable().Icq(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.AsQueryable().Icq(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Icq(IQueryable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Icq_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Contact>) null!).Icq("icq")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Icq(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Icq(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Contact { Icq = "First" }, new Contact { Icq = "Second" } }.AsQueryable().Icq("first").Count());
-    }
+    new[] {new Contact {Icq = "First"}, new Contact {Icq = "Second"}}.AsQueryable().Icq("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void icq_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Contact>)null).Icq("level"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Icq(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.Icq(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Icq(IEnumerable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Icq_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Contact>) null!).Icq("level")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Icq(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Icq(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Contact(), new Contact { Icq = "First" }, new Contact { Icq = "Second" } }.Icq("first"));
-    }
+    new[] {null, new Contact(), new Contact {Icq = "First"}, new Contact {Icq = "Second"}}.Icq("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void jabber_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Contact>)null).Jabber("icq"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.AsQueryable().Jabber(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.AsQueryable().Jabber(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Jabber(IQueryable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Jabber_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Contact>) null!).Jabber("icq")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Jabber(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Jabber(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Contact { Jabber = "First" }, new Contact { Jabber = "Second" } }.AsQueryable().Jabber("first").Count());
-    }
+    new[] {new Contact {Jabber = "First"}, new Contact {Jabber = "Second"}}.AsQueryable().Jabber("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void jabber_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Contact>)null).Jabber("level"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Jabber(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.Jabber(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Jabber(IEnumerable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Jabber_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Contact>) null!).Jabber("level")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Jabber(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Jabber(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Contact(), new Contact { Jabber = "First" }, new Contact { Jabber = "Second" } }.Jabber("first"));
-    }
+    new[] {null, new Contact(), new Contact {Jabber = "First"}, new Contact {Jabber = "Second"}}.Jabber("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void phone_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Contact>)null).Phone("+79650000000"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.AsQueryable().Phone(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.AsQueryable().Phone(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Phone(IQueryable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Phone_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Contact>) null!).Phone("+79650000000")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Phone(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Phone(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Contact { Phones = new HashSet<string> { "+79650000000" } }, new Contact { Phones = new HashSet<string> { "+79120000000" } } }.AsQueryable().Phone("+79650000000").Count());
-    }
+    new[] {new Contact {Phones = new HashSet<string> {"+79650000000"}}, new Contact {Phones = new HashSet<string> {"+79120000000"}}}.AsQueryable().Phone("+79650000000").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void phone_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Contact>)null).Phone("+79650000000"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Phone(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.Phone(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Phone(IEnumerable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Phone_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Contact>) null!).Phone("+79650000000")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Phone(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Phone(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Contact(), new Contact { Phones = new HashSet<string> { "+79650000000" } }, new Contact { Phones = new HashSet<string> { "+79120000000" } } }.Phone("+79650000000"));
-    }
+    new[] {null, new Contact(), new Contact {Phones = new HashSet<string> {"+79650000000"}}, new Contact {Phones = new HashSet<string> {"+79120000000"}}}.Phone("+79650000000").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void skype_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Contact>)null).Skype("skype"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.AsQueryable().Skype(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.AsQueryable().Skype(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Skype(IQueryable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Skype_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Contact>) null!).Skype("skype")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Skype(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().AsQueryable().Skype(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Contact { Skype = "First" }, new Contact { Skype = "Second" } }.AsQueryable().Skype("first").Count());
-    }
+    new[] {new Contact {Skype = "First"}, new Contact {Skype = "Second"}}.AsQueryable().Skype("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void skype_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Contact>)null).Skype("level"));
-      Assert.Throws<ArgumentNullException>(() => new Contact[] { }.Skype(null));
-      Assert.Throws<ArgumentException>(() => new Contact[] { }.Skype(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="ContactExtensions.Skype(IEnumerable{Contact}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Skype_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Contact>) null!).Skype("level")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Skype(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Contact>().Skype(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Contact(), new Contact { Skype = "First" }, new Contact { Skype = "Second" } }.Skype("first"));
-    }
+    new[] {null, new Contact(), new Contact {Skype = "First"}, new Contact {Skype = "Second"}}.Skype("first").Should().ContainSingle();
   }
 }

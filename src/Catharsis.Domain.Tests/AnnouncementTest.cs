@@ -1,38 +1,99 @@
-﻿using System;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="Announcement"/>.</para>
+/// </summary>
+public sealed class AnnouncementTest : EntityTest<Announcement>
 {
-  public sealed class AnnouncementTest : EntityTest<Announcement>
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Announcement.Name"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Property()
   {
-    [Fact]
-    public void constructors()
-    {
-      var fixture = new Announcement();
-      Assert.Null(fixture.Id);
-      Assert.True(fixture.CreatedOn <= DateTime.UtcNow);
-      Assert.Null(fixture.UpdatedOn);
-      Assert.Null(fixture.Version);
-      Assert.Null(fixture.Image);
-      Assert.Null(fixture.Name);
-      Assert.Null(fixture.Price);
-      Assert.Null(fixture.PriceCurrency);
-      Assert.Null(fixture.Text);
-    }
+    new Announcement { Name = Guid.Empty.ToString() }.Name.Should().Be(Guid.Empty.ToString());
+  }
 
-    [Fact]
-    public void compare_to()
-    {
-      this.test_compare_to("CreatedOn", DateTime.MinValue, DateTime.MaxValue);
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Announcement.Text"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Text_Property()
+  {
+    new Announcement { Text = Guid.Empty.ToString() }.Text.Should().Be(Guid.Empty.ToString());
+  }
 
-    [Fact]
-    public void to_string()
-    {
-      Assert.Empty(new Announcement().ToString());
-      Assert.Empty(new Announcement { Name = string.Empty }.ToString());
-      Assert.Empty(new Announcement { Name = " " }.ToString());
-      Assert.Equal("name", new Announcement { Name = " name " }.ToString());
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Announcement.Image"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Image_Property()
+  {
+    var image = new Image();
+    new Announcement { Image = image }.Image.Should().BeSameAs(image);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Announcement.Price"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Price_Property()
+  {
+    new Announcement { Price = decimal.MaxValue }.Price.Should().Be(decimal.MaxValue);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Announcement.PriceCurrency"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void PriceCurrency_Property()
+  {
+    new Announcement { PriceCurrency = Guid.Empty.ToString() }.PriceCurrency.Should().Be(Guid.Empty.ToString());
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of class constructor(s).</para>
+  /// </summary>
+  /// <seealso cref="Announcement()"/>
+  [Fact]
+  public void Constructors()
+  {
+    var announcement = new Announcement();
+
+    announcement.Id.Should().BeNull();
+    announcement.Uuid.Should().NotBeNull();
+    announcement.Version.Should().BeNull();
+    announcement.CreatedOn.Should().BeOnOrBefore(DateTimeOffset.UtcNow);
+    announcement.UpdatedOn.Should().BeNull();
+    
+    announcement.Name.Should().BeNull();
+    announcement.Text.Should().BeNull();
+    announcement.Image.Should().BeNull();
+    announcement.Price.Should().BeNull();
+    announcement.PriceCurrency.Should().BeNull();
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Announcement.CompareTo(Announcement)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void CompareTo_Method()
+  {
+    TestCompareTo(nameof(Announcement.CreatedOn), DateTimeOffset.MinValue, DateTimeOffset.MaxValue);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Announcement.ToString()"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ToString_Method()
+  {
+    new Announcement().ToString().Should().BeEmpty();
+    new Announcement { Name = string.Empty }.ToString().Should().BeEmpty();
+    new Announcement { Name = " " }.ToString().Should().BeEmpty();
+    new Announcement { Name = Guid.Empty.ToString() }.ToString().Should().Be(Guid.Empty.ToString());
   }
 }

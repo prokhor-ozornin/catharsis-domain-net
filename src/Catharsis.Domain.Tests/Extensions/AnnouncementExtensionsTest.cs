@@ -1,62 +1,74 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="AnnouncementExtensions"/>.</para>
+/// </summary>
+public sealed class AnnouncementExtensionsTest
 {
-  public sealed class AnnouncementExtensionsTest
+  /// <summary>
+  ///   <para>Performs testing of <see cref="AnnouncementExtensions.Name(IQueryable{Announcement}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Queryable_Method()
   {
-    [Fact]
-    public void name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Announcement>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new Announcement[] { }.AsQueryable().Name(null));
-      Assert.Throws<ArgumentException>(() => new Announcement[] { }.AsQueryable().Name(string.Empty));
+    AssertionExtensions.Should(() => ((IQueryable<Announcement>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Announcement>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Announcement>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Announcement { Name = "First" }, new Announcement { Name = "Second" } }.AsQueryable().Name("f").Count());
-    }
+    new[] {new Announcement {Name = "First"}, new Announcement {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Announcement>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new Announcement[] { }.Name(null));
-      Assert.Throws<ArgumentException>(() => new Announcement[] { }.Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="AnnouncementExtensions.Name(IEnumerable{Announcement}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Announcement>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Announcement>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Announcement>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Announcement(), new Announcement { Name = "First" }, new Announcement { Name = "Second" } }.Name("f"));
-    }
+    new[] {null, new Announcement(), new Announcement {Name = "First"}, new Announcement {Name = "Second"}}.Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void price_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Announcement>) null).Price());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="AnnouncementExtensions.Price(IQueryable{Announcement}, decimal?, decimal?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Price_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Announcement>) null!).Price()).ThrowExactly<ArgumentNullException>();
 
-      var announcements = new[] { new Announcement { Price = 1 }, new Announcement { Price = 2 } }.AsQueryable();
-      Assert.Equal(2, announcements.Price().Count());
-      Assert.Equal(2, announcements.Price(0).Count());
-      Assert.Empty(announcements.Price(3));
-      Assert.Equal(1, announcements.Price(0, 1).Count());
-      Assert.Equal(2, announcements.Price(1, 2).Count());
-      Assert.Empty(announcements.Price(to: 0));
-      Assert.Equal(1, announcements.Price(to: 1).Count());
-      Assert.Equal(2, announcements.Price(to: 3).Count());
-    }
+    var announcements = new[] {new Announcement {Price = 1}, new Announcement {Price = 2}}.AsQueryable();
+    announcements.Price().Should().HaveCount(2);
+    announcements.Price(0).Should().HaveCount(2);
+    announcements.Price(3).Should().BeEmpty();
+    announcements.Price(0, 1).Should().ContainSingle();
+    announcements.Price(1, 2).Should().HaveCount(2);
+    announcements.Price(to: 0).Should().BeEmpty();
+    announcements.Price(to: 1).Should().ContainSingle();
+    announcements.Price(to: 3).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void price_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Announcement>)null).Price());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="AnnouncementExtensions.Price(IEnumerable{Announcement}, decimal?, decimal?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Price_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Announcement>) null!).Price()).ThrowExactly<ArgumentNullException>();
 
-      var announcements = new[] { null, new Announcement(), new Announcement { Price = 1 }, new Announcement { Price = 2 } };
-      Assert.Equal(3, announcements.Price().Count());
-      Assert.Equal(2, announcements.Price(0).Count());
-      Assert.Empty(announcements.Price(3));
-      Assert.Single(announcements.Price(0, 1));
-      Assert.Equal(2, announcements.Price(1, 2).Count());
-      Assert.Empty(announcements.Price(to: 0));
-      Assert.Single(announcements.Price(to: 1));
-      Assert.Equal(2, announcements.Price(to: 3).Count());
-    }
+    var announcements = new[] {null, new Announcement(), new Announcement {Price = 1}, new Announcement {Price = 2}};
+    announcements.Price().Should().HaveCount(3);
+    announcements.Price(0).Should().HaveCount(2);
+    announcements.Price(3).Should().BeEmpty();
+    announcements.Price(0, 1).Should().ContainSingle();
+    announcements.Price(1, 2).Should().HaveCount(2);
+    announcements.Price(to: 0).Should().BeEmpty();
+    announcements.Price(to: 1).Should().ContainSingle();
+    announcements.Price(to: 3).Should().HaveCount(2);
   }
 }

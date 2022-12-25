@@ -1,138 +1,108 @@
 ﻿using Catharsis.Commons;
-using SQLite.Net.Attributes;
-using System;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 using System.Text;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Файл</para>
+/// </summary>
+[Description("Файл")]
+[Serializable]
+[DataContract(Name = nameof(StorageFile))]
+public class StorageFile : Entity, IComparable<StorageFile>, IEquatable<StorageFile>
 {
   /// <summary>
-  ///   <para>Файл</para>
+  ///   <para>Наименование файла</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class StorageFile : Entity, IComparable<StorageFile>, IEquatable<StorageFile>
+  [DataMember(Name = nameof(Name))]
+  [Description("Наименование файла")]
+  public virtual string? Name { get; set; }
+
+  /// <summary>
+  ///   <para>Тип файлового хранилища</para>
+  /// </summary>
+  [DataMember(Name = nameof(Storage))]
+  [Description("Тип файлового хранилища")]
+  public virtual string? Storage { get; set; }
+
+  /// <summary>
+  ///   <para>MIME тип содержимого файла</para>
+  /// </summary>
+  [DataMember(Name = nameof(ContentType))]
+  [Description("MIME тип содержимого файла")]
+  public virtual string? ContentType { get; set; }
+
+  /// <summary>
+  ///   <para>Размер файла в байтах</para>
+  /// </summary>
+  [DataMember(Name = nameof(Size))]
+  [Description("Размер файла в байтах")]
+  public virtual long? Size { get; set; }
+
+  /// <summary>
+  ///   <para>Путь к файлу в хранилище</para>
+  /// </summary>
+  [DataMember(Name = nameof(Path))]
+  [Description("Путь к файлу в хранилище")]
+  public virtual string? Path { get; set; }
+
+  public virtual string FullPath
   {
-    /// <summary>
-    ///   <para>MIME тип содержимого файла</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentContentType)]
-    [Column(Schema.ColumnNameContentType)]
-    [NotNull]
-    [Indexed(Name = "idx__file__content_type")]
-    public virtual string ContentType { get; set; }
-
-    /// <summary>
-    ///   <para>Наименование файла</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentName)]
-    [Column(Schema.ColumnNameName)]
-    [NotNull]
-    public virtual string Name { get; set; }
-
-    /// <summary>
-    ///   <para>Путь к файлу в хранилище</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentPath)]
-    [Column(Schema.ColumnNamePath)]
-    [MaxLength(1000)]
-    public virtual string Path { get; set; }
-
-    /// <summary>
-    ///   <para>Размер файла в байтах</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentSize)]
-    [Column(Schema.ColumnNameSize)]
-    [NotNull]
-    [Indexed(Name = "idx__file__size")]
-    public virtual long? Size { get; set; }
-
-    /// <summary>
-    ///   <para>Тип файлового хранилища</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentStorage)]
-    [Column(Schema.ColumnNameStorage)]
-    [Indexed(Name = "idx__file__storage")]
-    public virtual string Storage { get; set; }
-
-    public virtual string FullPath
+    get
     {
-      get
+      var fullPath = new StringBuilder();
+
+      if (!Path.IsEmpty())
       {
-        var fullPath = new StringBuilder();
+        fullPath.Append(Path.Trim());
 
-        if (!this.Path.IsEmpty())
+        if (!Path.EndsWith("/") && !Path.EndsWith("\\"))
         {
-          fullPath.Append(this.Path.Trim());
-          if (!this.Path.EndsWith("/") && !this.Path.EndsWith("\\"))
-          {
-            fullPath.Append("/");
-          }
+          fullPath.Append("/");
         }
-
-        if (this.Name != null && !this.Name.Trim().IsEmpty())
-        {
-          fullPath.Append(this.Name.Trim());
-        }
-
-        return fullPath.ToString();
       }
-    }
 
-    public virtual int CompareTo(StorageFile other)
-    {
-      return this.CreatedOn.Value.CompareTo(other.CreatedOn.Value);
-    }
+      if (Name != null && !Name.Trim().IsEmpty())
+      {
+        fullPath.Append(Name.Trim());
+      }
 
-    public virtual bool Equals(StorageFile other)
-    {
-      return this.Equality(other, it => it.Name, it => it.Path, it => it.Storage);
-    }
-
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as StorageFile);
-    }
-
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.Name, it => it.Path, it => it.Storage);
-    }
-
-    public override string ToString()
-    {
-      return this.FullPath;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "file";
-      public const string TableComment = "Файлы в хранилище";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время добавления файла";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения файла";
-
-      public const string ColumnNameContentType = "content_type";
-      public const string ColumnCommentContentType = "MIME тип содержимого файла";
-
-      public const string ColumnNameName = "name";
-      public const string ColumnCommentName = "Наименование файла";
-
-      public const string ColumnNamePath = "path";
-      public const string ColumnCommentPath = "Путь к файлу в хранилище";
-
-      public const string ColumnNameSize = "size";
-      public const string ColumnCommentSize = "Размер файла в байтах";
-
-      public const string ColumnNameStorage = "storage";
-      public const string ColumnCommentStorage = "Тип файлового хранилища";
+      return fullPath.ToString();
     }
   }
+
+  /// <summary>
+  ///   <para>Compares the current <see cref="StorageFile"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="StorageFile"/> to compare with this instance.</param>
+  public virtual int CompareTo(StorageFile? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
+
+  /// <summary>
+  ///   <para>Determines whether two <see cref="StorageFile"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(StorageFile? other) => this.Equality(other, nameof(Name), nameof(Path), nameof(Storage));
+
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as StorageFile);
+
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(Name), nameof(Path), nameof(Storage));
+
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => FullPath;
 }

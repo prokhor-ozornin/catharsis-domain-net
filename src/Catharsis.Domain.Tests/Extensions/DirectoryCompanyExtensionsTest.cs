@@ -1,30 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="DirectoryCompanyExtensions"/>.</para>
+/// </summary>
+public sealed class DirectoryCompanyExtensionsTest
 {
-  /*public sealed class DirectoryCompanyExtensionsTest
+  /// <summary>
+  ///   <para>Performs testing of <see cref="DirectoryCompanyExtensions.Name(IQueryable{DirectoryCompany}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Queryable_Method()
   {
-    [Fact]
-    public void name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<DirectoryCompany>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new DirectoryCompany[] { }.AsQueryable().Name(null));
-      Assert.Throws<ArgumentException>(() => new DirectoryCompany[] { }.AsQueryable().Name(string.Empty));
+    AssertionExtensions.Should(() => ((IQueryable<DirectoryCompany>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<DirectoryCompany>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<DirectoryCompany>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new DirectoryCompany { Name = "First" }, new DirectoryCompany { Name = "Second" } }.AsQueryable().Name("f").Count());
-    }
+    new[] {new DirectoryCompany {Name = "First"}, new DirectoryCompany {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<DirectoryCompany>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new DirectoryCompany[] { }.Name(null));
-      Assert.Throws<ArgumentException>(() => new DirectoryCompany[] { }.Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="DirectoryCompanyExtensions.Name(IEnumerable{DirectoryCompany}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<DirectoryCompany>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<DirectoryCompany>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<DirectoryCompany>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { null, new DirectoryCompany(), new DirectoryCompany { Name = "First" }, new DirectoryCompany { Name = "Second" } }.Name("f").Count());
-    }
-  }*/
+    new[] {null, new DirectoryCompany(), new DirectoryCompany {Name = "First"}, new DirectoryCompany {Name = "Second"}}.Name("f").Should().ContainSingle();
+  }
 }

@@ -1,94 +1,112 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="PersonExtensions"/>.</para>
+/// </summary>
+public sealed class PersonExtensionsTest
 {
-  public sealed class PersonExtensionsTest
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PersonExtensions.BirthDate(IQueryable{Person}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void BirthDate_Queryable_Method()
   {
-    [Fact]
-    public void birth_date_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Person>)null).BirthDate());
+    AssertionExtensions.Should(() => ((IQueryable<Person>) null!).BirthDate()).ThrowExactly<ArgumentNullException>();
 
-      var people = new[] { new Person { BirthDate = new DateTime(2000, 1, 1) }, new Person { BirthDate = new DateTime(2000, 1, 2) } }.AsQueryable();
-      Assert.Equal(2, people.BirthDate().Count());
-      Assert.Equal(2, people.BirthDate(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(people.BirthDate(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, people.BirthDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, people.BirthDate(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(people.BirthDate(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, people.BirthDate(to: new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, people.BirthDate(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var people = new[] {new Person {BirthDate = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Person {BirthDate = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}}.AsQueryable();
+    people.BirthDate().Should().HaveCount(2);
+    people.BirthDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    people.BirthDate(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    people.BirthDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    people.BirthDate(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    people.BirthDate(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    people.BirthDate(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    people.BirthDate(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void birth_date_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Person>)null).BirthDate());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PersonExtensions.BirthDate(IEnumerable{Person}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void BirthDate_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Person>) null!).BirthDate()).ThrowExactly<ArgumentNullException>();
 
-      var people = new[] { null, new Person(), new Person { BirthDate = new DateTime(2000, 1, 1) }, new Person { BirthDate = new DateTime(2000, 1, 2) } };
-      Assert.Equal(3, people.BirthDate().Count());
-      Assert.Equal(2, people.BirthDate(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(people.BirthDate(new DateTime(2000, 1, 3)));
-      Assert.Single(people.BirthDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
-      Assert.Equal(2, people.BirthDate(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(people.BirthDate(to: new DateTime(1999, 12, 31)));
-      Assert.Single(people.BirthDate(to: new DateTime(2000, 1, 1)));
-      Assert.Equal(2, people.BirthDate(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var people = new[] {null, new Person(), new Person {BirthDate = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Person {BirthDate = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}};
+    people.BirthDate().Should().HaveCount(3);
+    people.BirthDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    people.BirthDate(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    people.BirthDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    people.BirthDate(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    people.BirthDate(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    people.BirthDate(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    people.BirthDate(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void death_date_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Person>)null).DeathDate());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PersonExtensions.DeathDate(IQueryable{Person}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void DeathDate_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Person>) null!).DeathDate()).ThrowExactly<ArgumentNullException>();
 
-      var people = new[] { new Person { DeathDate = new DateTime(2000, 1, 1) }, new Person { DeathDate = new DateTime(2000, 1, 2) } }.AsQueryable();
-      Assert.Equal(2, people.DeathDate().Count());
-      Assert.Equal(2, people.DeathDate(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(people.DeathDate(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, people.DeathDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, people.DeathDate(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(people.DeathDate(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, people.DeathDate(to: new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, people.DeathDate(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var people = new[] {new Person {DeathDate = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Person {DeathDate = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}}.AsQueryable();
+    people.DeathDate().Should().HaveCount(2);
+    people.DeathDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    people.DeathDate(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    people.DeathDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    people.DeathDate(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    people.DeathDate(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    people.DeathDate(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    people.DeathDate(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void death_date_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Person>)null).DeathDate());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PersonExtensions.DeathDate(IQueryable{Person}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void DeathDate_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Person>) null!).DeathDate()).ThrowExactly<ArgumentNullException>();
 
-      var people = new[] { null, new Person(), new Person { DeathDate = new DateTime(2000, 1, 1) }, new Person { DeathDate = new DateTime(2000, 1, 2) } };
-      Assert.Equal(3, people.DeathDate().Count());
-      Assert.Equal(2, people.DeathDate(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(people.DeathDate(new DateTime(2000, 1, 3)));
-      Assert.Single(people.DeathDate(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
-      Assert.Equal(2, people.DeathDate(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(people.DeathDate(to: new DateTime(1999, 12, 31)));
-      Assert.Single(people.DeathDate(to: new DateTime(2000, 1, 1)));
-      Assert.Equal(2, people.DeathDate(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var people = new[] {null, new Person(), new Person {DeathDate = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Person {DeathDate = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}};
+    people.DeathDate().Should().HaveCount(3);
+    people.DeathDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    people.DeathDate(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    people.DeathDate(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    people.DeathDate(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    people.DeathDate(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    people.DeathDate(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    people.DeathDate(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Person>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new Person[] { }.AsQueryable().Name(null));
-      Assert.Throws<ArgumentException>(() => new Person[] { }.AsQueryable().Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PersonExtensions.Name(IQueryable{Person}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Person>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Person>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Person>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Person { FirstName = "Prokhor", LastName = "Ozornin", MiddleName = "Nikolaevich" }, new Person { FirstName = "Ilya", LastName = "Obabkov", MiddleName = "Nikolaevich" } }.AsQueryable().Name("prokhor").Count());
-    }
+    new[] {new Person {FirstName = "Prokhor", LastName = "Ozornin", MiddleName = "Nikolaevich"}, new Person {FirstName = "Ilya", LastName = "Obabkov", MiddleName = "Nikolaevich"}}.AsQueryable().Name("prokhor").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Person>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new Person[] { }.Name(null));
-      Assert.Throws<ArgumentException>(() => new Person[] { }.Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PersonExtensions.Name(IEnumerable{Person}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Person>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Person>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Person>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Person(), new Person { FirstName = "First" }, new Person { FirstName = "Second" } }.Name("first"));
-    }
+    new[] {null, new Person(), new Person {FirstName = "First"}, new Person {FirstName = "Second"}}.Name("first").Should().ContainSingle();
   }
 }

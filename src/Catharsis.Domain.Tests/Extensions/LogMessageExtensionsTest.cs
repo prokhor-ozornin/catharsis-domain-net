@@ -1,70 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="LogMessageExtensions"/>.</para>
+/// </summary>
+public sealed class LogMessageExtensionsTest
 {
-  public sealed class LogMessageExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LogMessageExtensions.Level(IQueryable{LogMessage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Level_Queryable_Method()
   {
-    [Fact]
-    public void level_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<LogMessage>)null).Level("level"));
-      Assert.Throws<ArgumentNullException>(() => new LogMessage[] { }.AsQueryable().Level(null));
-      Assert.Throws<ArgumentException>(() => new LogMessage[] { }.AsQueryable().Level(string.Empty));
+    AssertionExtensions.Should(() => ((IQueryable<LogMessage>) null!).Level("level")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().AsQueryable().Level(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().AsQueryable().Level(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new LogMessage { Level = "First" }, new LogMessage { Level = "Second" } }.AsQueryable().Level("first").Count());
-    }
+    new[] {new LogMessage {Level = "First"}, new LogMessage {Level = "Second"}}.AsQueryable().Level("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void level_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<LogMessage>)null).Level("level"));
-      Assert.Throws<ArgumentNullException>(() => new LogMessage[] { }.Level(null));
-      Assert.Throws<ArgumentException>(() => new LogMessage[] { }.Level(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LogMessageExtensions.Level(IEnumerable{LogMessage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Level_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<LogMessage>) null!).Level("level")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().Level(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().Level(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new LogMessage(), new LogMessage { Level = "First" }, new LogMessage { Level = "Second" } }.Level("first"));
-    }
+    new[] {null, new LogMessage(), new LogMessage {Level = "First"}, new LogMessage {Level = "Second"}}.Level("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void logger_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<LogMessage>)null).Logger("logger"));
-      Assert.Throws<ArgumentNullException>(() => new LogMessage[] { }.AsQueryable().Logger(null));
-      Assert.Throws<ArgumentException>(() => new LogMessage[] { }.AsQueryable().Logger(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LogMessageExtensions.Logger(IQueryable{LogMessage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Logger_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<LogMessage>) null!).Logger("logger")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().AsQueryable().Logger(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().AsQueryable().Logger(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new LogMessage { Logger = "First" }, new LogMessage { Logger = "Second" } }.AsQueryable().Logger("first").Count());
-    }
+    new[] {new LogMessage {Logger = "First"}, new LogMessage {Logger = "Second"}}.AsQueryable().Logger("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void logger_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<LogMessage>)null).Logger("logger"));
-      Assert.Throws<ArgumentNullException>(() => new LogMessage[] { }.Logger(null));
-      Assert.Throws<ArgumentException>(() => new LogMessage[] { }.Logger(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LogMessageExtensions.Logger(IEnumerable{LogMessage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Logger_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<LogMessage>) null!).Logger("logger")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().Logger(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().Logger(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new LogMessage(), new LogMessage { Logger = "First" }, new LogMessage { Logger = "Second" } }.Logger("first"));
-    }
+    new[] {null, new LogMessage(), new LogMessage {Logger = "First"}, new LogMessage {Logger = "Second"}}.Logger("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void thread_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<LogMessage>)null).Thread("thread"));
-      Assert.Throws<ArgumentNullException>(() => new LogMessage[] { }.AsQueryable().Thread(null));
-      Assert.Throws<ArgumentException>(() => new LogMessage[] { }.AsQueryable().Thread(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LogMessageExtensions.Thread(IQueryable{LogMessage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Thread_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<LogMessage>) null!).Thread("thread")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().AsQueryable().Thread(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().AsQueryable().Thread(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new LogMessage { Thread = "First" }, new LogMessage { Thread = "Second" } }.AsQueryable().Thread("first").Count());
-    }
+    new[] {new LogMessage {Thread = "First"}, new LogMessage {Thread = "Second"}}.AsQueryable().Thread("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void thread_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<LogMessage>)null).Thread("logger"));
-      Assert.Throws<ArgumentNullException>(() => new LogMessage[] { }.Thread(null));
-      Assert.Throws<ArgumentException>(() => new LogMessage[] { }.Thread(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LogMessageExtensions.Thread(IEnumerable{LogMessage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Thread_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<LogMessage>) null!).Thread("logger")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().Thread(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<LogMessage>().Thread(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new LogMessage(), new LogMessage { Thread = "First" }, new LogMessage { Thread = "Second" } }.Thread("first"));
-    }
+    new[] {null, new LogMessage(), new LogMessage {Thread = "First"}, new LogMessage {Thread = "Second"}}.Thread("first").Should().ContainSingle();
   }
 }

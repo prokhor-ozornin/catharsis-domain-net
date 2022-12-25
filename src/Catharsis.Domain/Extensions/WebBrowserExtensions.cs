@@ -1,41 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Catharsis.Commons;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain
+/// <summary>
+///   <para>Set of extension methods for class <see cref="WebBrowser"/>.</para>
+/// </summary>
+/// <seealso cref="WebBrowser"/>
+public static class WebBrowserExtensions
 {
-  public static class WebBrowserExtensions
-  {
-    public static IQueryable<WebBrowser> Name(this IQueryable<WebBrowser> browsers, string name)
-    {
-      Assertion.NotNull(browsers);
-      Assertion.NotEmpty(name);
+  public static IQueryable<WebBrowser> Name(this IQueryable<WebBrowser> browsers, string name) => browsers.Where(browser => browser.Name != null && browser.Name.ToLower().StartsWith(name.ToLower()));
 
-      return browsers.Where(it => it.Name.ToLower().StartsWith(name.ToLower()));
-    }
+  public static IEnumerable<WebBrowser?> Name(this IEnumerable<WebBrowser?> browsers, string name) => browsers.Where(browser => browser?.Name != null && browser.Name.ToLower().StartsWith(name.ToLower()));
 
-    public static IEnumerable<WebBrowser> Name(this IEnumerable<WebBrowser> browsers, string name)
-    {
-      Assertion.NotNull(browsers);
-      Assertion.NotEmpty(name);
+  public static WebBrowser? ValueOf(this IQueryable<WebBrowser> browsers, string userAgent) => browsers.SingleOrDefault(browser => browser.UserAgent != null && browser.UserAgent.ToLower() == userAgent.ToLower());
 
-      return browsers.Where(it => it?.Name != null && it.Name.ToLower().StartsWith(name.ToLower()));
-    }
-
-    public static WebBrowser ValueOf(this IQueryable<WebBrowser> browsers, string userAgent)
-    {
-      Assertion.NotNull(browsers);
-      Assertion.NotEmpty(userAgent);
-
-      return browsers.SingleOrDefault(it => it.UserAgent.ToLower() == userAgent.ToLower());
-    }
-
-    public static WebBrowser ValueOf(this IEnumerable<WebBrowser> browsers, string userAgent)
-    {
-      Assertion.NotNull(browsers);
-      Assertion.NotEmpty(userAgent);
-
-      return browsers.SingleOrDefault(it => it?.UserAgent != null && it.UserAgent.ToLower() == userAgent.ToLower());
-    }
-  }
+  public static WebBrowser? ValueOf(this IEnumerable<WebBrowser?> browsers, string userAgent) => browsers.SingleOrDefault(browser => browser?.UserAgent != null && browser.UserAgent.ToLower() == userAgent.ToLower());
 }

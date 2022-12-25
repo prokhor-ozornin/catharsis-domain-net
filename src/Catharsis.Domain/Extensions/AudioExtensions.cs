@@ -1,23 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Catharsis.Commons;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain
+/// <summary>
+///   <para>Set of extension methods for class <see cref="Audio"/>.</para>
+/// </summary>
+/// <seealso cref="Audio"/>
+public static class AudioExtensions
 {
-  public static class AudioExtensions
-  {
-    public static IQueryable<Audio> Bitrate(this IQueryable<Audio> audios, short bitrate)
-    {
-      Assertion.NotNull(audios);
+  public static IQueryable<Audio> Bitrate(this IQueryable<Audio> audios, short? bitrate) => audios.Where(audio => audio.Bitrate == bitrate);
 
-      return audios.Where(it => it.Bitrate == bitrate);
-    }
-
-    public static IEnumerable<Audio> Bitrate(this IEnumerable<Audio> audios, short bitrate)
-    {
-      Assertion.NotNull(audios);
-
-      return audios.Where(it => it != null && it.Bitrate == bitrate);
-    }
-  }
+  public static IEnumerable<Audio?> Bitrate(this IEnumerable<Audio?> audios, short? bitrate) => audios.Where(audio => audio != null && audio.Bitrate == bitrate);
 }

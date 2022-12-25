@@ -1,62 +1,55 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using Catharsis.Commons;
-using SQLite.Net.Attributes;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Аудио</para>
+/// </summary>
+[Description("Аудио")]
+[Serializable]
+[DataContract(Name = nameof(Audio))]
+public class Audio : Media, IEquatable<Audio>
 {
   /// <summary>
-  ///   <para>Аудио</para>
+  ///   <para>Битрейт аудио дорожки</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class Audio : Media, IEquatable<Audio>
-  {
-    /// <summary>
-    ///   <para>Битрейт аудио дорожки</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentBitrate)]
-    [Column(Schema.ColumnNameBitrate)]
-    [Indexed(Name = "idx__audio__bitrate")]
-    public virtual short? Bitrate { get; set; }
+  [Description("Битрейт аудио дорожки")]
+  [DataMember(Name = nameof(Bitrate))]
+  public virtual short? Bitrate { get; set; }
 
-    /// <summary>
-    ///   <para>Файл, представляющий аудио</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentFile)]
-    [Column(Schema.ColumnNameFile)]
-    [Indexed(Name = "idx__audio__file_id")]
-    public virtual StorageFile File { get; set; }
+  /// <summary>
+  ///   <para>Файл, представляющий аудио</para>
+  /// </summary>
+  [DataMember(Name = nameof(File))]
+  [Description("Файл, представляющий аудио")]
+  public virtual StorageFile? File { get; set; }
 
-    public virtual bool Equals(Audio other)
-    {
-      return this.Equality(other, it => it.File, it => it.Uri);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="Audio"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="Audio"/> to compare with this instance.</param>
+  public virtual int CompareTo(Audio? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Audio);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="Audio"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(Audio? other) => this.Equality(other, nameof(File), nameof(Uri));
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.File, it => it.Uri);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as Audio);
 
-    public static new class Schema
-    {
-      public const string TableName = "audio";
-      public const string TableComment = "Аудио файлы";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameBitrate = "bitrate";
-      public const string ColumnCommentBitrate = "Битрейт аудио дорожки";
-
-      public const string ColumnNameFile = "file_id";
-      public const string ColumnCommentFile = "Файл, представляющий аудио";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(File), nameof(Uri));
 }

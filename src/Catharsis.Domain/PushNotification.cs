@@ -1,113 +1,89 @@
-﻿using Catharsis.Commons;
-using SQLite.Net.Attributes;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
+using Catharsis.Commons;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Push уведомление</para>
+/// </summary>
+[Description("Push уведомление")]
+[Serializable]
+[DataContract(Name = nameof(PushNotification))]
+public class PushNotification : Entity, IComparable<PushNotification>, IEquatable<PushNotification>
 {
   /// <summary>
-  ///   <para>Push уведомление</para>
+  ///   <para>Полезная нагрузка (данные) уведомления</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class PushNotification : Entity, IComparable<PushNotification>, IEquatable<PushNotification>
+  [DataMember(Name = nameof(Payload))]
+  [Description("Полезная нагрузка (данные) уведомления")]
+  public virtual string? Payload { get; set; }
+
+  /// <summary>
+  ///   <para>Провайдер/служба, через которую производится рассылка уведомлений</para>
+  /// </summary>
+  [DataMember(Name = nameof(Provider))]
+  [Description("Провайдер/служба, через которую производится рассылка уведомлений")]
+  public virtual ProviderType? Provider { get; set; }
+
+  /// <summary>
+  ///   <para>Признак того, что уведомление было отправлено на мобильное устройство</para>
+  /// </summary>
+  [DataMember(Name = nameof(Delivered))]
+  [Description("Признак того, что уведомление было отправлено на мобильное устройство")]
+  public virtual bool? Delivered { get; set; }
+
+  /// <summary>
+  ///   <para>Время жизни/длительность попыток доставки уведомления в секундах</para>
+  /// </summary>
+  [DataMember(Name = nameof(Ttl))]
+  [Description("Время жизни/длительность попыток доставки уведомления в секундах")]
+  public virtual long? Ttl { get; set; }
+
+  /// <summary>
+  ///   <para>Идентификаторы мобильных устройств - получателей уведомления</para>
+  /// </summary>
+  [DataMember(Name = nameof(Devices))]
+  [Description("Идентификаторы мобильных устройств - получателей уведомления")]
+  public virtual ISet<string> Devices { get; set; } = new HashSet<string>();
+
+  /// <summary>
+  ///   <para>Compares the current <see cref="PushNotification"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="PushNotification"/> to compare with this instance.</param>
+  public virtual int CompareTo(PushNotification? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
+
+  /// <summary>
+  ///   <para>Determines whether two <see cref="PushNotification"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(PushNotification? other) => this.Equality(other, nameof(CreatedOn), nameof(Provider));
+
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as PushNotification);
+
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(CreatedOn), nameof(Provider));
+
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Payload ?? string.Empty;
+
+  public enum ProviderType
   {
-    /// <summary>
-    ///   <para>Признак того, что уведомление было отправлено на мобильное устройство</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentDelivered)]
-    [Column(Schema.ColumnNameDelivered)]
-    [NotNull]
-    [Indexed(Name = "idx__push_notification__delivered")]
-    public virtual bool? Delivered { get; set; }
-
-    /// <summary>
-    ///   <para>Идентификаторы мобильных устройств - получателей уведомления</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentDevices)]
-    [Column(Schema.ColumnNameDevices)]
-    public virtual ICollection<string> Devices { get; set; } = new HashSet<string>();
-
-    /// <summary>
-    ///   <para>Полезная нагрузка (данные) уведомления</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentPayload)]
-    [Column(Schema.ColumnNamePayload)]
-    [NotNull]
-    public virtual string Payload { get; set; }
-
-    /// <summary>
-    ///   <para>Провайдер/служба, через которую производится рассылка уведомлений</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentProvider)]
-    [Column(Schema.ColumnNameProvider)]
-    [NotNull]
-    [Indexed(Name = "idx__push_notification__provider")]
-    public virtual PushNotificationProvider? Provider { get; set; }
-
-    /// <summary>
-    ///   <para>Время жизни/длительность попыток доставки уведомления в секундах</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentTtl)]
-    [Column(Schema.ColumnNameTtl)]
-    [Indexed(Name = "idx__push_notification__ttl")]
-    public virtual long? Ttl { get; set; }
-
-    public virtual int CompareTo(PushNotification other)
-    {
-      return this.CreatedOn.Value.CompareTo(other.CreatedOn.Value);
-    }
-
-    public virtual bool Equals(PushNotification other)
-    {
-      return this.Equality(other, it => it.CreatedOn, it => it.Provider);
-    }
-
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as PushNotification);
-    }
-
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.CreatedOn, it => it.Provider);
-    }
-
-    public override string ToString()
-    {
-      return this.Payload?.Trim() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "push_notification";
-      public const string TableComment = "Push уведомления для мобильных устройств";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время создания push уведомления";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения push уведомления";
-
-      public const string ColumnNameDelivered = "delivered";
-      public const string ColumnCommentDelivered = "Признак того, что уведомление было отправлено на мобильное устройство";
-
-      public const string ColumnNameDevices = "devices";
-      public const string ColumnCommentDevices = "Идентификаторы мобильных устройств - получателей уведомления";
-
-      public const string ColumnNamePayload = "payload";
-      public const string ColumnCommentPayload = "Полезная нагрузка (данные) уведомления";
-
-      public const string ColumnNameProvider = "provider";
-      public const string ColumnCommentProvider = "Провайдер/служба, через которую производится рассылка уведомлений";
-
-      public const string ColumnNameTtl = "ttl";
-      public const string ColumnCommentTtl = "Время жизни/длительность попыток доставки уведомления в секундах";
-    }
+    Apple,
+    Google, 
+    Microsoft
   }
 }

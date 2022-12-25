@@ -1,96 +1,75 @@
-﻿using Catharsis.Commons;
-using SQLite.Net.Attributes;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
+using Catharsis.Commons;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Компания из справочника</para>
+/// </summary>
+[Description("Компания из справочника")]
+[Serializable]
+[DataContract(Name = nameof(DirectoryCompany))]
+public class DirectoryCompany : Entity, IComparable<DirectoryCompany>, IEquatable<DirectoryCompany>
 {
   /// <summary>
-  ///   <para>Компания из справочника</para>
+  ///   <para>Полное наименование компании</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class DirectoryCompany : Entity, IComparable<DirectoryCompany>, IEquatable<DirectoryCompany>
-  {
-    /// <summary>
-    ///   <para>Внешний служебный код компании</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentCode)]
-    [Column(Schema.ColumnNameCode)]
-    public virtual string Code { get; set; }
+  [DataMember(Name = nameof(Name))]
+  [Description("Полное наименование компании")]
+  public virtual string? Name { get; set; }
 
-    /// <summary>
-    ///   <para>Контактные данные компании</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentContact)]
-    [Column(Schema.ColumnNameContact)]
-    public virtual Contact Contact { get; set; }
+  /// <summary>
+  ///   <para>Краткое наименование компании</para>
+  /// </summary>
+  [DataMember(Name = nameof(ShortName))]
+  [Description("Краткое наименование компании")]
+  public virtual string? ShortName { get; set; }
 
-    /// <summary>
-    ///   <para>Полное наименование компании</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentName)]
-    [Column(Schema.ColumnNameName)]
-    public virtual string Name { get; set; }
+  /// <summary>
+  ///   <para>Внешний служебный код компании</para>
+  /// </summary>
+  [DataMember(Name = nameof(Code))]
+  [Description("Внешний служебный код компании")]
+  public virtual string? Code { get; set; }
 
-    /// <summary>
-    ///   <para>Краткое наименование компании</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentShortName)]
-    [Column(Schema.ColumnNameShortName)]
-    public virtual string ShortName { get; set; }
+  /// <summary>
+  ///   <para>Контактные данные компании</para>
+  /// </summary>
+  [DataMember(Name = nameof(Contact))]
+  [Description("Контактные данные компании")]
+  public virtual Contact? Contact { get; set; }
 
-    public virtual int CompareTo(DirectoryCompany other)
-    {
-      return this.Name.CompareTo(other.Name);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="DirectoryCompany"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="DirectoryCompany"/> to compare with this instance.</param>
+  public virtual int CompareTo(DirectoryCompany? other) => string.Compare(Name, other?.Name, StringComparison.InvariantCultureIgnoreCase);
 
-    public virtual bool Equals(DirectoryCompany other)
-    {
-      return this.Equality(other, it => it.CreatedOn, it => it.Name, it => it.ShortName);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="DirectoryCompany"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(DirectoryCompany? other) => this.Equality(other, nameof(CreatedOn), nameof(Name), nameof(ShortName));
 
-    public override bool Equals(object other)
-    {
-      return base.Equals(other);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as DirectoryCompany);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.CreatedOn, it => it.Name, it => it.ShortName);
-    }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(CreatedOn), nameof(Name), nameof(ShortName));
 
-    public override string ToString()
-    {
-      return this.Name?.Trim() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "directory_company";
-      public const string TableComment = "Компании из справочника";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время добавления компании";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения данных о компании";
-
-      public const string ColumnNameCode = "code";
-      public const string ColumnCommentCode = "Внешний служебный код компании";
-
-      public const string ColumnNameContact = "contact_id";
-      public const string ColumnCommentContact = "Контактные данные компании";
-
-      public const string ColumnNameName = "name";
-      public const string ColumnCommentName = "Полное наименование компании";
-
-      public const string ColumnNameShortName = "short_name";
-      public const string ColumnCommentShortName = "Краткое наименование компании";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Name ?? string.Empty;
 }

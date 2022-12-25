@@ -1,44 +1,122 @@
-﻿using System;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="Download"/>.</para>
+/// </summary>
+public sealed class DownloadTest : EntityTest<Download>
 {
-  public sealed class DownloadTest : EntityTest<Download>
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Download.Name"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Property()
   {
-    [Fact]
-    public void constructors()
-    {
-      var fixture = new Download();
-      Assert.Null(fixture.Id);
-      Assert.True(fixture.CreatedOn <= DateTime.UtcNow);
-      Assert.Null(fixture.UpdatedOn);
-      Assert.Null(fixture.Version);
-      Assert.Null(fixture.Description);
-      Assert.Null(fixture.Downloads);
-      Assert.Null(fixture.File);
-      Assert.Null(fixture.Image);
-      Assert.Null(fixture.Name);
-    }
+    new Download { Name = Guid.Empty.ToString() }.Name.Should().Be(Guid.Empty.ToString());
+  }
 
-    [Fact]
-    public void compare_to()
-    {
-      this.test_compare_to("Name", "first", "second");
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Download.Description"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Description_Property()
+  {
+    new Download { Description = Guid.Empty.ToString() }.Description.Should().Be(Guid.Empty.ToString());
+  }
 
-    [Fact]
-    public void equals_and_hash_code()
-    {
-      this.test_equals_and_hash_code("File", new StorageFile { Name = "first" }, new StorageFile { Name = "second" });
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Download.File"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void File_Property()
+  {
+    var file = new StorageFile();
+    new Download { File = file }.File.Should().BeSameAs(file);
+  }
 
-    [Fact]
-    public void to_string()
-    {
-      Assert.Empty(new Download().ToString());
-      Assert.Empty(new Download { Name = string.Empty }.ToString());
-      Assert.Empty(new Download { Name = " " }.ToString());
-      Assert.Equal("name", new Download { Name = " name " }.ToString());
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Download.Image"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Image_Property()
+  {
+    var image = new Image();
+    new Download { Image = image }.Image.Should().BeSameAs(image);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Download.Downloads"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Downloads_Property()
+  {
+    new Download { Downloads = long.MaxValue }.Downloads.Should().Be(long.MaxValue);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of class constructor(s).</para>
+  /// </summary>
+  /// <seealso cref="Download()"/>
+  [Fact]
+  public void Constructors()
+  {
+    var download = new Download();
+
+    download.Id.Should().BeNull();
+    download.Uuid.Should().NotBeNull();
+    download.Version.Should().BeNull();
+    download.CreatedOn.Should().BeOnOrBefore(DateTimeOffset.UtcNow);
+    download.UpdatedOn.Should().BeNull();
+
+    download.Name.Should().BeNull();
+    download.Description.Should().BeNull();
+    download.File.Should().BeNull();
+    download.Image.Should().BeNull();
+    download.Downloads.Should().BeNull();
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Download.CompareTo(Download)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void CompareTo_Method()
+  {
+    TestCompareTo(nameof(Download.Name), "first", "second");
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
+  ///     <item><description><see cref="Download.Equals(Download)"/></description></item>
+  ///     <item><description><see cref="Download.Equals(object)"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void Equals_Methods()
+  {
+    TestEquality(nameof(Download.File), new StorageFile { Name = "first" }, new StorageFile { Name = "second" });
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Download.GetHashCode()"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void GetHashCode_Method()
+  {
+    TestHashCode(nameof(Download.File), new StorageFile { Name = "first" }, new StorageFile { Name = "second" });
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Download.ToString()"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ToString_Method()
+  {
+    new Download().ToString().Should().BeEmpty();
+    new Download { Name = string.Empty }.ToString().Should().BeEmpty();
+    new Download { Name = " " }.ToString().Should().BeEmpty();
+    new Download { Name = Guid.Empty.ToString() }.ToString().Should().Be(Guid.Empty.ToString());
   }
 }

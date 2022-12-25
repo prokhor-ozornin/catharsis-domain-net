@@ -1,114 +1,82 @@
-﻿using Catharsis.Commons;
-using SQLite.Net.Attributes;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
+using Catharsis.Commons;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Запись лога</para>
+/// </summary>
+[Description("Запись лога")]
+[Serializable]
+[DataContract(Name = nameof(LogMessage))]
+public class LogMessage : Entity, IComparable<LogMessage>, IEquatable<LogMessage>
 {
   /// <summary>
-  ///   <para>Запись лога</para>
+  ///   <para>Уровень логгирования записей</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class LogMessage : Entity, IComparable<LogMessage>, IEquatable<LogMessage>
-  {
-    /// <summary>
-    ///   <para>Уровень логгирования записей</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentLevel)]
-    [Column(Schema.ColumnNameLevel)]
-    [NotNull]
-    [Indexed(Name = "idx__log__level")]
-    public virtual string Level { get; set; }
+  [DataMember(Name = nameof(Level))]
+  [Description("Уровень логгирования записей")]
+  public virtual string? Level { get; set; }
 
-    /// <summary>
-    ///   <para>Название класса логгера</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentLogger)]
-    [Column(Schema.ColumnNameLogger)]
-    [NotNull]
-    [Indexed(Name = "idx__log__logger")]
-    public virtual string Logger { get; set; }
+  /// <summary>
+  ///   <para>Название класса логгера</para>
+  /// </summary>
+  [DataMember(Name = nameof(Logger))]
+  [Description("Название класса логгера")]
+  public virtual string? Logger { get; set; }
 
-    /// <summary>
-    ///   <para>Идентификатор API запроса</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentRequestId)]
-    [Column(Schema.ColumnNameRequestId)]
-    [Indexed(Name = "idx__log__request_id")]
-    public virtual string RequestId { get; set; }
+  /// <summary>
+  ///   <para>Имя потока, осуществлявшего логгирование</para>
+  /// </summary>
+  [DataMember(Name = nameof(Thread))]
+  [Description("Имя потока, осуществлявшего логгирование")]
+  public virtual string? Thread { get; set; }
 
-    /// <summary>
-    ///   <para>Текст записи</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentText)]
-    [Column(Schema.ColumnNameText)]
-    [NotNull]
-    public virtual string Text { get; set; }
+  /// <summary>
+  ///   <para>Идентификатор API запроса</para>
+  /// </summary>
+  [DataMember(Name = nameof(RequestId))]
+  [Description("Идентификатор API запроса")]
+  public virtual string? RequestId { get; set; }
 
-    /// <summary>
-    ///   <para>Имя потока, осуществлявшего логгирование</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentThread)]
-    [Column(Schema.ColumnNameThread)]
-    [NotNull]
-    [Indexed(Name = "idx__log__thread")]
-    public virtual string Thread { get; set; }
+  /// <summary>
+  ///   <para>Текст записи</para>
+  /// </summary>
+  [DataMember(Name = nameof(Text))]
+  [Description("Текст записи")]
+  public virtual string? Text { get; set; }
 
-    public virtual int CompareTo(LogMessage other)
-    {
-      return this.CreatedOn.Value.CompareTo(other.CreatedOn.Value);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="LogMessage"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="LogMessage"/> to compare with this instance.</param>
+  public virtual int CompareTo(LogMessage? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
 
-    public virtual bool Equals(LogMessage other)
-    {
-      return this.Equality(other, it => it.RequestId);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="LogMessage"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(LogMessage? other) => this.Equality(other, nameof(RequestId));
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as LogMessage);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as LogMessage);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.RequestId);
-    }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(RequestId));
 
-    public override string ToString()
-    {
-      return this.Text?.Trim() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "log_message";
-      public const string TableComment = "Записи лога";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время создания записи";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения записи";
-
-      public const string ColumnNameLevel = "level";
-      public const string ColumnCommentLevel = "Уровень логгирования записей";
-
-      public const string ColumnNameLogger = "logger";
-      public const string ColumnCommentLogger = "Название класса логгера";
-
-      public const string ColumnNameRequestId = "request_id";
-      public const string ColumnCommentRequestId = "Идентификатор API запроса";
-
-      public const string ColumnNameText = "text";
-      public const string ColumnCommentText = "Текст записи";
-
-      public const string ColumnNameThread = "thread";
-      public const string ColumnCommentThread = "Имя потока, осуществлявшего логгирование";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Text ?? string.Empty;
 }

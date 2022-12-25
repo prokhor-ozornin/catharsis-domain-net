@@ -1,54 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="WebBrowserExtensions"/>.</para>
+/// </summary>
+public sealed class WebBrowserExtensionsTest
 {
-  public sealed class WebBrowserExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WebBrowserExtensions.Name(IQueryable{WebBrowser}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Queryable_Method()
   {
-    [Fact]
-    public void name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<WebBrowser>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new WebBrowser[] { }.AsQueryable().Name(null));
-      Assert.Throws<ArgumentException>(() => new WebBrowser[] { }.AsQueryable().Name(string.Empty));
+    AssertionExtensions.Should(() => ((IQueryable<WebBrowser>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new WebBrowser { Name = "First" }, new WebBrowser { Name = "Second" } }.AsQueryable().Name("f").Count());
-    }
+    new[] {new WebBrowser {Name = "First"}, new WebBrowser {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<WebBrowser>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new WebBrowser[] { }.Name(null));
-      Assert.Throws<ArgumentException>(() => new WebBrowser[] { }.Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WebBrowserExtensions.Name(IEnumerable{WebBrowser}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<WebBrowser>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new WebBrowser(), new WebBrowser { Name = "First" }, new WebBrowser { Name = "Second" } }.Name("f"));
-    }
+    new[] {null, new WebBrowser(), new WebBrowser {Name = "First"}, new WebBrowser {Name = "Second"}}.Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void value_of_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<WebBrowser>)null).ValueOf("Mozilla"));
-      Assert.Throws<ArgumentNullException>(() => new WebBrowser[] { }.AsQueryable().ValueOf(null));
-      Assert.Throws<ArgumentException>(() => new WebBrowser[] { }.AsQueryable().ValueOf(string.Empty));
-      Assert.Throws<InvalidOperationException>(() => new[] { new WebBrowser { UserAgent = "Mozilla" }, new WebBrowser { UserAgent = "mozilla" } }.AsQueryable().ValueOf("mozilla"));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WebBrowserExtensions.ValueOf(IQueryable{WebBrowser}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ValueOf_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<WebBrowser>) null!).ValueOf("Mozilla")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().AsQueryable().ValueOf(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().AsQueryable().ValueOf(string.Empty)).ThrowExactly<ArgumentException>();
+    AssertionExtensions.Should(() => new[] {new WebBrowser {UserAgent = "Mozilla"}, new WebBrowser {UserAgent = "mozilla"}}.AsQueryable().ValueOf("mozilla")).ThrowExactly<InvalidOperationException>();
 
-      Assert.Null(new WebBrowser[] { }.AsQueryable().ValueOf("mozilla"));
-      Assert.NotNull(new[] { new WebBrowser { UserAgent = "Mozilla" }, new WebBrowser { UserAgent = "Opera" } }.AsQueryable().ValueOf("mozilla"));
-    }
+    Array.Empty<WebBrowser>().AsQueryable().ValueOf("mozilla").Should().BeNull();
+    new[] {new WebBrowser {UserAgent = "Mozilla"}, new WebBrowser {UserAgent = "Opera"}}.AsQueryable().ValueOf("mozilla").Should().NotBeNull();
+  }
 
-    [Fact]
-    public void value_of_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<WebBrowser>)null).ValueOf("mozilla"));
-      Assert.Throws<ArgumentNullException>(() => new WebBrowser[] { }.ValueOf(null));
-      Assert.Throws<ArgumentException>(() => new WebBrowser[] { }.ValueOf(string.Empty));
-      Assert.Throws<InvalidOperationException>(() => new[] { new WebBrowser { UserAgent = "Mozilla" }, new WebBrowser { UserAgent = "mozilla" } }.ValueOf("mozilla"));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WebBrowserExtensions.ValueOf(IEnumerable{WebBrowser}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ValueOf_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<WebBrowser>) null!).ValueOf("mozilla")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().ValueOf(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().ValueOf(string.Empty)).ThrowExactly<ArgumentException>();
+    AssertionExtensions.Should(() => new[] {new WebBrowser {UserAgent = "Mozilla"}, new WebBrowser {UserAgent = "mozilla"}}.ValueOf("mozilla")).ThrowExactly<InvalidOperationException>();
 
-      Assert.Null(new WebBrowser[] { }.ValueOf("mozilla"));
-      Assert.NotNull(new[] { new WebBrowser { UserAgent = "Mozilla" }, new WebBrowser { UserAgent = "Opera" } }.ValueOf("mozilla"));
-    }
+    Array.Empty<WebBrowser>().ValueOf("mozilla").Should().BeNull();
+    new[] {new WebBrowser {UserAgent = "Mozilla"}, new WebBrowser {UserAgent = "Opera"}}.ValueOf("mozilla").Should().NotBeNull();
   }
 }

@@ -1,40 +1,89 @@
-﻿using System;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="Address"/>.</para>
+/// </summary>
+public sealed class AddressTest : EntityTest<Address>
 {
-  public sealed class AddressTest : EntityTest<Address>
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Address.Name"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Property() { new Address {Name = Guid.Empty.ToString()}.Name.Should().Be(Guid.Empty.ToString()); }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Address.City"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void City_Property()
   {
-    [Fact]
-    public void constructors()
-    {
-      var fixture = new Address();
-      Assert.Null(fixture.Id);
-      Assert.True(fixture.CreatedOn <= DateTime.UtcNow);
-      Assert.Null(fixture.UpdatedOn);
-      Assert.Null(fixture.Version);
-      Assert.Null(fixture.City);
-      Assert.Null(fixture.Description);
-      Assert.Null(fixture.Location);
-      Assert.Null(fixture.Name);
-      Assert.Null(fixture.Zip);
-    }
+    var city = new City();
+    new Address {City = city}.City.Should().BeSameAs(city);
+  }
 
-    [Fact]
-    public void compare_to()
-    {
-      this.test_compare_to("Name", "first", "second");
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Address.Zip"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Zip_Property() { new Address {Zip = Guid.Empty.ToString()}.Zip.Should().Be(Guid.Empty.ToString()); }
 
-    [Fact]
-    public void to_string()
-    {
-      Assert.Empty(new Address().ToString());
-      Assert.Empty(new Address { Name = string.Empty, Zip = string.Empty }.ToString());
-      Assert.Empty(new Address { Name = string.Empty, Zip = string.Empty }.ToString());
-      Assert.Equal("Екатеринбург", new Address { City = new City { Name = "Екатеринбург" } }.ToString());
-      Assert.Equal("Екатеринбург,Свердлова", new Address { City = new City { Name = "Екатеринбург" }, Name = "Свердлова" }.ToString());
-      Assert.Equal("Екатеринбург,Свердлова,620000", new Address { City = new City { Name = "Екатеринбург" }, Name = "Свердлова", Zip = "620000" }.ToString());
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Address.Location"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Location_Property()
+  {
+    var location = new Location();
+    new Address {Location = location}.Location.Should().BeSameAs(location);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Address.Description"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Description_Property() { new Address {Description = Guid.Empty.ToString()}.Description.Should().Be(Guid.Empty.ToString()); }
+
+  /// <summary>
+  ///   <para>Performs testing of class constructor(s).</para>
+  /// </summary>
+  /// <seealso cref="Address()"/>
+  [Fact]
+  public void Constructors()
+  {
+    var address = new Address();
+
+    address.Id.Should().BeNull();
+    address.Uuid.Should().NotBeNull();
+    address.Version.Should().BeNull();
+    address.CreatedOn.Should().BeOnOrBefore(DateTimeOffset.UtcNow);
+    address.UpdatedOn.Should().BeNull();
+    address.Name.Should().BeNull();
+    address.City.Should().BeNull();
+    address.Zip.Should().BeNull();
+    address.Location.Should().BeNull();
+    address.Description.Should().BeNull();
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Address.CompareTo(Address)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void CompareTo_Method() { TestCompareTo(nameof(Address.Name), "first", "second"); }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="Address.ToString()"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ToString_Method()
+  {
+    new Address().ToString().Should().BeEmpty();
+    new Address {Name = string.Empty, Zip = string.Empty}.ToString().Should().BeEmpty();
+    new Address {Name = string.Empty, Zip = string.Empty}.ToString().Should().BeEmpty();
+    new Address {City = new City {Name = "Екатеринбург"}}.ToString().Should().Be("Екатеринбург");
+    new Address {City = new City {Name = "Екатеринбург"}, Name = "Свердлова"}.ToString().Should().Be("Екатеринбург,Свердлова");
+    new Address {City = new City {Name = "Екатеринбург"}, Name = "Свердлова", Zip = "620000"}.ToString().Should().Be("Екатеринбург,Свердлова,620000");
   }
 }

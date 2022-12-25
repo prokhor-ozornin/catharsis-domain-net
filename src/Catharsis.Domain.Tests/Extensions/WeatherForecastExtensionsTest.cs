@@ -1,77 +1,94 @@
-﻿using Catharsis.Domain.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="WeatherForecastExtensions"/>.</para>
+/// </summary>
+public sealed class WeatherForecastExtensionsTest
 {
-  public sealed class WeatherForecastExtensionsTest
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WeatherForecastExtensions.City(IQueryable{WeatherForecast}, City?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void City_Queryable_Method()
   {
-    [Fact]
-    public void city_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<WeatherForecast>)null).City(new City()));
+    AssertionExtensions.Should(() => ((IQueryable<WeatherForecast>) null!).City(new City())).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new WeatherForecast { City = new City { Id = 1 } }, new WeatherForecast { City = new City { Id = 2 } } }.AsQueryable().City(new City { Id = 1 }).Count());
-      Assert.Equal(1, new[] { new WeatherForecast { City = new City { Id = 1 } }, new WeatherForecast { City = null } }.AsQueryable().City(null).Count());
-    }
+    new[] {new WeatherForecast {City = new City {Id = 1}}, new WeatherForecast {City = new City {Id = 2}}}.AsQueryable().City(new City {Id = 1}).Should().ContainSingle();
+    new[] {new WeatherForecast {City = new City {Id = 1}}, new WeatherForecast {City = null}}.AsQueryable().City(null).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void city_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<WeatherForecast>)null).City(new City()));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WeatherForecastExtensions.City(IEnumerable{WeatherForecast}, City?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void City_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<WeatherForecast>) null!).City(new City())).ThrowExactly<ArgumentNullException>();
 
-      Assert.Single(new[] { null, new WeatherForecast { City = new City { Name = "first" } }, new WeatherForecast { City = new City { Name = "second" } } }.City(new City { Name = "first" }));
-      Assert.Single(new[] { null, new WeatherForecast(), new WeatherForecast { City = new City { Name = "first" } } }.City(null));
-    }
+    new[] {null, new WeatherForecast {City = new City {Name = "first"}}, new WeatherForecast {City = new City {Name = "second"}}}.City(new City {Name = "first"}).Should().ContainSingle();
+    new[] {null, new WeatherForecast(), new WeatherForecast {City = new City {Name = "first"}}}.City(null).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void date_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<WeatherForecast>)null).Date());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WeatherForecastExtensions.Date(IQueryable{WeatherForecast}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Date_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<WeatherForecast>) null!).Date()).ThrowExactly<ArgumentNullException>();
 
-      var entries = new[] { new WeatherForecast { Date = new DateTime(2000, 1, 1) }, new WeatherForecast { Date = new DateTime(2000, 1, 2) } }.AsQueryable();
-      Assert.Equal(2, entries.Date().Count());
-      Assert.Equal(2, entries.Date(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(entries.Date(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, entries.Date(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, entries.Date(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(entries.Date(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, entries.Date(to: new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, entries.Date(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var entries = new[] {new WeatherForecast {Date = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute:0, second: 0, TimeSpan.Zero)}, new WeatherForecast {Date = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}}.AsQueryable();
+    entries.Date().Should().HaveCount(2);
+    entries.Date(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entries.Date(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entries.Date(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entries.Date(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entries.Date(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entries.Date(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entries.Date(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void date_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<WeatherForecast>)null).Date());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WeatherForecastExtensions.Date(IEnumerable{WeatherForecast}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Date_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<WeatherForecast>) null!).Date()).ThrowExactly<ArgumentNullException>();
 
-      var entries = new[] { null, new WeatherForecast(), new WeatherForecast { Date = new DateTime(2000, 1, 1) }, new WeatherForecast { Date = new DateTime(2000, 1, 2) } };
-      Assert.Equal(3, entries.Date().Count());
-      Assert.Equal(2, entries.Date(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(entries.Date(new DateTime(2000, 1, 3)));
-      Assert.Single(entries.Date(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
-      Assert.Equal(2, entries.Date(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(entries.Date(to: new DateTime(1999, 12, 31)));
-      Assert.Single(entries.Date(to: new DateTime(2000, 1, 1)));
-      Assert.Equal(2, entries.Date(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var entries = new[] {null, new WeatherForecast(), new WeatherForecast {Date = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new WeatherForecast {Date = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}};
+    entries.Date().Should().HaveCount(3);
+    entries.Date(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entries.Date(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entries.Date(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entries.Date(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entries.Date(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entries.Date(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entries.Date(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void type_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<WeatherForecast>)null).Type(WeatherType.Thunderstorm));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WeatherForecastExtensions.Type(IQueryable{WeatherForecast}, WeatherForecast.WeatherType?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Type_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<WeatherForecast>) null!).Type(WeatherForecast.WeatherType.Thunderstorm)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new WeatherForecast { Type = WeatherType.ClearSky }, new WeatherForecast { Type = WeatherType.Thunderstorm } }.AsQueryable().Type(WeatherType.ClearSky).Count());
-    }
+    new[] {new WeatherForecast {Type = WeatherForecast.WeatherType.ClearSky}, new WeatherForecast {Type = WeatherForecast.WeatherType.Thunderstorm}}.AsQueryable().Type(WeatherForecast.WeatherType.ClearSky).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void type_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<WeatherForecast>)null).Type(WeatherType.ClearSky));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WeatherForecastExtensions.Type(IEnumerable{WeatherForecast}, WeatherForecast.WeatherType?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Type_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<WeatherForecast>) null!).Type(WeatherForecast.WeatherType.ClearSky)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Single(new[] { null, new WeatherForecast(), new WeatherForecast { Type = WeatherType.ClearSky }, new WeatherForecast { Type = WeatherType.Thunderstorm } }.Type(WeatherType.ClearSky));
-    }
+    new[] {null, new WeatherForecast(), new WeatherForecast {Type = WeatherForecast.WeatherType.ClearSky}, new WeatherForecast {Type = WeatherForecast.WeatherType.Thunderstorm}}.Type(WeatherForecast.WeatherType.ClearSky).Should().ContainSingle();
   }
 }

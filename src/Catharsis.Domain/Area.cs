@@ -1,80 +1,61 @@
-﻿using Catharsis.Commons;
-using SQLite.Net.Attributes;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
+using Catharsis.Commons;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Территория</para>
+/// </summary>
+[Description("Территория")]
+[Serializable]
+[DataContract(Name = nameof(Area))]
+public class Area : Entity, IComparable<Area>, IEquatable<Area>
 {
   /// <summary>
-  ///   <para>Территория</para>
+  ///   <para>Наименование территории</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class Area : Entity, IComparable<Area>, IEquatable<Area>
-  {
-    /// <summary>
-    ///   <para>Страна, в которой расположена территория</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentCountry)]
-    [Column(Schema.ColumnNameCountry)]
-    [NotNull]
-    [Indexed(Name = "idx__area__country_id")]
-    public virtual Country Country { get; set; }
+  [DataMember(Name = nameof(Name))]
+  [Description("Наименование территории")]
+  public virtual string? Name { get; set; }
 
-    /// <summary>
-    ///   <para>Наименование территории</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentName)]
-    [Column(Schema.ColumnNameName)]
-    [NotNull]
-    [Indexed(Name = "idx__area__name")]
-    public virtual string Name { get; set; }
+  /// <summary>
+  ///   <para>Страна, в которой расположена территория</para>
+  /// </summary>
+  [DataMember(Name = nameof(Country))]
+  [Description("Страна, в которой расположена территория")]
+  public virtual Country? Country { get; set; }
 
-    public virtual int CompareTo(Area other)
-    {
-      return this.Name.CompareTo(other.Name);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="Area"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="Area"/> to compare with this instance.</param>
+  public virtual int CompareTo(Area? other) => string.Compare(Name, other?.Name, StringComparison.InvariantCultureIgnoreCase);
 
-    public virtual bool Equals(Area other)
-    {
-      return this.Equality(other, it => it.Country, it => it.Name);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="Area"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(Area? other) => this.Equality(other, nameof(Country), nameof(Name));
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Area);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as Area);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.Country, it => it.Name);
-    }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(Country), nameof(Name));
 
-    public override string ToString()
-    {
-      return this.Name?.Trim() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "area";
-      public const string TableComment = "Географические территории";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время добавления территории";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего обновления территории";
-
-      public const string ColumnNameCountry = "country_id";
-      public const string ColumnCommentCountry = "Страна, в которой расположена территория";
-
-      public const string ColumnNameName = "name";
-      public const string ColumnCommentName = "Наименование территории";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Name ?? string.Empty;
 }

@@ -1,111 +1,82 @@
-﻿using Catharsis.Commons;
-using SQLite.Net.Attributes;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
+using Catharsis.Commons;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Программный скрипт</para>
+/// </summary>
+[Description("Программный скрипт")]
+[Serializable]
+[DataContract(Name = nameof(Script))]
+public class Script : Entity, IComparable<Script>, IEquatable<Script>
 {
   /// <summary>
-  ///   <para>Программный скрипт</para>
+  ///   <para>Наименование скрипта</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class Script : Entity, IComparable<Script>, IEquatable<Script>
-  {
-    /// <summary>
-    ///   <para>Программный код скрипта</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentCode)]
-    [Column(Schema.ColumnNameCode)]
-    [MaxLength(1048576)]
-    public virtual string Code { get; set; }
+  [DataMember(Name = nameof(Name))]
+  [Description("Наименование скрипта")]
+  public virtual string? Name { get; set; }
 
-    /// <summary>
-    ///   <para>Длительность выполнения скрипта в миллисекундах</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentDuration)]
-    [Column(Schema.ColumnNameDuration)]
-    public virtual long? Duration { get; set; }
+  /// <summary>
+  ///   <para>Признак того, был ли выполнен скрипт</para>
+  /// </summary>
+  [DataMember(Name = nameof(Executed))]
+  [Description("Признак того, был ли выполнен скрипт")]
+  public virtual bool? Executed { get; set; }
 
-    /// <summary>
-    ///   <para>Признак того, был ли выполнен скрипт</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentExecuted)]
-    [Column(Schema.ColumnNameExecuted)]
-    [NotNull]
-    [Indexed(Name = "idx__script__executed")]
-    public virtual bool? Executed { get; set; }
+  /// <summary>
+  ///   <para>Длительность выполнения скрипта в миллисекундах</para>
+  /// </summary>
+  [DataMember(Name = nameof(Duration))]
+  [Description("Длительность выполнения скрипта в миллисекундах")]
+  public virtual long? Duration { get; set; }
 
-    /// <summary>
-    ///   <para>Наименование скрипта</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentName)]
-    [Column(Schema.ColumnNameName)]
-    [NotNull]
-    [Unique(Name = "script__name")]
-    public virtual string Name { get; set; }
+  /// <summary>
+  ///   <para>Путь к файлу скрипта</para>
+  /// </summary>
+  [DataMember(Name = nameof(Path))]
+  [Description("Путь к файлу скрипта")]
+  public virtual string? Path { get; set; }
 
-    /// <summary>
-    ///   <para>Путь к файлу скрипта</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentPath)]
-    [Column(Schema.ColumnNamePath)]
-    public virtual string Path { get; set; }
+  /// <summary>
+  ///   <para>Программный код скрипта</para>
+  /// </summary>
+  [DataMember(Name = nameof(Code))]
+  [Description("Программный код скрипта")]
+  public virtual string? Code { get; set; }
 
-    public virtual int CompareTo(Script other)
-    {
-      return this.CreatedOn.Value.CompareTo(other.CreatedOn.Value);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="Script"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="Script"/> to compare with this instance.</param>
+  public virtual int CompareTo(Script? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
 
-    public virtual bool Equals(Script other)
-    {
-      return this.Equality(other, it => it.Name);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="Script"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(Script? other) => this.Equality(other, nameof(Name));
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Script);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as Script);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.Name);
-    }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(Name));
 
-    public override string ToString()
-    {
-      return this.Name?.Trim() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "script";
-      public const string TableComment = "Программные скрипты";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время начала работы скрипта";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения скрипта";
-
-      public const string ColumnNameCode = "code";
-      public const string ColumnCommentCode = "Программный код скрипта";
-
-      public const string ColumnNameDuration = "duration";
-      public const string ColumnCommentDuration = "Длительность выполнения скрипта в миллисекундах";
-
-      public const string ColumnNameExecuted = "executed";
-      public const string ColumnCommentExecuted = "Признак того, был ли выполнен скрипт";
-
-      public const string ColumnNameName = "name";
-      public const string ColumnCommentName = "Наименование скрипта";
-
-      public const string ColumnNamePath = "path";
-      public const string ColumnCommentPath = "Путь к файлу скрипта";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Name ?? string.Empty;
 }

@@ -1,74 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="PushNotificationExtensions"/>.</para>
+/// </summary>
+public sealed class PushNotificationExtensionsTest
 {
-  public sealed class PushNotificationExtensionsTest
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotificationExtensions.Delivered(IQueryable{PushNotification}, bool?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Delivered_Queryable_Method()
   {
-    [Fact]
-    public void delivered_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<PushNotification>)null).Delivered(true));
+    AssertionExtensions.Should(() => ((IQueryable<PushNotification>) null!).Delivered(true)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new PushNotification { Delivered = false }, new PushNotification { Delivered = true } }.AsQueryable().Delivered(true).Count());
-    }
+    new[] {new PushNotification {Delivered = false}, new PushNotification {Delivered = true}}.AsQueryable().Delivered(true).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void delivered_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<PushNotification>)null).Delivered(true));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotificationExtensions.Delivered(IEnumerable{PushNotification}, bool?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Delivered_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<PushNotification>) null!).Delivered(true)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Single(new[] { new PushNotification { Delivered = false }, new PushNotification { Delivered = true } }.Delivered(true));
-    }
+    new[] {new PushNotification {Delivered = false}, new PushNotification {Delivered = true}}.Delivered(true).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void provider_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<PushNotification>)null).Provider(PushNotificationProvider.Apple));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotificationExtensions.Provider(IQueryable{PushNotification}, PushNotification.ProviderType?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Provider_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<PushNotification>) null!).Provider(PushNotification.ProviderType.Apple)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new PushNotification { Provider = PushNotificationProvider.Apple }, new PushNotification { Provider = PushNotificationProvider.Google } }.AsQueryable().Provider(PushNotificationProvider.Google).Count());
-    }
+    new[] {new PushNotification {Provider = PushNotification.ProviderType.Apple}, new PushNotification {Provider = PushNotification.ProviderType.Google}}.AsQueryable().Provider(PushNotification.ProviderType.Google).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void provider_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<PushNotification>)null).Provider(PushNotificationProvider.Apple));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotificationExtensions.Provider(IEnumerable{PushNotification}, PushNotification.ProviderType?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Provider_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<PushNotification>) null!).Provider(PushNotification.ProviderType.Apple)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Single(new[] { null, new PushNotification(), new PushNotification { Provider = PushNotificationProvider.Apple }, new PushNotification { Provider = PushNotificationProvider.Google } }.Provider(PushNotificationProvider.Google));
-    }
+    new[] {null, new PushNotification(), new PushNotification {Provider = PushNotification.ProviderType.Apple}, new PushNotification {Provider = PushNotification.ProviderType.Google}}.Provider(PushNotification.ProviderType.Google).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void ttl_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<PushNotification>)null).Ttl());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotificationExtensions.Ttl(IQueryable{PushNotification}, long?, long?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Ttl_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<PushNotification>) null!).Ttl()).ThrowExactly<ArgumentNullException>();
 
-      var notifications = new[] { new PushNotification { Ttl = 1 }, new PushNotification { Ttl = 2 } }.AsQueryable();
-      Assert.Equal(2, notifications.Ttl().Count());
-      Assert.Equal(2, notifications.Ttl(0).Count());
-      Assert.Empty(notifications.Ttl(3));
-      Assert.Equal(1, notifications.Ttl(0, 1).Count());
-      Assert.Equal(2, notifications.Ttl(1, 2).Count());
-      Assert.Empty(notifications.Ttl(to: 0));
-      Assert.Equal(1, notifications.Ttl(to: 1).Count());
-      Assert.Equal(2, notifications.Ttl(to: 3).Count());
-    }
+    var notifications = new[] {new PushNotification {Ttl = 1}, new PushNotification {Ttl = 2}}.AsQueryable();
+    notifications.Ttl().Should().HaveCount(2);
+    notifications.Ttl(0).Should().HaveCount(2);
+    notifications.Ttl(3).Should().BeEmpty();
+    notifications.Ttl(0, 1).Should().ContainSingle();
+    notifications.Ttl(1, 2).Should().HaveCount(2);
+    notifications.Ttl(to: 0).Should().BeEmpty();
+    notifications.Ttl(to: 1).Should().ContainSingle();
+    notifications.Ttl(to: 3).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void ttl_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<PushNotification>)null).Ttl());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PushNotificationExtensions.Ttl(IEnumerable{PushNotification}, long?, long?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Ttl_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<PushNotification>) null!).Ttl()).ThrowExactly<ArgumentNullException>();
 
-      var notifications = new[] { null, new PushNotification(), new PushNotification { Ttl = 1 }, new PushNotification { Ttl = 2 } };
-      Assert.Equal(3, notifications.Ttl().Count());
-      Assert.Equal(2, notifications.Ttl(0).Count());
-      Assert.Empty(notifications.Ttl(3));
-      Assert.Single(notifications.Ttl(0, 1));
-      Assert.Equal(2, notifications.Ttl(1, 2).Count());
-      Assert.Empty(notifications.Ttl(to: 0));
-      Assert.Single(notifications.Ttl(to: 1));
-      Assert.Equal(2, notifications.Ttl(to: 3).Count());
-    }
+    var notifications = new[] {null, new PushNotification(), new PushNotification {Ttl = 1}, new PushNotification {Ttl = 2}};
+    notifications.Ttl().Should().HaveCount(3);
+    notifications.Ttl(0).Should().HaveCount(2);
+    notifications.Ttl(3).Should().BeEmpty();
+    notifications.Ttl(0, 1).Should().ContainSingle();
+    notifications.Ttl(1, 2).Should().HaveCount(2);
+    notifications.Ttl(to: 0).Should().BeEmpty();
+    notifications.Ttl(to: 1).Should().ContainSingle();
+    notifications.Ttl(to: 3).Should().HaveCount(2);
   }
 }

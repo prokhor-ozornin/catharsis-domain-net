@@ -1,30 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="WebLinkExtensions"/>.</para>
+/// </summary>
+public sealed class WebLinkExtensionsTest
 {
-  public sealed class WebLinkExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WebLinkExtensions.Name(IQueryable{WebLink}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Queryable_Method()
   {
-    [Fact]
-    public void name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<WebLink>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new WebLink[] { }.AsQueryable().Name(null));
-      Assert.Throws<ArgumentException>(() => new WebLink[] { }.AsQueryable().Name(string.Empty));
+    AssertionExtensions.Should(() => ((IQueryable<WebLink>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebLink>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebLink>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new WebLink { Name = "First" }, new WebLink { Name = "Second" } }.AsQueryable().Name("f").Count());
-    }
+    new[] {new WebLink {Name = "First"}, new WebLink {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<WebLink>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new WebLink[] { }.Name(null));
-      Assert.Throws<ArgumentException>(() => new WebLink[] { }.Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="WebLinkExtensions.Name(IEnumerable{WebLink}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<WebLink>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebLink>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebLink>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new WebLink(), new WebLink { Name = "First" }, new WebLink { Name = "Second" } }.Name("f"));
-    }
+    new[] {null, new WebLink(), new WebLink {Name = "First"}, new WebLink {Name = "Second"}}.Name("f").Should().ContainSingle();
   }
 }

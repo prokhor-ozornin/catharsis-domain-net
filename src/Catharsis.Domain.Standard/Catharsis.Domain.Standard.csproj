@@ -1,10 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>Catharsis.Domain</AssemblyName>
+    <LangVersion>latest</LangVersion>
     <Version>5.0</Version>
     <Authors>Prokhor Ozornin &lt;prokhor.ozornin@yandex.ru&gt;</Authors>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -24,73 +32,111 @@
     <Compile Include="..\Catharsis.Domain\DirectoryCompany.cs" Link="DirectoryCompany.cs" />
     <Compile Include="..\Catharsis.Domain\Download.cs" Link="Download.cs" />
     <Compile Include="..\Catharsis.Domain\Entity.cs" Link="Entity.cs" />
-    <Compile Include="..\catharsis.domain\extensions\AddressExtensions.cs" Link="Extensions\AddressExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\AnnouncementExtensions.cs" Link="Extensions\AnnouncementExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\ApiKeyExtensions.cs" Link="Extensions\ApiKeyExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\AreaExtensions.cs" Link="Extensions\AreaExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\AudioExtensions.cs" Link="Extensions\AudioExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\BookExtensions.cs" Link="Extensions\BookExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\CityExtensions.cs" Link="Extensions\CityExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\ContactExtensions.cs" Link="Extensions\ContactExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\CountryExtensions.cs" Link="Extensions\CountryExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\AddressExtensions.cs" Link="Extensions\AddressExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\AnnouncementExtensions.cs" Link="Extensions\AnnouncementExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\ApiKeyExtensions.cs" Link="Extensions\ApiKeyExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\AreaExtensions.cs" Link="Extensions\AreaExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\AudioExtensions.cs" Link="Extensions\AudioExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\BookExtensions.cs" Link="Extensions\BookExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\CityExtensions.cs" Link="Extensions\CityExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\ContactExtensions.cs" Link="Extensions\ContactExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\CountryExtensions.cs" Link="Extensions\CountryExtensions.cs" />
     <Compile Include="..\Catharsis.Domain\Extensions\DirectoryCompanyExtensions.cs" Link="Extensions\DirectoryCompanyExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\DownloadExtensions.cs" Link="Extensions\DownloadExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\IEntityExtensions.cs" Link="Extensions\IEntityExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\LocationExtensions.cs" Link="Extensions\LocationExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\LogMessageExtensions.cs" Link="Extensions\LogMessageExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\MediaExtensions.cs" Link="Extensions\MediaExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\NewsExtensions.cs" Link="Extensions\NewsExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\PersonExtensions.cs" Link="Extensions\PersonExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\PlaycastExtensions.cs" Link="Extensions\PlaycastExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\DownloadExtensions.cs" Link="Extensions\DownloadExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\IEntityExtensions.cs" Link="Extensions\IEntityExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\LocationExtensions.cs" Link="Extensions\LocationExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\LogMessageExtensions.cs" Link="Extensions\LogMessageExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\MediaExtensions.cs" Link="Extensions\MediaExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\NewsExtensions.cs" Link="Extensions\NewsExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\PersonExtensions.cs" Link="Extensions\PersonExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\PlaycastExtensions.cs" Link="Extensions\PlaycastExtensions.cs" />
     <Compile Include="..\Catharsis.Domain\Extensions\PushNotificationExtensions.cs" Link="Extensions\PushNotificationExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\RegionExtensions.cs" Link="Extensions\RegionExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\ScriptExtensions.cs" Link="Extensions\ScriptExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\SeoWebPageExtensions.cs" Link="Extensions\SeoWebPageExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\SettingExtensions.cs" Link="Extensions\SettingExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\SitemapEntryExtensions.cs" Link="Extensions\SitemapEntryExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\StorageFileExtensions.cs" Link="Extensions\StorageFileExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\TagExtensions.cs" Link="Extensions\TagExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\RegionExtensions.cs" Link="Extensions\RegionExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\ScriptExtensions.cs" Link="Extensions\ScriptExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\SeoWebPageExtensions.cs" Link="Extensions\SeoWebPageExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\SettingExtensions.cs" Link="Extensions\SettingExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\SitemapEntryExtensions.cs" Link="Extensions\SitemapEntryExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\StorageFileExtensions.cs" Link="Extensions\StorageFileExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\TagExtensions.cs" Link="Extensions\TagExtensions.cs" />
     <Compile Include="..\Catharsis.Domain\Extensions\WeatherForecastExtensions.cs" Link="Extensions\WeatherForecastExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\WebBrowserExtensions.cs" Link="Extensions\WebBrowserExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\WebLinkExtensions.cs" Link="Extensions\WebLinkExtensions.cs" />
-    <Compile Include="..\catharsis.domain\extensions\WebPageExtensions.cs" Link="Extensions\WebPageExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\WebBrowserExtensions.cs" Link="Extensions\WebBrowserExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\WebLinkExtensions.cs" Link="Extensions\WebLinkExtensions.cs" />
+    <Compile Include="..\Catharsis.Domain\Extensions\WebPageExtensions.cs" Link="Extensions\WebPageExtensions.cs" />
     <Compile Include="..\Catharsis.Domain\Faq.cs" Link="Faq.cs" />
     <Compile Include="..\Catharsis.Domain\IEntity.cs" Link="IEntity.cs" />
     <Compile Include="..\Catharsis.Domain\Image.cs" Link="Image.cs" />
     <Compile Include="..\Catharsis.Domain\Location.cs" Link="Location.cs" />
     <Compile Include="..\Catharsis.Domain\LogMessage.cs" Link="LogMessage.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\AddressMapping.cs" Link="Mapping\AddressMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\AnnouncementMapping.cs" Link="Mapping\AnnouncementMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\ApiKeyMapping.cs" Link="Mapping\ApiKeyMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\AreaMapping.cs" Link="Mapping\AreaMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\AudioMapping.cs" Link="Mapping\AudioMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\BookMapping.cs" Link="Mapping\BookMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\CityMapping.cs" Link="Mapping\CityMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\ContactMapping.cs" Link="Mapping\ContactMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\CountryMapping.cs" Link="Mapping\CountryMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\DirectoryCompanyMapping.cs" Link="Mapping\DirectoryCompanyMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\DownloadMapping.cs" Link="Mapping\DownloadMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\EntityMapping.cs" Link="Mapping\EntityMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\FaqMapping.cs" Link="Mapping\FaqMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\ImageMapping.cs" Link="Mapping\ImageMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\LocationMapping.cs" Link="Mapping\LocationMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\LogMessageMapping.cs" Link="Mapping\LogMessageMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\MediaMapping.cs" Link="Mapping\MediaMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\NewsMapping.cs" Link="Mapping\NewsMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\PersonMapping.cs" Link="Mapping\PersonMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\PlaycastMapping.cs" Link="Mapping\PlaycastMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\PushNotificationMapping.cs" Link="Mapping\PushNotificationMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\RegionMapping.cs" Link="Mapping\RegionMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\ScriptMapping.cs" Link="Mapping\ScriptMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\SeoWebPageMapping.cs" Link="Mapping\SeoWebPageMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\SettingMapping.cs" Link="Mapping\SettingMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\SitemapEntryMapping.cs" Link="Mapping\SitemapEntryMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\StorageFileMapping.cs" Link="Mapping\StorageFileMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\TagMapping.cs" Link="Mapping\TagMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\VideoMapping.cs" Link="Mapping\VideoMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\WeatherForecastMapping.cs" Link="Mapping\WeatherForecastMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\WebBrowserMapping.cs" Link="Mapping\WebBrowserMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\WebLinkMapping.cs" Link="Mapping\WebLinkMapping.cs" />
+    <Compile Include="..\Catharsis.Domain\Mapping\WebPageMapping.cs" Link="Mapping\WebPageMapping.cs" />
     <Compile Include="..\Catharsis.Domain\Media.cs" Link="Media.cs" />
-    <Compile Include="..\Catharsis.Domain\Money.cs" Link="Money.cs" />
     <Compile Include="..\Catharsis.Domain\News.cs" Link="News.cs" />
     <Compile Include="..\Catharsis.Domain\Person.cs" Link="Person.cs" />
     <Compile Include="..\Catharsis.Domain\Playcast.cs" Link="Playcast.cs" />
     <Compile Include="..\Catharsis.Domain\PushNotification.cs" Link="PushNotification.cs" />
-    <Compile Include="..\Catharsis.Domain\PushNotificationProvider.cs" Link="PushNotificationProvider.cs" />
     <Compile Include="..\Catharsis.Domain\Region.cs" Link="Region.cs" />
     <Compile Include="..\Catharsis.Domain\Script.cs" Link="Script.cs" />
     <Compile Include="..\Catharsis.Domain\SeoWebPage.cs" Link="SeoWebPage.cs" />
     <Compile Include="..\Catharsis.Domain\Setting.cs" Link="Setting.cs" />
     <Compile Include="..\Catharsis.Domain\SettingType.cs" Link="SettingType.cs" />
-    <Compile Include="..\Catharsis.Domain\SitemapChangeFrequency.cs" Link="SitemapChangeFrequency.cs" />
     <Compile Include="..\Catharsis.Domain\SitemapEntry.cs" Link="SitemapEntry.cs" />
     <Compile Include="..\Catharsis.Domain\StorageFile.cs" Link="StorageFile.cs" />
     <Compile Include="..\Catharsis.Domain\Tag.cs" Link="Tag.cs" />
     <Compile Include="..\Catharsis.Domain\Video.cs" Link="Video.cs" />
     <Compile Include="..\Catharsis.Domain\WeatherForecast.cs" Link="WeatherForecast.cs" />
-    <Compile Include="..\Catharsis.Domain\WeatherType.cs" Link="WeatherType.cs" />
     <Compile Include="..\Catharsis.Domain\WebBrowser.cs" Link="WebBrowser.cs" />
     <Compile Include="..\Catharsis.Domain\WebLink.cs" Link="WebLink.cs" />
     <Compile Include="..\Catharsis.Domain\WebPage.cs" Link="WebPage.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Catharsis.Commons" Version="4.0.1" />
-    <PackageReference Include="SQLite.Net-PCL" Version="3.1.1" />
-    <PackageReference Include="SQLite.Net.Core-PCL" Version="3.1.1" />
+    <InternalsVisibleTo Include="Catharsis.Domain.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentNHibernate" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="Mapping\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Catharsis.Commons">
+      <HintPath>..\..\..\Catharsis.NET.Commons\src\Catharsis.Commons.Standard\bin\Release\netstandard2.1\Catharsis.Commons.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

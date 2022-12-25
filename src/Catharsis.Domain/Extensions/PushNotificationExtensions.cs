@@ -1,71 +1,46 @@
-﻿using Catharsis.Commons;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain
+/// <summary>
+///   <para>Set of extension methods for class <see cref="PushNotification"/>.</para>
+/// </summary>
+/// <seealso cref="PushNotification"/>
+public static class PushNotificationExtensions
 {
-  public static class PushNotificationExtensions
+  public static IQueryable<PushNotification> Delivered(this IQueryable<PushNotification> notifications, bool? delivered) => notifications.Where(notification => notification.Delivered == delivered);
+
+  public static IEnumerable<PushNotification?> Delivered(this IEnumerable<PushNotification?> notifications, bool? delivered) => notifications.Where(notification => notification != null && notification.Delivered == delivered);
+
+  public static IQueryable<PushNotification> Provider(this IQueryable<PushNotification> notifications, PushNotification.ProviderType? provider) => notifications.Where(notification => notification.Provider == provider);
+
+  public static IEnumerable<PushNotification?> Provider(this IEnumerable<PushNotification?> notifications, PushNotification.ProviderType? provider) => notifications.Where(notification => notification != null && notification.Provider == provider);
+
+  public static IQueryable<PushNotification> Ttl(this IQueryable<PushNotification> notifications, long? from = null, long? to = null)
   {
-    public static IQueryable<PushNotification> Delivered(this IQueryable<PushNotification> notifications, bool delivered)
+    if (from != null)
     {
-      Assertion.NotNull(notifications);
-
-      return notifications.Where(it => it.Delivered == delivered);
+      notifications = notifications.Where(notification => notification.Ttl >= from.Value);
     }
 
-    public static IEnumerable<PushNotification> Delivered(this IEnumerable<PushNotification> notifications, bool delivered)
+    if (to != null)
     {
-      Assertion.NotNull(notifications);
-
-      return notifications.Where(it => it != null && it.Delivered == delivered);
+      notifications = notifications.Where(notification => notification.Ttl <= to.Value);
     }
 
-    public static IQueryable<PushNotification> Provider(this IQueryable<PushNotification> notifications, PushNotificationProvider provider)
-    {
-      Assertion.NotNull(notifications);
+    return notifications;
+  }
 
-      return notifications.Where(it => it.Provider == provider);
+  public static IEnumerable<PushNotification?> Ttl(this IEnumerable<PushNotification?> notifications, long? from = null, long? to = null)
+  {
+    if (from != null)
+    {
+      notifications = notifications.Where(notification => notification != null && notification.Ttl >= from.Value);
     }
 
-    public static IEnumerable<PushNotification> Provider(this IEnumerable<PushNotification> notifications, PushNotificationProvider provider)
+    if (to != null)
     {
-      Assertion.NotNull(notifications);
-
-      return notifications.Where(it => it != null && it.Provider == provider);
+      notifications = notifications.Where(notification => notification != null && notification.Ttl <= to.Value);
     }
 
-    public static IQueryable<PushNotification> Ttl(this IQueryable<PushNotification> notifications, long? from = null, long? to = null)
-    {
-      Assertion.NotNull(notifications); 
-
-      if (from != null)
-      {
-        notifications = notifications.Where(it => it.Ttl >= from.Value);
-      }
-
-      if (to != null)
-      {
-        notifications = notifications.Where(it => it.Ttl <= to.Value);
-      }
-
-      return notifications;
-    }
-
-    public static IEnumerable<PushNotification> Ttl(this IEnumerable<PushNotification> notifications, long? from = null, long? to = null)
-    {
-      Assertion.NotNull(notifications);
-
-      if (from != null)
-      {
-        notifications = notifications.Where(it => it != null && it.Ttl >= from.Value);
-      }
-
-      if (to != null)
-      {
-        notifications = notifications.Where(it => it != null && it.Ttl <= to.Value);
-      }
-
-      return notifications.Where(it => it != null);
-    }
+    return notifications.Where(notification => notification != null);
   }
 }

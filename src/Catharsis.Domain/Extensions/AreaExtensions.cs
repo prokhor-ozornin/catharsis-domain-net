@@ -1,39 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Catharsis.Commons;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain
+/// <summary>
+///   <para>Set of extension methods for class <see cref="Area"/>.</para>
+/// </summary>
+/// <seealso cref="Area"/>
+public static class AreaExtensions
 {
-  public static class AreaExtensions
-  {
-    public static IQueryable<Area> Country(this IQueryable<Area> areas, Country country)
-    {
-      Assertion.NotNull(areas);
+  public static IQueryable<Area> Country(this IQueryable<Area> areas, Country? country) => country != null ? areas.Where(area => area.Country != null && area.Country.Id == country.Id) : areas.Where(area => area.Country == null);
 
-      return country != null ? areas.Where(it => it.Country.Id == country.Id) : areas.Where(it => it.Country == null);
-    }
+  public static IEnumerable<Area?> Country(this IEnumerable<Area?> areas, Country? country) => country != null ? areas.Where(area => area?.Country != null && area.Country.Equals(country)) : areas.Where(area => area is { Country: null });
 
-    public static IEnumerable<Area> Country(this IEnumerable<Area> areas, Country country)
-    {
-      Assertion.NotNull(areas);
+  public static IQueryable<Area> Name(this IQueryable<Area> areas, string name) => areas.Where(area => area.Name != null && area.Name.ToLower().StartsWith(name.ToLower()));
 
-      return country != null ? areas.Where(it => it?.Country != null && it.Country.Equals(country)) : areas.Where(it => it != null && it.Country == null);
-    }
-
-    public static IQueryable<Area> Name(this IQueryable<Area> areas, string name)
-    {
-      Assertion.NotNull(areas);
-      Assertion.NotEmpty(name);
-
-      return areas.Where(it => it.Name.ToLower().StartsWith(name.ToLower()));
-    }
-
-    public static IEnumerable<Area> Name(this IEnumerable<Area> areas, string name)
-    {
-      Assertion.NotNull(areas);
-      Assertion.NotEmpty(name);
-
-      return areas.Where(it => it?.Name != null && it.Name.ToLower().StartsWith(name.ToLower()));
-    }
-  }
+  public static IEnumerable<Area?> Name(this IEnumerable<Area?> areas, string name) => areas.Where(area => area?.Name != null && area.Name.ToLower().StartsWith(name.ToLower()));
 }

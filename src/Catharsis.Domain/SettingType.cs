@@ -1,15 +1,14 @@
-﻿namespace Catharsis.Domain
+﻿namespace Catharsis.Domain;
+
+public enum SettingType
 {
-  public enum SettingType
-  {
-    Boolean,
+  Boolean,
 
-    Date,
+  Date,
 
-    Number,
+  Number,
 
-    String,
-  
-    Url
-  }
+  String,
+
+  Url
 }

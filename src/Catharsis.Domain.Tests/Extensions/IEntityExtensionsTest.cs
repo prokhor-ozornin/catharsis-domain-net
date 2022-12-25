@@ -1,126 +1,159 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for interface <see cref="IEntity"/>.</para>
+/// </summary>
+public sealed class IEntityExtensionsTest
 {
-  public sealed class IEntityExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="IEntityExtensions.CreatedOn{T}(IQueryable{T}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void CreatedOn_Queryable_Method()
   {
-    [Fact]
-    public void created_on_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<IEntity>)null).CreatedOn());
+    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null!).CreatedOn()).ThrowExactly<ArgumentNullException>();
 
-      var entities = new[] { new Entity { CreatedOn = new DateTime(2000, 1, 1) }, new Entity { CreatedOn = new DateTime(2000, 1, 2) } }.AsQueryable();
-      Assert.Equal(2, entities.CreatedOn().Count());
-      Assert.Equal(2, entities.CreatedOn(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(entities.CreatedOn(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, entities.CreatedOn(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, entities.CreatedOn(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(entities.CreatedOn(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, entities.CreatedOn(to: new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, entities.CreatedOn(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var entities = new[] {new Entity {CreatedOn = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Entity {CreatedOn = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0,TimeSpan.Zero)}}.AsQueryable();
+    entities.CreatedOn().Should().HaveCount(2);
+    entities.CreatedOn(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entities.CreatedOn(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entities.CreatedOn(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entities.CreatedOn(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entities.CreatedOn(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entities.CreatedOn(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entities.CreatedOn(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void created_on_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<IEntity>)null).CreatedOn());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="IEntityExtensions.CreatedOn{T}(IEnumerable{T?}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void CreatedOn_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null!).CreatedOn()).ThrowExactly<ArgumentNullException>();
 
-      var entities = new[] { null, new Entity(), new Entity { CreatedOn = new DateTime(2000, 1, 1) }, new Entity { CreatedOn = new DateTime(2000, 1, 2) } };
-      Assert.Equal(3, entities.CreatedOn().Count());
-      Assert.Equal(2, entities.CreatedOn(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(entities.CreatedOn(new DateTime(2000, 1, 3)));
-      Assert.Single(entities.CreatedOn(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
-      Assert.Equal(2, entities.CreatedOn(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(entities.CreatedOn(to: new DateTime(1999, 12, 31)));
-      Assert.Single(entities.CreatedOn(to: new DateTime(2000, 1, 1)));
-      Assert.Equal(2, entities.CreatedOn(to: new DateTime(2000, 1, 3)).Count());
-    }
+    var entities = new[] {null, new Entity(), new Entity {CreatedOn = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Entity {CreatedOn = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}};
+    entities.CreatedOn().Should().HaveCount(3);
+    entities.CreatedOn(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entities.CreatedOn(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entities.CreatedOn(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entities.CreatedOn(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entities.CreatedOn(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entities.CreatedOn(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entities.CreatedOn(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void id()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<IEntity>) null).Id(1));
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<IEntity>)null).Id(1));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="IEntityExtensions.Id{T}(IQueryable{T}, long)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Id_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null!).Id(1)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Null(Enumerable.Empty<Entity>().AsQueryable().Id(1));
-      Assert.Null(Enumerable.Empty<Entity>().Id(1));
+    Enumerable.Empty<Entity>().AsQueryable().Id(1).Should().BeNull();
 
-      Assert.Equal(1, new[] { new Entity { Id = 1 }, new Entity { Id = 2 } }.AsQueryable().Id(1).Id);
-      Assert.Equal(1, new[] { null, new Entity { Id = 1 }, null, new Entity { Id = 2 } }.Id(1).Id);
-    }
+    new[] {new Entity {Id = 1}, new Entity {Id = 2}}.AsQueryable().Id(1).Id.Should().Be(1);
+  }
 
-    [Fact]
-    public void random_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<IEntity>)null).Random());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="IEntityExtensions.Id{T}(IEnumerable{T?}, long)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Id_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null!).Id(1)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Null(Enumerable.Empty<IEntity>().AsQueryable().Random());
+    Enumerable.Empty<Entity>().Id(1).Should().BeNull();
 
-      var first = new Entity { Id = 1 };
-      var second = new Entity { Id = 2 };
-      var entities = new IEntity[] { first, second }.AsQueryable();
-      Assert.Same(first, new IEntity[] { first }.Random());
-      Assert.Contains(entities.Random(), entities);
-    }
+    new[] { null, new Entity { Id = 1 }, null, new Entity { Id = 2 } }.Id(1).Id.Should().Be(1);
+  }
 
-    [Fact]
-    public void random_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<IEntity>)null).Random());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="IEntityExtensions.Random{T}(IQueryable{T})"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Random_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null!).Random()).ThrowExactly<ArgumentNullException>();
 
-      Assert.Null(Enumerable.Empty<IEntity>().Random());
+    Enumerable.Empty<IEntity>().AsQueryable().Random().Should().BeNull();
 
-      var first = new Entity { Id = 1 };
-      var second = new Entity { Id = 2 };
-      var entities = new IEntity[] { first, second };
-      Assert.Same(first, new IEntity[] { first }.Random());
-      Assert.Contains(entities.Random(), entities);
-    }
+    var first = new Entity {Id = 1};
+    var second = new Entity {Id = 2};
+    var entities = new IEntity[] {first, second}.AsQueryable();
+    new IEntity[] {first}.Random().Should().BeSameAs(first);
+    entities.Should().Contain(entities.Random());
+  }
 
-    [Fact]
-    public void updated_on_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<IEntity>)null).UpdatedOn());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="IEntityExtensions.Random{T}(IEnumerable{T?})"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Random_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null!).Random()).ThrowExactly<ArgumentNullException>();
 
-      var entities = new[] { new Entity { UpdatedOn = new DateTime(2000, 1, 1) }, new Entity { UpdatedOn = new DateTime(2000, 1, 2) } }.AsQueryable();
-      Assert.Equal(2, entities.UpdatedOn().Count());
-      Assert.Equal(2, entities.UpdatedOn(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(entities.UpdatedOn(new DateTime(2000, 1, 3)));
-      Assert.Equal(1, entities.UpdatedOn(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, entities.UpdatedOn(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(entities.UpdatedOn(to: new DateTime(1999, 12, 31)));
-      Assert.Equal(1, entities.UpdatedOn(to: new DateTime(2000, 1, 1)).Count());
-      Assert.Equal(2, entities.UpdatedOn(to: new DateTime(2000, 1, 3)).Count());
-    }
+    Enumerable.Empty<IEntity>().Random().Should().BeNull();
 
-    [Fact]
-    public void updated_on_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<IEntity>)null).UpdatedOn());
+    var first = new Entity {Id = 1};
+    var second = new Entity {Id = 2};
+    var entities = new IEntity[] {first, second};
+    new IEntity[] {first}.Random().Should().BeSameAs(first);
+    entities.Should().Contain(entities.Random());
+  }
 
-      var entities = new[] { null, new Entity(), new Entity { UpdatedOn = new DateTime(2000, 1, 1) }, new Entity { UpdatedOn = new DateTime(2000, 1, 2) } };
-      Assert.Equal(3, entities.UpdatedOn().Count());
-      Assert.Equal(2, entities.UpdatedOn(new DateTime(1999, 1, 31)).Count());
-      Assert.Empty(entities.UpdatedOn(new DateTime(2000, 1, 3)));
-      Assert.Single(entities.UpdatedOn(new DateTime(1999, 1, 31), new DateTime(2000, 1, 1)));
-      Assert.Equal(2, entities.UpdatedOn(new DateTime(2000, 1, 1), new DateTime(2000, 1, 2)).Count());
-      Assert.Empty(entities.UpdatedOn(to: new DateTime(1999, 12, 31)));
-      Assert.Single(entities.UpdatedOn(to: new DateTime(2000, 1, 1)));
-      Assert.Equal(2, entities.UpdatedOn(to: new DateTime(2000, 1, 3)).Count());
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="IEntityExtensions.UpdatedOn{T}(IQueryable{T}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void UpdatedOn_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null!).UpdatedOn()).ThrowExactly<ArgumentNullException>();
 
-    private sealed class Entity : IEntity
-    {
-      public DateTime? CreatedOn { get; set; }
+    var entities = new[] {new Entity {UpdatedOn = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Entity {UpdatedOn = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}}.AsQueryable();
+    entities.UpdatedOn().Should().HaveCount(2);
+    entities.UpdatedOn(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entities.UpdatedOn(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entities.UpdatedOn(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entities.UpdatedOn(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entities.UpdatedOn(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entities.UpdatedOn(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entities.UpdatedOn(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-      public long? Id { get; set; }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="IEntityExtensions.UpdatedOn{T}(IEnumerable{T?}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void UpdatedOn_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null!).UpdatedOn()).ThrowExactly<ArgumentNullException>();
 
-      public long? Version { get; set; }
+    var entities = new[] {null, new Entity(), new Entity {UpdatedOn = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Entity {UpdatedOn = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}};
+    entities.UpdatedOn().Should().HaveCount(3);
+    entities.UpdatedOn(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entities.UpdatedOn(new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entities.UpdatedOn(new DateTimeOffset(year: 1999, month: 1, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entities.UpdatedOn(new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero), new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+    entities.UpdatedOn(to: new DateTimeOffset(year: 1999, month: 12, day: 31, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().BeEmpty();
+    entities.UpdatedOn(to: new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().ContainSingle();
+    entities.UpdatedOn(to: new DateTimeOffset(year: 2000, month: 1, day: 3, hour: 0, minute: 0, second: 0, TimeSpan.Zero)).Should().HaveCount(2);
+  }
 
-      public DateTime? UpdatedOn { get; set; }
-    }
+  private sealed class Entity : IEntity
+  {
+    public long? Id { get; set; }
+
+    public Guid? Uuid { get; set; }
+
+    public long? Version { get; set; }
+
+    public DateTimeOffset? CreatedOn { get; set; }
+
+    public DateTimeOffset? UpdatedOn { get; set; }
   }
 }

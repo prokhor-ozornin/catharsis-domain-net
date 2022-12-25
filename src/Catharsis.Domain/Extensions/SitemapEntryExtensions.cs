@@ -1,92 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Catharsis.Commons;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain
+/// <summary>
+///   <para>Set of extension methods for class <see cref="SitemapEntry"/>.</para>
+/// </summary>
+/// <seealso cref="SitemapEntry"/>
+public static class SitemapEntryExtensions
 {
-  public static class SitemapEntryExtensions
+  public static IQueryable<SitemapEntry> ChangeFrequency(this IQueryable<SitemapEntry> entries, SitemapEntry.SitemapChangeFrequency? changeFrequency) => entries.Where(entry => entry.ChangeFrequency == changeFrequency);
+
+  public static IEnumerable<SitemapEntry?> ChangeFrequency(this IEnumerable<SitemapEntry?> entries, SitemapEntry.SitemapChangeFrequency? changeFrequency) => entries.Where(entry => entry != null && entry.ChangeFrequency == changeFrequency);
+
+  public static IQueryable<SitemapEntry> Date(this IQueryable<SitemapEntry> entries, DateTimeOffset? from = null, DateTimeOffset? to = null)
   {
-    public static IQueryable<SitemapEntry> ChangeFrequency(this IQueryable<SitemapEntry> entries, SitemapChangeFrequency changeFrequency)
+    if (from != null)
     {
-      Assertion.NotNull(entries);
-
-      return entries.Where(it => it.ChangeFrequency == changeFrequency);
+      entries = entries.Where(entry => entry.Date >= from.Value);
     }
 
-    public static IEnumerable<SitemapEntry> ChangeFrequency(this IEnumerable<SitemapEntry> entries, SitemapChangeFrequency changeFrequency)
+    if (to != null)
     {
-      Assertion.NotNull(entries);
-
-      return entries.Where(it => it != null && it.ChangeFrequency == changeFrequency);
+      entries = entries.Where(entry => entry.Date <= to.Value);
     }
 
-    public static IQueryable<SitemapEntry> Date(this IQueryable<SitemapEntry> entries, DateTime? from = null, DateTime? to = null)
+    return entries;
+  }
+
+  public static IEnumerable<SitemapEntry?> Date(this IEnumerable<SitemapEntry?> entries, DateTimeOffset? from = null, DateTimeOffset? to = null)
+  {
+    if (from != null)
     {
-      Assertion.NotNull(entries);
-
-      if (from != null)
-      {
-        entries = entries.Where(it => it.Date >= from.Value);
-      }
-
-      if (to != null)
-      {
-        entries = entries.Where(it => it.Date <= to.Value);
-      }
-
-      return entries;
+      entries = entries.Where(entry => entry != null && entry.Date >= from.Value);
     }
 
-    public static IEnumerable<SitemapEntry> Date(this IEnumerable<SitemapEntry> entries, DateTime? from = null, DateTime? to = null)
+    if (to != null)
     {
-      Assertion.NotNull(entries);
-
-      if (from != null)
-      {
-        entries = entries.Where(it => it != null && it.Date >= from.Value);
-      }
-
-      if (to != null)
-      {
-        entries = entries.Where(it => it != null && it.Date <= to.Value);
-      }
-
-      return entries.Where(it => it != null);
+      entries = entries.Where(entry => entry != null && entry.Date <= to.Value);
     }
 
-    public static IQueryable<SitemapEntry> Priority(this IQueryable<SitemapEntry> entries, decimal? from = null, decimal? to = null)
+    return entries.Where(entry => entry != null);
+  }
+
+  public static IQueryable<SitemapEntry> Priority(this IQueryable<SitemapEntry> entries, decimal? from = null, decimal? to = null)
+  {
+    if (from != null)
     {
-      Assertion.NotNull(entries);
-
-      if (from != null)
-      {
-        entries = entries.Where(it => it.Priority >= from.Value);
-      }
-
-      if (to != null)
-      {
-        entries = entries.Where(it => it.Priority <= to.Value);
-      }
-
-      return entries;
+      entries = entries.Where(entry => entry.Priority >= from.Value);
     }
 
-    public static IEnumerable<SitemapEntry> Priority(this IEnumerable<SitemapEntry> entries, decimal? from = null, decimal? to = null)
+    if (to != null)
     {
-      Assertion.NotNull(entries);
-
-      if (from != null)
-      {
-        entries = entries.Where(it => it != null && it.Priority >= from.Value);
-      }
-
-      if (to != null)
-      {
-        entries = entries.Where(it => it != null && it.Priority <= to.Value);
-      }
-
-      return entries.Where(it => it != null);
+      entries = entries.Where(entry => entry.Priority <= to.Value);
     }
+
+    return entries;
+  }
+
+  public static IEnumerable<SitemapEntry?> Priority(this IEnumerable<SitemapEntry?> entries, decimal? from = null, decimal? to = null)
+  {
+    if (from != null)
+    {
+      entries = entries.Where(entry => entry != null && entry.Priority >= from.Value);
+    }
+
+    if (to != null)
+    {
+      entries = entries.Where(entry => entry != null && entry.Priority <= to.Value);
+    }
+
+    return entries.Where(entry => entry != null);
   }
 }

@@ -1,30 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="SeoWebPageExtensions"/>.</para>
+/// </summary>
+public sealed class SeoWebPageExtensionsTest
 {
-  public sealed class SeoWebPageExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SeoWebPageExtensions.Locale(IQueryable{SeoWebPage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Locale_Queryable_Method()
   {
-    [Fact]
-    public void locale_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<SeoWebPage>)null).Locale("locale"));
-      Assert.Throws<ArgumentNullException>(() => new SeoWebPage[] { }.AsQueryable().Locale(null));
-      Assert.Throws<ArgumentException>(() => new SeoWebPage[] { }.AsQueryable().Locale(string.Empty));
+    AssertionExtensions.Should(() => ((IQueryable<SeoWebPage>) null!).Locale("locale")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<SeoWebPage>().AsQueryable().Locale(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<SeoWebPage>().AsQueryable().Locale(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new SeoWebPage { Locale = "First" }, new SeoWebPage { Locale = "Second" } }.AsQueryable().Locale("first").Count());
-    }
+    new[] {new SeoWebPage {Locale = "First"}, new SeoWebPage {Locale = "Second"}}.AsQueryable().Locale("first").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void locale_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<SeoWebPage>)null).Locale("locale"));
-      Assert.Throws<ArgumentNullException>(() => new SeoWebPage[] { }.Locale(null));
-      Assert.Throws<ArgumentException>(() => new SeoWebPage[] { }.Locale(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SeoWebPageExtensions.Locale(IEnumerable{SeoWebPage}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Locale_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<SeoWebPage>) null!).Locale("locale")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<SeoWebPage>().Locale(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<SeoWebPage>().Locale(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new SeoWebPage(), new SeoWebPage { Locale = "First" }, new SeoWebPage { Locale = "Second" } }.Locale("first"));
-    }
+    new[] {null, new SeoWebPage(), new SeoWebPage {Locale = "First"}, new SeoWebPage {Locale = "Second"}}.Locale("first").Should().ContainSingle();
   }
 }

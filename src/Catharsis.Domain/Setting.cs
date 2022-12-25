@@ -1,111 +1,91 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using Catharsis.Commons;
-using System.Collections.Generic;
-using SQLite.Net.Attributes;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Настроечная опция</para>
+/// </summary>
+[Description("Настроечная опция")]
+[Serializable]
+[DataContract(Name = nameof(Setting))]
+public class Setting : Entity, IComparable<Setting>, IEquatable<Setting>
 {
   /// <summary>
-  ///   <para>Настроечная опция</para>
+  ///   <para>Наименование настроечной опции</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class Setting : Entity, IComparable<Setting>, IEquatable<Setting>
+  [DataMember(Name = nameof(Name))]
+  [Description("Наименование настроечной опции")]
+  public virtual string? Name { get; set; }
+
+  /// <summary>
+  ///   <para>Тип данных для значения настроечной опции</para>
+  /// </summary>
+  [DataMember(Name = nameof(Type))]
+  [Description("Тип данных для значения настроечной опции")]
+  public virtual SettingType? Type { get; set; }
+
+  /// <summary>
+  ///   <para>Описание настроечной опции</para>
+  /// </summary>
+  [DataMember(Name = nameof(Description))]
+  [Description("Описание настроечной опции")]
+  public virtual string? Description { get; set; }
+
+  /// <summary>
+  ///   <para>Значение настроечной опции</para>
+  /// </summary>
+  [DataMember(Name = nameof(Value))]
+  [Description("Значение настроечной опции")]
+  public virtual string? Value { get; set; }
+
+  /// <summary>
+  ///   <para>Список значений настроечной опции</para>
+  /// </summary>
+  [DataMember(Name = nameof(Values))]
+  [Description("Список значений настроечной опции")]
+  public virtual IList<string> Values { get; set; } = new List<string>();
+
+  /// <summary>
+  ///   <para>Compares the current <see cref="Setting"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="Setting"/> to compare with this instance.</param>
+  public virtual int CompareTo(Setting? other) => string.Compare(Name, other?.Name, StringComparison.InvariantCultureIgnoreCase);
+
+  /// <summary>
+  ///   <para>Determines whether two <see cref="Setting"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(Setting? other) => this.Equality(other, nameof(Name));
+
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as Setting);
+
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(Name));
+
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Value ?? Values.Text();
+
+  public enum SettingType
   {
-    /// <summary>
-    ///   <para>Описание настроечной опции</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentDescription)]
-    [Column(Schema.ColumnNameDescription)]
-    public virtual string Description { get; set; }
-
-    /// <summary>
-    ///   <para>Наименование настроечной опции</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentName)]
-    [Column(Schema.ColumnNameName)]
-    [NotNull]
-    [Unique(Name = "setting__name")]
-    public virtual string Name { get; set; }
-
-    /// <summary>
-    ///   <para>Тип данных для значения настроечной опции</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentType)]
-    [Column(Schema.ColumnNameType)]
-    [NotNull]
-    [Indexed(Name = "idx__setting__type")]
-    public virtual SettingType? Type { get; set; }
-
-    /// <summary>
-    ///   <para>Значение настроечной опции</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentValue)]
-    [Column(Schema.ColumnNameValue)]
-    public virtual string Value { get; set; }
-
-    /// <summary>
-    ///   <para>Список значений настроечной опции</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentValues)]
-    [Column(Schema.ColumnNameValues)]
-    public virtual IList<string> Values { get; set; } = new List<string>();
-
-    public virtual int CompareTo(Setting other)
-    {
-      return this.Name.CompareTo(other.Name);
-    }
-
-    public virtual bool Equals(Setting other)
-    {
-      return this.Equality(other, it => it.Name);
-    }
-
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Setting);
-    }
-
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.Name);
-    }
-
-    public override string ToString()
-    {
-      return this.Value ?? this.Values.ToListString();
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "setting";
-      public const string TableComment = "Настроечные опции";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время добавления настроечной опции";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения настроечной опции";
-
-      public const string ColumnNameDescription = "description";
-      public const string ColumnCommentDescription = "Описание настроечной опции";
-
-      public const string ColumnNameName = "name";
-      public const string ColumnCommentName = "Наименование настроечной опции";
-
-      public const string ColumnNameType = "type";
-      public const string ColumnCommentType = "Тип данных для значения настроечной опции";
-
-      public const string ColumnNameValue = "value";
-      public const string ColumnCommentValue = "Значение настроечной опции";
-
-      public const string ColumnNameValues = "values";
-      public const string ColumnCommentValues = "Список значений настроечной опции";
-    }
+    Boolean,
+    Date,
+    Number,
+    String,
+    Url
   }
 }

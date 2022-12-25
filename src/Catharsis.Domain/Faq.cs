@@ -1,64 +1,40 @@
-﻿using SQLite.Net.Attributes;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Часто Задаваемый Вопрос (Ч.А.В.О.)</para>
+/// </summary>
+[Description("Часто Задаваемый Вопрос (Ч.А.В.О.)")]
+[Serializable]
+[DataContract(Name = nameof(Faq))]
+public class Faq : Entity, IComparable<Faq>
 {
   /// <summary>
-  ///   <para>Часто Задаваемый Вопрос (Ч.А.В.О.)</para>
+  ///   <para>Текст ответа</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class Faq : Entity, IComparable<Faq>
-  {
-    /// <summary>
-    ///   <para>Текст вопроса</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentAnswer)]
-    [Column(Schema.ColumnNameAnswer)]
-    [NotNull]
-    [MaxLength(4000)]
-    public virtual string Answer { get; set; }
+  [DataMember(Name = nameof(Question))]
+  [Description("Текст ответа")]
+  public virtual string? Question { get; set; }
 
-    /// <summary>
-    ///   <para>Текст ответа</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentQuestion)]
-    [Column(Schema.ColumnNameQuestion)]
-    [NotNull]
-    [MaxLength(4000)]
-    public virtual string Question { get; set; }
+  /// <summary>
+  ///   <para>Текст вопроса</para>
+  /// </summary>
+  [DataMember(Name = nameof(Answer))]
+  [Description("Текст вопроса")]
+  public virtual string? Answer { get; set; }
 
-    public virtual int CompareTo(Faq other)
-    {
-      return this.CreatedOn.Value.CompareTo(other.CreatedOn.Value);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="Faq"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="Faq"/> to compare with this instance.</param>
+  public virtual int CompareTo(Faq? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
 
-    public override string ToString()
-    {
-      return this.Question?.Trim() ?? string.Empty;
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "faq";
-      public const string TableComment = "Часто Задаваемые Вопросы";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время добавления Часто Задаваемого Вопроса";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего изменения Часто Задаваемого Вопроса";
-
-      public const string ColumnNameAnswer = "answer";
-      public const string ColumnCommentAnswer = "Текст ответа";
-
-      public const string ColumnNameQuestion = "question";
-      public const string ColumnCommentQuestion = "Текст вопроса";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => Question ?? string.Empty;
 }

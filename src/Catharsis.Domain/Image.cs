@@ -1,62 +1,48 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using Catharsis.Commons;
-using SQLite.Net.Attributes;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Изображение</para>
+/// </summary>
+[Description("Изображение")]
+[Serializable]
+[DataContract(Name = nameof(Image))]
+public class Image : Media, IComparable<Image>, IEquatable<Image>
 {
   /// <summary>
-  ///   <para>Изображение</para>
+  ///   <para>Файл, представляющий изображение</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class Image : Media, IComparable<Image>, IEquatable<Image>
-  {
-    /// <summary>
-    ///   <para>Файл, представляющий изображение</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentFile)]
-    [Column(Schema.ColumnNameFile)]
-    [Indexed(Name = "idx__image__file_id")]
-    public virtual StorageFile File { get; set; }
+  [DataMember(Name = nameof(File))]
+  [Description("Файл, представляющий изображение")]
+  public virtual StorageFile? File { get; set; }
 
-    public virtual int CompareTo(Image other)
-    {
-      return this.CreatedOn.Value.CompareTo(other.CreatedOn.Value);
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="Image"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="Image"/> to compare with this instance.</param>
+  public virtual int CompareTo(Image? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
 
-    public virtual bool Equals(Image other)
-    {
-      return this.Equality(other, it => it.File, it => it.Uri);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="Image"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(Image? other) => this.Equality(other, nameof(File), nameof(Uri));
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Image);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as Image);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => it.File, it => it.Uri);
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "image";
-      public const string TableComment = "Изображения";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время добавления изображения";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Файл, представляющий изображение";
-
-      public const string ColumnNameFile = "file_id";
-      public const string ColumnCommentFile = "Дата/время последнего изменения изображения";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(File), nameof(Uri));
 }

@@ -1,25 +1,12 @@
-﻿using Catharsis.Commons;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain
+/// <summary>
+///   <para>Set of extension methods for class <see cref="Tag"/>.</para>
+/// </summary>
+/// <seealso cref="Tag"/>
+public static class TagExtensions
 {
-  public static class TagExtensions
-  {
-    public static Tag ForName(this IQueryable<Tag> tags, string name)
-    {
-      Assertion.NotNull(tags);
-      Assertion.NotEmpty(name);
+  public static Tag? ForName(this IQueryable<Tag> tags, string name) => tags.SingleOrDefault(tag => tag.Name != null && tag.Name.ToLower() == name.ToLower());
 
-      return tags.SingleOrDefault(it => it.Name.ToLower() == name.ToLower());
-    }
-
-    public static Tag ForName(this IEnumerable<Tag> tags, string name)
-    {
-      Assertion.NotNull(tags);
-      Assertion.NotEmpty(name);
-
-      return tags.SingleOrDefault(it => it?.Name != null && it.Name.ToLower() == name.ToLower());
-    }
-  }
+  public static Tag? ForName(this IEnumerable<Tag?> tags, string name) => tags.SingleOrDefault(tag => tag?.Name != null && tag.Name.ToLower() == name.ToLower());
 }

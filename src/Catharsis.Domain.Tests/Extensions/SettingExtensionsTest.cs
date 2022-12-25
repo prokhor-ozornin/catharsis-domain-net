@@ -1,78 +1,96 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="SettingExtensions"/>.</para>
+/// </summary>
+public sealed class SettingExtensionsTest
 {
-  public sealed class SettingExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SettingExtensions.ForName(IQueryable{Setting}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ForName_Queryable_Method()
   {
-    [Fact]
-    public void for_name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Setting>)null).ForName("name"));
-      Assert.Throws<ArgumentNullException>(() => new Setting[] { }.AsQueryable().ForName(null));
-      Assert.Throws<ArgumentException>(() => new Setting[] { }.AsQueryable().ForName(string.Empty));
-      Assert.Throws<InvalidOperationException>(() => new[] { new Setting { Name = "Name" }, new Setting { Name = "name" } }.AsQueryable().ForName("name"));
+    AssertionExtensions.Should(() => ((IQueryable<Setting>) null!).ForName("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().ForName(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().ForName(string.Empty)).ThrowExactly<ArgumentException>();
+    AssertionExtensions.Should(() => new[] {new Setting {Name = "Name"}, new Setting {Name = "name"}}.AsQueryable().ForName("name")).ThrowExactly<InvalidOperationException>();
 
-      Assert.Null(new Setting[] { }.AsQueryable().ForName("name"));
-      Assert.NotNull(new[] { new Setting { Name = "First" }, new Setting { Name = "Second" } }.AsQueryable().ForName("first"));
-    }
+    Array.Empty<Setting>().ForName("name").Should().BeNull();
+    new[] {new Setting {Name = "First"}, new Setting {Name = "Second"}}.AsQueryable().ForName("first").Should().NotBeNull();
+  }
 
-    [Fact]
-    public void for_name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Setting>)null).ForName("name"));
-      Assert.Throws<ArgumentNullException>(() => new Setting[] { }.ForName(null));
-      Assert.Throws<ArgumentException>(() => new Setting[] { }.ForName(string.Empty));
-      Assert.Throws<InvalidOperationException>(() => new[] { new Setting { Name = "Name" }, new Setting { Name = "name" } }.ForName("name"));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SettingExtensions.ForName(IEnumerable{Setting}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ForName_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Setting>) null!).ForName("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().ForName(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().ForName(string.Empty)).ThrowExactly<ArgumentException>();
+    AssertionExtensions.Should(() => new[] {new Setting {Name = "Name"}, new Setting {Name = "name"}}.ForName("name")).ThrowExactly<InvalidOperationException>();
 
-      Assert.Null(new Setting[] { }.ForName("name"));
-      Assert.NotNull(new[] { new Setting { Name = "First", Value = "value" }, new Setting { Name = "Second" } }.ForName("first"));
-    }
+    Array.Empty<Setting>().ForName("name").Should().BeNull();
+    new[] {new Setting {Name = "First", Value = "value"}, new Setting {Name = "Second"}}.ForName("first").Should().NotBeNull();
+  }
 
-    [Fact]
-    public void name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Setting>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new Setting[] { }.AsQueryable().Name(null));
-      Assert.Throws<ArgumentException>(() => new Setting[] { }.AsQueryable().Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SettingExtensions.Name(IQueryable{Setting}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Setting>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Setting { Name = "First" }, new Setting { Name = "Second" } }.AsQueryable().Name("f").Count());
-    }
+    new[] {new Setting {Name = "First"}, new Setting {Name = "Second"}}.AsQueryable().Name("f").Should().BeNull();
+  }
 
-    [Fact]
-    public void name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Setting>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new Setting[] { }.Name(null));
-      Assert.Throws<ArgumentException>(() => new Setting[] { }.Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SettingExtensions.Name(IEnumerable{Setting}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Setting>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Setting(), new Setting { Name = "First" }, new Setting { Name = "Second" } }.Name("f"));
-    }
+    new[] {null, new Setting(), new Setting {Name = "First"}, new Setting {Name = "Second"}}.Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void value_of_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Setting>)null).ValueOf("name"));
-      Assert.Throws<ArgumentNullException>(() => new Setting[] { }.AsQueryable().ValueOf(null));
-      Assert.Throws<ArgumentException>(() => new Setting[] { }.AsQueryable().ValueOf(string.Empty));
-      Assert.Throws<InvalidOperationException>(() => new[] { new Setting { Name = "Name" }, new Setting { Name = "name" } }.AsQueryable().ValueOf("name"));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SettingExtensions.ValueOf(IQueryable{Setting}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ValueOf_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Setting>) null!).ValueOf("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().ValueOf(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().ValueOf(string.Empty)).ThrowExactly<ArgumentException>();
+    AssertionExtensions.Should(() => new[] {new Setting {Name = "Name"}, new Setting {Name = "name"}}.AsQueryable().ValueOf("name")).ThrowExactly<InvalidOperationException>();
 
-      Assert.Null(new Setting[] { }.AsQueryable().ValueOf("name"));
-      Assert.NotNull(new[] { new Setting { Name = "First", Value = "value" }, new Setting { Name = "Second" } }.AsQueryable().ValueOf("first"));
-    }
+    Array.Empty<Setting>().AsQueryable().ValueOf("name").Should().BeNull();
+    new[] {new Setting {Name = "First", Value = "value"}, new Setting {Name = "Second"}}.AsQueryable().ValueOf("first").Should().NotBeNull();
+  }
 
-    [Fact]
-    public void value_of_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Setting>)null).ValueOf("name"));
-      Assert.Throws<ArgumentNullException>(() => new Setting[] { }.ValueOf(null));
-      Assert.Throws<ArgumentException>(() => new Setting[] { }.ValueOf(string.Empty));
-      Assert.Throws<InvalidOperationException>(() => new[] { new Setting { Name = "Name" }, new Setting { Name = "name" } }.ValueOf("name"));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="SettingExtensions.ValueOf(IEnumerable{Setting}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ValueOf_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Setting>) null!).ValueOf("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().ValueOf(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().ValueOf(string.Empty)).ThrowExactly<ArgumentException>();
+    AssertionExtensions.Should(() => new[] {new Setting {Name = "Name"}, new Setting {Name = "name"}}.ValueOf("name")).ThrowExactly<InvalidOperationException>();
 
-      Assert.Null(new Setting[] { }.ValueOf("name"));
-      Assert.NotNull(new[] { new Setting { Name = "First", Value = "value" }, new Setting { Name = "Second" } }.ValueOf("first"));
-    }
+    Array.Empty<Setting>().ValueOf("name").Should().BeNull();
+    new[] {new Setting {Name = "First", Value = "value"}, new Setting {Name = "Second"}}.ValueOf("first").Should().NotBeNull();
   }
 }

@@ -1,59 +1,42 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Catharsis.Commons;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain
+/// <summary>
+///   <para>Set of extension methods for class <see cref="Download"/>.</para>
+/// </summary>
+/// <seealso cref="Download"/>
+public static class DownloadExtensions
 {
-  public static class DownloadExtensions
+  public static IQueryable<Download> Name(this IQueryable<Download> downloads, string name) => downloads.Where(download => download.Name != null && download.Name.ToLower().StartsWith(name.ToLower()));
+
+  public static IEnumerable<Download?> Name(this IEnumerable<Download?> downloads, string name) => downloads.Where(download => download?.Name != null && download.Name.ToLower().StartsWith(name.ToLower()));
+
+  public static IQueryable<Download> Downloads(this IQueryable<Download> downloads, long? from = null, long? to = null)
   {
-    public static IQueryable<Download> Downloads(this IQueryable<Download> downloads, long? from = null, long? to = null)
+    if (from != null)
     {
-      Assertion.NotNull(downloads);
-
-      if (from != null)
-      {
-        downloads = downloads.Where(it => it.Downloads >= from.Value);
-      }
-
-      if (to != null)
-      {
-        downloads = downloads.Where(it => it.Downloads <= to.Value);
-      }
-
-      return downloads;
+      downloads = downloads.Where(download => download.Downloads >= from.Value);
     }
 
-    public static IEnumerable<Download> Downloads(this IEnumerable<Download> downloads, long? from = null, long? to = null)
+    if (to != null)
     {
-      Assertion.NotNull(downloads);
-
-      if (from != null)
-      {
-        downloads = downloads.Where(it => it != null && it.Downloads >= from.Value);
-      }
-
-      if (to != null)
-      {
-        downloads = downloads.Where(it => it != null && it.Downloads <= to.Value);
-      }
-
-      return downloads.Where(it => it != null);
+      downloads = downloads.Where(download => download.Downloads <= to.Value);
     }
 
-    public static IQueryable<Download> Name(this IQueryable<Download> downloads, string name)
-    {
-      Assertion.NotNull(downloads);
-      Assertion.NotEmpty(name);
+    return downloads;
+  }
 
-      return downloads.Where(it => it.Name.ToLower().StartsWith(name.ToLower()));
+  public static IEnumerable<Download?> Downloads(this IEnumerable<Download?> downloads, long? from = null, long? to = null)
+  {
+    if (from != null)
+    {
+      downloads = downloads.Where(download => download != null && download.Downloads >= from.Value);
     }
 
-    public static IEnumerable<Download> Name(this IEnumerable<Download> downloads, string name)
+    if (to != null)
     {
-      Assertion.NotNull(downloads);
-      Assertion.NotEmpty(name);
-
-      return downloads.Where(it => it?.Name != null && it.Name.ToLower().StartsWith(name.ToLower()));
+      downloads = downloads.Where(download => download != null && download.Downloads <= to.Value);
     }
+
+    return downloads.Where(download => download != null);
   }
 }

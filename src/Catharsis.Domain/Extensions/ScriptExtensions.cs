@@ -1,73 +1,46 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Catharsis.Commons;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain
+/// <summary>
+///   <para>Set of extension methods for class <see cref="Script"/>.</para>
+/// </summary>
+/// <seealso cref="Script"/>
+public static class ScriptExtensions
 {
-  public static class ScriptExtensions
+  public static IQueryable<Script> Executed(this IQueryable<Script> scripts, bool? executed) => scripts.Where(script => script.Executed == executed);
+
+  public static IEnumerable<Script?> Executed(this IEnumerable<Script?> scripts, bool? executed) => scripts.Where(script => script != null && script.Executed == executed);
+
+  public static IQueryable<Script> Name(this IQueryable<Script> scripts, string name) => scripts.Where(script => script.Name != null && script.Name.ToLower().StartsWith(name.ToLower()));
+
+  public static IEnumerable<Script?> Name(this IEnumerable<Script?> scripts, string name) => scripts.Where(script => script?.Name != null && script.Name.ToLower().StartsWith(name.ToLower()));
+
+  public static IQueryable<Script> Duration(this IQueryable<Script> scripts, long? from = null, long? to = null)
   {
-    public static IQueryable<Script> Duration(this IQueryable<Script> scripts, long? from = null, long? to = null)
+    if (from != null)
     {
-      Assertion.NotNull(scripts);
-
-      if (from != null)
-      {
-        scripts = scripts.Where(it => it.Duration >= from.Value);
-      }
-
-      if (to != null)
-      {
-        scripts = scripts.Where(it => it.Duration <= to.Value);
-      }
-
-      return scripts;
+      scripts = scripts.Where(script => script.Duration >= from.Value);
     }
 
-    public static IEnumerable<Script> Duration(this IEnumerable<Script> scripts, long? from = null, long? to = null)
+    if (to != null)
     {
-      Assertion.NotNull(scripts);
-
-      if (from != null)
-      {
-        scripts = scripts.Where(it => it != null && it.Duration >= from.Value);
-      }
-
-      if (to != null)
-      {
-        scripts = scripts.Where(it => it != null && it.Duration <= to.Value);
-      }
-
-      return scripts.Where(it => it != null);
+      scripts = scripts.Where(script => script.Duration <= to.Value);
     }
 
-    public static IQueryable<Script> Executed(this IQueryable<Script> scripts, bool executed)
-    {
-      Assertion.NotNull(scripts);
+    return scripts;
+  }
 
-      return scripts.Where(it => it.Executed == executed);
+  public static IEnumerable<Script?> Duration(this IEnumerable<Script?> scripts, long? from = null, long? to = null)
+  {
+    if (from != null)
+    {
+      scripts = scripts.Where(script => script != null && script.Duration >= from.Value);
     }
 
-    public static IEnumerable<Script> Executed(this IEnumerable<Script> scripts, bool executed)
+    if (to != null)
     {
-      Assertion.NotNull(scripts);
-
-      return scripts.Where(it => it != null && it.Executed == executed);
+      scripts = scripts.Where(script => script != null && script.Duration <= to.Value);
     }
 
-    public static IQueryable<Script> Name(this IQueryable<Script> scripts, string name)
-    {
-      Assertion.NotNull(scripts);
-      Assertion.NotEmpty(name);
-
-      return scripts.Where(it => it.Name.ToLower().StartsWith(name.ToLower()));
-    }
-
-    public static IEnumerable<Script> Name(this IEnumerable<Script> scripts, string name)
-    {
-      Assertion.NotNull(scripts);
-      Assertion.NotEmpty(name);
-
-      return scripts.Where(it => it?.Name != null && it.Name.ToLower().StartsWith(name.ToLower()));
-    }
+    return scripts.Where(script => script != null);
   }
 }

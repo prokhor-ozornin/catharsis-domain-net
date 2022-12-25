@@ -1,113 +1,82 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using Catharsis.Commons;
-using SQLite.Net.Attributes;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain;
+
+/// <summary>
+///   <para>Персона</para>
+/// </summary>
+[Description("Персона")]
+[Serializable]
+[DataContract(Name = nameof(Person))]
+public class Person : Entity, IComparable<Person>, IEquatable<Person>
 {
   /// <summary>
-  ///   <para>Персона</para>
+  ///   <para>Имя</para>
   /// </summary>
-  [Serializable]
-  [Description(Schema.TableComment)]
-  [Table(Schema.TableName)]
-  public class Person : Entity, IComparable<Person>, IEquatable<Person>
-  {
-    /// <summary>
-    ///   <para>Дата рождения</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentBirthDate)]
-    [Column(Schema.ColumnNameBirthDate)]
-    [Indexed(Name = "idx__person__birth_date")]
-    public virtual DateTime? BirthDate { get; set; }
+  [DataMember(Name = nameof(FirstName))]
+  [Description("Имя")]
+  public virtual string? FirstName { get; set; }
 
-    /// <summary>
-    ///   <para>Дата смерти</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentDeathDate)]
-    [Column(Schema.ColumnNameDeathDate)]
-    [Indexed(Name = "idx__person__death_date")]
-    public virtual DateTime? DeathDate { get; set; }
+  /// <summary>
+  ///   <para>Фамилия</para>
+  /// </summary>
+  [DataMember(Name = nameof(LastName))]
+  [Description("Фамилия")]
+  public virtual string? LastName { get; set; }
 
-    /// <summary>
-    ///   <para>Имя</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentFirstName)]
-    [Column(Schema.ColumnNameFirstName)]
-    [NotNull]
-    [Indexed(Name = "idx__person__first_name")]
-    public virtual string FirstName { get; set; }
+  /// <summary>
+  ///   <para>Отчество</para>
+  /// </summary>
+  [DataMember(Name = nameof(MiddleName))]
+  [Description("Отчество")]
+  public virtual string? MiddleName { get; set; }
 
-    /// <summary>
-    ///   <para>Фамилия</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentLastName)]
-    [Column(Schema.ColumnNameLastName)]
-    [NotNull]
-    [Indexed(Name = "idx__person__last_name")]
-    public virtual string LastName { get; set; }
+  /// <summary>
+  ///   <para>Дата рождения</para>
+  /// </summary>
+  [DataMember(Name = nameof(BirthDate))]
+  [Description("Дата рождения")]
+  public virtual DateTimeOffset? BirthDate { get; set; }
 
-    /// <summary>
-    ///   <para>Отчество</para>
-    /// </summary>
-    [Description(Schema.ColumnCommentMiddleName)]
-    [Column(Schema.ColumnNameMiddleName)]
-    [Indexed(Name = "idx__person__middle_name")]
-    public virtual string MiddleName { get; set; }
+  /// <summary>
+  ///   <para>Дата смерти</para>
+  /// </summary>
+  [DataMember(Name = nameof(DeathDate))]
+  [Description("Дата смерти")]
+  public virtual DateTimeOffset? DeathDate { get; set; }
 
-    public virtual int CompareTo(Person other)
-    {
-      return this.ToString().CompareTo(other.ToString());
-    }
+  /// <summary>
+  ///   <para>Compares the current <see cref="Person"/> instance with another.</para>
+  /// </summary>
+  /// <returns>A value that indicates the relative order of the instances being compared.</returns>
+  /// <param name="other">The <see cref="Person"/> to compare with this instance.</param>
+  public virtual int CompareTo(Person? other) => string.Compare(ToString(), other?.ToString(), StringComparison.InvariantCultureIgnoreCase);
 
-    public virtual bool Equals(Person other)
-    {
-      return this.Equality(other, it => it.BirthDate, it => it.DeathDate, it => it.FirstName, it => it.LastName, it => it.MiddleName);
-    }
+  /// <summary>
+  ///   <para>Determines whether two <see cref="Person"/> instances are equal.</para>
+  /// </summary>
+  /// <param name="other">The instance to compare with the current one.</param>
+  /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+  public virtual bool Equals(Person? other) => this.Equality(other, nameof(BirthDate), nameof(DeathDate), nameof(FirstName), nameof(LastName), nameof(MiddleName));
 
-    public override bool Equals(object other)
-    {
-      return this.Equals(other as Person);
-    }
+  /// <summary>
+  ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
+  /// </summary>
+  /// <param name="other">The object to compare with the current object.</param>
+  /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+  public override bool Equals(object? other) => Equals(other as Person);
 
-    public override int GetHashCode()
-    {
-      return this.GetHashCode(it => BirthDate, it => it.DeathDate, it => it.FirstName, it => it.LastName, it => it.MiddleName);
-    }
+  /// <summary>
+  ///   <para>Returns hash code for the current object.</para>
+  /// </summary>
+  /// <returns>Hash code of current instance.</returns>
+  public override int GetHashCode() => this.HashCode(nameof(BirthDate), nameof(DeathDate), nameof(FirstName), nameof(LastName), nameof(MiddleName));
 
-    public override string ToString()
-    {
-      return $"{this.LastName ?? string.Empty} {this.FirstName ?? string.Empty} {this.MiddleName ?? string.Empty}".Trim();
-    }
-
-    public static new class Schema
-    {
-      public const string TableName = "person";
-      public const string TableComment = "Персоны";
-
-      public const string ColumnNameId = "id";
-      public const string ColumnCommentId = "Уникальный идентификатор";
-
-      public const string ColumnNameCreatedOn = "created_on";
-      public const string ColumnCommentCreatedOn = "Дата/время добавления персоны";
-
-      public const string ColumnNameUpdatedOn = "updated_on";
-      public const string ColumnCommentUpdatedOn = "Дата/время последнего обновления персоны";
-
-      public const string ColumnNameBirthDate = "birth_date";
-      public const string ColumnCommentBirthDate = "Дата рождения";
-
-      public const string ColumnNameDeathDate = "death_date";
-      public const string ColumnCommentDeathDate = "Дата смерти";
-
-      public const string ColumnNameFirstName = "first_name";
-      public const string ColumnCommentFirstName = "Имя";
-
-      public const string ColumnNameLastName = "last_name";
-      public const string ColumnCommentLastName = "Фамилия";
-
-      public const string ColumnNameMiddleName = "middle_name";
-      public const string ColumnCommentMiddleName = "Отчество";
-    }
-  }
+  /// <summary>
+  ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
+  /// </summary>
+  /// <returns>A string that represents the current entity.</returns>
+  public override string ToString() => $"{LastName ?? string.Empty} {FirstName ?? string.Empty} {MiddleName ?? string.Empty}".Trim();
 }

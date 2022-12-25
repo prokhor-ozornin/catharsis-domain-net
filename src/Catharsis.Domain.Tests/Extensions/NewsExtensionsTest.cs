@@ -1,48 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="NewsExtensions"/>.</para>
+/// </summary>
+public sealed class NewsExtensionsTest
 {
-  public sealed class NewsExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="NewsExtensions.Name(IQueryable{News}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Queryable_Method()
   {
-    [Fact]
-    public void name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<News>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new News[] { }.AsQueryable().Name(null));
-      Assert.Throws<ArgumentException>(() => new News[] { }.AsQueryable().Name(string.Empty));
+    AssertionExtensions.Should(() => ((IQueryable<News>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<News>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<News>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new News { Name = "First" }, new News { Name = "Second" } }.AsQueryable().Name("f").Count());
-    }
+    new[] {new News {Name = "First"}, new News {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<News>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new News[] { }.Name(null));
-      Assert.Throws<ArgumentException>(() => new News[] { }.Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="NewsExtensions.Name(IEnumerable{News}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<News>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<News>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<News>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new News(), new News { Name = "First" }, new News { Name = "Second" } }.Name("f"));
-    }
+    new[] {null, new News(), new News {Name = "First"}, new News {Name = "Second"}}.Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void tag_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<News>)null).Tag(new Tag()));
-      Assert.Throws<ArgumentNullException>(() => new News[] { }.AsQueryable().Tag(null));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="NewsExtensions.Tag(IQueryable{News}, Tag)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Tag_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<News>) null!).Tag(new Tag())).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<News>().AsQueryable().Tag(null!)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new News { Tags = new HashSet<Tag> { new Tag { Name = "first" } } }, new News { Tags = new HashSet<Tag> { new Tag { Name = "second" } } } }.AsQueryable().Tag(new Tag { Name = "first" }).Count());
-    }
+    new[] {new News {Tags = new HashSet<Tag> {new() {Name = "first"}}}, new News {Tags = new HashSet<Tag> {new() {Name = "second"}}}}.AsQueryable().Tag(new Tag {Name = "first"}).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void tag_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<News>)null).Tag(new Tag()));
-      Assert.Throws<ArgumentNullException>(() => new News[] { }.Tag(null));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="NewsExtensions.Tag(IEnumerable{News}, Tag)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Tag_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<News>) null!).Tag(new Tag())).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<News>().Tag(null!)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Single(new[] { null, new News(), new News { Tags = new HashSet<Tag> { new Tag { Name = "first" } } }, new News { Tags = new HashSet<Tag> { new Tag { Name = "second" } } } }.Tag(new Tag { Name = "first" }));
-    }
+    new[] {null, new News(), new News {Tags = new HashSet<Tag> {new() {Name = "first"}}}, new News {Tags = new HashSet<Tag> {new() {Name = "second"}}}}.Tag(new Tag {Name = "first"}).Should().ContainSingle();
   }
 }

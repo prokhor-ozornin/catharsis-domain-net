@@ -1,48 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="AddressExtensions"/>.</para>
+/// </summary>
+public sealed class AddressExtensionsTest
 {
-  public sealed class AddressExtensionsTest
+  /// <summary>
+  ///   <para>Performs testing of <see cref="AddressExtensions.City(IQueryable{Address}, City?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void City_Queryable_Method()
   {
-    [Fact]
-    public void city_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Address>)null).City(new City()));
+    AssertionExtensions.Should(() => ((IQueryable<Address>) null!).City(new City())).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new Address { City = new City { Id = 1 } }, new Address { City = new City { Id = 2 } } }.AsQueryable().City(new City { Id = 1 }).Count());
-      Assert.Equal(1, new[] { new Address { City = new City { Id = 1 } }, new Address { City = null } }.AsQueryable().City(null).Count());
-    }
+    new[] {new Address {City = new City {Id = 1}}, new Address {City = new City {Id = 2}}}.AsQueryable().City(new City {Id = 1}).Should().ContainSingle();
+    new[] {new Address {City = new City {Id = 1}}, new Address {City = null}}.AsQueryable().City(null).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void city_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Address>)null).City(new City()));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="AddressExtensions.City(IEnumerable{Address}, City?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void City_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Address>) null!).City(new City())).ThrowExactly<ArgumentNullException>();
 
-      Assert.Single(new[] { null, new Address { City = new City { Name = "first" } }, new Address { City = new City { Name = "second" } } }.City(new City { Name = "first" }));
-      Assert.Single(new[] { null, new Address(), new Address { City = new City { Name = "first" } } }.City(null));
-    }
+    new[] {null, new Address {City = new City {Name = "first"}}, new Address {City = new City {Name = "second"}}}.City(new City {Name = "first"}).Should().ContainSingle();
+    new[] {null, new Address(), new Address {City = new City {Name = "first"}}}.City(null).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Address>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new Address[] { }.AsQueryable().Name(null));
-      Assert.Throws<ArgumentException>(() => new Address[] { }.AsQueryable().Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="AddressExtensions.Name(IQueryable{Address}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Address>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Address>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Address>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Address { Name = "First" }, new Address { Name = "Second" } }.AsQueryable().Name("f").Count());
-    }
+    new[] {new Address {Name = "First"}, new Address {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Address>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new Address[] { }.Name(null));
-      Assert.Throws<ArgumentException>(() => new Address[] { }.Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="AddressExtensions.Name(IQueryable{Address}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Address>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Address>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Address>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Address(), new Address { Name = "First" }, new Address { Name = "Second" } }.Name("f"));
-    }
+    new[] {null, new Address(), new Address {Name = "First"}, new Address {Name = "Second"}}.Name("f").Should().ContainSingle();
   }
 }

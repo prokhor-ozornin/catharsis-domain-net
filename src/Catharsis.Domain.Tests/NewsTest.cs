@@ -1,45 +1,124 @@
-﻿using System;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="News"/>.</para>
+/// </summary>
+public sealed class NewsTest : EntityTest<News>
 {
-  public sealed class NewsTest : EntityTest<News>
+  /// <summary>
+  ///   <para>Performs testing of <see cref="News.Name"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Property()
   {
-    [Fact]
-    public void constructors()
-    {
-      var fixture = new News();
-      Assert.Null(fixture.Id);
-      Assert.True(fixture.CreatedOn <= DateTime.UtcNow);
-      Assert.Null(fixture.UpdatedOn);
-      Assert.Null(fixture.Version);
-      Assert.Null(fixture.Annotation);
-      Assert.Null(fixture.Image);
-      Assert.Null(fixture.Name);
-      Assert.Empty(fixture.Tags);
-      Assert.Null(fixture.Text);
-    }
+    new News { Name = Guid.Empty.ToString() }.Name.Should().Be(Guid.Empty.ToString());
+  }
 
-    [Fact]
-    public void compare_to()
-    {
-      this.test_compare_to("CreatedOn", DateTime.MinValue, DateTime.MaxValue);
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="News.Image"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Image_Property()
+  {
+    var image = new Image();
+    new News { Image = image }.Image.Should().BeSameAs(image);
+  }
 
-    [Fact]
-    public void equals_and_hash_code()
-    {
-      this.test_equals_and_hash_code("CreatedOn", DateTime.MinValue, DateTime.MaxValue);
-      this.test_equals_and_hash_code("Name", "first", "second");
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="News.Annotation"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Annotation_Property()
+  {
+    new News { Annotation = Guid.Empty.ToString() }.Annotation.Should().Be(Guid.Empty.ToString());
+  }
 
-    [Fact]
-    public void to_string()
-    {
-      Assert.Empty(new News().ToString());
-      Assert.Empty(new News { Name = string.Empty }.ToString());
-      Assert.Empty(new News { Name = " " }.ToString());
-      Assert.Equal("name", new News { Name = " name " }.ToString());
-    }
+  /// <summary>
+  ///   <para>Performs testing of <see cref="News.Text"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Text_Property()
+  {
+    new News { Text = Guid.Empty.ToString() }.Text.Should().Be(Guid.Empty.ToString());
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="News.Tags"/> property.</para>
+  /// </summary>
+  [Fact]
+  public void Tags_Property()
+  {
+    var tags = new HashSet<Tag>();
+    new News { Tags = tags }.Tags.Should().BeSameAs(tags);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of class constructor(s).</para>
+  /// </summary>
+  /// <seealso cref="News()"/>
+  [Fact]
+  public void Constructors()
+  {
+    var news = new News();
+
+    news.Id.Should().BeNull();
+    news.Uuid.Should().NotBeNull();
+    news.Version.Should().BeNull();
+    news.CreatedOn.Should().BeOnOrBefore(DateTimeOffset.UtcNow);
+    news.UpdatedOn.Should().BeNull();
+
+    news.Name.Should().BeNull();
+    news.Image.Should().BeNull();
+    news.Annotation.Should().BeNull();
+    news.Text.Should().BeNull();
+    news.Tags.Should().BeEmpty();
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="News.CompareTo(News)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void CompareTo_Method()
+  {
+    TestCompareTo(nameof(News.CreatedOn), DateTimeOffset.MinValue, DateTimeOffset.MaxValue);
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of following methods :</para>
+  ///   <list type="bullet">
+  ///     <item><description><see cref="News.Equals(News)"/></description></item>
+  ///     <item><description><see cref="News.Equals(object)"/></description></item>
+  ///   </list>
+  /// </summary>
+  [Fact]
+  public void Equals_Methods()
+  {
+    TestEquality(nameof(News.CreatedOn), DateTimeOffset.MinValue, DateTimeOffset.MaxValue);
+    TestEquality(nameof(News.Name), "first", "second");
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="News.GetHashCode()"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void GetHashCode_Method()
+  {
+    TestHashCode(nameof(News.CreatedOn), DateTimeOffset.MinValue, DateTimeOffset.MaxValue);
+    TestHashCode(nameof(News.Name), "first", "second");
+  }
+
+  /// <summary>
+  ///   <para>Performs testing of <see cref="News.ToString()"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void ToString_Method()
+  {
+    new News().ToString().Should().BeEmpty();
+    new News { Name = string.Empty }.ToString().Should().BeEmpty();
+    new News { Name = " " }.ToString().Should().BeEmpty();
+    new News { Name = Guid.Empty.ToString() }.ToString().Should().Be(Guid.Empty.ToString());
   }
 }

@@ -1,48 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="PlaycastExtensions"/>.</para>
+/// </summary>
+public sealed class PlaycastExtensionsTest
 {
-  public sealed class PlaycastExtensionsTest
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PlaycastExtensions.Name(IQueryable{Playcast}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Queryable_Method()
   {
-    [Fact]
-    public void name_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Playcast>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new Playcast[] { }.AsQueryable().Name(null));
-      Assert.Throws<ArgumentException>(() => new Playcast[] { }.AsQueryable().Name(string.Empty));
+    AssertionExtensions.Should(() => ((IQueryable<Playcast>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Playcast>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Playcast>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Playcast { Name = "First" }, new Playcast { Name = "Second" } }.AsQueryable().Name("f").Count());
-    }
+    new[] {new Playcast {Name = "First"}, new Playcast {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void name_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Playcast>)null).Name("name"));
-      Assert.Throws<ArgumentNullException>(() => new Playcast[] { }.Name(null));
-      Assert.Throws<ArgumentException>(() => new Playcast[] { }.Name(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PlaycastExtensions.Name(IEnumerable{Playcast}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Name_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Playcast>) null!).Name("name"));
+    AssertionExtensions.Should(() => Array.Empty<Playcast>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Playcast>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Playcast(), new Playcast { Name = "First" }, new Playcast { Name = "Second" } }.Name("f"));
-    }
+    new[] {null, new Playcast(), new Playcast {Name = "First"}, new Playcast {Name = "Second"}}.Name("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void tag_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Playcast>)null).Tag(new Tag()));
-      Assert.Throws<ArgumentNullException>(() => new Playcast[] { }.AsQueryable().Tag(null));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PlaycastExtensions.Tag(IQueryable{Playcast}, Tag)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Tag_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Playcast>) null!).Tag(new Tag())).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Playcast>().AsQueryable().Tag(null!)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Equal(1, new[] { new Playcast { Tags = new HashSet<Tag> { new Tag { Name = "first" } } }, new Playcast { Tags = new HashSet<Tag> { new Tag { Name = "second" } } } }.AsQueryable().Tag(new Tag { Name = "first" }).Count());
-    }
+    new[] {new Playcast {Tags = new HashSet<Tag> {new() {Name = "first"}}}, new Playcast {Tags = new HashSet<Tag> {new() {Name = "second"}}}}.AsQueryable().Tag(new Tag {Name = "first"}).Should().ContainSingle();
+  }
 
-    [Fact]
-    public void tag_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Playcast>)null).Tag(new Tag()));
-      Assert.Throws<ArgumentNullException>(() => new Playcast[] { }.Tag(null));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="PlaycastExtensions.Tag(IEnumerable{Playcast}, Tag)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Tag_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Playcast>) null!).Tag(new Tag())).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Playcast>().Tag(null!)).ThrowExactly<ArgumentNullException>();
 
-      Assert.Single(new[] { null, new Playcast(), new Playcast { Tags = new HashSet<Tag> { new Tag { Name = "first" } } }, new Playcast { Tags = new HashSet<Tag> { new Tag { Name = "second" } } } }.Tag(new Tag { Name = "first" }));
-    }
+    new[] {null, new Playcast(), new Playcast {Tags = new HashSet<Tag> {new() {Name = "first"}}}, new Playcast {Tags = new HashSet<Tag> {new() {Name = "second"}}}}.Tag(new Tag {Name = "first"}).Should().ContainSingle();
   }
 }

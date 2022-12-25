@@ -1,94 +1,112 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace Catharsis.Domain
+namespace Catharsis.Domain.Tests;
+
+/// <summary>
+///   <para>Tests set for class <see cref="LocationExtensions"/>.</para>
+/// </summary>
+public sealed class LocationExtensionsTest
 {
-  public sealed class LocationExtensionsTests
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LocationExtensions.Latitude(IQueryable{Location}, decimal?, decimal?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Latitude_Queryable_Method()
   {
-    [Fact]
-    public void latitude_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Location>)null).Latitude());
+    AssertionExtensions.Should(() => ((IQueryable<Location>) null!).Latitude()).ThrowExactly<ArgumentNullException>();
 
-      var locations = new[] { new Location { Latitude = 1 }, new Location { Latitude = 2 } }.AsQueryable();
-      Assert.Equal(2, locations.Latitude().Count());
-      Assert.Equal(2, locations.Latitude(0).Count());
-      Assert.Empty(locations.Latitude(3));
-      Assert.Equal(1, locations.Latitude(0, 1).Count());
-      Assert.Equal(2, locations.Latitude(1, 2).Count());
-      Assert.Empty(locations.Latitude(to: 0));
-      Assert.Equal(1, locations.Latitude(to: 1).Count());
-      Assert.Equal(2, locations.Latitude(to: 3).Count());
-    }
+    var locations = new[] {new Location {Latitude = 1}, new Location {Latitude = 2}}.AsQueryable();
+    locations.Latitude().Should().HaveCount(2);
+    locations.Latitude(0).Should().HaveCount(2);
+    locations.Latitude(3).Should().BeEmpty();
+    locations.Latitude(0, 1).Should().ContainSingle();
+    locations.Latitude(1, 2).Should().HaveCount(2);
+    locations.Latitude(to: 0).Should().BeEmpty();
+    locations.Latitude(to: 1).Should().ContainSingle();
+    locations.Latitude(to: 3).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void latitude_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Location>)null).Latitude());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LocationExtensions.Latitude(IEnumerable{Location}, decimal?, decimal?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Latitude_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Location>) null!).Latitude()).ThrowExactly<ArgumentNullException>();
 
-      var locations = new[] { null, new Location(), new Location { Latitude = 1 }, new Location { Latitude = 2 } };
-      Assert.Equal(3, locations.Latitude().Count());
-      Assert.Equal(2, locations.Latitude(0).Count());
-      Assert.Empty(locations.Latitude(3));
-      Assert.Single(locations.Latitude(0, 1));
-      Assert.Equal(2, locations.Latitude(1, 2).Count());
-      Assert.Empty(locations.Latitude(to: 0));
-      Assert.Single(locations.Latitude(to: 1));
-      Assert.Equal(2, locations.Latitude(to: 3).Count());
-    }
+    var locations = new[] {null, new Location(), new Location {Latitude = 1}, new Location {Latitude = 2}};
+    locations.Latitude().Should().HaveCount(3);
+    locations.Latitude(0).Should().HaveCount(2);
+    locations.Latitude(3).Should().BeEmpty();
+    locations.Latitude(0, 1).Should().ContainSingle();
+    locations.Latitude(1, 2).Should().HaveCount(2);
+    locations.Latitude(to: 0).Should().BeEmpty();
+    locations.Latitude(to: 1).Should().ContainSingle();
+    locations.Latitude(to: 3).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void longitude_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Location>)null).Longitude());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LocationExtensions.Longitude(IQueryable{Location}, decimal?, decimal?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Longitude_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Location>) null!).Longitude()).ThrowExactly<ArgumentNullException>();
 
-      var locations = new[] { new Location { Longitude = 1 }, new Location { Longitude = 2 } }.AsQueryable();
-      Assert.Equal(2, locations.Longitude().Count());
-      Assert.Equal(2, locations.Longitude(0).Count());
-      Assert.Empty(locations.Longitude(3));
-      Assert.Equal(1, locations.Longitude(0, 1).Count());
-      Assert.Equal(2, locations.Longitude(1, 2).Count());
-      Assert.Empty(locations.Longitude(to: 0));
-      Assert.Equal(1, locations.Longitude(to: 1).Count());
-      Assert.Equal(2, locations.Longitude(to: 3).Count());
-    }
+    var locations = new[] {new Location {Longitude = 1}, new Location {Longitude = 2}}.AsQueryable();
+    locations.Longitude().Should().HaveCount(2);
+    locations.Longitude(0).Should().HaveCount(2);
+    locations.Longitude(3).Should().BeEmpty();
+    locations.Longitude(0, 1).Should().ContainSingle();
+    locations.Longitude(1, 2).Should().HaveCount(2);
+    locations.Longitude(to: 0).Should().BeEmpty();
+    locations.Longitude(to: 1).Should().ContainSingle();
+    locations.Longitude(to: 3).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void longitude_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Location>)null).Longitude());
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LocationExtensions.Longitude(IEnumerable{Location?}, decimal?, decimal?)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void Longitude_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Location>) null!).Longitude()).ThrowExactly<ArgumentNullException>();
 
-      var locations = new[] { null, new Location(), new Location { Longitude = 1 }, new Location { Longitude = 2 } };
-      Assert.Equal(3, locations.Longitude().Count());
-      Assert.Equal(2, locations.Longitude(0).Count());
-      Assert.Empty(locations.Longitude(3));
-      Assert.Single(locations.Longitude(0, 1));
-      Assert.Equal(2, locations.Longitude(1, 2).Count());
-      Assert.Empty(locations.Longitude(to: 0));
-      Assert.Single(locations.Longitude(to: 1));
-      Assert.Equal(2, locations.Longitude(to: 3).Count());
-    }
+    var locations = new[] {null, new Location(), new Location {Longitude = 1}, new Location {Longitude = 2}};
+    locations.Longitude().Should().HaveCount(3);
+    locations.Longitude(0).Should().HaveCount(2);
+    locations.Longitude(3).Should().BeEmpty();
+    locations.Longitude(0, 1).Should().ContainSingle();
+    locations.Longitude(1, 2).Should().HaveCount(2);
+    locations.Longitude(to: 0).Should().BeEmpty();
+    locations.Longitude(to: 1).Should().ContainSingle();
+    locations.Longitude(to: 3).Should().HaveCount(2);
+  }
 
-    [Fact]
-    public void timezone_queryable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IQueryable<Location>)null).Timezone("timezone"));
-      Assert.Throws<ArgumentNullException>(() => new Location[] { }.AsQueryable().Timezone(null));
-      Assert.Throws<ArgumentException>(() => new Location[] { }.AsQueryable().Timezone(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LocationExtensions.TimeZone(IQueryable{Location}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void TimeZone_Queryable_Method()
+  {
+    AssertionExtensions.Should(() => ((IQueryable<Location>) null!).TimeZone("timezone")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Location>().AsQueryable().TimeZone(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Location>().AsQueryable().TimeZone(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Equal(1, new[] { new Location { Timezone = "First" }, new Location { Timezone = "Second" } }.AsQueryable().Timezone("f").Count());
-    }
+    new[] {new Location {TimeZone = "First"}, new Location {TimeZone = "Second"}}.AsQueryable().TimeZone("f").Should().ContainSingle();
+  }
 
-    [Fact]
-    public void timezone_enumerable()
-    {
-      Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Location>)null).Timezone("timezone"));
-      Assert.Throws<ArgumentNullException>(() => new Location[] { }.Timezone(null));
-      Assert.Throws<ArgumentException>(() => new Location[] { }.Timezone(string.Empty));
+  /// <summary>
+  ///   <para>Performs testing of <see cref="LocationExtensions.TimeZone(IEnumerable{Location?}, string)"/> method.</para>
+  /// </summary>
+  [Fact]
+  public void TimeZone_Enumerable_Method()
+  {
+    AssertionExtensions.Should(() => ((IEnumerable<Location>) null!).TimeZone("timezone")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Location>().TimeZone(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Location>().TimeZone(string.Empty)).ThrowExactly<ArgumentException>();
 
-      Assert.Single(new[] { null, new Location(), new Location { Timezone = "First" }, new Location { Timezone = "Second" } }.Timezone("f"));
-    }
+    new[] {null, new Location(), new Location {TimeZone = "First"}, new Location {TimeZone = "Second"}}.TimeZone("f").Should().ContainSingle();
   }
 }

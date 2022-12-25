@@ -1,59 +1,42 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Catharsis.Commons;
+﻿namespace Catharsis.Domain;
 
-namespace Catharsis.Domain
+/// <summary>
+///   <para>Set of extension methods for class <see cref="Announcement"/>.</para>
+/// </summary>
+/// <seealso cref="Announcement"/>
+public static class AnnouncementExtensions
 {
-  public static class AnnouncementExtensions
+  public static IQueryable<Announcement> Name(this IQueryable<Announcement> announcements, string name) => announcements.Where(announcement => announcement.Name != null && announcement.Name.ToLower().StartsWith(name.ToLower()));
+
+  public static IEnumerable<Announcement?> Name(this IEnumerable<Announcement?> announcements, string name) => announcements.Where(announcement => announcement?.Name != null && announcement.Name.ToLower().StartsWith(name.ToLower()));
+
+  public static IQueryable<Announcement> Price(this IQueryable<Announcement> announcements, decimal? from = null, decimal? to = null)
   {
-    public static IQueryable<Announcement> Name(this IQueryable<Announcement> announcements, string name)
+    if (from != null)
     {
-      Assertion.NotNull(announcements);
-      Assertion.NotEmpty(name);
-
-      return announcements.Where(it => it.Name.ToLower().StartsWith(name.ToLower()));
+      announcements = announcements.Where(announcement => announcement.Price >= from.Value);
     }
 
-    public static IEnumerable<Announcement> Name(this IEnumerable<Announcement> announcements, string name)
+    if (to != null)
     {
-      Assertion.NotNull(announcements);
-      Assertion.NotEmpty(name);
-
-      return announcements.Where(it => it?.Name != null && it.Name.ToLower().StartsWith(name.ToLower()));
+      announcements = announcements.Where(announcement => announcement.Price <= to.Value);
     }
 
-    public static IQueryable<Announcement> Price(this IQueryable<Announcement> announcements, decimal? from = null, decimal? to = null)
+    return announcements;
+  }
+
+  public static IEnumerable<Announcement?> Price(this IEnumerable<Announcement?> announcements, decimal? from = null, decimal? to = null)
+  {
+    if (from != null)
     {
-      Assertion.NotNull(announcements);
-
-      if (from != null)
-      {
-        announcements = announcements.Where(it => it.Price >= from.Value);
-      }
-
-      if (to != null)
-      {
-        announcements = announcements.Where(it => it.Price <= to.Value);
-      }
-
-      return announcements;
+      announcements = announcements.Where(announcement => announcement != null && announcement.Price >= from.Value);
     }
 
-    public static IEnumerable<Announcement> Price(this IEnumerable<Announcement> announcements, decimal? from = null, decimal? to = null)
+    if (to != null)
     {
-      Assertion.NotNull(announcements);
-
-      if (from != null)
-      {
-        announcements = announcements.Where(it => it != null && it.Price >= from.Value);
-      }
-
-      if (to != null)
-      {
-        announcements = announcements.Where(it => it != null && it.Price <= to.Value);
-      }
-
-      return announcements.Where(it => it != null);
+      announcements = announcements.Where(announcement => announcement != null && announcement.Price <= to.Value);
     }
+
+    return announcements.Where(announcement => announcement != null);
   }
 }
