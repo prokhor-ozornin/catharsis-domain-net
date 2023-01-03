@@ -17,7 +17,7 @@ public class PushNotification : Entity, IComparable<PushNotification>, IEquatabl
   /// </summary>
   [DataMember(Name = nameof(Payload))]
   [Description("Полезная нагрузка (данные) уведомления")]
-  public virtual string? Payload { get; set; }
+  public virtual string Payload { get; set; }
 
   /// <summary>
   ///   <para>Провайдер/служба, через которую производится рассылка уведомлений</para>
@@ -52,21 +52,21 @@ public class PushNotification : Entity, IComparable<PushNotification>, IEquatabl
   /// </summary>
   /// <returns>A value that indicates the relative order of the instances being compared.</returns>
   /// <param name="other">The <see cref="PushNotification"/> to compare with this instance.</param>
-  public virtual int CompareTo(PushNotification? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
+  public virtual int CompareTo(PushNotification other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
 
   /// <summary>
   ///   <para>Determines whether two <see cref="PushNotification"/> instances are equal.</para>
   /// </summary>
   /// <param name="other">The instance to compare with the current one.</param>
   /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-  public virtual bool Equals(PushNotification? other) => this.Equality(other, nameof(CreatedOn), nameof(Provider));
+  public virtual bool Equals(PushNotification other) => this.Equality(other, nameof(CreatedOn), nameof(Provider));
 
   /// <summary>
   ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
   /// </summary>
   /// <param name="other">The object to compare with the current object.</param>
   /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-  public override bool Equals(object? other) => Equals(other as PushNotification);
+  public override bool Equals(object other) => Equals(other as PushNotification);
 
   /// <summary>
   ///   <para>Returns hash code for the current object.</para>

@@ -18,21 +18,21 @@ public class StorageFile : Entity, IComparable<StorageFile>, IEquatable<StorageF
   /// </summary>
   [DataMember(Name = nameof(Name))]
   [Description("Наименование файла")]
-  public virtual string? Name { get; set; }
+  public virtual string Name { get; set; }
 
   /// <summary>
   ///   <para>Тип файлового хранилища</para>
   /// </summary>
   [DataMember(Name = nameof(Storage))]
   [Description("Тип файлового хранилища")]
-  public virtual string? Storage { get; set; }
+  public virtual string Storage { get; set; }
 
   /// <summary>
   ///   <para>MIME тип содержимого файла</para>
   /// </summary>
   [DataMember(Name = nameof(ContentType))]
   [Description("MIME тип содержимого файла")]
-  public virtual string? ContentType { get; set; }
+  public virtual string ContentType { get; set; }
 
   /// <summary>
   ///   <para>Размер файла в байтах</para>
@@ -46,7 +46,7 @@ public class StorageFile : Entity, IComparable<StorageFile>, IEquatable<StorageF
   /// </summary>
   [DataMember(Name = nameof(Path))]
   [Description("Путь к файлу в хранилище")]
-  public virtual string? Path { get; set; }
+  public virtual string Path { get; set; }
 
   public virtual string FullPath
   {
@@ -78,21 +78,21 @@ public class StorageFile : Entity, IComparable<StorageFile>, IEquatable<StorageF
   /// </summary>
   /// <returns>A value that indicates the relative order of the instances being compared.</returns>
   /// <param name="other">The <see cref="StorageFile"/> to compare with this instance.</param>
-  public virtual int CompareTo(StorageFile? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
+  public virtual int CompareTo(StorageFile other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
 
   /// <summary>
   ///   <para>Determines whether two <see cref="StorageFile"/> instances are equal.</para>
   /// </summary>
   /// <param name="other">The instance to compare with the current one.</param>
   /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-  public virtual bool Equals(StorageFile? other) => this.Equality(other, nameof(Name), nameof(Path), nameof(Storage));
+  public virtual bool Equals(StorageFile other) => this.Equality(other, nameof(Name), nameof(Path), nameof(Storage));
 
   /// <summary>
   ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
   /// </summary>
   /// <param name="other">The object to compare with the current object.</param>
   /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-  public override bool Equals(object? other) => Equals(other as StorageFile);
+  public override bool Equals(object other) => Equals(other as StorageFile);
 
   /// <summary>
   ///   <para>Returns hash code for the current object.</para>

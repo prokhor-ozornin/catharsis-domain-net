@@ -16,35 +16,35 @@ public class Contact : Entity, IComparable<Contact>
   /// </summary>
   [DataMember(Name = nameof(Website))]
   [Description("Веб-сайт")]
-  public virtual string? Website { get; set; }
+  public virtual string Website { get; set; }
 
   /// <summary>
   ///   <para>Номер факса</para>
   /// </summary>
   [DataMember(Name = nameof(Fax))]
   [Description("Номер факса")]
-  public virtual string? Fax { get; set; }
+  public virtual string Fax { get; set; }
 
   /// <summary>
   ///   <para>Логин Skype мессенджера</para>
   /// </summary>
   [DataMember(Name = nameof(Skype))]
   [Description("Логин Skype мессенджера")]
-  public virtual string? Skype { get; set; }
+  public virtual string Skype { get; set; }
 
   /// <summary>
   ///   <para>Логин ICQ мессенджера</para>
   /// </summary>
   [DataMember(Name = nameof(Icq))]
   [Description("Логин ICQ мессенджера")]
-  public virtual string? Icq { get; set; }
+  public virtual string Icq { get; set; }
 
   /// <summary>
   ///   <para>Логин Jabber мессенджера</para>
   /// </summary>
   [DataMember(Name = nameof(Jabber))]
   [Description("Логин Jabber мессенджера")]
-  public virtual string? Jabber { get; set; }
+  public virtual string Jabber { get; set; }
 
   /// <summary>
   ///   <para>Адреса</para>
@@ -72,5 +72,5 @@ public class Contact : Entity, IComparable<Contact>
   /// </summary>
   /// <returns>A value that indicates the relative order of the instances being compared.</returns>
   /// <param name="other">The <see cref="Contact"/> to compare with this instance.</param>
-  public virtual int CompareTo(Contact? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
+  public virtual int CompareTo(Contact other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
 }

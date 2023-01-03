@@ -16,35 +16,35 @@ public class Playcast : Entity, IComparable<Playcast>
   /// </summary>
   [DataMember(Name = nameof(Name))]
   [Description("Наименование плейкаста")]
-  public virtual string? Name { get; set; }
+  public virtual string Name { get; set; }
 
   /// <summary>
   ///   <para>Текст плейкаста</para>
   /// </summary>
   [DataMember(Name = nameof(Text))]
   [Description("Текст плейкаста")]
-  public virtual string? Text { get; set; }
+  public virtual string Text { get; set; }
 
   /// <summary>
   ///   <para>Изображение для плейкаста</para>
   /// </summary>
   [DataMember(Name = nameof(Image))]
   [Description("Изображение для плейкаста")]
-  public virtual Image? Image { get; set; }
+  public virtual Image Image { get; set; }
 
   /// <summary>
   ///   <para>Аудио-сопровождение плейкаста</para>
   /// </summary>
   [DataMember(Name = nameof(Audio))]
   [Description("Аудио-сопровождение плейкаста")]
-  public virtual Audio? Audio { get; set; }
+  public virtual Audio Audio { get; set; }
 
   /// <summary>
   ///   <para>Видео-содержимое плейкаста</para>
   /// </summary>
   [DataMember(Name = nameof(Video))]
   [Description("Видео-содержимое плейкаста")]
-  public virtual Video? Video { get; set; }
+  public virtual Video Video { get; set; }
 
   /// <summary>
   ///   <para>Ключевые слова, описывающие содержимое плейкаста</para>
@@ -58,7 +58,7 @@ public class Playcast : Entity, IComparable<Playcast>
   /// </summary>
   /// <returns>A value that indicates the relative order of the instances being compared.</returns>
   /// <param name="other">The <see cref="Playcast"/> to compare with this instance.</param>
-  public virtual int CompareTo(Playcast? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
+  public virtual int CompareTo(Playcast other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
 
   /// <summary>
   ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>

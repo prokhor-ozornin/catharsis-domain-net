@@ -17,28 +17,28 @@ public class Media : Entity, IComparable<Media>, IEquatable<Media>
   /// </summary>
   [DataMember(Name = nameof(Name))]
   [Description("Заголовок медиа ресурса")]
-  public virtual string? Name { get; set; }
+  public virtual string Name { get; set; }
 
   /// <summary>
   ///   <para>MIME тип медиа ресурса</para>
   /// </summary>
   [DataMember(Name = nameof(ContentType))]
   [Description("MIME тип медиа ресурса")]
-  public virtual string? ContentType { get; set; }
+  public virtual string ContentType { get; set; }
 
   /// <summary>
   ///   <para>URI адрес медиа ресурса</para>
   /// </summary>
   [DataMember(Name = nameof(Uri))]
   [Description("URI адрес медиа ресурса")]
-  public virtual Uri? Uri { get; set; }
+  public virtual Uri Uri { get; set; }
 
   /// <summary>
   ///   <para>URI адрес сайта провайдера ресурсов данного типа</para>
   /// </summary>
   [DataMember(Name = nameof(ProviderUri))]
   [Description("URI адрес сайта провайдера ресурсов данного типа")]
-  public virtual string? ProviderUri { get; set; }
+  public virtual string ProviderUri { get; set; }
 
   /// <summary>
   ///   <para>Ширина ресурса в пикселях</para>
@@ -66,35 +66,35 @@ public class Media : Entity, IComparable<Media>, IEquatable<Media>
   /// </summary>
   [DataMember(Name = nameof(Description))]
   [Description("Описание медиа ресурса")]
-  public virtual string? Description { get; set; }
+  public virtual string Description { get; set; }
 
   /// <summary>
   ///   <para>Внедряемый HTML код медиа ресурса</para>
   /// </summary>
   [DataMember(Name = nameof(Html))]
   [Description("Внедряемый HTML код медиа ресурса")]
-  public virtual string? Html { get; set; }
+  public virtual string Html { get; set; }
 
   /// <summary>
   ///   <para>Имя создателя медиа ресурса</para>
   /// </summary>
   [DataMember(Name = nameof(AuthorName))]
   [Description("Имя создателя медиа ресурса")]
-  public virtual string? AuthorName { get; set; }
+  public virtual string AuthorName { get; set; }
 
   /// <summary>
   ///   <para>URI адрес страницы создателя медиа ресурса</para>
   /// </summary>
   [Description("URI адрес страницы создателя медиа ресурса")]
   [DataMember(Name = nameof(AuthorUri))]
-  public virtual string? AuthorUri { get; set; }
+  public virtual string AuthorUri { get; set; }
 
   /// <summary>
   ///   <para>URI адрес миниатюры медиа ресурса</para>
   /// </summary>
   [DataMember(Name = nameof(ThumbnailUri))]
   [Description("URI адрес миниатюры медиа ресурса")]
-  public virtual string? ThumbnailUri { get; set; }
+  public virtual string ThumbnailUri { get; set; }
 
   /// <summary>
   ///   <para>Ширина миниатюры медиа ресурса в пикселях</para>
@@ -115,21 +115,21 @@ public class Media : Entity, IComparable<Media>, IEquatable<Media>
   /// </summary>
   /// <returns>A value that indicates the relative order of the instances being compared.</returns>
   /// <param name="other">The <see cref="Media"/> to compare with this instance.</param>
-  public virtual int CompareTo(Media? other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
+  public virtual int CompareTo(Media other) => Nullable.Compare(CreatedOn, other?.CreatedOn);
 
   /// <summary>
   ///   <para>Determines whether two <see cref="Media"/> instances are equal.</para>
   /// </summary>
   /// <param name="other">The instance to compare with the current one.</param>
   /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-  public virtual bool Equals(Media? other) => this.Equality(other, nameof(Uri));
+  public virtual bool Equals(Media other) => this.Equality(other, nameof(Uri));
 
   /// <summary>
   ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
   /// </summary>
   /// <param name="other">The object to compare with the current object.</param>
   /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-  public override bool Equals(object? other) => Equals(other as Media);
+  public override bool Equals(object other) => Equals(other as Media);
 
   /// <summary>
   ///   <para>Returns hash code for the current object.</para>

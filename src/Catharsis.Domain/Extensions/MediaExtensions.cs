@@ -8,11 +8,11 @@ public static class MediaExtensions
 {
   public static IQueryable<T> ContentType<T>(this IQueryable<T> entities, string contentType) where T : Media => entities.Where(media => media.ContentType != null && media.ContentType.ToLower() == contentType.ToLower());
 
-  public static IEnumerable<T?> ContentType<T>(this IEnumerable<T?> entities, string contentType) where T : Media => entities.Where(media => media?.ContentType != null && media.ContentType.ToLower() == contentType.ToLower());
+  public static IEnumerable<T> ContentType<T>(this IEnumerable<T> entities, string contentType) where T : Media => entities.Where(media => media?.ContentType != null && media.ContentType.ToLower() == contentType.ToLower());
 
   public static IQueryable<T> Name<T>(this IQueryable<T> entities, string name) where T : Media => entities.Where(media => media.Name != null && media.Name.ToLower().StartsWith(name.ToLower()));
 
-  public static IEnumerable<T?> Name<T>(this IEnumerable<T?> entities, string name) where T : Media => entities.Where(media => media?.Name != null && media.Name.ToLower().StartsWith(name.ToLower()));
+  public static IEnumerable<T> Name<T>(this IEnumerable<T> entities, string name) where T : Media => entities.Where(media => media?.Name != null && media.Name.ToLower().StartsWith(name.ToLower()));
 
   public static IQueryable<T> Duration<T>(this IQueryable<T> entities, long? from = null, long? to = null) where T : Media
   {
@@ -29,7 +29,7 @@ public static class MediaExtensions
     return entities;
   }
 
-  public static IEnumerable<T?> Duration<T>(this IEnumerable<T?> entities, long? from = null, long? to = null) where T : Media
+  public static IEnumerable<T> Duration<T>(this IEnumerable<T> entities, long? from = null, long? to = null) where T : Media
   {
     if (from != null)
     {
@@ -59,7 +59,7 @@ public static class MediaExtensions
     return entities;
   }
 
-  public static IEnumerable<T?> Height<T>(this IEnumerable<T?> entities, short? from = null, short? to = null) where T : Media
+  public static IEnumerable<T> Height<T>(this IEnumerable<T> entities, short? from = null, short? to = null) where T : Media
   {
     if (from != null)
     {
@@ -89,7 +89,7 @@ public static class MediaExtensions
     return entities;
   }
 
-  public static IEnumerable<T?> Width<T>(this IEnumerable<T?> entities, short? from = null, short? to = null) where T : Media
+  public static IEnumerable<T> Width<T>(this IEnumerable<T> entities, short? from = null, short? to = null) where T : Media
   {
     if (from != null)
     {

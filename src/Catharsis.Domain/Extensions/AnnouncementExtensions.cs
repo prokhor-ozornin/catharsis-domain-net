@@ -8,7 +8,7 @@ public static class AnnouncementExtensions
 {
   public static IQueryable<Announcement> Name(this IQueryable<Announcement> announcements, string name) => announcements.Where(announcement => announcement.Name != null && announcement.Name.ToLower().StartsWith(name.ToLower()));
 
-  public static IEnumerable<Announcement?> Name(this IEnumerable<Announcement?> announcements, string name) => announcements.Where(announcement => announcement?.Name != null && announcement.Name.ToLower().StartsWith(name.ToLower()));
+  public static IEnumerable<Announcement> Name(this IEnumerable<Announcement> announcements, string name) => announcements.Where(announcement => announcement?.Name != null && announcement.Name.ToLower().StartsWith(name.ToLower()));
 
   public static IQueryable<Announcement> Price(this IQueryable<Announcement> announcements, decimal? from = null, decimal? to = null)
   {
@@ -25,7 +25,7 @@ public static class AnnouncementExtensions
     return announcements;
   }
 
-  public static IEnumerable<Announcement?> Price(this IEnumerable<Announcement?> announcements, decimal? from = null, decimal? to = null)
+  public static IEnumerable<Announcement> Price(this IEnumerable<Announcement> announcements, decimal? from = null, decimal? to = null)
   {
     if (from != null)
     {

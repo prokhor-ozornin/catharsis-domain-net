@@ -17,28 +17,28 @@ public class Download : Entity, IComparable<Download>, IEquatable<Download>
   /// </summary>
   [DataMember(Name = nameof(Name))]
   [Description("Наименование материала")]
-  public virtual string? Name { get; set; }
+  public virtual string Name { get; set; }
 
   /// <summary>
   ///   <para>Описание материала</para>
   /// </summary>
   [DataMember(Name = nameof(Description))]
   [Description("Описание материала")]
-  public virtual string? Description { get; set; }
+  public virtual string Description { get; set; }
 
   /// <summary>
   ///   <para>Файл, представляющий загружаемый материал</para>
   /// </summary>
   [DataMember(Name = nameof(File))]
   [Description("Файл, представляющий загружаемый материал")]
-  public virtual StorageFile? File { get; set; }
+  public virtual StorageFile File { get; set; }
 
   /// <summary>
   ///   <para>Изображение, связанное с материалом</para>
   /// </summary>
   [DataMember(Name = nameof(Image))]
   [Description("Изображение, связанное с материалом")]
-  public virtual Image? Image { get; set; }
+  public virtual Image Image { get; set; }
 
   /// <summary>
   ///   <para>Количество скачиваний</para>
@@ -52,21 +52,21 @@ public class Download : Entity, IComparable<Download>, IEquatable<Download>
   /// </summary>
   /// <returns>A value that indicates the relative order of the instances being compared.</returns>
   /// <param name="other">The <see cref="Download"/> to compare with this instance.</param>
-  public virtual int CompareTo(Download? other) => string.Compare(Name, other?.Name, StringComparison.InvariantCultureIgnoreCase);
+  public virtual int CompareTo(Download other) => string.Compare(Name, other?.Name, StringComparison.InvariantCultureIgnoreCase);
 
   /// <summary>
   ///   <para>Determines whether two <see cref="Download"/> instances are equal.</para>
   /// </summary>
   /// <param name="other">The instance to compare with the current one.</param>
   /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-  public virtual bool Equals(Download? other) => this.Equality(other, nameof(File));
+  public virtual bool Equals(Download other) => this.Equality(other, nameof(File));
 
   /// <summary>
   ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
   /// </summary>
   /// <param name="other">The object to compare with the current object.</param>
   /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-  public override bool Equals(object? other) => Equals(other as Download);
+  public override bool Equals(object other) => Equals(other as Download);
 
   /// <summary>
   ///   <para>Returns hash code for the current object.</para>

@@ -17,42 +17,42 @@ public class SeoWebPage : Entity, IComparable<SeoWebPage>, IEquatable<SeoWebPage
   /// </summary>
   [DataMember(Name = nameof(Title))]
   [Description("Значение title заголовка для web страницы")]
-  public virtual string? Title { get; set; }
+  public virtual string Title { get; set; }
 
   /// <summary>
   ///   <para>URI адрес web страницы</para>
   /// </summary>
   [DataMember(Name = nameof(Uri))]
   [Description("URI адрес web страницы")]
-  public virtual Uri? Uri { get; set; }
+  public virtual Uri Uri { get; set; }
 
   /// <summary>
   ///   <para>Наименование локали для содержимого web страницы</para>
   /// </summary>
   [DataMember(Name = nameof(Locale))]
   [Description("Наименование локали для содержимого web страницы")]
-  public virtual string? Locale { get; set; }
+  public virtual string Locale { get; set; }
 
   /// <summary>
   ///   <para>Compares the current <see cref="SeoWebPage"/> instance with another.</para>
   /// </summary>
   /// <returns>A value that indicates the relative order of the instances being compared.</returns>
   /// <param name="other">The <see cref="SeoWebPage"/> to compare with this instance.</param>
-  public virtual int CompareTo(SeoWebPage? other) => string.Compare(Uri?.ToString(), other?.Uri?.ToString(), StringComparison.InvariantCultureIgnoreCase);
+  public virtual int CompareTo(SeoWebPage other) => string.Compare(Uri?.ToString(), other?.Uri?.ToString(), StringComparison.InvariantCultureIgnoreCase);
 
   /// <summary>
   ///   <para>Determines whether two <see cref="SeoWebPage"/> instances are equal.</para>
   /// </summary>
   /// <param name="other">The instance to compare with the current one.</param>
   /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-  public virtual bool Equals(SeoWebPage? other) => this.Equality(other, nameof(Locale), nameof(Uri));
+  public virtual bool Equals(SeoWebPage other) => this.Equality(other, nameof(Locale), nameof(Uri));
 
   /// <summary>
   ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
   /// </summary>
   /// <param name="other">The object to compare with the current object.</param>
   /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-  public override bool Equals(object? other) => Equals(other as SeoWebPage);
+  public override bool Equals(object other) => Equals(other as SeoWebPage);
 
   /// <summary>
   ///   <para>Returns hash code for the current object.</para>

@@ -8,7 +8,7 @@ public static class DownloadExtensions
 {
   public static IQueryable<Download> Name(this IQueryable<Download> downloads, string name) => downloads.Where(download => download.Name != null && download.Name.ToLower().StartsWith(name.ToLower()));
 
-  public static IEnumerable<Download?> Name(this IEnumerable<Download?> downloads, string name) => downloads.Where(download => download?.Name != null && download.Name.ToLower().StartsWith(name.ToLower()));
+  public static IEnumerable<Download> Name(this IEnumerable<Download> downloads, string name) => downloads.Where(download => download?.Name != null && download.Name.ToLower().StartsWith(name.ToLower()));
 
   public static IQueryable<Download> Downloads(this IQueryable<Download> downloads, long? from = null, long? to = null)
   {
@@ -25,7 +25,7 @@ public static class DownloadExtensions
     return downloads;
   }
 
-  public static IEnumerable<Download?> Downloads(this IEnumerable<Download?> downloads, long? from = null, long? to = null)
+  public static IEnumerable<Download> Downloads(this IEnumerable<Download> downloads, long? from = null, long? to = null)
   {
     if (from != null)
     {

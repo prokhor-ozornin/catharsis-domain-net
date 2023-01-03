@@ -6,7 +6,7 @@
 /// <seealso cref="Tag"/>
 public static class TagExtensions
 {
-  public static Tag? ForName(this IQueryable<Tag> tags, string name) => tags.SingleOrDefault(tag => tag.Name != null && tag.Name.ToLower() == name.ToLower());
+  public static Tag ForName(this IQueryable<Tag> tags, string name) => tags.SingleOrDefault(tag => tag.Name != null && tag.Name.ToLower() == name.ToLower());
 
-  public static Tag? ForName(this IEnumerable<Tag?> tags, string name) => tags.SingleOrDefault(tag => tag?.Name != null && tag.Name.ToLower() == name.ToLower());
+  public static Tag ForName(this IEnumerable<Tag> tags, string name) => tags.SingleOrDefault(tag => tag?.Name != null && tag.Name.ToLower() == name.ToLower());
 }

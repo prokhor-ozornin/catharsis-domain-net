@@ -8,7 +8,7 @@ public static class LocationExtensions
 {
   public static IQueryable<Location> TimeZone(this IQueryable<Location> locations, string timezone) => locations.Where(location => location.TimeZone != null && location.TimeZone.ToLower().StartsWith(timezone.ToLower()));
 
-  public static IEnumerable<Location?> TimeZone(this IEnumerable<Location?> locations, string timezone) => locations.Where(location => location?.TimeZone != null && location.TimeZone.ToLower().StartsWith(timezone.ToLower()));
+  public static IEnumerable<Location> TimeZone(this IEnumerable<Location> locations, string timezone) => locations.Where(location => location?.TimeZone != null && location.TimeZone.ToLower().StartsWith(timezone.ToLower()));
 
   public static IQueryable<Location> Latitude(this IQueryable<Location> locations, decimal? from = null, decimal? to = null)
   {
@@ -25,7 +25,7 @@ public static class LocationExtensions
     return locations;
   }
 
-  public static IEnumerable<Location?> Latitude(this IEnumerable<Location?> locations, decimal? from = null, decimal? to = null)
+  public static IEnumerable<Location> Latitude(this IEnumerable<Location> locations, decimal? from = null, decimal? to = null)
   {
     if (from != null)
     {
@@ -55,7 +55,7 @@ public static class LocationExtensions
     return locations;
   }
 
-  public static IEnumerable<Location?> Longitude(this IEnumerable<Location?> locations, decimal? from = null, decimal? to = null)
+  public static IEnumerable<Location> Longitude(this IEnumerable<Location> locations, decimal? from = null, decimal? to = null)
   {
     if (from != null)
     {

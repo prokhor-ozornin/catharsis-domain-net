@@ -17,7 +17,7 @@ public class WeatherForecast : Entity, IComparable<WeatherForecast>, IEquatable<
   /// </summary>
   [DataMember(Name = nameof(City))]
   [Description("Город для прогноза")]
-  public virtual City? City { get; set; }
+  public virtual City City { get; set; }
 
   /// <summary>
   ///   <para>Дата прогноза</para>
@@ -80,21 +80,21 @@ public class WeatherForecast : Entity, IComparable<WeatherForecast>, IEquatable<
   /// </summary>
   /// <returns>A value that indicates the relative order of the instances being compared.</returns>
   /// <param name="other">The <see cref="WeatherForecast"/> to compare with this instance.</param>
-  public virtual int CompareTo(WeatherForecast? other) => Nullable.Compare(Date, other?.Date);
+  public virtual int CompareTo(WeatherForecast other) => Nullable.Compare(Date, other?.Date);
 
   /// <summary>
   ///   <para>Determines whether two <see cref="WeatherForecast"/> instances are equal.</para>
   /// </summary>
   /// <param name="other">The instance to compare with the current one.</param>
   /// <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
-  public virtual bool Equals(WeatherForecast? other) => this.Equality(other, nameof(City), nameof(Date));
+  public virtual bool Equals(WeatherForecast other) => this.Equality(other, nameof(City), nameof(Date));
 
   /// <summary>
   ///   <para>Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.</para>
   /// </summary>
   /// <param name="other">The object to compare with the current object.</param>
   /// <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
-  public override bool Equals(object? other) => Equals(other as WeatherForecast);
+  public override bool Equals(object other) => Equals(other as WeatherForecast);
 
   /// <summary>
   ///   <para>Returns hash code for the current object.</para>

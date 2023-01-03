@@ -47,7 +47,7 @@ public abstract class Entity : IEntity
   [DataMember(Name = nameof(UpdatedOn))]
   public virtual DateTimeOffset? UpdatedOn { get; set; }
 
-  public override bool Equals(object? other) => this.Equality(other as IEntity, entity => entity.GetType(), it => it.Id);
+  public override bool Equals(object other) => this.Equality(other as IEntity, entity => entity.GetType(), it => it.Id);
 
   /// <summary>
   ///   <para>Returns hash code for the current object.</para>

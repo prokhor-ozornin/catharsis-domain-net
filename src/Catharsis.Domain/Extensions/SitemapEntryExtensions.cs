@@ -8,7 +8,7 @@ public static class SitemapEntryExtensions
 {
   public static IQueryable<SitemapEntry> ChangeFrequency(this IQueryable<SitemapEntry> entries, SitemapEntry.SitemapChangeFrequency? changeFrequency) => entries.Where(entry => entry.ChangeFrequency == changeFrequency);
 
-  public static IEnumerable<SitemapEntry?> ChangeFrequency(this IEnumerable<SitemapEntry?> entries, SitemapEntry.SitemapChangeFrequency? changeFrequency) => entries.Where(entry => entry != null && entry.ChangeFrequency == changeFrequency);
+  public static IEnumerable<SitemapEntry> ChangeFrequency(this IEnumerable<SitemapEntry> entries, SitemapEntry.SitemapChangeFrequency? changeFrequency) => entries.Where(entry => entry != null && entry.ChangeFrequency == changeFrequency);
 
   public static IQueryable<SitemapEntry> Date(this IQueryable<SitemapEntry> entries, DateTimeOffset? from = null, DateTimeOffset? to = null)
   {
@@ -25,7 +25,7 @@ public static class SitemapEntryExtensions
     return entries;
   }
 
-  public static IEnumerable<SitemapEntry?> Date(this IEnumerable<SitemapEntry?> entries, DateTimeOffset? from = null, DateTimeOffset? to = null)
+  public static IEnumerable<SitemapEntry> Date(this IEnumerable<SitemapEntry> entries, DateTimeOffset? from = null, DateTimeOffset? to = null)
   {
     if (from != null)
     {
@@ -55,7 +55,7 @@ public static class SitemapEntryExtensions
     return entries;
   }
 
-  public static IEnumerable<SitemapEntry?> Priority(this IEnumerable<SitemapEntry?> entries, decimal? from = null, decimal? to = null)
+  public static IEnumerable<SitemapEntry> Priority(this IEnumerable<SitemapEntry> entries, decimal? from = null, decimal? to = null)
   {
     if (from != null)
     {
