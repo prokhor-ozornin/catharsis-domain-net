@@ -14,8 +14,8 @@ public sealed class WebLinkExtensionsTest
   [Fact]
   public void Name_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<WebLink>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<WebLink>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<WebLink>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebLink>().AsQueryable().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<WebLink>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new WebLink {Name = "First"}, new WebLink {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
@@ -27,8 +27,8 @@ public sealed class WebLinkExtensionsTest
   [Fact]
   public void Name_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<WebLink>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<WebLink>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<WebLink>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebLink>().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<WebLink>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new WebLink(), new WebLink {Name = "First"}, new WebLink {Name = "Second"}}.Name("f").Should().ContainSingle();

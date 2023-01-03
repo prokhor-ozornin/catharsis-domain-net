@@ -14,8 +14,8 @@ public sealed class AnnouncementExtensionsTest
   [Fact]
   public void Name_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Announcement>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Announcement>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Announcement>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Announcement>().AsQueryable().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Announcement>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new Announcement {Name = "First"}, new Announcement {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
@@ -27,8 +27,8 @@ public sealed class AnnouncementExtensionsTest
   [Fact]
   public void Name_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Announcement>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Announcement>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Announcement>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Announcement>().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Announcement>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new Announcement(), new Announcement {Name = "First"}, new Announcement {Name = "Second"}}.Name("f").Should().ContainSingle();
@@ -40,7 +40,7 @@ public sealed class AnnouncementExtensionsTest
   [Fact]
   public void Price_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Announcement>) null!).Price()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Announcement>) null).Price()).ThrowExactly<ArgumentNullException>();
 
     var announcements = new[] {new Announcement {Price = 1}, new Announcement {Price = 2}}.AsQueryable();
     announcements.Price().Should().HaveCount(2);
@@ -59,7 +59,7 @@ public sealed class AnnouncementExtensionsTest
   [Fact]
   public void Price_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Announcement>) null!).Price()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Announcement>) null).Price()).ThrowExactly<ArgumentNullException>();
 
     var announcements = new[] {null, new Announcement(), new Announcement {Price = 1}, new Announcement {Price = 2}};
     announcements.Price().Should().HaveCount(3);

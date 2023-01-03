@@ -14,8 +14,8 @@ public sealed class TagExtensionsTest
   [Fact]
   public void ForName_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Tag>) null!).ForName("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Tag>().AsQueryable().ForName(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Tag>) null).ForName("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Tag>().AsQueryable().ForName(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Tag>().AsQueryable().ForName(string.Empty)).ThrowExactly<ArgumentException>();
     AssertionExtensions.Should(() => new[] {new Tag {Name = "Name"}, new Tag {Name = "name"}}.AsQueryable().ForName("name")).ThrowExactly<InvalidOperationException>();
 
@@ -29,8 +29,8 @@ public sealed class TagExtensionsTest
   [Fact]
   public void ForName_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Tag>) null!).ForName("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Tag>().ForName(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Tag>) null).ForName("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Tag>().ForName(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Tag>().ForName(string.Empty)).ThrowExactly<ArgumentException>();
     AssertionExtensions.Should(() => new[] {new Tag {Name = "Name"}, new Tag {Name = "name"}}.ForName("name")).ThrowExactly<InvalidOperationException>();
 

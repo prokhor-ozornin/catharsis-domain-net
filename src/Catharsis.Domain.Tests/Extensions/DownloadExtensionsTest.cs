@@ -14,7 +14,7 @@ public sealed class DownloadExtensionsTest
   [Fact]
   public void Downloads_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Download>) null!).Downloads()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Download>) null).Downloads()).ThrowExactly<ArgumentNullException>();
 
     var downloads = new[] {new Download {Downloads = 1}, new Download {Downloads = 2}}.AsQueryable();
     downloads.Downloads().Should().HaveCount(2);
@@ -33,7 +33,7 @@ public sealed class DownloadExtensionsTest
   [Fact]
   public void Downloads_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Download>) null!).Downloads()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Download>) null).Downloads()).ThrowExactly<ArgumentNullException>();
 
     var downloads = new[] {null, new Download(), new Download {Downloads = 1}, new Download {Downloads = 2}};
     downloads.Downloads().Should().HaveCount(3);
@@ -52,8 +52,8 @@ public sealed class DownloadExtensionsTest
   [Fact]
   public void Name_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Download>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Download>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Download>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Download>().AsQueryable().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Download>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new Download {Name = "First"}, new Download {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
@@ -65,8 +65,8 @@ public sealed class DownloadExtensionsTest
   [Fact]
   public void Name_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Download>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Download>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Download>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Download>().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Download>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new Download(), new Download {Name = "First"}, new Download {Name = "Second"}}.Name("f").Should().ContainSingle();

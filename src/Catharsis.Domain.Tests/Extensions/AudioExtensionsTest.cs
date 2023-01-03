@@ -14,7 +14,7 @@ public sealed class AudioExtensionsTest
   [Fact]
   public void Bitrate_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Audio>) null!).Bitrate(0)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Audio>) null).Bitrate(0)).ThrowExactly<ArgumentNullException>();
 
     new[] {new Audio {Bitrate = 32}, new Audio {Bitrate = 64}}.AsQueryable().Bitrate(32).Should().ContainSingle();
   }
@@ -25,7 +25,7 @@ public sealed class AudioExtensionsTest
   [Fact]
   public void Bitrate_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Audio>) null!).Bitrate(0)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Audio>) null).Bitrate(0)).ThrowExactly<ArgumentNullException>();
 
     new[] {null, new Audio(), new Audio {Bitrate = 32}, new Audio {Bitrate = 64}}.Bitrate(32).Should().ContainSingle();
   }

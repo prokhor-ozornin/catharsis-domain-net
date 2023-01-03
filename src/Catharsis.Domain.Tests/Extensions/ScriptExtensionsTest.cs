@@ -14,7 +14,7 @@ public sealed class ScriptExtensionsTest
   [Fact]
   public void Duration_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Script>) null!).Duration()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Script>) null).Duration()).ThrowExactly<ArgumentNullException>();
 
     var scripts = new[] {new Script {Duration = 1}, new Script {Duration = 2}}.AsQueryable();
     scripts.Duration().Should().HaveCount(2);
@@ -33,7 +33,7 @@ public sealed class ScriptExtensionsTest
   [Fact]
   public void Duration_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Script>) null!).Duration()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Script>) null).Duration()).ThrowExactly<ArgumentNullException>();
 
     var downloads = new[] {null, new Script(), new Script {Duration = 1}, new Script {Duration = 2}};
     downloads.Duration().Should().HaveCount(3);
@@ -52,7 +52,7 @@ public sealed class ScriptExtensionsTest
   [Fact]
   public void Executed_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Script>) null!).Executed(true)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Script>) null).Executed(true)).ThrowExactly<ArgumentNullException>();
 
     new[] {new Script {Executed = false}, new Script {Executed = true}}.AsQueryable().Executed(true).Should().ContainSingle();
   }
@@ -63,7 +63,7 @@ public sealed class ScriptExtensionsTest
   [Fact]
   public void Executed_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Script>) null!).Executed(true)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Script>) null).Executed(true)).ThrowExactly<ArgumentNullException>();
 
     new[] {null, new Script(), new Script {Executed = false}, new Script {Executed = true}}.Executed(true).Should().ContainSingle();
   }
@@ -74,8 +74,8 @@ public sealed class ScriptExtensionsTest
   [Fact]
   public void Name_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Script>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Script>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Script>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Script>().AsQueryable().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Script>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new Script {Name = "First"}, new Script {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
@@ -87,8 +87,8 @@ public sealed class ScriptExtensionsTest
   [Fact]
   public void Name_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Script>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Script>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Script>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Script>().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Script>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new Script(), new Script {Name = "First"}, new Script {Name = "Second"}}.Name("f").Should().ContainSingle();

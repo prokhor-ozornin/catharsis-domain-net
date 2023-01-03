@@ -14,8 +14,8 @@ public sealed class SeoWebPageExtensionsTest
   [Fact]
   public void Locale_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<SeoWebPage>) null!).Locale("locale")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<SeoWebPage>().AsQueryable().Locale(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<SeoWebPage>) null).Locale("locale")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<SeoWebPage>().AsQueryable().Locale(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<SeoWebPage>().AsQueryable().Locale(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new SeoWebPage {Locale = "First"}, new SeoWebPage {Locale = "Second"}}.AsQueryable().Locale("first").Should().ContainSingle();
@@ -27,8 +27,8 @@ public sealed class SeoWebPageExtensionsTest
   [Fact]
   public void Locale_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<SeoWebPage>) null!).Locale("locale")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<SeoWebPage>().Locale(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<SeoWebPage>) null).Locale("locale")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<SeoWebPage>().Locale(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<SeoWebPage>().Locale(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new SeoWebPage(), new SeoWebPage {Locale = "First"}, new SeoWebPage {Locale = "Second"}}.Locale("first").Should().ContainSingle();

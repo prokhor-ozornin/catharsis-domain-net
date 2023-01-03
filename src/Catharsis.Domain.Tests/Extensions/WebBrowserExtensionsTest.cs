@@ -14,8 +14,8 @@ public sealed class WebBrowserExtensionsTest
   [Fact]
   public void Name_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<WebBrowser>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<WebBrowser>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().AsQueryable().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<WebBrowser>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new WebBrowser {Name = "First"}, new WebBrowser {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
@@ -27,8 +27,8 @@ public sealed class WebBrowserExtensionsTest
   [Fact]
   public void Name_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<WebBrowser>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<WebBrowser>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<WebBrowser>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new WebBrowser(), new WebBrowser {Name = "First"}, new WebBrowser {Name = "Second"}}.Name("f").Should().ContainSingle();
@@ -40,8 +40,8 @@ public sealed class WebBrowserExtensionsTest
   [Fact]
   public void ValueOf_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<WebBrowser>) null!).ValueOf("Mozilla")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().AsQueryable().ValueOf(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<WebBrowser>) null).ValueOf("Mozilla")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().AsQueryable().ValueOf(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<WebBrowser>().AsQueryable().ValueOf(string.Empty)).ThrowExactly<ArgumentException>();
     AssertionExtensions.Should(() => new[] {new WebBrowser {UserAgent = "Mozilla"}, new WebBrowser {UserAgent = "mozilla"}}.AsQueryable().ValueOf("mozilla")).ThrowExactly<InvalidOperationException>();
 
@@ -55,8 +55,8 @@ public sealed class WebBrowserExtensionsTest
   [Fact]
   public void ValueOf_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<WebBrowser>) null!).ValueOf("mozilla")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().ValueOf(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<WebBrowser>) null).ValueOf("mozilla")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<WebBrowser>().ValueOf(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<WebBrowser>().ValueOf(string.Empty)).ThrowExactly<ArgumentException>();
     AssertionExtensions.Should(() => new[] {new WebBrowser {UserAgent = "Mozilla"}, new WebBrowser {UserAgent = "mozilla"}}.ValueOf("mozilla")).ThrowExactly<InvalidOperationException>();
 

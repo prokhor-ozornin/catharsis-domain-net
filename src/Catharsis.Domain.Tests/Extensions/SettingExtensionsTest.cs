@@ -14,8 +14,8 @@ public sealed class SettingExtensionsTest
   [Fact]
   public void ForName_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Setting>) null!).ForName("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().ForName(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Setting>) null).ForName("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().ForName(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().ForName(string.Empty)).ThrowExactly<ArgumentException>();
     AssertionExtensions.Should(() => new[] {new Setting {Name = "Name"}, new Setting {Name = "name"}}.AsQueryable().ForName("name")).ThrowExactly<InvalidOperationException>();
 
@@ -29,8 +29,8 @@ public sealed class SettingExtensionsTest
   [Fact]
   public void ForName_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Setting>) null!).ForName("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Setting>().ForName(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Setting>) null).ForName("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().ForName(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Setting>().ForName(string.Empty)).ThrowExactly<ArgumentException>();
     AssertionExtensions.Should(() => new[] {new Setting {Name = "Name"}, new Setting {Name = "name"}}.ForName("name")).ThrowExactly<InvalidOperationException>();
 
@@ -44,8 +44,8 @@ public sealed class SettingExtensionsTest
   [Fact]
   public void Name_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Setting>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Setting>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new Setting {Name = "First"}, new Setting {Name = "Second"}}.AsQueryable().Name("f").Should().BeNull();
@@ -57,8 +57,8 @@ public sealed class SettingExtensionsTest
   [Fact]
   public void Name_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Setting>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Setting>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Setting>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Setting>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new Setting(), new Setting {Name = "First"}, new Setting {Name = "Second"}}.Name("f").Should().ContainSingle();
@@ -70,8 +70,8 @@ public sealed class SettingExtensionsTest
   [Fact]
   public void ValueOf_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Setting>) null!).ValueOf("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().ValueOf(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Setting>) null).ValueOf("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().ValueOf(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Setting>().AsQueryable().ValueOf(string.Empty)).ThrowExactly<ArgumentException>();
     AssertionExtensions.Should(() => new[] {new Setting {Name = "Name"}, new Setting {Name = "name"}}.AsQueryable().ValueOf("name")).ThrowExactly<InvalidOperationException>();
 
@@ -85,8 +85,8 @@ public sealed class SettingExtensionsTest
   [Fact]
   public void ValueOf_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Setting>) null!).ValueOf("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Setting>().ValueOf(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Setting>) null).ValueOf("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Setting>().ValueOf(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Setting>().ValueOf(string.Empty)).ThrowExactly<ArgumentException>();
     AssertionExtensions.Should(() => new[] {new Setting {Name = "Name"}, new Setting {Name = "name"}}.ValueOf("name")).ThrowExactly<InvalidOperationException>();
 

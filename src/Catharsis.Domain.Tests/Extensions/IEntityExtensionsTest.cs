@@ -14,7 +14,7 @@ public sealed class IEntityExtensionsTest
   [Fact]
   public void CreatedOn_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null!).CreatedOn()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null).CreatedOn()).ThrowExactly<ArgumentNullException>();
 
     var entities = new[] {new Entity {CreatedOn = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Entity {CreatedOn = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0,TimeSpan.Zero)}}.AsQueryable();
     entities.CreatedOn().Should().HaveCount(2);
@@ -33,7 +33,7 @@ public sealed class IEntityExtensionsTest
   [Fact]
   public void CreatedOn_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null!).CreatedOn()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null).CreatedOn()).ThrowExactly<ArgumentNullException>();
 
     var entities = new[] {null, new Entity(), new Entity {CreatedOn = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Entity {CreatedOn = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}};
     entities.CreatedOn().Should().HaveCount(3);
@@ -52,7 +52,7 @@ public sealed class IEntityExtensionsTest
   [Fact]
   public void Id_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null!).Id(1)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null).Id(1)).ThrowExactly<ArgumentNullException>();
 
     Enumerable.Empty<Entity>().AsQueryable().Id(1).Should().BeNull();
 
@@ -65,7 +65,7 @@ public sealed class IEntityExtensionsTest
   [Fact]
   public void Id_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null!).Id(1)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null).Id(1)).ThrowExactly<ArgumentNullException>();
 
     Enumerable.Empty<Entity>().Id(1).Should().BeNull();
 
@@ -78,7 +78,7 @@ public sealed class IEntityExtensionsTest
   [Fact]
   public void Random_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null!).Random()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null).Random()).ThrowExactly<ArgumentNullException>();
 
     Enumerable.Empty<IEntity>().AsQueryable().Random().Should().BeNull();
 
@@ -95,7 +95,7 @@ public sealed class IEntityExtensionsTest
   [Fact]
   public void Random_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null!).Random()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null).Random()).ThrowExactly<ArgumentNullException>();
 
     Enumerable.Empty<IEntity>().Random().Should().BeNull();
 
@@ -112,7 +112,7 @@ public sealed class IEntityExtensionsTest
   [Fact]
   public void UpdatedOn_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null!).UpdatedOn()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<IEntity>) null).UpdatedOn()).ThrowExactly<ArgumentNullException>();
 
     var entities = new[] {new Entity {UpdatedOn = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Entity {UpdatedOn = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}}.AsQueryable();
     entities.UpdatedOn().Should().HaveCount(2);
@@ -131,7 +131,7 @@ public sealed class IEntityExtensionsTest
   [Fact]
   public void UpdatedOn_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null!).UpdatedOn()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<IEntity>) null).UpdatedOn()).ThrowExactly<ArgumentNullException>();
 
     var entities = new[] {null, new Entity(), new Entity {UpdatedOn = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new Entity {UpdatedOn = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}};
     entities.UpdatedOn().Should().HaveCount(3);

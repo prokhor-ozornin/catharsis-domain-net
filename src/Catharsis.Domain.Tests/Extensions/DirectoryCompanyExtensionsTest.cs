@@ -14,8 +14,8 @@ public sealed class DirectoryCompanyExtensionsTest
   [Fact]
   public void Name_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<DirectoryCompany>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<DirectoryCompany>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<DirectoryCompany>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<DirectoryCompany>().AsQueryable().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<DirectoryCompany>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new DirectoryCompany {Name = "First"}, new DirectoryCompany {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
@@ -27,8 +27,8 @@ public sealed class DirectoryCompanyExtensionsTest
   [Fact]
   public void Name_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<DirectoryCompany>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<DirectoryCompany>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<DirectoryCompany>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<DirectoryCompany>().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<DirectoryCompany>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new DirectoryCompany(), new DirectoryCompany {Name = "First"}, new DirectoryCompany {Name = "Second"}}.Name("f").Should().ContainSingle();

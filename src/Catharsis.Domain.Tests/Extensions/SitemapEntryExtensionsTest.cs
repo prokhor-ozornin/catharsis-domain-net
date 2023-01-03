@@ -14,7 +14,7 @@ public sealed class SitemapEntryExtensionsTest
   [Fact]
   public void ChangeFequency_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<SitemapEntry>) null!).ChangeFrequency(SitemapEntry.SitemapChangeFrequency.Daily)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<SitemapEntry>) null).ChangeFrequency(SitemapEntry.SitemapChangeFrequency.Daily)).ThrowExactly<ArgumentNullException>();
 
     new[] {new SitemapEntry {ChangeFrequency = SitemapEntry.SitemapChangeFrequency.Always}, new SitemapEntry {ChangeFrequency = SitemapEntry.SitemapChangeFrequency.Daily}}.AsQueryable().ChangeFrequency(SitemapEntry.SitemapChangeFrequency.Daily).Should().ContainSingle();
   }
@@ -25,7 +25,7 @@ public sealed class SitemapEntryExtensionsTest
   [Fact]
   public void ChangeFrequency_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<SitemapEntry>) null!).ChangeFrequency(SitemapEntry.SitemapChangeFrequency.Daily)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<SitemapEntry>) null).ChangeFrequency(SitemapEntry.SitemapChangeFrequency.Daily)).ThrowExactly<ArgumentNullException>();
 
     new[] {null, new SitemapEntry(), new SitemapEntry {ChangeFrequency = SitemapEntry.SitemapChangeFrequency.Always}, new SitemapEntry {ChangeFrequency = SitemapEntry.SitemapChangeFrequency.Daily}}.ChangeFrequency(SitemapEntry.SitemapChangeFrequency.Daily).Should().ContainSingle();
   }
@@ -36,7 +36,7 @@ public sealed class SitemapEntryExtensionsTest
   [Fact]
   public void Date_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<SitemapEntry>) null!).Date()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<SitemapEntry>) null).Date()).ThrowExactly<ArgumentNullException>();
 
     var entries = new[] {new SitemapEntry {Date = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new SitemapEntry {Date = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}}.AsQueryable();
     entries.Date().Should().HaveCount(2);
@@ -55,7 +55,7 @@ public sealed class SitemapEntryExtensionsTest
   [Fact]
   public void Date_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<SitemapEntry>) null!).Date()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<SitemapEntry>) null).Date()).ThrowExactly<ArgumentNullException>();
 
     var entries = new[] {null, new SitemapEntry(), new SitemapEntry {Date = new DateTimeOffset(year: 2000, month: 1, day: 1, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}, new SitemapEntry {Date = new DateTimeOffset(year: 2000, month: 1, day: 2, hour: 0, minute: 0, second: 0, TimeSpan.Zero)}};
     entries.Date().Should().HaveCount(3);
@@ -74,7 +74,7 @@ public sealed class SitemapEntryExtensionsTest
   [Fact]
   public void Priority_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Download>) null!).Downloads()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Download>) null).Downloads()).ThrowExactly<ArgumentNullException>();
 
     var downloads = new[] {new Download {Downloads = 1}, new Download {Downloads = 2}}.AsQueryable();
     downloads.Downloads().Should().HaveCount(3);
@@ -93,7 +93,7 @@ public sealed class SitemapEntryExtensionsTest
   [Fact]
   public void Priority_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Download>) null!).Downloads()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Download>) null).Downloads()).ThrowExactly<ArgumentNullException>();
 
     var downloads = new[] {null, new Download(), new Download {Downloads = 1}, new Download {Downloads = 2}};
     downloads.Downloads().Should().HaveCount(3);

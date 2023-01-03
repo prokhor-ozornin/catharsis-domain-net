@@ -14,8 +14,8 @@ public sealed class ApiKeyExtensionsTest
   [Fact]
   public void Name_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<ApiKey>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<ApiKey>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<ApiKey>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<ApiKey>().AsQueryable().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<ApiKey>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new ApiKey {AppName = "Third", Name = "First"}, new ApiKey {AppName = "Third", Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
@@ -27,8 +27,8 @@ public sealed class ApiKeyExtensionsTest
   [Fact]
   public void Name_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<ApiKey>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<ApiKey>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<ApiKey>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<ApiKey>().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<ApiKey>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new ApiKey(), new ApiKey {Name = "First"}, new ApiKey {Name = "Second"}}.Name("f").Should().ContainSingle();

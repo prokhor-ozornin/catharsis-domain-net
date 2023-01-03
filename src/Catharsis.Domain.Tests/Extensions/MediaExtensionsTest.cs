@@ -14,8 +14,8 @@ public sealed class MediaExtensionsTest
   [Fact]
   public void ContentType_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Media>) null!).ContentType("locale")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Media>().AsQueryable().ContentType(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Media>) null).ContentType("locale")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Media>().AsQueryable().ContentType(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Media>().AsQueryable().ContentType(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new Media {ContentType = "First"}, new Media {ContentType = "Second"}}.AsQueryable().ContentType("first").Should().ContainSingle();
@@ -27,8 +27,8 @@ public sealed class MediaExtensionsTest
   [Fact]
   public void ContentType_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Media>) null!).ContentType("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Media>().ContentType(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Media>) null).ContentType("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Media>().ContentType(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Media>().ContentType(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new Media(), new Media {ContentType = "First"}, new Media {ContentType = "Second"}}.ContentType("first").Should().ContainSingle();
@@ -40,7 +40,7 @@ public sealed class MediaExtensionsTest
   [Fact]
   public void Duration_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Media>) null!).Duration()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Media>) null).Duration()).ThrowExactly<ArgumentNullException>();
 
     var medias = new[] {new Media {Duration = 1}, new Media {Duration = 2}}.AsQueryable();
     medias.Duration().Should().HaveCount(2);
@@ -59,7 +59,7 @@ public sealed class MediaExtensionsTest
   [Fact]
   public void Duration_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Media>) null!).Duration()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Media>) null).Duration()).ThrowExactly<ArgumentNullException>();
 
     var medias = new[] {null, new Media(), new Media {Duration = 1}, new Media {Duration = 2}};
     medias.Duration().Should().HaveCount(3);
@@ -78,7 +78,7 @@ public sealed class MediaExtensionsTest
   [Fact]
   public void Height_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Media>) null!).Height()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Media>) null).Height()).ThrowExactly<ArgumentNullException>();
 
     var medias = new[] {new Media {Height = 1}, new Media {Height = 2}}.AsQueryable();
     medias.Height().Should().HaveCount(2);
@@ -97,7 +97,7 @@ public sealed class MediaExtensionsTest
   [Fact]
   public void Height_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Media>) null!).Height()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Media>) null).Height()).ThrowExactly<ArgumentNullException>();
 
     var medias = new[] {null, new Media(), new Media {Height = 1}, new Media {Height = 2}};
     medias.Height().Should().HaveCount(3);
@@ -116,8 +116,8 @@ public sealed class MediaExtensionsTest
   [Fact]
   public void Name_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Media>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Media>().AsQueryable().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Media>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Media>().AsQueryable().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Media>().AsQueryable().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {new Media {Name = "First"}, new Media {Name = "Second"}}.AsQueryable().Name("f").Should().ContainSingle();
@@ -129,8 +129,8 @@ public sealed class MediaExtensionsTest
   [Fact]
   public void Name_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Media>) null!).Name("name")).ThrowExactly<ArgumentNullException>();
-    AssertionExtensions.Should(() => Array.Empty<Media>().Name(null!)).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Media>) null).Name("name")).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => Array.Empty<Media>().Name(null)).ThrowExactly<ArgumentNullException>();
     AssertionExtensions.Should(() => Array.Empty<Media>().Name(string.Empty)).ThrowExactly<ArgumentException>();
 
     new[] {null, new Media(), new Media {Name = "First"}, new Media {Name = "Second"}}.Name("f").Should().ContainSingle();
@@ -142,7 +142,7 @@ public sealed class MediaExtensionsTest
   [Fact]
   public void Width_Queryable_Method()
   {
-    AssertionExtensions.Should(() => ((IQueryable<Media>) null!).Width()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IQueryable<Media>) null).Width()).ThrowExactly<ArgumentNullException>();
 
     var medias = new[] {new Media {Width = 1}, new Media {Width = 2}}.AsQueryable();
     medias.Width().Should().HaveCount(2);
@@ -161,7 +161,7 @@ public sealed class MediaExtensionsTest
   [Fact]
   public void Width_Enumerable_Method()
   {
-    AssertionExtensions.Should(() => ((IEnumerable<Media>) null!).Width()).ThrowExactly<ArgumentNullException>();
+    AssertionExtensions.Should(() => ((IEnumerable<Media>) null).Width()).ThrowExactly<ArgumentNullException>();
 
     var medias = new[] {null, new Media(), new Media {Width = 1}, new Media {Width = 2}};
     medias.Width().Should().HaveCount(3);
