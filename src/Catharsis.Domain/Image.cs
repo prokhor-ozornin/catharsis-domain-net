@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
-using Catharsis.Commons;
+using Catharsis.Extensions;
 
 namespace Catharsis.Domain;
 
