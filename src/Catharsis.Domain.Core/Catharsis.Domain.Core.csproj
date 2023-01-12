@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <AssemblyName>Catharsis.Domain</AssemblyName>
     <RootNamespace>Catharsis.Domain</RootNamespace>
     <LangVersion>latest</LangVersion>
