@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>Catharsis.Domain</AssemblyName>
     <RootNamespace>Catharsis.Domain</RootNamespace>
     <LangVersion>latest</LangVersion>
@@ -130,12 +130,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentNHibernate" Version="3.1.0" />
+    <PackageReference Include="FluentNHibernate" Version="3.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Catharsis.Extensions">
-      <HintPath>..\..\..\Catharsis.Extensions\src\Catharsis.Extensions.Core\bin\Release\net6.0\Catharsis.Extensions.dll</HintPath>
+      <HintPath>..\..\..\Catharsis.Extensions\src\Catharsis.Extensions.Core\bin\Release\net8.0\Catharsis.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
 
