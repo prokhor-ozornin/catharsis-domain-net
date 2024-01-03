@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Domain.Tests;
@@ -6,7 +7,7 @@ namespace Catharsis.Domain.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="PlaycastExtensions"/>.</para>
 /// </summary>
-public sealed class PlaycastExtensionsTest
+public sealed class PlaycastExtensionsTest : UnitTest
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="PlaycastExtensions.Name(IQueryable{Playcast}, string)"/> method.</para>

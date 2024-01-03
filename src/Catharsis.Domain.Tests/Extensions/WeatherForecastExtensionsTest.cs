@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Domain.Tests;
@@ -6,7 +7,7 @@ namespace Catharsis.Domain.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="WeatherForecastExtensions"/>.</para>
 /// </summary>
-public sealed class WeatherForecastExtensionsTest
+public sealed class WeatherForecastExtensionsTest : UnitTest
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="WeatherForecastExtensions.City(IQueryable{WeatherForecast}, City?)"/> method.</para>

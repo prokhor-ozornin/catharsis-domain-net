@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Domain.Tests;
@@ -6,7 +7,7 @@ namespace Catharsis.Domain.Tests;
 /// <summary>
 ///   <para>Tests set for interface <see cref="IEntity"/>.</para>
 /// </summary>
-public sealed class IEntityExtensionsTest
+public sealed class IEntityExtensionsTest : UnitTest
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="IEntityExtensions.CreatedOn{T}(IQueryable{T}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>

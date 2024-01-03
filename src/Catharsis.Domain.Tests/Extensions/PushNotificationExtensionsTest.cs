@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Domain.Tests;
@@ -6,7 +7,7 @@ namespace Catharsis.Domain.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="PushNotificationExtensions"/>.</para>
 /// </summary>
-public sealed class PushNotificationExtensionsTest
+public sealed class PushNotificationExtensionsTest : UnitTest
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="PushNotificationExtensions.Delivered(IQueryable{PushNotification}, bool?)"/> method.</para>

@@ -1,5 +1,5 @@
-﻿using FluentAssertions;
-using FluentAssertions.Execution;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Domain.Tests;
@@ -7,7 +7,7 @@ namespace Catharsis.Domain.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="WebPageExtensions"/>.</para>
 /// </summary>
-public sealed class WebPageExtensionsTest
+public sealed class WebPageExtensionsTest : UnitTest
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="WebPageExtensions.Locale(IQueryable{WebPage}, string)"/> method.</para>

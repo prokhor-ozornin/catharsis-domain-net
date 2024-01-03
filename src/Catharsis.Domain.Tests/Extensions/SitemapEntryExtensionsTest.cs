@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Domain.Tests;
@@ -6,7 +7,7 @@ namespace Catharsis.Domain.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="SitemapEntryExtensions"/>.</para>
 /// </summary>
-public sealed class SitemapEntryExtensionsTest
+public sealed class SitemapEntryExtensionsTest : UnitTest
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="SitemapEntryExtensions.ChangeFrequency(IQueryable{SitemapEntry}, SitemapEntry.SitemapChangeFrequency?)"/> method.</para>

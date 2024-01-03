@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Domain.Tests;
@@ -6,7 +7,7 @@ namespace Catharsis.Domain.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="StorageFileExtensions"/>.</para>
 /// </summary>
-public sealed class StorageFileExtensionsTest
+public sealed class StorageFileExtensionsTest : UnitTest
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="StorageFileExtensions.ContentType(IQueryable{StorageFile}, string)"/> method.</para>

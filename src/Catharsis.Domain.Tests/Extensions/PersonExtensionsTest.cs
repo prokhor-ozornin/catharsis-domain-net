@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Catharsis.Commons;
+using FluentAssertions;
 using Xunit;
 
 namespace Catharsis.Domain.Tests;
@@ -6,7 +7,7 @@ namespace Catharsis.Domain.Tests;
 /// <summary>
 ///   <para>Tests set for class <see cref="PersonExtensions"/>.</para>
 /// </summary>
-public sealed class PersonExtensionsTest
+public sealed class PersonExtensionsTest : UnitTest
 {
   /// <summary>
   ///   <para>Performs testing of <see cref="PersonExtensions.BirthDate(IQueryable{Person}, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
