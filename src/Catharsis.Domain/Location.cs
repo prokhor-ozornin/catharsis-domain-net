@@ -64,5 +64,5 @@ public class Location : Entity, IEquatable<Location>
   ///   <para>Returns a <see cref="string"/> that represents the current entity.</para>
   /// </summary>
   /// <returns>A string that represents the current entity.</returns>
-  public override string ToString() => Latitude != null && Longitude != null ? $"{Latitude.ToInvariantString()},{Longitude.ToInvariantString()}" : string.Empty;
+  public override string ToString() => Latitude is not null && Longitude is not null ? $"{Latitude.ToInvariantString()},{Longitude.ToInvariantString()}" : string.Empty;
 }

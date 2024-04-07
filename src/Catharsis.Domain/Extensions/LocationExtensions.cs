@@ -8,16 +8,16 @@ public static class LocationExtensions
 {
   public static IQueryable<Location> TimeZone(this IQueryable<Location> locations, string timezone) => locations.Where(location => location.TimeZone != null && location.TimeZone.ToLower().StartsWith(timezone.ToLower()));
 
-  public static IEnumerable<Location> TimeZone(this IEnumerable<Location> locations, string timezone) => locations.Where(location => location?.TimeZone != null && location.TimeZone.ToLower().StartsWith(timezone.ToLower()));
+  public static IEnumerable<Location> TimeZone(this IEnumerable<Location> locations, string timezone) => locations.Where(location => location?.TimeZone is not null && location.TimeZone.ToLower().StartsWith(timezone.ToLower()));
 
   public static IQueryable<Location> Latitude(this IQueryable<Location> locations, decimal? from = null, decimal? to = null)
   {
-    if (from != null)
+    if (from is not null)
     {
       locations = locations.Where(location => location.Latitude >= from.Value);
     }
 
-    if (to != null)
+    if (to is not null)
     {
       locations = locations.Where(location => location.Latitude <= to.Value);
     }
@@ -27,27 +27,27 @@ public static class LocationExtensions
 
   public static IEnumerable<Location> Latitude(this IEnumerable<Location> locations, decimal? from = null, decimal? to = null)
   {
-    if (from != null)
+    if (from is not null)
     {
-      locations = locations.Where(location => location != null && location.Latitude >= from.Value);
+      locations = locations.Where(location => location is not null && location.Latitude >= from.Value);
     }
 
-    if (to != null)
+    if (to is not null)
     {
-      locations = locations.Where(location => location != null && location.Latitude <= to.Value);
+      locations = locations.Where(location => location is not null && location.Latitude <= to.Value);
     }
 
-    return locations.Where(location => location != null);
+    return locations.Where(location => location is not null);
   }
 
   public static IQueryable<Location> Longitude(this IQueryable<Location> locations, decimal? from = null, decimal? to = null)
   {
-    if (from != null)
+    if (from is not null)
     {
       locations = locations.Where(location => location.Longitude >= from.Value);
     }
 
-    if (to != null)
+    if (to is not null)
     {
       locations = locations.Where(location => location.Longitude <= to.Value);
     }
@@ -57,16 +57,16 @@ public static class LocationExtensions
 
   public static IEnumerable<Location> Longitude(this IEnumerable<Location> locations, decimal? from = null, decimal? to = null)
   {
-    if (from != null)
+    if (from is not null)
     {
-      locations = locations.Where(location => location != null && location.Longitude >= from.Value);
+      locations = locations.Where(location => location is not null && location.Longitude >= from.Value);
     }
 
-    if (to != null)
+    if (to is not null)
     {
-      locations = locations.Where(location => location != null && location.Longitude <= to.Value);
+      locations = locations.Where(location => location is not null && location.Longitude <= to.Value);
     }
 
-    return locations.Where(location => location != null);
+    return locations.Where(location => location is not null);
   }
 }

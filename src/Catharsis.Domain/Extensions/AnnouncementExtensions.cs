@@ -8,16 +8,16 @@ public static class AnnouncementExtensions
 {
   public static IQueryable<Announcement> Name(this IQueryable<Announcement> announcements, string name) => announcements.Where(announcement => announcement.Name != null && announcement.Name.ToLower().StartsWith(name.ToLower()));
 
-  public static IEnumerable<Announcement> Name(this IEnumerable<Announcement> announcements, string name) => announcements.Where(announcement => announcement?.Name != null && announcement.Name.ToLower().StartsWith(name.ToLower()));
+  public static IEnumerable<Announcement> Name(this IEnumerable<Announcement> announcements, string name) => announcements.Where(announcement => announcement?.Name is not null && announcement.Name.ToLower().StartsWith(name.ToLower()));
 
   public static IQueryable<Announcement> Price(this IQueryable<Announcement> announcements, decimal? from = null, decimal? to = null)
   {
-    if (from != null)
+    if (from is not null)
     {
       announcements = announcements.Where(announcement => announcement.Price >= from.Value);
     }
 
-    if (to != null)
+    if (to is not null)
     {
       announcements = announcements.Where(announcement => announcement.Price <= to.Value);
     }
@@ -27,16 +27,16 @@ public static class AnnouncementExtensions
 
   public static IEnumerable<Announcement> Price(this IEnumerable<Announcement> announcements, decimal? from = null, decimal? to = null)
   {
-    if (from != null)
+    if (from is not null)
     {
-      announcements = announcements.Where(announcement => announcement != null && announcement.Price >= from.Value);
+      announcements = announcements.Where(announcement => announcement is not null && announcement.Price >= from.Value);
     }
 
-    if (to != null)
+    if (to is not null)
     {
-      announcements = announcements.Where(announcement => announcement != null && announcement.Price <= to.Value);
+      announcements = announcements.Where(announcement => announcement is not null && announcement.Price <= to.Value);
     }
 
-    return announcements.Where(announcement => announcement != null);
+    return announcements.Where(announcement => announcement is not null);
   }
 }

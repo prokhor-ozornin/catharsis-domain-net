@@ -64,7 +64,7 @@ public class StorageFile : Entity, IComparable<StorageFile>, IEquatable<StorageF
         }
       }
 
-      if (Name != null && !Name.Trim().IsEmpty())
+      if (Name is not null && !Name.Trim().IsEmpty())
       {
         fullPath.Append(Name.Trim());
       }

@@ -62,17 +62,17 @@ public class Address : Entity, IComparable<Address>
   {
     var parts = new List<string>();
 
-    if (City != null)
+    if (City is not null)
     {
       parts.Add(City.ToString());
     }
 
-    if (Name != null)
+    if (Name is not null)
     {
       parts.Add(Name.Trim());
     }
 
-    if (Zip != null)
+    if (Zip is not null)
     {
       parts.Add(Zip.Trim());
     }

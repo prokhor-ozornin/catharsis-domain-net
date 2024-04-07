@@ -8,5 +8,5 @@ public static class AudioExtensions
 {
   public static IQueryable<Audio> Bitrate(this IQueryable<Audio> audios, short? bitrate) => audios.Where(audio => audio.Bitrate == bitrate);
 
-  public static IEnumerable<Audio> Bitrate(this IEnumerable<Audio> audios, short? bitrate) => audios.Where(audio => audio != null && audio.Bitrate == bitrate);
+  public static IEnumerable<Audio> Bitrate(this IEnumerable<Audio> audios, short? bitrate) => audios.Where(audio => audio is not null && audio.Bitrate == bitrate);
 }

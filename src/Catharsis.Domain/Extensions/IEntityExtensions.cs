@@ -8,16 +8,16 @@ public static class IEntityExtensions
 {
   public static T Id<T>(this IQueryable<T> entities, long id) where T : IEntity => entities.FirstOrDefault(entity => entity.Id == id);
 
-  public static T Id<T>(this IEnumerable<T> entities, long id) where T : IEntity => entities.FirstOrDefault(entity => entity != null && entity.Id == id);
+  public static T Id<T>(this IEnumerable<T> entities, long id) where T : IEntity => entities.FirstOrDefault(entity => entity is not null && entity.Id == id);
 
   public static IQueryable<T> CreatedOn<T>(this IQueryable<T> entities, DateTimeOffset? from = null, DateTimeOffset? to = null) where T : IEntity
   {
-    if (from != null)
+    if (from is not null)
     {
       entities = entities.Where(entity => entity.CreatedOn >= from.Value);
     }
 
-    if (to != null)
+    if (to is not null)
     {
       entities = entities.Where(entity => entity.CreatedOn <= to.Value);
     }
@@ -27,17 +27,17 @@ public static class IEntityExtensions
 
   public static IEnumerable<T> CreatedOn<T>(this IEnumerable<T> entities, DateTimeOffset? from = null, DateTimeOffset? to = null) where T : IEntity
   {
-    if (from != null)
+    if (from is not null)
     {
-      entities = entities.Where(entity => entity != null && entity.CreatedOn >= from.Value);
+      entities = entities.Where(entity => entity is not null && entity.CreatedOn >= from.Value);
     }
 
-    if (to != null)
+    if (to is not null)
     {
-      entities = entities.Where(entity => entity != null && entity.CreatedOn <= to.Value);
+      entities = entities.Where(entity => entity is not null && entity.CreatedOn <= to.Value);
     }
 
-    return entities.Where(entity => entity != null);
+    return entities.Where(entity => entity is not null);
   }
 
   public static T Random<T>(this IQueryable<T> entities) where T : IEntity
@@ -63,17 +63,17 @@ public static class IEntityExtensions
 
     var id = identifiers[new Random().Next(identifiers.Length)];
     
-    return id != null ? entities.Id(id.Value) : (T) (object) null;
+    return id is not null ? entities.Id(id.Value) : (T) (object) null;
   }
 
   public static IQueryable<T> UpdatedOn<T>(this IQueryable<T> entities, DateTimeOffset? from = null, DateTimeOffset? to = null) where T : IEntity
   {
-    if (from != null)
+    if (from is not null)
     {
       entities = entities.Where(entity => entity.UpdatedOn >= from.Value);
     }
 
-    if (to != null)
+    if (to is not null)
     {
       entities = entities.Where(entity => entity.UpdatedOn <= to.Value);
     }
@@ -83,16 +83,16 @@ public static class IEntityExtensions
 
   public static IEnumerable<T> UpdatedOn<T>(this IEnumerable<T> entities, DateTimeOffset? from = null, DateTimeOffset? to = null) where T : IEntity
   {
-    if (from != null)
+    if (from is not null)
     {
-      entities = entities.Where(entity => entity != null && entity.UpdatedOn >= from.Value);
+      entities = entities.Where(entity => entity is not null && entity.UpdatedOn >= from.Value);
     }
 
-    if (to != null)
+    if (to is not null)
     {
-      entities = entities.Where(entity => entity != null && entity.UpdatedOn <= to.Value);
+      entities = entities.Where(entity => entity is not null && entity.UpdatedOn <= to.Value);
     }
 
-    return entities.Where(entity => entity != null);
+    return entities.Where(entity => entity is not null);
   }
 }
