@@ -1,0 +1,2695 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Catharsis.Domain.Tests</name>
+    </assembly>
+    <members>
+        <member name="T:Catharsis.Domain.Tests.AddressTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Address"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Address.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressTest.City_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Address.City"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressTest.Zip_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Address.Zip"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressTest.Location_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Address.Location"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressTest.Description_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Address.Description"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Address.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Address.CompareTo(Catharsis.Domain.Address)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Address.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.AnnouncementTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Announcement"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Announcement.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementTest.Text_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Announcement.Text"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementTest.Image_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Announcement.Image"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementTest.Price_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Announcement.Price"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementTest.PriceCurrency_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Announcement.PriceCurrency"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Announcement.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Announcement.CompareTo(Catharsis.Domain.Announcement)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Announcement.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.ApiKeyTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.ApiKey"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.Value_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.ApiKey.Value"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.ApiKey.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.Contact_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.ApiKey.Contact"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.AppName_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.ApiKey.AppName"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.AppDomain_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.ApiKey.AppDomain"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.AppDescription_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.ApiKey.AppDescription"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.ApiKey.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ApiKey.CompareTo(Catharsis.Domain.ApiKey)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.ApiKey.Equals(Catharsis.Domain.ApiKey)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.ApiKey.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ApiKey.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ApiKey.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.AreaTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Area"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Area.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaTest.Country_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Area.Country"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Area.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Area.CompareTo(Catharsis.Domain.Area)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Area.Equals(Catharsis.Domain.Area)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Area.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Area.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Area.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.AudioTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Audio"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AudioTest.Bitrate_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Audio.Bitrate"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AudioTest.File_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Audio.File"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AudioTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Audio.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AudioTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Audio.CompareTo(Catharsis.Domain.Audio)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AudioTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Audio.Equals(Catharsis.Domain.Audio)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Audio.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AudioTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Audio.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AudioTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="!:Audio.ToString()"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.BookTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Book"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Title_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.Title"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Author_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.Author"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Language_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.Language"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Isbn_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.Isbn"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Annotation_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.Annotation"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Notes_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.Notes"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.PublishDate_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.PublishDate"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Publisher_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.Publisher"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Cover_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.Cover"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Contents_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.Contents"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Tags_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Book.Tags"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Book.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Book.CompareTo(Catharsis.Domain.Book)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Book.Equals(Catharsis.Domain.Book)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Book.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Book.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Book.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.CityTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.City"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.City.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.Federal_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.City.Federal"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.Country_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.City.Country"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.Region_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.City.Region"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.Area_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.City.Area"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.Location_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.City.Location"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.City.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.City.CompareTo(Catharsis.Domain.City)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.City.Equals(Catharsis.Domain.City)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.City.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.City.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.City.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.ContactTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Contact"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactTest.Website_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Contact.Website"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactTest.Fax_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Contact.Fax"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactTest.Skype_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Contact.Skype"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactTest.Icq_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Contact.Icq"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactTest.Jabber_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Contact.Jabber"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactTest.Addresses_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Contact.Addresses"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactTest.Phones_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Contact.Phones"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactTest.Emails_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Contact.Emails"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Contact.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Contact.CompareTo(Catharsis.Domain.Contact)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.CountryTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Country"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Country.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryTest.Language_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Country.Language"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryTest.Currency_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Country.Currency"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryTest.IsoCode_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Country.IsoCode"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryTest.CurrencyCode_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Country.CurrencyCode"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Country.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Country.CompareTo(Catharsis.Domain.Country)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Country.Equals(Catharsis.Domain.Country)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Country.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Country.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Country.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.DirectoryCompanyTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.DirectoryCompany"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DirectoryCompanyTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.DirectoryCompany.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DirectoryCompanyTest.ShortName_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.DirectoryCompany.ShortName"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DirectoryCompanyTest.Code_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.DirectoryCompany.Code"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DirectoryCompanyTest.Contact_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.DirectoryCompany.Contact"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DirectoryCompanyTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.DirectoryCompany.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DirectoryCompanyTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.DirectoryCompany.CompareTo(Catharsis.Domain.DirectoryCompany)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DirectoryCompanyTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.DirectoryCompany.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.DownloadTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Download"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Download.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadTest.Description_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Download.Description"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadTest.File_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Download.File"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadTest.Image_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Download.Image"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadTest.Downloads_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Download.Downloads"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Download.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Download.CompareTo(Catharsis.Domain.Download)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Download.Equals(Catharsis.Domain.Download)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Download.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Download.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Download.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.AddressExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.AddressExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressExtensionsTest.City_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AddressExtensions.City(System.Linq.IQueryable{Catharsis.Domain.Address},Catharsis.Domain.City)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressExtensionsTest.City_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AddressExtensions.City(System.Collections.Generic.IEnumerable{Catharsis.Domain.Address},Catharsis.Domain.City)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AddressExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Address},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AddressExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AddressExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Address},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.AnnouncementExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.AnnouncementExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AnnouncementExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Announcement},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AnnouncementExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.Announcement},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementExtensionsTest.Price_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AnnouncementExtensions.Price(System.Linq.IQueryable{Catharsis.Domain.Announcement},System.Nullable{System.Decimal},System.Nullable{System.Decimal})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AnnouncementExtensionsTest.Price_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AnnouncementExtensions.Price(System.Collections.Generic.IEnumerable{Catharsis.Domain.Announcement},System.Nullable{System.Decimal},System.Nullable{System.Decimal})"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.ApiKeyExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.ApiKeyExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ApiKeyExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.ApiKey},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ApiKeyExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ApiKeyExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.ApiKey},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.AreaExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.AreaExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaExtensionsTest.Country_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AreaExtensions.Country(System.Linq.IQueryable{Catharsis.Domain.Area},Catharsis.Domain.Country)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaExtensionsTest.Country_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AreaExtensions.Country(System.Collections.Generic.IEnumerable{Catharsis.Domain.Area},Catharsis.Domain.Country)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AreaExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Area},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AreaExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AreaExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.Area},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.AudioExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.AudioExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AudioExtensionsTest.Bitrate_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AudioExtensions.Bitrate(System.Linq.IQueryable{Catharsis.Domain.Audio},System.Nullable{System.Int16})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.AudioExtensionsTest.Bitrate_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.AudioExtensions.Bitrate(System.Collections.Generic.IEnumerable{Catharsis.Domain.Audio},System.Nullable{System.Int16})"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.BookExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.BookExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookExtensionsTest.Author_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.BookExtensions.Author(System.Linq.IQueryable{Catharsis.Domain.Book},Catharsis.Domain.Person)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookExtensionsTest.Author_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.BookExtensions.Author(System.Collections.Generic.IEnumerable{Catharsis.Domain.Book},Catharsis.Domain.Person)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookExtensionsTest.Language_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.BookExtensions.Language(System.Linq.IQueryable{Catharsis.Domain.Book},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookExtensionsTest.Language_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.BookExtensions.Language(System.Collections.Generic.IEnumerable{Catharsis.Domain.Book},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookExtensionsTest.PublishDate_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.BookExtensions.PublishDate(System.Linq.IQueryable{Catharsis.Domain.Book},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookExtensionsTest.PublishDate_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.BookExtensions.PublishDate(System.Collections.Generic.IEnumerable{Catharsis.Domain.Book},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookExtensionsTest.Tag_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.BookExtensions.Tag(System.Linq.IQueryable{Catharsis.Domain.Book},Catharsis.Domain.Tag)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookExtensionsTest.Tag_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.BookExtensions.Tag(System.Collections.Generic.IEnumerable{Catharsis.Domain.Book},Catharsis.Domain.Tag)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookExtensionsTest.ValueOf_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.BookExtensions.ValueOf(System.Linq.IQueryable{Catharsis.Domain.Book},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.BookExtensionsTest.ValueOf_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.BookExtensions.ValueOf(System.Collections.Generic.IEnumerable{Catharsis.Domain.Book},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.CityExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.CityExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityExtensionsTest.Area_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CityExtensions.Area(System.Linq.IQueryable{Catharsis.Domain.City},Catharsis.Domain.Area)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityExtensionsTest.Area_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CityExtensions.Area(System.Collections.Generic.IEnumerable{Catharsis.Domain.City},Catharsis.Domain.Area)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityExtensionsTest.Country_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CityExtensions.Country(System.Linq.IQueryable{Catharsis.Domain.City},Catharsis.Domain.Country)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityExtensionsTest.Country_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CityExtensions.Country(System.Collections.Generic.IEnumerable{Catharsis.Domain.City},Catharsis.Domain.Country)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityExtensionsTest.Federal_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CityExtensions.Federal(System.Linq.IQueryable{Catharsis.Domain.City},System.Nullable{System.Boolean})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityExtensionsTest.Federal_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CityExtensions.Federal(System.Collections.Generic.IEnumerable{Catharsis.Domain.City},System.Nullable{System.Boolean})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityExtensionsTest.Region_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CityExtensions.Region(System.Linq.IQueryable{Catharsis.Domain.City},Catharsis.Domain.Region)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CityExtensionsTest.Region_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CityExtensions.Region(System.Collections.Generic.IEnumerable{Catharsis.Domain.City},Catharsis.Domain.Region)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.ContactExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.ContactExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Email_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Email(System.Linq.IQueryable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Email_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Email(System.Collections.Generic.IEnumerable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Fax_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Fax(System.Linq.IQueryable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Fax_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Fax(System.Collections.Generic.IEnumerable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Icq_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Icq(System.Linq.IQueryable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Icq_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Icq(System.Collections.Generic.IEnumerable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Jabber_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Jabber(System.Linq.IQueryable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Jabber_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Jabber(System.Collections.Generic.IEnumerable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Phone_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Phone(System.Linq.IQueryable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Phone_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Phone(System.Collections.Generic.IEnumerable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Skype_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Skype(System.Linq.IQueryable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ContactExtensionsTest.Skype_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ContactExtensions.Skype(System.Collections.Generic.IEnumerable{Catharsis.Domain.Contact},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.CountryExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.CountryExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CountryExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Country},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CountryExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.Country},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryExtensionsTest.ValueOf_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CountryExtensions.ValueOf(System.Linq.IQueryable{Catharsis.Domain.Country},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.CountryExtensionsTest.ValueOf_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.CountryExtensions.ValueOf(System.Collections.Generic.IEnumerable{Catharsis.Domain.Country},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.DirectoryCompanyExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.DirectoryCompanyExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DirectoryCompanyExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.DirectoryCompanyExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.DirectoryCompany},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DirectoryCompanyExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.DirectoryCompanyExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.DirectoryCompany},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.DownloadExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.DownloadExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadExtensionsTest.Downloads_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.DownloadExtensions.Downloads(System.Linq.IQueryable{Catharsis.Domain.Download},System.Nullable{System.Int64},System.Nullable{System.Int64})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadExtensionsTest.Downloads_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.DownloadExtensions.Downloads(System.Collections.Generic.IEnumerable{Catharsis.Domain.Download},System.Nullable{System.Int64},System.Nullable{System.Int64})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.DownloadExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Download},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.DownloadExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.DownloadExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.Download},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.IEntityExtensionsTest">
+            <summary>
+              <para>Tests set for interface <see cref="T:Catharsis.Domain.IEntity"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.IEntityExtensionsTest.CreatedOn_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.IEntityExtensions.CreatedOn``1(System.Linq.IQueryable{``0},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.IEntityExtensionsTest.CreatedOn_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="!:IEntityExtensions.CreatedOn&lt;T&gt;(IEnumerable&lt;T?&gt;, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.IEntityExtensionsTest.Id_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.IEntityExtensions.Id``1(System.Linq.IQueryable{``0},System.Int64)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.IEntityExtensionsTest.Id_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="!:IEntityExtensions.Id&lt;T&gt;(IEnumerable&lt;T?&gt;, long)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.IEntityExtensionsTest.Random_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.IEntityExtensions.Random``1(System.Linq.IQueryable{``0})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.IEntityExtensionsTest.Random_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="!:IEntityExtensions.Random&lt;T&gt;(IEnumerable&lt;T?&gt;)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.IEntityExtensionsTest.UpdatedOn_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.IEntityExtensions.UpdatedOn``1(System.Linq.IQueryable{``0},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.IEntityExtensionsTest.UpdatedOn_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="!:IEntityExtensions.UpdatedOn&lt;T&gt;(IEnumerable&lt;T?&gt;, DateTimeOffset?, DateTimeOffset?)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.LocationExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.LocationExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationExtensionsTest.Latitude_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LocationExtensions.Latitude(System.Linq.IQueryable{Catharsis.Domain.Location},System.Nullable{System.Decimal},System.Nullable{System.Decimal})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationExtensionsTest.Latitude_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LocationExtensions.Latitude(System.Collections.Generic.IEnumerable{Catharsis.Domain.Location},System.Nullable{System.Decimal},System.Nullable{System.Decimal})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationExtensionsTest.Longitude_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LocationExtensions.Longitude(System.Linq.IQueryable{Catharsis.Domain.Location},System.Nullable{System.Decimal},System.Nullable{System.Decimal})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationExtensionsTest.Longitude_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LocationExtensions.Longitude(System.Collections.Generic.IEnumerable{Catharsis.Domain.Location},System.Nullable{System.Decimal},System.Nullable{System.Decimal})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationExtensionsTest.TimeZone_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LocationExtensions.TimeZone(System.Linq.IQueryable{Catharsis.Domain.Location},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationExtensionsTest.TimeZone_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LocationExtensions.TimeZone(System.Collections.Generic.IEnumerable{Catharsis.Domain.Location},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.LogMessageExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.LogMessageExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageExtensionsTest.Level_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LogMessageExtensions.Level(System.Linq.IQueryable{Catharsis.Domain.LogMessage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageExtensionsTest.Level_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LogMessageExtensions.Level(System.Collections.Generic.IEnumerable{Catharsis.Domain.LogMessage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageExtensionsTest.Logger_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LogMessageExtensions.Logger(System.Linq.IQueryable{Catharsis.Domain.LogMessage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageExtensionsTest.Logger_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LogMessageExtensions.Logger(System.Collections.Generic.IEnumerable{Catharsis.Domain.LogMessage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageExtensionsTest.Thread_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LogMessageExtensions.Thread(System.Linq.IQueryable{Catharsis.Domain.LogMessage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageExtensionsTest.Thread_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LogMessageExtensions.Thread(System.Collections.Generic.IEnumerable{Catharsis.Domain.LogMessage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.MediaExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.MediaExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaExtensionsTest.ContentType_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.MediaExtensions.ContentType``1(System.Linq.IQueryable{``0},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaExtensionsTest.ContentType_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.MediaExtensions.ContentType``1(System.Collections.Generic.IEnumerable{``0},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaExtensionsTest.Duration_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.MediaExtensions.Duration``1(System.Linq.IQueryable{``0},System.Nullable{System.Int64},System.Nullable{System.Int64})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaExtensionsTest.Duration_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.MediaExtensions.Duration``1(System.Collections.Generic.IEnumerable{``0},System.Nullable{System.Int64},System.Nullable{System.Int64})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaExtensionsTest.Height_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.MediaExtensions.Height``1(System.Linq.IQueryable{``0},System.Nullable{System.Int16},System.Nullable{System.Int16})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaExtensionsTest.Height_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.MediaExtensions.Height``1(System.Collections.Generic.IEnumerable{``0},System.Nullable{System.Int16},System.Nullable{System.Int16})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.MediaExtensions.Name``1(System.Linq.IQueryable{``0},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.MediaExtensions.Name``1(System.Collections.Generic.IEnumerable{``0},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaExtensionsTest.Width_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.MediaExtensions.Width``1(System.Linq.IQueryable{``0},System.Nullable{System.Int16},System.Nullable{System.Int16})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaExtensionsTest.Width_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.MediaExtensions.Width``1(System.Collections.Generic.IEnumerable{``0},System.Nullable{System.Int16},System.Nullable{System.Int16})"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.NewsExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.NewsExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.NewsExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.News},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.NewsExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.News},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsExtensionsTest.Tag_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.NewsExtensions.Tag(System.Linq.IQueryable{Catharsis.Domain.News},Catharsis.Domain.Tag)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsExtensionsTest.Tag_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.NewsExtensions.Tag(System.Collections.Generic.IEnumerable{Catharsis.Domain.News},Catharsis.Domain.Tag)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.PersonExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.PersonExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonExtensionsTest.BirthDate_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PersonExtensions.BirthDate(System.Linq.IQueryable{Catharsis.Domain.Person},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonExtensionsTest.BirthDate_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PersonExtensions.BirthDate(System.Collections.Generic.IEnumerable{Catharsis.Domain.Person},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonExtensionsTest.DeathDate_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PersonExtensions.DeathDate(System.Linq.IQueryable{Catharsis.Domain.Person},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonExtensionsTest.DeathDate_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PersonExtensions.DeathDate(System.Linq.IQueryable{Catharsis.Domain.Person},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PersonExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Person},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PersonExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.Person},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.PlaycastExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.PlaycastExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PlaycastExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Playcast},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PlaycastExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.Playcast},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastExtensionsTest.Tag_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PlaycastExtensions.Tag(System.Linq.IQueryable{Catharsis.Domain.Playcast},Catharsis.Domain.Tag)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastExtensionsTest.Tag_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PlaycastExtensions.Tag(System.Collections.Generic.IEnumerable{Catharsis.Domain.Playcast},Catharsis.Domain.Tag)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.PushNotificationExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.PushNotificationExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationExtensionsTest.Delivered_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PushNotificationExtensions.Delivered(System.Linq.IQueryable{Catharsis.Domain.PushNotification},System.Nullable{System.Boolean})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationExtensionsTest.Delivered_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PushNotificationExtensions.Delivered(System.Collections.Generic.IEnumerable{Catharsis.Domain.PushNotification},System.Nullable{System.Boolean})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationExtensionsTest.Provider_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PushNotificationExtensions.Provider(System.Linq.IQueryable{Catharsis.Domain.PushNotification},System.Nullable{Catharsis.Domain.PushNotification.ProviderType})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationExtensionsTest.Provider_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PushNotificationExtensions.Provider(System.Collections.Generic.IEnumerable{Catharsis.Domain.PushNotification},System.Nullable{Catharsis.Domain.PushNotification.ProviderType})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationExtensionsTest.Ttl_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PushNotificationExtensions.Ttl(System.Linq.IQueryable{Catharsis.Domain.PushNotification},System.Nullable{System.Int64},System.Nullable{System.Int64})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationExtensionsTest.Ttl_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PushNotificationExtensions.Ttl(System.Collections.Generic.IEnumerable{Catharsis.Domain.PushNotification},System.Nullable{System.Int64},System.Nullable{System.Int64})"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.RegionExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.RegionExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionExtensionsTest.Area_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.RegionExtensions.Area(System.Linq.IQueryable{Catharsis.Domain.Region},Catharsis.Domain.Area)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionExtensionsTest.Area_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.RegionExtensions.Area(System.Collections.Generic.IEnumerable{Catharsis.Domain.Region},Catharsis.Domain.Area)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.RegionExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Region},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.RegionExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.Region},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.ScriptExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.ScriptExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptExtensionsTest.Duration_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ScriptExtensions.Duration(System.Linq.IQueryable{Catharsis.Domain.Script},System.Nullable{System.Int64},System.Nullable{System.Int64})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptExtensionsTest.Duration_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ScriptExtensions.Duration(System.Collections.Generic.IEnumerable{Catharsis.Domain.Script},System.Nullable{System.Int64},System.Nullable{System.Int64})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptExtensionsTest.Executed_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ScriptExtensions.Executed(System.Linq.IQueryable{Catharsis.Domain.Script},System.Nullable{System.Boolean})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptExtensionsTest.Executed_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ScriptExtensions.Executed(System.Collections.Generic.IEnumerable{Catharsis.Domain.Script},System.Nullable{System.Boolean})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ScriptExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Script},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.ScriptExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.Script},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.SeoWebPageExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.SeoWebPageExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SeoWebPageExtensionsTest.Locale_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SeoWebPageExtensions.Locale(System.Linq.IQueryable{Catharsis.Domain.SeoWebPage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SeoWebPageExtensionsTest.Locale_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SeoWebPageExtensions.Locale(System.Collections.Generic.IEnumerable{Catharsis.Domain.SeoWebPage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.SettingExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.SettingExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingExtensionsTest.ForName_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SettingExtensions.ForName(System.Linq.IQueryable{Catharsis.Domain.Setting},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingExtensionsTest.ForName_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SettingExtensions.ForName(System.Collections.Generic.IEnumerable{Catharsis.Domain.Setting},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SettingExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.Setting},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SettingExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.Setting},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingExtensionsTest.ValueOf_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SettingExtensions.ValueOf(System.Linq.IQueryable{Catharsis.Domain.Setting},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingExtensionsTest.ValueOf_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SettingExtensions.ValueOf(System.Collections.Generic.IEnumerable{Catharsis.Domain.Setting},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.SitemapEntryExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.SitemapEntryExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryExtensionsTest.ChangeFequency_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SitemapEntryExtensions.ChangeFrequency(System.Linq.IQueryable{Catharsis.Domain.SitemapEntry},System.Nullable{Catharsis.Domain.SitemapEntry.SitemapChangeFrequency})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryExtensionsTest.ChangeFrequency_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SitemapEntryExtensions.ChangeFrequency(System.Collections.Generic.IEnumerable{Catharsis.Domain.SitemapEntry},System.Nullable{Catharsis.Domain.SitemapEntry.SitemapChangeFrequency})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryExtensionsTest.Date_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SitemapEntryExtensions.Date(System.Linq.IQueryable{Catharsis.Domain.SitemapEntry},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryExtensionsTest.Date_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SitemapEntryExtensions.Date(System.Collections.Generic.IEnumerable{Catharsis.Domain.SitemapEntry},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryExtensionsTest.Priority_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SitemapEntryExtensions.Priority(System.Linq.IQueryable{Catharsis.Domain.SitemapEntry},System.Nullable{System.Decimal},System.Nullable{System.Decimal})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryExtensionsTest.Priority_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SitemapEntryExtensions.Priority(System.Collections.Generic.IEnumerable{Catharsis.Domain.SitemapEntry},System.Nullable{System.Decimal},System.Nullable{System.Decimal})"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.StorageFileExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.StorageFileExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileExtensionsTest.ContentType_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.StorageFileExtensions.ContentType(System.Linq.IQueryable{Catharsis.Domain.StorageFile},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileExtensionsTest.ContentType_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.StorageFileExtensions.ContentType(System.Collections.Generic.IEnumerable{Catharsis.Domain.StorageFile},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileExtensionsTest.Storage_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.StorageFileExtensions.Storage(System.Linq.IQueryable{Catharsis.Domain.StorageFile},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileExtensionsTest.Storage_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.StorageFileExtensions.Storage(System.Collections.Generic.IEnumerable{Catharsis.Domain.StorageFile},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.TagExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.TagExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.TagExtensionsTest.ForName_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.TagExtensions.ForName(System.Linq.IQueryable{Catharsis.Domain.Tag},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.TagExtensionsTest.ForName_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.TagExtensions.ForName(System.Collections.Generic.IEnumerable{Catharsis.Domain.Tag},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.WeatherForecastExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.WeatherForecastExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastExtensionsTest.City_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WeatherForecastExtensions.City(System.Linq.IQueryable{Catharsis.Domain.WeatherForecast},Catharsis.Domain.City)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastExtensionsTest.City_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WeatherForecastExtensions.City(System.Collections.Generic.IEnumerable{Catharsis.Domain.WeatherForecast},Catharsis.Domain.City)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastExtensionsTest.Date_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WeatherForecastExtensions.Date(System.Linq.IQueryable{Catharsis.Domain.WeatherForecast},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastExtensionsTest.Date_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WeatherForecastExtensions.Date(System.Collections.Generic.IEnumerable{Catharsis.Domain.WeatherForecast},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastExtensionsTest.Type_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WeatherForecastExtensions.Type(System.Linq.IQueryable{Catharsis.Domain.WeatherForecast},System.Nullable{Catharsis.Domain.WeatherForecast.WeatherType})"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastExtensionsTest.Type_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WeatherForecastExtensions.Type(System.Collections.Generic.IEnumerable{Catharsis.Domain.WeatherForecast},System.Nullable{Catharsis.Domain.WeatherForecast.WeatherType})"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.WebBrowserExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.WebBrowserExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebBrowserExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.WebBrowser},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebBrowserExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.WebBrowser},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserExtensionsTest.ValueOf_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebBrowserExtensions.ValueOf(System.Linq.IQueryable{Catharsis.Domain.WebBrowser},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserExtensionsTest.ValueOf_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebBrowserExtensions.ValueOf(System.Collections.Generic.IEnumerable{Catharsis.Domain.WebBrowser},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.WebLinkExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.WebLinkExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebLinkExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.WebLink},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebLinkExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.WebLink},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.WebPageExtensionsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.WebPageExtensions"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageExtensionsTest.Locale_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebPageExtensions.Locale(System.Linq.IQueryable{Catharsis.Domain.WebPage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageExtensionsTest.Locale_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebPageExtensions.Locale(System.Collections.Generic.IEnumerable{Catharsis.Domain.WebPage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageExtensionsTest.Name_Queryable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebPageExtensions.Name(System.Linq.IQueryable{Catharsis.Domain.WebPage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageExtensionsTest.Name_Enumerable_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebPageExtensions.Name(System.Collections.Generic.IEnumerable{Catharsis.Domain.WebPage},System.String)"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.FaqTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Faq"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.FaqTest.Question_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Faq.Question"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.FaqTest.Answer_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Faq.Answer"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.FaqTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Faq.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.FaqTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Faq.CompareTo(Catharsis.Domain.Faq)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.FaqTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Faq.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.ImageTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Image"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ImageTest.File_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Image.File"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ImageTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Image.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ImageTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Image.CompareTo(Catharsis.Domain.Image)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ImageTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Image.Equals(Catharsis.Domain.Image)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Image.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ImageTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Image.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ImageTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="!:Image.ToString()"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.LocationTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Location"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationTest.Latitude_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Location.Latitude"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationTest.Longitude_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Location.Longitude"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationTest.TimeZone_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Location.TimeZone"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Location.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Location.Equals(Catharsis.Domain.Location)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Location.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Location.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LocationTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Location.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.LogMessageTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.LogMessage"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageTest.Level_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.LogMessage.Level"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageTest.Logger_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.LogMessage.Logger"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageTest.Thread_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.LogMessage.Thread"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageTest.RequestId_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.LogMessage.RequestId"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageTest.Text_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.LogMessage.Text"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.LogMessage.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LogMessage.CompareTo(Catharsis.Domain.LogMessage)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.LogMessage.Equals(Catharsis.Domain.LogMessage)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.LogMessage.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LogMessage.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.LogMessageTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.LogMessage.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.MediaTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Media"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.ContentType_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.ContentType"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.Uri_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.Uri"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.ProviderUri_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.ProviderUri"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.Width_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.Width"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.Height_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.Height"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.Duration_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.Duration"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.Description_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.Description"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.Html_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.Html"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.AuthorName_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.AuthorName"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.AuthorUri_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.AuthorUri"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.ThumbnailUri_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.ThumbnailUri"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.ThumbnailWidth_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.ThumbnailWidth"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.ThumbnailHeight_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Media.ThumbnailHeight"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Media.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Media.CompareTo(Catharsis.Domain.Media)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Media.Equals(Catharsis.Domain.Media)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Media.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Media.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.MediaTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Media.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.NewsTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.News"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.News.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsTest.Image_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.News.Image"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsTest.Annotation_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.News.Annotation"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsTest.Text_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.News.Text"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsTest.Tags_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.News.Tags"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.News.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.News.CompareTo(Catharsis.Domain.News)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.News.Equals(Catharsis.Domain.News)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.News.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.News.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.NewsTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.News.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.PersonTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Person"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonTest.FirstName_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Person.FirstName"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonTest.LastName_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Person.LastName"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonTest.MiddleName_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Person.MiddleName"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonTest.BirthDate_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Person.BirthDate"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonTest.DeathDate_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Person.DeathDate"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Person.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Person.CompareTo(Catharsis.Domain.Person)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PersonTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Person.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.PlaycastTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Playcast"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Playcast.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastTest.Text_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Playcast.Text"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastTest.Image_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Playcast.Image"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastTest.Audio_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Playcast.Audio"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastTest.Video_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Playcast.Video"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastTest.Tags_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Playcast.Tags"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Playcast.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Playcast.CompareTo(Catharsis.Domain.Playcast)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PlaycastTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Playcast.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.PushNotificationTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.PushNotification"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationTest.Payload_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.PushNotification.Payload"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationTest.Provider_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.PushNotification.Provider"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationTest.Delivered_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.PushNotification.Delivered"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationTest.Ttl_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.PushNotification.Ttl"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationTest.Devices_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.PushNotification.Devices"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.PushNotification.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PushNotification.CompareTo(Catharsis.Domain.PushNotification)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.PushNotification.Equals(Catharsis.Domain.PushNotification)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.PushNotification.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PushNotification.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.PushNotificationTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.PushNotification.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.RegionTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Region"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Region.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionTest.Area_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Region.Area"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Region.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Region.CompareTo(Catharsis.Domain.Region)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Region.Equals(Catharsis.Domain.Region)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Region.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Region.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.RegionTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Region.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.ScriptTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Script"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Script.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptTest.Executed_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Script.Executed"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptTest.Duration_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Script.Duration"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptTest.Path_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Script.Path"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptTest.Code_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Script.Code"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Script.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Script.CompareTo(Catharsis.Domain.Script)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Script.Equals(Catharsis.Domain.Script)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Script.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Script.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.ScriptTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Script.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.SeoWebPageTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.SeoWebPage"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SeoWebPageTest.Title_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.SeoWebPage.Title"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SeoWebPageTest.Uri_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.SeoWebPage.Uri"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SeoWebPageTest.Locale_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.SeoWebPage.Locale"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SeoWebPageTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.SeoWebPage.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SeoWebPageTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SeoWebPage.CompareTo(Catharsis.Domain.SeoWebPage)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SeoWebPageTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.SeoWebPage.Equals(Catharsis.Domain.SeoWebPage)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.SeoWebPage.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SeoWebPageTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SeoWebPage.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SeoWebPageTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SeoWebPage.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.SettingTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Setting"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Setting.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingTest.Type_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Setting.Type"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingTest.Description_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Setting.Description"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingTest.Value_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Setting.Value"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingTest.Values_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Setting.Values"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Setting.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Setting.CompareTo(Catharsis.Domain.Setting)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Setting.Equals(Catharsis.Domain.Setting)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Setting.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Setting.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SettingTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Setting.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.SitemapEntryTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.SitemapEntry"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryTest.Uri_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.SitemapEntry.Uri"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryTest.ChangeFrequency_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.SitemapEntry.ChangeFrequency"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryTest.Priority_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.SitemapEntry.Priority"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryTest.Date_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.SitemapEntry.Date"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryTest.Description_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.SitemapEntry.Description"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.SitemapEntry.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SitemapEntry.CompareTo(Catharsis.Domain.SitemapEntry)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.SitemapEntry.Equals(Catharsis.Domain.SitemapEntry)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.SitemapEntry.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SitemapEntry.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.SitemapEntryTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.SitemapEntry.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.StorageFileTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.StorageFile"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.StorageFile.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.Storage_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.StorageFile.Storage"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.ContentType_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.StorageFile.ContentType"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.Size_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.StorageFile.Size"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.Path_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.StorageFile.Path"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.FullPath_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.StorageFile.FullPath"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.StorageFile.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.StorageFile.CompareTo(Catharsis.Domain.StorageFile)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.StorageFile.Equals(Catharsis.Domain.StorageFile)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.StorageFile.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.StorageFile.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.StorageFileTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.StorageFile.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.TagTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Tag"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.TagTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Tag.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.TagTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Tag.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.TagTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Tag.CompareTo(Catharsis.Domain.Tag)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.TagTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Tag.Equals(Catharsis.Domain.Tag)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Tag.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.TagTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Tag.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.TagTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Tag.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.VideoTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.Video"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.VideoTest.File_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.Video.File"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.VideoTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.Video.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.VideoTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Video.CompareTo(Catharsis.Domain.Video)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.VideoTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.Video.Equals(Catharsis.Domain.Video)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.Video.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.VideoTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.Video.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.VideoTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="!:Video.ToString()"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.WeatherForecastTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.WeatherForecast"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.City_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WeatherForecast.City"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.Date_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WeatherForecast.Date"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.Type_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WeatherForecast.Type"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.Temperature_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WeatherForecast.Temperature"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.Humidity_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WeatherForecast.Humidity"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.Pressure_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WeatherForecast.Pressure"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.Cloudiness_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WeatherForecast.Cloudiness"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.WindDirection_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WeatherForecast.WindDirection"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.WindSpeed_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WeatherForecast.WindSpeed"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.WeatherForecast.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WeatherForecast.CompareTo(Catharsis.Domain.WeatherForecast)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.WeatherForecast.Equals(Catharsis.Domain.WeatherForecast)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.WeatherForecast.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WeatherForecastTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WeatherForecast.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.WebBrowserTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.WebBrowser"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebBrowser.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserTest.Uri_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebBrowser.Uri"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserTest.UserAgent_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebBrowser.UserAgent"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserTest.Description_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebBrowser.Description"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.WebBrowser.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebBrowser.CompareTo(Catharsis.Domain.WebBrowser)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.WebBrowser.Equals(Catharsis.Domain.WebBrowser)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.WebBrowser.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebBrowser.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebBrowserTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebBrowser.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.WebLinkTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.WebLink"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebLink.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkTest.Uri_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebLink.Uri"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkTest.Image_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebLink.Image"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkTest.Description_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebLink.Description"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.WebLink.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebLink.CompareTo(Catharsis.Domain.WebLink)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.WebLink.Equals(Catharsis.Domain.WebLink)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.WebLink.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebLink.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebLinkTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebLink.ToString"/> method.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Tests.WebPageTest">
+            <summary>
+              <para>Tests set for class <see cref="T:Catharsis.Domain.WebPage"/>.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageTest.Name_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebPage.Name"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageTest.Uri_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebPage.Uri"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageTest.Locale_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebPage.Locale"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageTest.Text_Property">
+            <summary>
+              <para>Performs testing of <see cref="P:Catharsis.Domain.WebPage.Text"/> property.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageTest.Constructors">
+            <summary>
+              <para>Performs testing of class constructor(s).</para>
+            </summary>
+            <seealso cref="M:Catharsis.Domain.WebPage.#ctor"/>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageTest.CompareTo_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebPage.CompareTo(Catharsis.Domain.WebPage)"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageTest.Equals_Methods">
+            <summary>
+              <para>Performs testing of following methods :</para>
+              <list type="bullet">
+                <item><description><see cref="M:Catharsis.Domain.WebPage.Equals(Catharsis.Domain.WebPage)"/></description></item>
+                <item><description><see cref="M:Catharsis.Domain.WebPage.Equals(System.Object)"/></description></item>
+              </list>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageTest.GetHashCode_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebPage.GetHashCode"/> method.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tests.WebPageTest.ToString_Method">
+            <summary>
+              <para>Performs testing of <see cref="M:Catharsis.Domain.WebPage.ToString"/> method.</para>
+            </summary>
+        </member>
+    </members>
+</doc>

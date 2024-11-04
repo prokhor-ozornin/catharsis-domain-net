@@ -1,0 +1,2452 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Catharsis.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:Catharsis.Domain.Address">
+            <summary>
+              <para>Адрес</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Address.Name">
+            <summary>
+              <para>Адрес (улица, дом)</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Address.City">
+            <summary>
+              <para>Город, к которому относится адрес</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Address.Zip">
+            <summary>
+              <para>Почтовый индекс</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Address.Location">
+            <summary>
+              <para>Географическая точка с координатами адреса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Address.Description">
+            <summary>
+              <para>Дополнительные примечания, относящиеся к адресу</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Address.CompareTo(Catharsis.Domain.Address)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Address"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Address"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Address.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Announcement">
+            <summary>
+              <para>Объявление</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Announcement.Name">
+            <summary>
+              <para>Наименование/заголовок</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Announcement.Text">
+            <summary>
+              <para>Текстовое содержимое</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Announcement.Image">
+            <summary>
+              <para>Связанный файл изображения</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Announcement.Price">
+            <summary>
+              <para>Стоимость публикации</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Announcement.PriceCurrency">
+            <summary>
+              <para>Валюта стоимости публикации</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Announcement.CompareTo(Catharsis.Domain.Announcement)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Announcement"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Announcement"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Announcement.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.ApiKey">
+            <summary>
+              <para>Ключ доступа API</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.Value">
+            <summary>
+              <para>Значение ключа доступа</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.Name">
+            <summary>
+              <para>Ф.И.О. контактного лица, на имя которого выдан ключ доступа</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.Contact">
+            <summary>
+              <para>Контактные данные лица, на имя которого выдан ключ доступ</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.AppName">
+            <summary>
+              <para>Наименование приложения, использующего ключ доступа</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.AppDomain">
+            <summary>
+              <para>Доменное имя, с которого приложение осуществляет запросы к API</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.ApiKey.AppDescription">
+            <summary>
+              <para>Описание приложения, использующего ключ доступа</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.ApiKey.CompareTo(Catharsis.Domain.ApiKey)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.ApiKey"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.ApiKey"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.ApiKey.Equals(Catharsis.Domain.ApiKey)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.ApiKey"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.ApiKey.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.ApiKey.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.ApiKey.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Area">
+            <summary>
+              <para>Территория</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Area.Name">
+            <summary>
+              <para>Наименование территории</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Area.Country">
+            <summary>
+              <para>Страна, в которой расположена территория</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Area.CompareTo(Catharsis.Domain.Area)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Area"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Area"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Area.Equals(Catharsis.Domain.Area)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Area"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Area.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Area.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Area.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Audio">
+            <summary>
+              <para>Аудио</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Audio.Bitrate">
+            <summary>
+              <para>Битрейт аудио дорожки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Audio.File">
+            <summary>
+              <para>Файл, представляющий аудио</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Audio.CompareTo(Catharsis.Domain.Audio)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Audio"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Audio"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Audio.Equals(Catharsis.Domain.Audio)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Audio"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Audio.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Audio.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Book">
+            <summary>
+              <para>Литературное произведение</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Title">
+            <summary>
+              <para>Наименование произведения</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Author">
+            <summary>
+              <para>Автор произведения</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Language">
+            <summary>
+              <para>Национальный язык написания</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Isbn">
+            <summary>
+              <para>Уникальный ISBN идентификатор</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Annotation">
+            <summary>
+              <para>Аннотация к произведению</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Notes">
+            <summary>
+              <para>Примечания к произведению</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.PublishDate">
+            <summary>
+              <para>Дата публикации</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Publisher">
+            <summary>
+              <para>Наименование издательства-публикатора</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Cover">
+            <summary>
+              <para>Изображение для обложки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Contents">
+            <summary>
+              <para>Текстовое содержимое произведения</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Book.Tags">
+            <summary>
+              <para>Ключевые слова, описывающие содержимое произведения</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Book.CompareTo(Catharsis.Domain.Book)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Book"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Book"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Book.Equals(Catharsis.Domain.Book)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Book"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Book.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Book.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Book.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.City">
+            <summary>
+              <para>Город</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Name">
+            <summary>
+              <para>Наименование города</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Federal">
+            <summary>
+              <para>Признак того, что город имеет федеральное значение</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Country">
+            <summary>
+              <para>Страна, в которой расположен город</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Region">
+            <summary>
+              <para>Регион, к которому относится город</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Area">
+            <summary>
+              <para>Территория, к которой относится город</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.City.Location">
+            <summary>
+              <para>Географические координаты города</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.City.CompareTo(Catharsis.Domain.City)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.City"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.City"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.City.Equals(Catharsis.Domain.City)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.City"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.City.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.City.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.City.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Contact">
+            <summary>
+              <para>Контакт</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Website">
+            <summary>
+              <para>Веб-сайт</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Fax">
+            <summary>
+              <para>Номер факса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Skype">
+            <summary>
+              <para>Логин Skype мессенджера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Icq">
+            <summary>
+              <para>Логин ICQ мессенджера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Jabber">
+            <summary>
+              <para>Логин Jabber мессенджера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Addresses">
+            <summary>
+              <para>Адреса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Phones">
+            <summary>
+              <para>Номера телефонов</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Contact.Emails">
+            <summary>
+              <para>Адреса электронной почты</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Contact.CompareTo(Catharsis.Domain.Contact)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Contact"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Contact"/> to compare with this instance.</param>
+        </member>
+        <member name="T:Catharsis.Domain.Country">
+            <summary>
+              <para>Страна</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Country.Name">
+            <summary>
+              <para>Наименование страны</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Country.Language">
+            <summary>
+              <para>Основной язык страны</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Country.Currency">
+            <summary>
+              <para>Наименование валюты, используемой в стране</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Country.IsoCode">
+            <summary>
+              <para>Уникальный ISO код страны</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Country.CurrencyCode">
+            <summary>
+              <para>Код валюты, используемой в стране</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Country.CompareTo(Catharsis.Domain.Country)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Country"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Country"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Country.Equals(Catharsis.Domain.Country)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Country"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Country.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Country.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Country.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.DirectoryCompany">
+            <summary>
+              <para>Компания из справочника</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.DirectoryCompany.Name">
+            <summary>
+              <para>Полное наименование компании</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.DirectoryCompany.ShortName">
+            <summary>
+              <para>Краткое наименование компании</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.DirectoryCompany.Code">
+            <summary>
+              <para>Внешний служебный код компании</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.DirectoryCompany.Contact">
+            <summary>
+              <para>Контактные данные компании</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.DirectoryCompany.CompareTo(Catharsis.Domain.DirectoryCompany)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.DirectoryCompany"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.DirectoryCompany"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.DirectoryCompany.Equals(Catharsis.Domain.DirectoryCompany)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.DirectoryCompany"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.DirectoryCompany.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.DirectoryCompany.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.DirectoryCompany.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Download">
+            <summary>
+              <para>Загружаемый материал</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Download.Name">
+            <summary>
+              <para>Наименование материала</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Download.Description">
+            <summary>
+              <para>Описание материала</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Download.File">
+            <summary>
+              <para>Файл, представляющий загружаемый материал</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Download.Image">
+            <summary>
+              <para>Изображение, связанное с материалом</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Download.Downloads">
+            <summary>
+              <para>Количество скачиваний</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Download.CompareTo(Catharsis.Domain.Download)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Download"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Download"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Download.Equals(Catharsis.Domain.Download)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Download"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Download.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Download.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Download.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Entity">
+            <summary>
+              <para>Бизнес-сущность</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.Id">
+            <summary>
+              <para>Уникальный идентификатор</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.Uuid">
+            <summary>
+              <para>Уникальный UUID идентификатор</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.Version">
+            <summary>
+              <para>Номер версии</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.CreatedOn">
+            <summary>
+              <para>Дата/время создания</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Entity.UpdatedOn">
+            <summary>
+            /  <para>Дата/время последнего обновления</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Entity.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Entity.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.AddressExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Address"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Address"/>
+        </member>
+        <member name="T:Catharsis.Domain.AnnouncementExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Announcement"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Announcement"/>
+        </member>
+        <member name="T:Catharsis.Domain.ApiKeyExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.ApiKey"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.ApiKey"/>
+        </member>
+        <member name="T:Catharsis.Domain.AreaExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Area"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Area"/>
+        </member>
+        <member name="T:Catharsis.Domain.AudioExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Audio"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Audio"/>
+        </member>
+        <member name="T:Catharsis.Domain.BookExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Book"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Book"/>
+        </member>
+        <member name="T:Catharsis.Domain.CityExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.City"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.City"/>
+        </member>
+        <member name="T:Catharsis.Domain.ContactExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Contact"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Contact"/>
+        </member>
+        <member name="T:Catharsis.Domain.CountryExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Country"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Country"/>
+        </member>
+        <member name="T:Catharsis.Domain.DirectoryCompanyExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.DirectoryCompany"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.DirectoryCompany"/>
+        </member>
+        <member name="T:Catharsis.Domain.DownloadExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Download"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Download"/>
+        </member>
+        <member name="T:Catharsis.Domain.IEntityExtensions">
+            <summary>
+              <para>Set of extension methods for interface <see cref="T:Catharsis.Domain.IEntity"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.IEntity"/>
+        </member>
+        <member name="T:Catharsis.Domain.LocationExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Location"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Location"/>
+        </member>
+        <member name="T:Catharsis.Domain.LogMessageExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.LogMessage"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.LogMessage"/>
+        </member>
+        <member name="T:Catharsis.Domain.MediaExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Media"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Media"/>
+        </member>
+        <member name="T:Catharsis.Domain.NewsExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.News"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.News"/>
+        </member>
+        <member name="T:Catharsis.Domain.PersonExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Person"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Person"/>
+        </member>
+        <member name="T:Catharsis.Domain.PlaycastExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Playcast"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Playcast"/>
+        </member>
+        <member name="T:Catharsis.Domain.PushNotificationExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.PushNotification"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.PushNotification"/>
+        </member>
+        <member name="T:Catharsis.Domain.RegionExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Region"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Region"/>
+        </member>
+        <member name="T:Catharsis.Domain.ScriptExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Script"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Script"/>
+        </member>
+        <member name="T:Catharsis.Domain.SeoWebPageExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.SeoWebPage"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.SeoWebPage"/>
+        </member>
+        <member name="T:Catharsis.Domain.SettingExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Setting"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Setting"/>
+        </member>
+        <member name="T:Catharsis.Domain.SitemapEntryExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.SitemapEntry"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.SitemapEntry"/>
+        </member>
+        <member name="T:Catharsis.Domain.StorageFileExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.StorageFile"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.StorageFile"/>
+        </member>
+        <member name="T:Catharsis.Domain.TagExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.Tag"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.Tag"/>
+        </member>
+        <member name="T:Catharsis.Domain.WeatherForecastExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.WeatherForecast"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.WeatherForecast"/>
+        </member>
+        <member name="T:Catharsis.Domain.WebBrowserExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.WebBrowser"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.WebBrowser"/>
+        </member>
+        <member name="T:Catharsis.Domain.WebLinkExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.WebLink"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.WebLink"/>
+        </member>
+        <member name="T:Catharsis.Domain.WebPageExtensions">
+            <summary>
+              <para>Set of extension methods for class <see cref="T:Catharsis.Domain.WebPage"/>.</para>
+            </summary>
+            <seealso cref="T:Catharsis.Domain.WebPage"/>
+        </member>
+        <member name="T:Catharsis.Domain.Faq">
+            <summary>
+              <para>Часто Задаваемый Вопрос (Ч.А.В.О.)</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Faq.Question">
+            <summary>
+              <para>Текст ответа</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Faq.Answer">
+            <summary>
+              <para>Текст вопроса</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Faq.CompareTo(Catharsis.Domain.Faq)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Faq"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Faq"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Faq.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.IEntity">
+            <summary>
+              <para>Бизнес-сущность</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.Id">
+            <summary>
+              <para>Уникальный целочисленный идентификатор</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.Uuid">
+            <summary>
+              <para>Уникальный UUID идентификатор</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.Version">
+            <summary>
+              <para>Номер версии</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.CreatedOn">
+            <summary>
+              <para>Дата/время создания</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.UpdatedOn">
+            <summary>
+              <para>Дата/время последнего обновления</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.ModifiedOn">
+            <summary>
+              <para>Дата/время создания/обновления</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.IEntity.Tag">
+            <summary>
+              <para>Уникальный ключ для кэширования</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Image">
+            <summary>
+              <para>Изображение</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Image.File">
+            <summary>
+              <para>Файл, представляющий изображение</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Image.CompareTo(Catharsis.Domain.Image)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Image"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Image"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Image.Equals(Catharsis.Domain.Image)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Image"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Image.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Image.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Location">
+            <summary>
+              <para>Географическая точка</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Location.Latitude">
+            <summary>
+              <para>Широта (градусов) географической точки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Location.Longitude">
+            <summary>
+              <para>Долгота (градусов) географической точки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Location.TimeZone">
+            <summary>
+              <para>Наименование связанной с географической точкой временной зоны</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Location.CompareTo(Catharsis.Domain.Location)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Location"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Location"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Location.Equals(Catharsis.Domain.Location)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Location"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Location.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Location.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Location.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.LogMessage">
+            <summary>
+              <para>Запись лога</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.LogMessage.Level">
+            <summary>
+              <para>Уровень логгирования записей</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.LogMessage.Logger">
+            <summary>
+              <para>Название класса логгера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.LogMessage.Thread">
+            <summary>
+              <para>Имя потока, осуществлявшего логгирование</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.LogMessage.RequestId">
+            <summary>
+              <para>Идентификатор API запроса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.LogMessage.Text">
+            <summary>
+              <para>Текст записи</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.LogMessage.CompareTo(Catharsis.Domain.LogMessage)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.LogMessage"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.LogMessage"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.LogMessage.Equals(Catharsis.Domain.LogMessage)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.LogMessage"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.LogMessage.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.LogMessage.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.LogMessage.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.AddressMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Address"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.AddressMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.AnnouncementMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Announcement"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.AnnouncementMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.ApiKeyMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.ApiKey"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.ApiKeyMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.AreaMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Area"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.AreaMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.AudioMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Audio"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.AudioMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.BookMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Book"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.BookMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.CityMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.City"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.CityMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.ContactMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Contact"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.ContactMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.CountryMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Country"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.CountryMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.DirectoryCompanyMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.DirectoryCompany"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.DirectoryCompanyMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.DownloadMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Download"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.DownloadMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.EntityMapping`1">
+            <summary>
+              <para></para>
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:Catharsis.Domain.EntityMapping`1.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.FaqMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Faq"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.FaqMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.ImageMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Image"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.ImageMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.LocationMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Location"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.LocationMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.LogMessageMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.LogMessage"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.LogMessageMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.MediaMapping`1">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Audio"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.MediaMapping`1.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.NewsMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.News"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.NewsMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.PersonMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Person"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.PersonMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.PlaycastMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Playcast"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.PlaycastMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.PushNotificationMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.PushNotification"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.PushNotificationMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.RegionMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Region"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.RegionMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.ScriptMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Script"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.ScriptMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.SeoWebPageMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.SeoWebPage"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.SeoWebPageMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.SettingMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Setting"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.SettingMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.SitemapEntryMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.SitemapEntry"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.SitemapEntryMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.StorageFileMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.StorageFile"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.StorageFileMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.TagMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Tag"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.TagMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.VideoMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.Video"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.VideoMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.WeatherForecastMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.WeatherForecast"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.WeatherForecastMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.WebBrowserMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.WebBrowser"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.WebBrowserMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.WebLinkMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.WebLink"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.WebLinkMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.WebPageMapping">
+            <summary>
+              <para>NHibernate ORM relational mapping for <see cref="T:Catharsis.Domain.WebPage"/> entity.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.WebPageMapping.#ctor">
+            <summary>
+              <para>Creates and setup new mapping.</para>
+            </summary>
+        </member>
+        <member name="T:Catharsis.Domain.Media">
+            <summary>
+              <para>Медиа ресурс</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Name">
+            <summary>
+              <para>Заголовок медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.ContentType">
+            <summary>
+              <para>MIME тип медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Uri">
+            <summary>
+              <para>URI адрес медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.ProviderUri">
+            <summary>
+              <para>URI адрес сайта провайдера ресурсов данного типа</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Width">
+            <summary>
+              <para>Ширина ресурса в пикселях</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Height">
+            <summary>
+              <para>Высота медиа ресурса в пикселях</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Duration">
+            <summary>
+              <para>Длительность воспроизведения медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Description">
+            <summary>
+              <para>Описание медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.Html">
+            <summary>
+              <para>Внедряемый HTML код медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.AuthorName">
+            <summary>
+              <para>Имя создателя медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.AuthorUri">
+            <summary>
+              <para>URI адрес страницы создателя медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.ThumbnailUri">
+            <summary>
+              <para>URI адрес миниатюры медиа ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.ThumbnailWidth">
+            <summary>
+              <para>Ширина миниатюры медиа ресурса в пикселях</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Media.ThumbnailHeight">
+            <summary>
+              <para>Высота миниатюры медиа ресурса в пикселях</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Media.CompareTo(Catharsis.Domain.Media)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Media"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Media"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Media.Equals(Catharsis.Domain.Media)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Media"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Media.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Media.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Media.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.News">
+            <summary>
+              <para>Новость проекта</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.News.Name">
+            <summary>
+              <para>Заголовок новости</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.News.Image">
+            <summary>
+              <para>Файл изображения для новости</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.News.Annotation">
+            <summary>
+              <para>Аннотация к новости</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.News.Text">
+            <summary>
+              <para>Полный текст новости</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.News.Tags">
+            <summary>
+              <para>Ключевые слова, описывающие содержимое новости</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.News.CompareTo(Catharsis.Domain.News)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.News"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.News"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.News.Equals(Catharsis.Domain.News)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.News"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.News.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.News.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.News.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Person">
+            <summary>
+              <para>Персона</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Person.FirstName">
+            <summary>
+              <para>Имя</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Person.LastName">
+            <summary>
+              <para>Фамилия</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Person.MiddleName">
+            <summary>
+              <para>Отчество</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Person.BirthDate">
+            <summary>
+              <para>Дата рождения</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Person.DeathDate">
+            <summary>
+              <para>Дата смерти</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Person.CompareTo(Catharsis.Domain.Person)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Person"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Person"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Person.Equals(Catharsis.Domain.Person)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Person"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Person.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Person.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Person.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Playcast">
+            <summary>
+              <para>Плейкаст</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Name">
+            <summary>
+              <para>Наименование плейкаста</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Text">
+            <summary>
+              <para>Текст плейкаста</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Image">
+            <summary>
+              <para>Изображение для плейкаста</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Audio">
+            <summary>
+              <para>Аудио-сопровождение плейкаста</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Video">
+            <summary>
+              <para>Видео-содержимое плейкаста</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Playcast.Tags">
+            <summary>
+              <para>Ключевые слова, описывающие содержимое плейкаста</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Playcast.CompareTo(Catharsis.Domain.Playcast)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Playcast"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Playcast"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Playcast.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.PushNotification">
+            <summary>
+              <para>Push уведомление</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.PushNotification.Payload">
+            <summary>
+              <para>Полезная нагрузка (данные) уведомления</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.PushNotification.Provider">
+            <summary>
+              <para>Провайдер/служба, через которую производится рассылка уведомлений</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.PushNotification.Delivered">
+            <summary>
+              <para>Признак того, что уведомление было отправлено на мобильное устройство</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.PushNotification.Ttl">
+            <summary>
+              <para>Время жизни/длительность попыток доставки уведомления в секундах</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.PushNotification.Devices">
+            <summary>
+              <para>Идентификаторы мобильных устройств - получателей уведомления</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.PushNotification.CompareTo(Catharsis.Domain.PushNotification)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.PushNotification"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.PushNotification"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.PushNotification.Equals(Catharsis.Domain.PushNotification)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.PushNotification"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.PushNotification.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.PushNotification.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.PushNotification.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Region">
+            <summary>
+              <para>Регион</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Region.Name">
+            <summary>
+              <para>Наименование региона</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Region.Area">
+            <summary>
+              <para>Территория, к которой относится регион</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Region.CompareTo(Catharsis.Domain.Region)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Region"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Region"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Region.Equals(Catharsis.Domain.Region)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Region"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Region.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Region.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Region.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Script">
+            <summary>
+              <para>Программный скрипт</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Script.Name">
+            <summary>
+              <para>Наименование скрипта</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Script.Executed">
+            <summary>
+              <para>Признак того, был ли выполнен скрипт</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Script.Duration">
+            <summary>
+              <para>Длительность выполнения скрипта в миллисекундах</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Script.Path">
+            <summary>
+              <para>Путь к файлу скрипта</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Script.Code">
+            <summary>
+              <para>Программный код скрипта</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Script.CompareTo(Catharsis.Domain.Script)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Script"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Script"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Script.Equals(Catharsis.Domain.Script)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Script"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Script.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Script.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Script.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.SeoWebPage">
+            <summary>
+              <para>SEO данные о web странице</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SeoWebPage.Title">
+            <summary>
+              <para>Значение title заголовка для web страницы</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SeoWebPage.Uri">
+            <summary>
+              <para>URI адрес web страницы</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SeoWebPage.Locale">
+            <summary>
+              <para>Наименование локали для содержимого web страницы</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.SeoWebPage.CompareTo(Catharsis.Domain.SeoWebPage)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.SeoWebPage"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.SeoWebPage"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.SeoWebPage.Equals(Catharsis.Domain.SeoWebPage)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.SeoWebPage"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.SeoWebPage.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.SeoWebPage.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.SeoWebPage.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Setting">
+            <summary>
+              <para>Настроечная опция</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Setting.Name">
+            <summary>
+              <para>Наименование настроечной опции</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Setting.Type">
+            <summary>
+              <para>Тип данных для значения настроечной опции</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Setting.Description">
+            <summary>
+              <para>Описание настроечной опции</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Setting.Value">
+            <summary>
+              <para>Значение настроечной опции</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Setting.Values">
+            <summary>
+              <para>Список значений настроечной опции</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Setting.CompareTo(Catharsis.Domain.Setting)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Setting"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Setting"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Setting.Equals(Catharsis.Domain.Setting)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Setting"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Setting.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Setting.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Setting.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.SitemapEntry">
+            <summary>
+              <para>Элемент карты сайта</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SitemapEntry.Uri">
+            <summary>
+              <para>URI адрес ресурса</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SitemapEntry.ChangeFrequency">
+            <summary>
+              <para>Частота обновлений ресурса, доступного по URI адресу</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SitemapEntry.Priority">
+            <summary>
+              <para>Приоритет ресурса среди элементов карты сайта</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SitemapEntry.Date">
+            <summary>
+              <para>Дата/время последнего обновления ресурса, доступного по URI адресу</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.SitemapEntry.Description">
+            <summary>
+              <para>Описание ресурса, доступного по URI адресу</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.SitemapEntry.CompareTo(Catharsis.Domain.SitemapEntry)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.SitemapEntry"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.SitemapEntry"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.SitemapEntry.Equals(Catharsis.Domain.SitemapEntry)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.SitemapEntry"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.SitemapEntry.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.SitemapEntry.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.SitemapEntry.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.StorageFile">
+            <summary>
+              <para>Файл</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.StorageFile.Name">
+            <summary>
+              <para>Наименование файла</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.StorageFile.Storage">
+            <summary>
+              <para>Тип файлового хранилища</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.StorageFile.ContentType">
+            <summary>
+              <para>MIME тип содержимого файла</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.StorageFile.Size">
+            <summary>
+              <para>Размер файла в байтах</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.StorageFile.Path">
+            <summary>
+              <para>Путь к файлу в хранилище</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.StorageFile.CompareTo(Catharsis.Domain.StorageFile)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.StorageFile"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.StorageFile"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.StorageFile.Equals(Catharsis.Domain.StorageFile)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.StorageFile"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.StorageFile.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.StorageFile.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.StorageFile.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Tag">
+            <summary>
+              <para>Ключевое слово</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Tag.Name">
+            <summary>
+              <para>Значение ключевого слова</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Tag.CompareTo(Catharsis.Domain.Tag)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Tag"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Tag"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Tag.Equals(Catharsis.Domain.Tag)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Tag"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Tag.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Tag.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Tag.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.Video">
+            <summary>
+              <para>Видео</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.Video.File">
+            <summary>
+              <para>Файл, представляющий видео</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.Video.CompareTo(Catharsis.Domain.Video)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.Video"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.Video"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.Video.Equals(Catharsis.Domain.Video)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.Video"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Video.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.Video.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.WeatherForecast">
+            <summary>
+              <para>Прогноз погодных условий</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.City">
+            <summary>
+              <para>Город для прогноза</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Date">
+            <summary>
+              <para>Дата прогноза</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Type">
+            <summary>
+              <para>Тип погодных условий</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Temperature">
+            <summary>
+              <para>Температура воздуха, градусов Цельсия</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Humidity">
+            <summary>
+              <para>Влажность, %</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Pressure">
+            <summary>
+              <para>Атмосферное давление, мм. рт. столба</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.Cloudiness">
+            <summary>
+              <para>Облачность, %</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.WindDirection">
+            <summary>
+              <para>Направление движения ветра, градусов</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WeatherForecast.WindSpeed">
+            <summary>
+              <para>Скорость движения ветра, метров/сек.</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.WeatherForecast.CompareTo(Catharsis.Domain.WeatherForecast)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.WeatherForecast"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.WeatherForecast"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.WeatherForecast.Equals(Catharsis.Domain.WeatherForecast)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.WeatherForecast"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WeatherForecast.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WeatherForecast.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.WebBrowser">
+            <summary>
+              <para>Web браузер</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebBrowser.Name">
+            <summary>
+              <para>Наименование/код браузера</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebBrowser.Uri">
+            <summary>
+              <para>Адрес сайта разработчиков</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebBrowser.UserAgent">
+            <summary>
+              <para>Значение HTTP заголовка User-Agent</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebBrowser.Description">
+            <summary>
+              <para>Описание браузера</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.WebBrowser.CompareTo(Catharsis.Domain.WebBrowser)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.WebBrowser"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.WebBrowser"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.WebBrowser.Equals(Catharsis.Domain.WebBrowser)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.WebBrowser"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WebBrowser.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WebBrowser.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WebBrowser.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.WebLink">
+            <summary>
+              <para>Гиперссылка</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebLink.Name">
+            <summary>
+              <para>Наименование гиперссылки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebLink.Uri">
+            <summary>
+              <para>URI адрес гиперссылки</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebLink.Image">
+            <summary>
+              <para>Изображение, представляющее гиперссылку</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebLink.Description">
+            <summary>
+              <para>Описание гиперссылки</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.WebLink.CompareTo(Catharsis.Domain.WebLink)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.WebLink"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.WebLink"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.WebLink.Equals(Catharsis.Domain.WebLink)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.WebLink"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WebLink.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WebLink.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WebLink.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+        <member name="T:Catharsis.Domain.WebPage">
+            <summary>
+              <para>Web страница</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebPage.Name">
+            <summary>
+              <para>Наименование web страницы</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebPage.Uri">
+            <summary>
+              <para>URI адрес web страницы</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebPage.Locale">
+            <summary>
+              <para>Наименование локали для текста web страницы</para>
+            </summary>
+        </member>
+        <member name="P:Catharsis.Domain.WebPage.Text">
+            <summary>
+              <para>HTML код (текст) web страницы</para>
+            </summary>
+        </member>
+        <member name="M:Catharsis.Domain.WebPage.CompareTo(Catharsis.Domain.WebPage)">
+            <summary>
+              <para>Compares the current <see cref="T:Catharsis.Domain.WebPage"/> instance with another.</para>
+            </summary>
+            <returns>A value that indicates the relative order of the instances being compared.</returns>
+            <param name="other">The <see cref="T:Catharsis.Domain.WebPage"/> to compare with this instance.</param>
+        </member>
+        <member name="M:Catharsis.Domain.WebPage.Equals(Catharsis.Domain.WebPage)">
+            <summary>
+              <para>Determines whether two <see cref="T:Catharsis.Domain.WebPage"/> instances are equal.</para>
+            </summary>
+            <param name="other">The instance to compare with the current one.</param>
+            <returns><c>true</c> if specified instance is equal to the current, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WebPage.Equals(System.Object)">
+            <summary>
+              <para>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</para>
+            </summary>
+            <param name="other">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object, <c>false</c>.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WebPage.GetHashCode">
+            <summary>
+              <para>Returns hash code for the current object.</para>
+            </summary>
+            <returns>Hash code of current instance.</returns>
+        </member>
+        <member name="M:Catharsis.Domain.WebPage.ToString">
+            <summary>
+              <para>Returns a <see cref="T:System.String"/> that represents the current entity.</para>
+            </summary>
+            <returns>A string that represents the current entity.</returns>
+        </member>
+    </members>
+</doc>
