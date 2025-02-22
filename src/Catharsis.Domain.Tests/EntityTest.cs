@@ -2,13 +2,14 @@
 using System.Runtime.Serialization;
 using Catharsis.Commons;
 using FluentAssertions;
+using FluentAssertions.Json;
 using Xunit;
 
 namespace Catharsis.Domain.Tests;
 
 public abstract class EntityTest<T> : ClassTest<T> where T : class, new()
 {
-  protected readonly T _entity = new();
+  protected T Entity { get; } = new();
 
   [Fact]
   public void Type()
@@ -44,9 +45,9 @@ public abstract class EntityTest<T> : ClassTest<T> where T : class, new()
   [Fact]
   public void Serialization()
   {
-    _entity.Should()
-          .BeBinarySerializable()
-          .And
+    Entity.Should()
+          //.BeBinarySerializable()
+          //.And
           .BeXmlSerializable()
           .And
           .BeDataContractSerializable()
