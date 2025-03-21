@@ -71,7 +71,10 @@ public sealed class AddressTest : EntityTest<Address>
   ///   <para>Performs testing of <see cref="Address.CompareTo(Address)"/> method.</para>
   /// </summary>
   [Fact]
-  public void CompareTo_Method() { TestCompareTo(nameof(Address.Name), "first", "second"); }
+  public void CompareTo_Method()
+  {
+    TestCompareTo(nameof(Address.Name), "first", "second"); 
+  }
 
   /// <summary>
   ///   <para>Performs testing of <see cref="Address.ToString()"/> method.</para>

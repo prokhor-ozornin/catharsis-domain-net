@@ -105,7 +105,7 @@ public sealed class ApiKeyTest : EntityTest<ApiKey>
   [Fact]
   public void Equals_Methods()
   {
-    TestEquality(nameof(ApiKey.Value), "first", "second");
+    TestEquality<ApiKey, string>(nameof(ApiKey.Value), "first", "second");
   }
 
   /// <summary>
@@ -114,7 +114,7 @@ public sealed class ApiKeyTest : EntityTest<ApiKey>
   [Fact]
   public void GetHashCode_Method()
   {
-    TestHashCode(nameof(ApiKey.Value), "first", "second");
+    TestHashCode<ApiKey, string>(nameof(ApiKey.Value), "first", "second");
   }
 
   /// <summary>
